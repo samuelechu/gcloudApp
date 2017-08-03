@@ -13,7 +13,7 @@ func main() {
     const dbName = "database2"
     //const dbIP = "2001:4860:4864:1:de34:1928:6ae4:7058"
     const dbIP = "tcp(130.211.122.232:3306)"
-    const dbOpenString = dbUserName + ":" + dbPassword + "@" + dbIP + "/" +
+    const dbOpenString = dbUserName + ":" + dbPassword + "@" + dbIP + "/" + dbName
     db, err := sql.Open("mysql", dbOpenString);
     if err != nil {
         log.Println("sql.Open(" +
