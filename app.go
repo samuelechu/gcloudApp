@@ -2,6 +2,7 @@
 package main
 
 import (
+    "google.golang.org/appengine"
     "database/sql"
     _ "github.com/go-sql-driver/mysql"
     "log"
@@ -35,5 +36,9 @@ func main() {
 
     if err != nil {
         log.Println("CREATE TABLE failed:")
-        log.Println(err) }
+        log.Println(err) 
     }
+
+    appengine.Main()
+
+}
