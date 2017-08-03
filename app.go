@@ -5,30 +5,28 @@ import (
     "google.golang.org/appengine"
     "database/sql"
     _ "github.com/go-sql-driver/mysql"
-    "fmt"
+    "log"
 )
 
 func main() {
-    fmt.Println("In Main!")
     const dbUserName = "root"
     const dbPassword = "dog"
-    const dbName = "cloudsqltest-175704:us-central1:database2"
+    const dbName = "database2"
     //const dbIP = "2001:4860:4864:1:de34:1928:6ae4:7058"
     const dbIP = "tcp(130.211.122.232:3306)"
     const dbOpenString = dbUserName + ":" + dbPassword + "@" + dbIP + "/" + dbName
-    fmt.Println("attempt open database!")
     db, err := sql.Open("mysql", dbOpenString);
     if err != nil {
-        fmt.Println("sql.Open(" +
+        log.Println("sql.Open(" +
             dbOpenString +
             "\"mysql, \"")
     }
     defer db.Close()
-    fmt.Println("Pinging database. This may take a moment.")
+    log.Println("Pinging database. This may take a moment.")
     err = db.Ping()
     if err != nil {
-        fmt.Println("db.Ping() call failed:");
-        fmt.Println(err)
+        log.Println("db.Ping() call failed:");
+        log.Println(err)
     }
     _, err = db.Exec(
         `CREATE TABLE IF NOT EXISTS exercisecloudsql101
@@ -37,8 +35,8 @@ func main() {
         description TEXT, PRIMARY KEY (id))`)
 
     if err != nil {
-        fmt.Println("CREATE TABLE failed:")
-        fmt.Println(err) 
+        log.Println("CREATE TABLE failed:")
+        log.Println(err) 
     }
 
     appengine.Main()
