@@ -11,7 +11,7 @@ import (
 func main() {
     const dbUserName = "root"
     const dbPassword = "dog"
-    const dbName = "database2"
+    const dbName = "cloudsqltest-175704:us-central1:database2"
     //const dbIP = "2001:4860:4864:1:de34:1928:6ae4:7058"
     const dbIP = "tcp(130.211.122.232:3306)"
     const dbOpenString = dbUserName + ":" + dbPassword + "@" + dbIP + "/" + dbName
