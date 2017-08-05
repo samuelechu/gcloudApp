@@ -1,5 +1,5 @@
 // cloudsql1.go - Creates Google Cloud SQL table
-package main
+package cloudSQLDatabase
 
 import (
     "google.golang.org/appengine"
