@@ -1,4 +1,4 @@
-// cloudsql1.go - Creates Google Cloud SQL table
+// cloudsql.go - Creates Google Cloud SQL table
 package cloudSQLDatabase
 
 import (
