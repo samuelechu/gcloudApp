@@ -13,7 +13,7 @@ import (
         "log"
         "net/http"
         "os"
-
+        _ "google.golang.org/appengine/cloudsql"
         _ "github.com/go-sql-driver/mysql"
 )
 
