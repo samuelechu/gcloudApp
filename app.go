@@ -10,7 +10,6 @@ import (
         "bytes"
         "database/sql"
         "fmt"
-        "log"
         "net/http"
         "os"
         _ "github.com/go-sql-driver/mysql"
