@@ -13,18 +13,92 @@ import (
         "log"
         "net/http"
         "os"
-        _ "google.golang.org/appengine/cloudsql"
         _ "github.com/go-sql-driver/mysql"
 )
+
+
+type MySQLConfig struct {
+        // Optional.
+        Username, Password string
+
+        // Host of the MySQL instance.
+        //
+        // If set, UnixSocket should be unset.
+        Host string
+
+        // Port of the MySQL instance.
+        //
+        // If set, UnixSocket should be unset.
+        Port int
+
+        // UnixSocket is the filepath to a unix socket.
+        //
+        // If set, Host and Port should be unset.
+        UnixSocket string
+}
+
+// dataStoreName returns a connection string suitable for sql.Open.
+func (c MySQLConfig) dataStoreName(databaseName string) string {
+        var cred string
+        // [username[:password]@]
+        if c.Username != "" {
+                cred = c.Username
+                if c.Password != "" {
+                        cred = cred + ":" + c.Password
+                }
+                cred = cred + "@"
+        }
+
+        if c.UnixSocket != "" {
+                return fmt.Sprintf("%sunix(%s)/%s", cred, c.UnixSocket, databaseName)
+        }
+        return fmt.Sprintf("%stcp([%s]:%d)/%s", cred, c.Host, c.Port, databaseName)
+}
+
+func getDataStoreName(username, password, instance, databaseName string) string {
+        if os.Getenv("GAE_INSTANCE") != "" {
+                // Running in production.
+                return MySQLConfig{
+                        Username:   username,
+                        Password:   password,
+                        UnixSocket: "/cloudsql/" + instance,
+                }.dataStoreName(databaseName)
+        }
+
+
+        // Running locally.
+        return MySQLConfig{
+                Username: username,
+                Password: password,
+                Host:     "localhost",
+                Port:     3306,
+        }.dataStoreName(databaseName)
+}
+
+
 
 func init() {
         http.HandleFunc("/initDB", handler)
 }
 
+
+
 func handler(w http.ResponseWriter, r *http.Request) {
         if r.URL.Path != "/initDB" {
                 http.NotFound(w, r)
                 return
+        }
+
+        const dbUserName = "root"
+        const dbPassword = "dog"
+        const dbInstance = "gotesting-175718:us-central1:database"
+        const dbName = "samsDatabase"
+        const dbOpenString = getDataStoreName(dbUserName, dbPassword, dbInstance, dbName)
+        db, err := sql.Open("mysql", dbOpenString);
+        if err != nil {
+        log.Println("sql.Open(" +
+            dbOpenString +
+            "\"mysql, \"")
         }
 
         connectionName := mustGetenv("CLOUDSQL_CONNECTION_NAME")
@@ -59,13 +133,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         w.Write(buf.Bytes())
 }
 
-func mustGetenv(k string) string {
-        v := os.Getenv(k)
-        if v == "" {
-                log.Panicf("%s environment variable not set.", k)
-        }
-        return v
-}
+
 
 // func mains() {
 //     const dbUserName = "root"
@@ -100,4 +168,4 @@ func mustGetenv(k string) string {
 
 //     appengine.Main()
 
-//}
+// }
