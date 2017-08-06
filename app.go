@@ -55,7 +55,7 @@ func (c MySQLConfig) dataStoreName(databaseName string) string {
         return fmt.Sprintf("%stcp([%s]:%d)/%s", cred, c.Host, c.Port, databaseName)
 }
 
-const func getDataStoreName(username, password, instance, databaseName string) string {
+func getDataStoreName(username, password, instance, databaseName string) string {
         if os.Getenv("GAE_INSTANCE") != "" {
                 // Running in production.
                 return MySQLConfig{
@@ -91,11 +91,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
         w.Header().Set("Content-Type", "text/plain")
 
-        const dbUserName = "root"
-        const dbPassword = "dog"
-        const dbInstance = "gotesting-175718:us-central1:database"
-        const dbName = "samsDatabase"
-        const dbOpenString = getDataStoreName(dbUserName, dbPassword, dbInstance, dbName)
+        dbUserName := "root"
+        dbPassword := "dog"
+        dbInstance := "gotesting-175718:us-central1:database"
+        dbName := "samsDatabase"
+        dbOpenString := getDataStoreName(dbUserName, dbPassword, dbInstance, dbName)
+
         db, err := sql.Open("mysql", dbOpenString)
 
         if err != nil {
