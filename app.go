@@ -1,28 +1,37 @@
 // cloudsql.go - Creates Google Cloud SQL table
-package cloudSQLDatabase
+package cloudSQLTest
+
+// Copyright 2016 Google Inc. All rights reserved.
+// Use of this source code is governed by the Apache 2.0
+// license that can be found in the LICENSE file.
+
+// Sample cloudsql demonstrates connection to a Cloud SQL instance from App Engine standard.
+
 
 import (
-    "bytes"
-    "fmt"
-    "net/http"
+        "bytes"
+        "database/sql"
+        "fmt"
+        "log"
+        "net/http"
+        "os"
 
-    "database/sql"
-    _ "github.com/go-sql-driver/mysql"
+        _ "github.com/go-sql-driver/mysql"
 )
 
 func init() {
-        http.HandleFunc("/initDatabase", handler)
+        http.HandleFunc("/initDB", handler)
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-        if r.URL.Path != "/initDatabase" {
+        if r.URL.Path != "/initDB" {
                 http.NotFound(w, r)
                 return
         }
 
-        connectionName := "gotesting-175718:database"        
-        user := "root"
-        password := "dog" // NOTE: password may be empty
+        connectionName := mustGetenv("CLOUDSQL_CONNECTION_NAME")
+        user := mustGetenv("CLOUDSQL_USER")
+        password := os.Getenv("CLOUDSQL_PASSWORD") // NOTE: password may be empty
 
         w.Header().Set("Content-Type", "text/plain")
 
@@ -50,6 +59,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
                 fmt.Fprintf(buf, "- %s\n", dbName)
         }
         w.Write(buf.Bytes())
+}
+
+func mustGetenv(k string) string {
+        v := os.Getenv(k)
+        if v == "" {
+                log.Panicf("%s environment variable not set.", k)
+        }
+        return v
 }
 
 // func mains() {
