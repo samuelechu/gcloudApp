@@ -11,7 +11,7 @@ import (
 	"log"
 	"net/http"
 	"github.com/samuelechu/string"
-	_ "github.com/samuelechu/cloudSQLTest"
+	_ "github.com/samuelechu/cloudSQL"
 )
 
 func main() {

@@ -1,5 +1,5 @@
 // cloudsql.go - Creates Google Cloud SQL table
-package cloudSQLTest
+package cloudSQL
 
 // Copyright 2016 Google Inc. All rights reserved.
 // Use of this source code is governed by the Apache 2.0
