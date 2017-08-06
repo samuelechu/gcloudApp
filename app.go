@@ -55,7 +55,7 @@ func (c MySQLConfig) dataStoreName(databaseName string) string {
         return fmt.Sprintf("%stcp([%s]:%d)/%s", cred, c.Host, c.Port, databaseName)
 }
 
-func getDataStoreName(username, password, instance, databaseName string) string {
+const func getDataStoreName(username, password, instance, databaseName string) string {
         if os.Getenv("GAE_INSTANCE") != "" {
                 // Running in production.
                 return MySQLConfig{
@@ -89,25 +89,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
                 return
         }
 
+        w.Header().Set("Content-Type", "text/plain")
+
         const dbUserName = "root"
         const dbPassword = "dog"
         const dbInstance = "gotesting-175718:us-central1:database"
         const dbName = "samsDatabase"
         const dbOpenString = getDataStoreName(dbUserName, dbPassword, dbInstance, dbName)
-        db, err := sql.Open("mysql", dbOpenString);
-        if err != nil {
-        log.Println("sql.Open(" +
-            dbOpenString +
-            "\"mysql, \"")
-        }
+        db, err := sql.Open("mysql", dbOpenString)
 
-        connectionName := mustGetenv("CLOUDSQL_CONNECTION_NAME")
-        user := mustGetenv("CLOUDSQL_USER")
-        password := os.Getenv("CLOUDSQL_PASSWORD") // NOTE: password may be empty
-
-        w.Header().Set("Content-Type", "text/plain")
-
-        db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/", user, password, connectionName))
         if err != nil {
                 http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
                 return
