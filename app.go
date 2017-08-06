@@ -6,8 +6,6 @@ package cloudSQLTest
 // license that can be found in the LICENSE file.
 
 // Sample cloudsql demonstrates connection to a Cloud SQL instance from App Engine standard.
-
-
 import (
         "bytes"
         "database/sql"
