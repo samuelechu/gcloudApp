@@ -102,8 +102,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
         dbPassword := "dog"
         dbInstance := "gotesting-175718:us-central1:database"
         dbName := "samsDatabase"
-        dbOpenString := getDeployedDSN(dbUserName, dbPassword, dbInstance, dbName)
- 
+        //dbOpenString := getDeployedDSN(dbUserName, dbPassword, dbInstance, dbName)
+        dbOpenString := "root@cloudsql(gotesting-175718:us-central1:database)/samsDatabase"
         // err := testConn(dbOpenString)
 
         // if err != nil {
