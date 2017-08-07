@@ -11,6 +11,7 @@ import (
         "bytes"
         "database/sql"
         "fmt"
+        "log"
         "net/http"
         _ "github.com/go-sql-driver/mysql"
 )
@@ -87,7 +88,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         id, err := res.LastInsertId()
         checkErr(err)
 
-        fmt.Println(id)
+        log.Println(id)
         // update
         stmt, err = db.Prepare("update userinfo set username=? where uid=?")
         checkErr(err)
@@ -98,7 +99,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         affect, err := res.RowsAffected()
         checkErr(err)
 
-        fmt.Println(affect)
+        log.Println(affect)
 
         // query
         rows, err = db.Query("SELECT * FROM userinfo")
@@ -111,10 +112,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
             var created string
             err = rows.Scan(&uid, &username, &department, &created)
             checkErr(err)
-            fmt.Println(uid)
-            fmt.Println(username)
-            fmt.Println(department)
-            fmt.Println(created)
+            log.Println(uid)
+            log.Println(username)
+            log.Println(department)
+            log.Println(created)
         }
 
         // delete
