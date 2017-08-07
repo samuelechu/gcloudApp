@@ -60,7 +60,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
                 fmt.Fprintf(buf, "- %s\n", dbName)
         }
 
+        _, err = db.Exec(
+                `CREATE TABLE IF NOT EXISTS `userinfo` (
+                `uid` INT(10) NOT NULL AUTO_INCREMENT,
+                `username` VARCHAR(64) NULL DEFAULT NULL,
+                `departname` VARCHAR(64) NULL DEFAULT NULL,
+                `created` DATE NULL DEFAULT NULL,
+                PRIMARY KEY (`uid`)`)
 
+
+        if err != nil {
+                http.Error(w, fmt.Sprintf("CREATE TABLE failed: %v", err), 500)
+        }
 
 
 
@@ -117,8 +128,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
         checkErr(err)
 
         fmt.Println(affect)
-
-        db.Close()
 
         w.Write(buf.Bytes())
 }
