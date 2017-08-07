@@ -12,6 +12,7 @@ import (
         "fmt"
         "net/http"
         "os"
+        "log"
         _ "github.com/go-sql-driver/mysql"
 )
 
@@ -84,6 +85,7 @@ func init() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
         if r.URL.Path != "/initDB" {
+                log.Println(r.URL.Path)
                 http.NotFound(w, r)
                 return
         }
