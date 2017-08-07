@@ -13,6 +13,7 @@ import (
         "net/http"
         "os"
         "log"
+        _ "google.golang.org/appengine/cloudsql"
         _ "github.com/go-sql-driver/mysql"
 )
 
@@ -99,7 +100,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         password := os.Getenv("CLOUDSQL_PASSWORD")
 
         //db, err := sql.Open("mysql", dbOpenString)
-        db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/", user, password, connectionName))
+        db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/samsDatabase", user, password, connectionName))
         if err != nil {
                 http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
                 return
