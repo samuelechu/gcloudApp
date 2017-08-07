@@ -107,7 +107,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         dbOpenString := fmt.Sprintf("%s:%s@cloudsql(%s)/%s", user, password, instance, dbName)
 
         if appengine.IsDevAppServer() {
-                dbOpenString = fmt.Sprintf("%s:%s@tcp([localhost]:3306)/%s", user, password, databaseName)
+                dbOpenString = fmt.Sprintf("%s:%s@tcp([localhost]:3306)/%s", user, password, dbName)
         }
 
        // dbOpenString := "root:dog@cloudsql(gotesting-175718:us-central1:database)/samsDatabase"
