@@ -104,7 +104,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         dbName := "samsDatabase"
         dbOpenString := getDeployedDSN(dbUserName, dbPassword, dbInstance, dbName)
 
-        err = testConn(dbOpenString)
+        err := testConn(dbOpenString)
 
         if err != nil {
                 dbOpenString = getLocalDSN(dbUserName, dbPassword, dbInstance, dbName)
