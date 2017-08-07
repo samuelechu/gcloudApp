@@ -103,7 +103,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         dbInstance := "gotesting-175718:us-central1:database"
         dbName := "samsDatabase"
         dbOpenString := getDeployedDSN(dbUserName, dbPassword, dbInstance, dbName)
-
+ 
         // err := testConn(dbOpenString)
 
         // if err != nil {
