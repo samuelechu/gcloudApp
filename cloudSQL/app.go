@@ -12,7 +12,6 @@ import (
         "fmt"
         "net/http"
         "os"
-        "log"
         _ "github.com/go-sql-driver/mysql"
 )
 
