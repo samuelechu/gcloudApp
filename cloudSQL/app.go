@@ -54,17 +54,16 @@ func (c MySQLConfig) dataStoreName(databaseName string) string {
         return fmt.Sprintf("%stcp([%s]:%d)/%s", cred, c.Host, c.Port, databaseName)
 }
 
-func getDataStoreName(username, password, instance, databaseName string) string {
-        if os.Getenv("GAE_INSTANCE") != "" {
-                // Running in production.
-                return MySQLConfig{
-                        Username:   username,
-                        Password:   password,
-                        UnixSocket: "/cloudsql/" + instance,
-                }.dataStoreName(databaseName)
-        }
+func getDeployedDSN(username, password, instance, databaseName string) string {
+        // Running in production.
+        return MySQLConfig{
+                Username:   username,
+                Password:   password,
+                UnixSocket: "/cloudsql/" + instance,
+        }.dataStoreName(databaseName)
+}
 
-
+func getLocalDSN(username, password, instance, databaseName string) string {
         // Running locally.
         return MySQLConfig{
                 Username: username,
@@ -75,12 +74,9 @@ func getDataStoreName(username, password, instance, databaseName string) string 
 }
 
 
-
 func init() {
         http.HandleFunc("/initDB", handler)
 }
-
-
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
@@ -90,13 +86,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
         dbPassword := "dog"
         dbInstance := "gotesting-175718:us-central1:database"
         dbName := "samsDatabase"
-        dbOpenString := getDataStoreName(dbUserName, dbPassword, dbInstance, dbName)
+        dbOpenString := getDeployedDSN(dbUserName, dbPassword, dbInstance, dbName)
 
         db, err := sql.Open("mysql", dbOpenString)
 
+
         if err != nil {
-                http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
-                return
+                dbOpenString = getLocalDSN(dbUserName, dbPassword, dbInstance, dbName)
+                db, err = sql.Open("mysql", dbOpenString)
+
+                if err != nil {
+                        http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
+                        return  
+                }
+                
         }
         defer db.Close()
 
