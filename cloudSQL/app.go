@@ -17,63 +17,63 @@ import (
 )
 
 
-type MySQLConfig struct {
-        // Optional.
-        Username, Password string
+// type MySQLConfig struct {
+//         // Optional.
+//         Username, Password string
 
-        // Host of the MySQL instance.
-        //
-        // If set, UnixSocket should be unset.
-        Host string
+//         // Host of the MySQL instance.
+//         //
+//         // If set, UnixSocket should be unset.
+//         Host string
 
-        // Port of the MySQL instance.
-        //
-        // If set, UnixSocket should be unset.
-        Port int
+//         // Port of the MySQL instance.
+//         //
+//         // If set, UnixSocket should be unset.
+//         Port int
 
-        // UnixSocket is the filepath to a unix socket.
-        //
-        // If set, Host and Port should be unset.
-        UnixSocket string
-}
+//         // UnixSocket is the filepath to a unix socket.
+//         //
+//         // If set, Host and Port should be unset.
+//         UnixSocket string
+// }
 
-// dataStoreName returns a connection string suitable for sql.Open.
-func (c MySQLConfig) dataStoreName(databaseName string) string {
-        var cred string
-        // [username[:password]@]
-        if c.Username != "" {
-                cred = c.Username
-                if c.Password != "" {
-                        cred = cred + ":" + c.Password
-                }
-                cred = cred + "@"
-        }
+// // dataStoreName returns a connection string suitable for sql.Open.
+// func (c MySQLConfig) dataStoreName(databaseName string) string {
+//         var cred string
+//         // [username[:password]@]
+//         if c.Username != "" {
+//                 cred = c.Username
+//                 if c.Password != "" {
+//                         cred = cred + ":" + c.Password
+//                 }
+//                 cred = cred + "@"
+//         }
 
-        if c.UnixSocket != "" {
-                return fmt.Sprintf("%sunix(%s)/%s", cred, c.UnixSocket, databaseName)
-        }
-        return fmt.Sprintf("%stcp([%s]:%d)/%s", cred, c.Host, c.Port, databaseName)
-}
+//         if c.UnixSocket != "" {
+//                 return fmt.Sprintf("%sunix(%s)/%s", cred, c.UnixSocket, databaseName)
+//         }
+//         return fmt.Sprintf("%stcp([%s]:%d)/%s", cred, c.Host, c.Port, databaseName)
+// }
 
-func getDataStoreName(username, password, instance, databaseName string) string {
-        if os.Getenv("GAE_INSTANCE") != "" {
-                // Running in production.
-                return MySQLConfig{
-                        Username:   username,
-                        Password:   password,
-                        UnixSocket: "/cloudsql/" + instance,
-                }.dataStoreName(databaseName)
-        }
+// func getDataStoreName(username, password, instance, databaseName string) string {
+//         if os.Getenv("GAE_INSTANCE") != "" {
+//                 // Running in production.
+//                 return MySQLConfig{
+//                         Username:   username,
+//                         Password:   password,
+//                         UnixSocket: "/cloudsql/" + instance,
+//                 }.dataStoreName(databaseName)
+//         }
 
 
-        // Running locally.
-        return MySQLConfig{
-                Username: username,
-                Password: password,
-                Host:     "localhost",
-                Port:     3306,
-        }.dataStoreName(databaseName)
-}
+//         // Running locally.
+//         return MySQLConfig{
+//                 Username: username,
+//                 Password: password,
+//                 Host:     "localhost",
+//                 Port:     3306,
+//         }.dataStoreName(databaseName)
+// }
 
 
 
@@ -87,14 +87,19 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
         w.Header().Set("Content-Type", "text/plain")
 
-        dbUserName := "root"
-        dbPassword := "dog"
-        dbInstance := "gotesting-175718:us-central1:database"
-        dbName := "samsDatabase"
-        dbOpenString := getDataStoreName(dbUserName, dbPassword, dbInstance, dbName)
+        // dbUserName := "root"
+        // dbPassword := "dog"
+        // dbInstance := "gotesting-175718:us-central1:database"
+        // dbName := "samsDatabase"
+        // dbOpenString := getDataStoreName(dbUserName, dbPassword, dbInstance, dbName)
 
-        db, err := sql.Open("mysql", dbOpenString)
 
+        connectionName := mustGetenv("CLOUDSQL_CONNECTION_NAME")
+        user := mustGetenv("CLOUDSQL_USER")
+        password := os.Getenv("CLOUDSQL_PASSWORD")
+
+        //db, err := sql.Open("mysql", dbOpenString)
+        db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/", user, password, connectionName))
         if err != nil {
                 http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
                 return
@@ -118,4 +123,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
                 fmt.Fprintf(buf, "- %s\n", dbName)
         }
         w.Write(buf.Bytes())
+}
+
+func mustGetenv(k string) string {
+        v := os.Getenv(k)
+        if v == "" {
+                log.Panicf("%s environment variable not set.", k)
+        }
+        return v
 }
