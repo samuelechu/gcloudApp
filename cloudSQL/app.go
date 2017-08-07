@@ -80,7 +80,7 @@ func testConn(dbOpenString string) error {
                 return err
         }
 
-        rows, err := db.Query("SHOW DATABASES")
+        _, err := db.Query("SHOW DATABASES")
 
         if err != nil{
                 return err
