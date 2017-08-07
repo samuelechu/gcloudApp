@@ -90,7 +90,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         fmt.Println(affect)
 
         // query
-        rows, err := db.Query("SELECT * FROM userinfo")
+        rows, err = db.Query("SELECT * FROM userinfo")
         checkErr(err)
 
         for rows.Next() {
