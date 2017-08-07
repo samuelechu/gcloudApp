@@ -23,10 +23,6 @@ func main() {
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
-     if r.URL.Path != "/" {
-     	http.NotFound(w, r)
-	return
-	}
 
 	fmt.Fprint(w, string.Reverse("Hallo world!"))
 

@@ -84,11 +84,6 @@ func init() {
 
 
 func handler(w http.ResponseWriter, r *http.Request) {
-        if r.URL.Path != "/initDB" {
-                log.Println(r.URL.Path)
-                http.NotFound(w, r)
-                return
-        }
 
         w.Header().Set("Content-Type", "text/plain")
 
