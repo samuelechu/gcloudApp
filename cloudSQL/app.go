@@ -98,10 +98,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
         w.Header().Set("Content-Type", "text/plain")
 
-        dbUserName := "root"
-        dbPassword := "dog"
-        dbInstance := "gotesting-175718:us-central1:database"
-        dbName := "samsDatabase"
+        // dbUserName := "root"
+        // dbPassword := "dog"
+        // dbInstance := "gotesting-175718:us-central1:database"
+        // dbName := "samsDatabase"
         //dbOpenString := getDeployedDSN(dbUserName, dbPassword, dbInstance, dbName)
         dbOpenString := "root@cloudsql(gotesting-175718:us-central1:database)/samsDatabase"
         // err := testConn(dbOpenString)
