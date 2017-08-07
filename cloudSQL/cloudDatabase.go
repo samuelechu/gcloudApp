@@ -59,5 +59,72 @@ func handler(w http.ResponseWriter, r *http.Request) {
                 }
                 fmt.Fprintf(buf, "- %s\n", dbName)
         }
+
+
+
+
+
+
+
+        // insert
+        stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
+        checkErr(err)
+
+        res, err := stmt.Exec("Sam", "comp sci", "2012-12-09")
+        checkErr(err)
+
+        id, err := res.LastInsertId()
+        checkErr(err)
+
+        fmt.Println(id)
+        // update
+        stmt, err = db.Prepare("update userinfo set username=? where uid=?")
+        checkErr(err)
+
+        res, err = stmt.Exec("samupdate", id)
+        checkErr(err)
+
+        affect, err := res.RowsAffected()
+        checkErr(err)
+
+        fmt.Println(affect)
+
+        // query
+        rows, err := db.Query("SELECT * FROM userinfo")
+        checkErr(err)
+
+        for rows.Next() {
+            var uid int
+            var username string
+            var department string
+            var created string
+            err = rows.Scan(&uid, &username, &department, &created)
+            checkErr(err)
+            fmt.Println(uid)
+            fmt.Println(username)
+            fmt.Println(department)
+            fmt.Println(created)
+        }
+
+        // delete
+        stmt, err = db.Prepare("delete from userinfo where uid=?")
+        checkErr(err)
+
+        res, err = stmt.Exec(id)
+        checkErr(err)
+
+        affect, err = res.RowsAffected()
+        checkErr(err)
+
+        fmt.Println(affect)
+
+        db.Close()
+
         w.Write(buf.Bytes())
+}
+
+func checkErr(err error) {
+        if err != nil {
+            panic(err)
+        }
 }
