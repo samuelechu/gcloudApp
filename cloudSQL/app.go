@@ -102,7 +102,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
         rows, err := db.Query("SHOW DATABASES")
         if err != nil {
-                http.Error(w, fmt.Sprintf("Could not query db: %v", err), 500)
+                http.Error(w, fmt.Sprintf("Could not query db: %v. DBString: %s", err, dbOpenString), 500)
                 return
         }
         defer rows.Close()
