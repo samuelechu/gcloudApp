@@ -72,6 +72,23 @@ func getLocalDSN(username, password, instance, databaseName string) string {
         }.dataStoreName(databaseName)
 }
 
+func testConn(dbOpenString string) error {
+
+        db, err := sql.Open("mysql", dbOpenString)
+
+        if err != nil{
+                return err
+        }
+
+        rows, err := db.Query("SHOW DATABASES")
+
+        if err != nil{
+                return err
+        }
+
+        return nil
+
+}
 
 func init() {
         http.HandleFunc("/initDB", handler)
@@ -87,18 +104,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
         dbName := "samsDatabase"
         dbOpenString := getDeployedDSN(dbUserName, dbPassword, dbInstance, dbName)
 
+        err = testConn(dbOpenString)
+
+        if err != nil {
+                dbOpenString = getLocalDSN(dbUserName, dbPassword, dbInstance, dbName)
+        }
+
         db, err := sql.Open("mysql", dbOpenString)
 
 
         if err != nil {
-                dbOpenString = getLocalDSN(dbUserName, dbPassword, dbInstance, dbName)
-                db, err = sql.Open("mysql", dbOpenString)
-
-                if err != nil {
-                        http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
-                        return  
-                }
-                
+                http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
+                return    
         }
         defer db.Close()
 
