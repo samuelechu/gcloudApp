@@ -107,7 +107,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         }
         defer rows.Close()
 
-        buf := bytes.NewBufferString("Databases:\n")
+        buf := bytes.NewBufferString("dbOpenString: " + dbOpenString + "Databases:\n")
         for rows.Next() {
                 var dbName string
                 if err := rows.Scan(&dbName); err != nil {
