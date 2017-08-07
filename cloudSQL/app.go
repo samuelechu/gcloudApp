@@ -7,6 +7,7 @@ package cloudSQL
 
 // Sample cloudsql demonstrates connection to a Cloud SQL instance from App Engine standard.
 import (
+        "google.golang.org/appengine"
         "bytes"
         "database/sql"
         "fmt"
@@ -98,20 +99,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
         w.Header().Set("Content-Type", "text/plain")
 
-        // dbUserName := "root"
-        // dbPassword := "dog"
-        // dbInstance := "gotesting-175718:us-central1:database"
-        // dbName := "samsDatabase"
-        //dbOpenString := getDeployedDSN(dbUserName, dbPassword, dbInstance, dbName)
-        dbOpenString := "root:dog@cloudsql(gotesting-175718:us-central1:database)/samsDatabase"
-        // err := testConn(dbOpenString)
+        user := "root"
+        password := "dog"
+        instance := "gotesting-175718:us-central1:database"
+        dbName := "samsDatabase"
 
-        // if err != nil {
-        //         dbOpenString = getLocalDSN(dbUserName, dbPassword, dbInstance, dbName)
-        // }
+        dbOpenString := fmt.Sprintf("%s:%s@cloudsql(%s)/%s", user, password, instance, dbName)
 
+        if appengine.IsDevAppServer() {
+                dbOpenString = fmt.Sprintf("%s:%s@tcp(["localhost"]:3306)/%s", user, password, databaseName)
+        }
+
+       // dbOpenString := "root:dog@cloudsql(gotesting-175718:us-central1:database)/samsDatabase"
+    
         db, err := sql.Open("mysql", dbOpenString)
-
 
         if err != nil {
                 http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
