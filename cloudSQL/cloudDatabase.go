@@ -61,12 +61,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
         }
 
         _, err = db.Exec(
-                `CREATE TABLE IF NOT EXISTS userinfo (
-                `uid` INT(10) NOT NULL AUTO_INCREMENT,
-                `username` VARCHAR(64) NULL DEFAULT NULL,
-                `departname` VARCHAR(64) NULL DEFAULT NULL,
-                `created` DATE NULL DEFAULT NULL,
-                PRIMARY KEY (`uid`)`)
+                `CREATE TABLE IF NOT EXISTS userinfo 
+                (uid INT(10) NOT NULL AUTO_INCREMENT,
+                username VARCHAR(64) NULL DEFAULT NULL,
+                departname VARCHAR(64) NULL DEFAULT NULL,
+                created DATE NULL DEFAULT NULL,
+                PRIMARY KEY (uid))`)
 
 
         if err != nil {
