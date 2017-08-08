@@ -15,8 +15,13 @@ import (
 )
 
 func main() {
-     http.HandleFunc("/", handle)
+
+     fs := http.FileServer(http.Dir("static"))
+     http.Handle("/", fs)
+
+     http.HandleFunc("/rstring", handle)
      http.HandleFunc("/_ah/health", healthCheckHandler)
+
      log.Print("Listening on port 8080")
      http.ListenAndServe(":8080", nil)
      appengine.Main()
@@ -24,10 +29,15 @@ func main() {
 
 func handle(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Fprint(w, string.Reverse("Hallos world!"))
+     if r.URL.Path != "/rstring" {
+                http.NotFound(w, r)
+                return
+     }
 
+	fmt.Fprint(w, string.Reverse("Hallos world!"))
 }
 
 func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
      fmt.Fprint(w, "ok")
-     }
+}
+
