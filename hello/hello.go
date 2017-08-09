@@ -17,7 +17,7 @@ import (
 
 func main() {
 
-     fs := http.FileServer(http.Dir("static"))
+     fs := http.FileServer(http.Dir("../static"))
      http.Handle("/", fs)
 
      http.HandleFunc("/rstring", handle)
