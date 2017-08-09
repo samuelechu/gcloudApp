@@ -37,8 +37,8 @@ import (
 
 // Update your Google API project information here.
 const (
-	clientID        = "YOUR_CLIENT_ID"
-	clientSecret    = "YOUR_CLIENT_SECRET"
+	clientID        = "65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com"
+	clientSecret    = "0NjL7OoLyGYiZkTUKjzifqjd"
 	applicationName = "Google+ Go Quickstart"
 )
 
