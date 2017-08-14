@@ -5,6 +5,8 @@
         Welcome
 
     </title>
+    <meta name="google-signin-client_id"
+        content="65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com">
     <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css">
     <style media="screen">
     #fbButton{margin-top: 20px}
@@ -14,6 +16,7 @@
     </style>
 </head>
 <body>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script>
         window.fbAsyncInit = function() {
@@ -111,6 +114,7 @@
             </ul>
 
             <ul class = "nav navbar-nav navbar-right">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 <li><a id = "logout" href="#" onclick="logOut()">Logout</a></li>
                 <fb:login-button 
                     scope="public_profile,email,user_friends"
