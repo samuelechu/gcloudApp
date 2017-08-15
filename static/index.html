@@ -27,25 +27,25 @@
             setElements(true);
         }
 
-        function onSuccess(googleUser) {
-            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+        // function onSuccess(googleUser) {
+        //     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
             
-        }
-        function onFailure(error) {
-            console.log(error);
-            setElements(false);
-        }
-        function renderButton() {
-            gapi.signin2.render('my-signin2', {
-                'scope': 'profile email',
-                'width': 240,
-                'height': 50,
-                'longtitle': true,
-                'theme': 'dark',
-                'onsuccess': onSuccess,
-                'onfailure': onFailure
-            });
-        }
+        // }
+        // function onFailure(error) {
+        //     console.log(error);
+        //     setElements(false);
+        // }
+        // function renderButton() {
+        //     gapi.signin2.render('my-signin2', {
+        //         'scope': 'profile email',
+        //         'width': 240,
+        //         'height': 50,
+        //         'longtitle': true,
+        //         'theme': 'dark',
+        //         'onsuccess': onSuccess,
+        //         'onfailure': onFailure
+        //     });
+        // }
 </script>
 
 
@@ -90,7 +90,6 @@
             </ul>
 
             <ul class = "nav navbar-nav navbar-right">
-                <div class="g-signin2" onclick="\login" ></div>
                 <div id = "gSignInButton" class="g-signin2" data-onsuccess="onSignIn"></div>
                 <li><a id = "logout" href="#" onclick="signOut();">Sign out</a></li>
 
