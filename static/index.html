@@ -35,6 +35,9 @@
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
             setElements(true);
+
+
+            
         }
 
         // function onSuccess(googleUser) {
@@ -66,6 +69,20 @@
                 if(isLoggedIn){
                     document.getElementById('gSignInButton').style.display = 'none'
                     document.getElementById('logout').style.display = 'block'
+
+                    var options = new gapi.auth2.SigninOptionsBuilder(
+                        {'scope': 'email https://www.googleapis.com/auth/drive'});
+
+                        googleUser = auth2.currentUser.get();
+                        googleUser.grant(options).then(
+                        function(success){
+                          console.log(JSON.stringify({message: "success", value: success}));
+                        },
+                        function(fail){
+                          alert(JSON.stringify({message: "fail", value: fail}));
+                    });
+
+
                 } else {
                     document.getElementById('gSignInButton').style.display = 'block'
                     document.getElementById('logout').style.display = 'none'
