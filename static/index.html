@@ -70,6 +70,11 @@
                     document.getElementById('gSignInButton').style.display = 'none'
                     document.getElementById('logout').style.display = 'block'
 
+                    auth2 = gapi.auth2.init({
+                        client_id: 'CLIENT_ID.apps.googleusercontent.com',
+                        cookiepolicy: 'single_host_origin', /** Default value **/
+                        scope: 'profile' });                /** Base scope **/
+                    
                     var options = new gapi.auth2.SigninOptionsBuilder(
                         {'scope': 'email https://www.googleapis.com/auth/drive'});
 
