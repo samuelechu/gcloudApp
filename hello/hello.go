@@ -11,7 +11,7 @@ import (
 	"log"
     "io/ioutil"
 	"net/http"
-	"github.com/samuelechu/string"
+	"github.com/samuelechu/rstring"
 	_ "github.com/samuelechu/cloudSQL"
     _ "google.golang.org/api/gmail/v1"
 )
@@ -56,7 +56,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
                 return
      }
 
-	fmt.Fprint(w, string.Reverse("Hallos world!"))
+	fmt.Fprint(w, rstring.Reverse("Hallos world!"))
 }
 
 func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
