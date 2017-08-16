@@ -9,7 +9,7 @@ import (
     "google.golang.org/appengine"
     "fmt"
 	"log"
-    "ioutil"
+    "io/ioutil"
 	"net/http"
 	"github.com/samuelechu/string"
 	_ "github.com/samuelechu/cloudSQL"
