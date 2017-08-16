@@ -40,7 +40,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`
 
     redirectString = strings.Replace(redirectString, " ", "", -1)
-    fmt.Fprint(w, redirectString)
+    //fmt.Fprint(w, redirectString)
 
     http.Redirect(w, r, redirectString, 301)
 
