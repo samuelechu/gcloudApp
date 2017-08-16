@@ -37,6 +37,14 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         &response_type=token
         &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`)
 
+    if err != nil {
+        body, _ := ioutil.ReadAll(resp)
+        bodyString := string(body)
+        fmt.Println(bodyString)
+    }
+    
+    
+
 
 }
 
