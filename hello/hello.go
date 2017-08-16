@@ -9,7 +9,7 @@ import (
     "google.golang.org/appengine"
     "fmt"
 	"log"
-    "io/ioutil"
+    //"io/ioutil"
 	"net/http"
 	"github.com/samuelechu/rstring"
 	_ "github.com/samuelechu/cloudSQL"
@@ -39,7 +39,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         &response_type=token
         &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`, 301)
 
-    
+
     // resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
     //     auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
     //     &state=state_parameter_passthrough_value
