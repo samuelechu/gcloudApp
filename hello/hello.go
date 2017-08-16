@@ -42,7 +42,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
     redirectString = strings.Replace(redirectString, " ", "", -1)
     fmt.Fprint(w, redirectString)
 
-    //http.Redirect(w, r, redirectString, 301)
+    http.Redirect(w, r, redirectString, 301)
 
 
     // resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
