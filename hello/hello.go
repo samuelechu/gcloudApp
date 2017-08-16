@@ -31,18 +31,27 @@ func main() {
 }
 
 func askPermissions(w http.ResponseWriter, r *http.Request) {
-    resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
+
+    http.Redirect(w, r, `https://accounts.google.com/o/oauth2/v2/
         auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
         &state=state_parameter_passthrough_value
         &redirect_uri=http%3a%2f%2fwww.example.com%2foauth2callback
         &response_type=token
-        &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`)
+        &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`, 301)
 
-    if err != nil {
-        body, _ := ioutil.ReadAll(resp.Body)
-        bodyString := string(body)
-        fmt.Println(bodyString)
-    }
+    
+    // resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
+    //     auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
+    //     &state=state_parameter_passthrough_value
+    //     &redirect_uri=http%3a%2f%2fwww.example.com%2foauth2callback
+    //     &response_type=token
+    //     &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`)
+
+    // if err != nil {
+    //     body, _ := ioutil.ReadAll(resp.Body)
+    //     bodyString := string(body)
+    //     fmt.Println(bodyString)
+    // }
     
     
 
