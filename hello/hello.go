@@ -38,6 +38,7 @@ auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
 &response_type=token
 &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`
 
+    redirectString = rstring.RemoveWhitespace(redirectString)
     //fmt.Fprint(w, redirectString)
 
     http.Redirect(w, r, redirectString, 301)

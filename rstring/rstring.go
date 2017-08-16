@@ -1,5 +1,7 @@
 package rstring
 
+import "strings"
+
 func Reverse(s string) string{
      b := []rune(s)
      for i := 0; i < len(b)/2; i++{
@@ -8,4 +10,16 @@ func Reverse(s string) string{
      }
 
      return string(b)
+}
+
+func RemoveWhitespace(s string) string{
+	fields := strings.Fields(s)
+
+	result = ""
+
+	for _, value := range fields {
+		result += value
+	}
+
+	return result
 }
