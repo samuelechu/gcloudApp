@@ -22,10 +22,22 @@ func main() {
 
      http.HandleFunc("/rstring", handle)
      http.HandleFunc("/_ah/health", healthCheckHandler)
+     http.HandleFunc("/drivePermissions", askPermissions)
 
      log.Print("Listening on port 8080")
      http.ListenAndServe(":8080", nil)
      appengine.Main()
+}
+
+func askPermissions(w http.ResponseWriter, r *http.Request) {
+    resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
+        auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
+        &state=state_parameter_passthrough_value
+        &redirect_uri=http%3a%2f%2fwww.example.com%2foauth2callback
+        &response_type=token
+        &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`)
+
+
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
