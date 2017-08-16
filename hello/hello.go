@@ -39,7 +39,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`)
 
     if err != nil {
-        body, _ := ioutil.ReadAll(resp)
+        body, _ := ioutil.ReadAll(resp.Body)
         bodyString := string(body)
         fmt.Println(bodyString)
     }
