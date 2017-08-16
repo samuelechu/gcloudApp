@@ -31,11 +31,17 @@ func main() {
 }
 
 func askPermissions(w http.ResponseWriter, r *http.Request) {
+
+redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com"
+if appengine.IsDevAppServer(){
+    redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com"
+}
+
     redirectString := `https://accounts.google.com/o/oauth2/v2/
 auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
 &state=state_parameter_passthrough_value
-&redirect_uri=http%3a%2f%2fwww.example.com%2foauth2callback
-&response_type=token
+&redirect_uri=` + redirectUri + 
+`&response_type=token
 &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`
 
     redirectString = rstring.RemoveWhitespace(redirectString)
