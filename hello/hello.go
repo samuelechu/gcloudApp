@@ -9,7 +9,6 @@ import (
     "google.golang.org/appengine"
     "fmt"
 	"log"
-    "strings"
     //"io/ioutil"
 	"net/http"
 	"github.com/samuelechu/rstring"
