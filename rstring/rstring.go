@@ -15,7 +15,7 @@ func Reverse(s string) string{
 func RemoveWhitespace(s string) string{
 	fields := strings.Fields(s)
 
-	result = ""
+	result := ""
 
 	for _, value := range fields {
 		result += value
