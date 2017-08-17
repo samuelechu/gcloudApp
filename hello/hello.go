@@ -35,9 +35,9 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
 
     log.Print(r.URL.String())
 
-    redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com"
+    redirectUri := "https://gotesting-175718.appspot.com"
     if appengine.IsDevAppServer(){
-        redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com"
+        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com"
     }
 
     http.Redirect(w, r, redirectUri, 301)
