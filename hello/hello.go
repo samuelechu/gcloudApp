@@ -49,7 +49,7 @@ auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
 
     http.Redirect(w, r, redirectString, 301)
 
-
+    log.Print(r.URL.String())
     // resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
     //     auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
     //     &state=state_parameter_passthrough_value
