@@ -34,11 +34,6 @@ func main() {
     http.HandleFunc("/GoogleLogin", handleGoogleLogin)
     http.HandleFunc("/googleCallback", handleGoogleCallback)
 
-    redirectUri := "https://gotesting-175718.appspot.com"
-    if appengine.IsDevAppServer(){
-        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com"
-    }
-
     log.Print("Listening on port 8080")
     http.ListenAndServe(":8080", nil)
     appengine.Main()
