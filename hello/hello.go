@@ -24,21 +24,36 @@ func main() {
      http.HandleFunc("/rstring", handle)
      http.HandleFunc("/_ah/health", healthCheckHandler)
      http.HandleFunc("/drivePermissions", askPermissions)
+     http.HandleFunc("/checkToken", checkToken)
 
      log.Print("Listening on port 8080")
      http.ListenAndServe(":8080", nil)
      appengine.Main()
 }
 
+func checkToken(w http.ResponseWriter, r *http.Request) {
+
+    log.Print(r.URL.String())
+
+    redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com"
+    }
+    
+    http.Redirect(w, r, redirectString, 301)
+
+
+}
+
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 
-redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com"
+redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com/checkToken"
 if appengine.IsDevAppServer(){
-    redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com"
+    redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com/checkToken"
 }
 
     redirectString := `https://accounts.google.com/o/oauth2/v2/
-auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
+auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly
 &state=state_parameter_passthrough_value
 &redirect_uri=` + redirectUri + 
 `&response_type=token
@@ -49,7 +64,7 @@ auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
 
     http.Redirect(w, r, redirectString, 301)
 
-    log.Print(r.URL.String())
+    
     // resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
     //     auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
     //     &state=state_parameter_passthrough_value
