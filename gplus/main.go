@@ -7,6 +7,7 @@ import (
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/drive/v2"
 	//"io/ioutil"
+	"log"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
 )
@@ -32,7 +33,8 @@ func main() {
 	http.HandleFunc("/", handleMain)
 	http.HandleFunc("/GoogleLogin", handleGoogleLogin)
 	http.HandleFunc("/googleCallback", handleGoogleCallback)
-	fmt.Println(http.ListenAndServe(":8080", nil))
+	log.Print("Listening on port 8080")
+    http.ListenAndServe(":8080", nil)
 	appengine.Main()
 }
 func handleMain(w http.ResponseWriter, r *http.Request) {
