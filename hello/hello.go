@@ -50,11 +50,11 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     }
 
     bodyVals := url.Values{
-        "code": {authCode}
-        "client_id": {os.Getenv("CLIENT_ID")}
-        "client_secret": {os.Getenv("CLIENT_SECRET")}
-        "redirect_uri": {redirectUri}
-        "grant_type": {authorization_code}
+        "code": {authCode},
+        "client_id": {os.Getenv("CLIENT_ID")},
+        "client_secret": {os.Getenv("CLIENT_SECRET")},
+        "redirect_uri": {redirectUri},
+        "grant_type": {authorization_code},
     }
 
     body := bytes.NewBufferString(bodyVals.Encode())
@@ -72,7 +72,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return
     }
-    
+
     defer resp.Body.Close()
     respBody, _ := ioutil.ReadAll(resp.Body)
     fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
