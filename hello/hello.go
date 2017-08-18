@@ -29,10 +29,15 @@ func main() {
      http.HandleFunc("/_ah/health", healthCheckHandler)
      http.HandleFunc("/drivePermissions", askPermissions)
      http.HandleFunc("/checkToken", checkToken)
+     http.HandleFunc("/authSuccess", authSuccessful)
 
      log.Print("Listening on port 8080")
      http.ListenAndServe(":8080", nil)
      appengine.Main()
+}
+
+func authSuccessful(w http.ResponseWriter, r *http.Request){
+     fmt.Fprintf(w, "Hallo!")
 }
 
 func checkToken(w http.ResponseWriter, r *http.Request) {
@@ -44,9 +49,9 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
 
-    redirectUri := "https://gotesting-175718.appspot.com"
+    redirectUri := "https://gotesting-175718.appspot.com/authSuccess"
     if appengine.IsDevAppServer(){
-        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com"
+        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/authSuccess"
     }
 
     bodyVals := url.Values{
