@@ -37,7 +37,7 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleAuthorize(w http.ResponseWriter, r *http.Request) {
-    
+
     if appengine.IsDevAppServer(){
         conf.RedirectURL = "https://8080-dot-2979131-dot-devshell.appspot.com/googleCallback"
     }
@@ -168,3 +168,4 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
     //contents, err := ioutil.ReadAll(response.Body)
     //fmt.Fprintf(w, "Content: %s\n", contents)
 }
+*/
