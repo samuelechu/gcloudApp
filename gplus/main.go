@@ -13,7 +13,7 @@ import (
 
 var (
 	googleOauthConfig = &oauth2.Config{
-		RedirectURL:	"http://localhost:8080/GoogleCallback",
+		RedirectURL:	"http://localhost:1366/GoogleCallback",
 		ClientID:     "65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com", // from https://console.developers.google.com/project/<your-project-id>/apiui/credential
 		ClientSecret: "0NjL7OoLyGYiZkTUKjzifqjd", // from https://console.developers.google.com/project/<your-project-id>/apiui/credential
 		Scopes:       []string{"https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/drive.file"},
@@ -32,7 +32,7 @@ func main() {
 	http.HandleFunc("/", handleMain)
 	http.HandleFunc("/GoogleLogin", handleGoogleLogin)
 	http.HandleFunc("/GoogleCallback", handleGoogleCallback)
-	fmt.Println(http.ListenAndServe(":8080", nil))
+	fmt.Println(http.ListenAndServe(":1366", nil))
 	appengine.Main()
 }
 func handleMain(w http.ResponseWriter, r *http.Request) {
