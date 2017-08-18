@@ -59,7 +59,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
 
     body := bytes.NewBufferString(bodyVals.Encode())
 
-    req, _ := http.NewRequest("POST", urlStr, body)
+    req, _ := http.NewRequest(urlfetch.POST, urlStr, body)
     req.Header.Set("Host", "www.googleapis.com")
     req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
