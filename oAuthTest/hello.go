@@ -30,7 +30,7 @@ var conf = &oauth2.Config{
 func init() {
     http.HandleFunc("/", handleRoot)
     http.HandleFunc("/authorize", handleAuthorize)
-    http.HandleFunc("/oauth2callback", handleOAuth2Callback)
+    http.HandleFunc("/googleCallback", handleOAuth2Callback)
 }
 
 func handleRoot(w http.ResponseWriter, r *http.Request) {
