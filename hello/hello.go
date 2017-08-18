@@ -32,8 +32,9 @@ func main() {
 }
 
 func checkToken(w http.ResponseWriter, r *http.Request) {
-
-    log.Print(r.URL.String())
+    log.Print(r.URL.Query())
+    log.Print("heyo")
+    log.Print(r.URL.Query().Get("code"))
 
     redirectUri := "https://gotesting-175718.appspot.com"
     if appengine.IsDevAppServer(){
