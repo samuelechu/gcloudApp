@@ -36,12 +36,32 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     log.Print("heyo")
     log.Print(r.URL.Query().Get("code"))
 
-    redirectUri := "https://gotesting-175718.appspot.com"
-    if appengine.IsDevAppServer(){
-        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com"
-    }
 
-    http.Redirect(w, r, redirectUri, 301)
+    url := "http://restapi3.apiary.io/notes"
+    log.Print("URL:>", url)
+
+    var jsonStr = []byte(`{"title":"Buy cheese and bread for breakfast."}`)
+    req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+    req.Header.Set("X-Custom-Header", "myvalue")
+    req.Header.Set("Content-Type", "application/json")
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        panic(err)
+    }
+    defer resp.Body.Close()
+
+    log.Print("response Status:", resp.Status)
+    log.Print("response Headers:", resp.Header)
+    body, _ := ioutil.ReadAll(resp.Body)
+    log.Print("response Body:", string(body))
+    // redirectUri := "https://gotesting-175718.appspot.com"
+    // if appengine.IsDevAppServer(){
+    //     redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    // }
+
+    // http.Redirect(w, r, redirectUri, 301)
 
 
 }
