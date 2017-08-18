@@ -58,7 +58,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
         "code": {authCode},
         "client_id": {os.Getenv("CLIENT_ID")},
         "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "redirect_uri": {redirectUri}
+        "redirect_uri": {redirectUri},
         "grant_type": {"authorization_code"},
     }
 
