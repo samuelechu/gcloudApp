@@ -49,21 +49,21 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
 
-    redirectUri := "https://gotesting-175718.appspot.com/authSuccess"
+    redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com/authSuccess"
     if appengine.IsDevAppServer(){
-        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/authSuccess"
-
+        redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com/authSuccess"
     }
 
     bodyVals := url.Values{
         "code": {authCode},
         "client_id": {os.Getenv("CLIENT_ID")},
         "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "redirect_uri": {redirectUri},
         "grant_type": {"authorization_code"},
     }
 
     body := bytes.NewBufferString(bodyVals.Encode())
+    body += "&redirect_uri=" + redirectUri
+
 
     log.Print(body)
     req, _ := http.NewRequest("POST", urlStr, body)
