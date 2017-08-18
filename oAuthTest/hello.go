@@ -60,11 +60,9 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    
-    contextApp := appengine.NewContext(r)
     code := r.FormValue("code")
     
-    token, err := googleOauthConfig.Exchange(contextApp, code)
+    token, err := googleOauthConfig.Exchange(oauth2.NoContext, code)
     if err != nil {
         log.Print("oauthConf.Exchange() failed with '%s'\n", err)
         http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
