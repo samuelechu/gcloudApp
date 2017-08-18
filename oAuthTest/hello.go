@@ -43,7 +43,6 @@ func handleAuthorize(w http.ResponseWriter, r *http.Request) {
         conf.RedirectURL = "https://8080-dot-2979131-dot-devshell.appspot.com/googleCallback"
     }
 
-    c := appengine.NewContext(r)
     url := conf.AuthCodeURL("")
     http.Redirect(w, r, url, http.StatusFound)
 }
