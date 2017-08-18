@@ -61,9 +61,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
         "grant_type": {"authorization_code"},
     }
 
-    body := bytes.NewBufferString(bodyVals.Encode())
-    body += "&redirect_uri=" + redirectUri
-
+    body := bytes.NewBufferString(bodyVals.Encode() + "&redirect_uri=" + redirectUri)
 
     log.Print(body)
     req, _ := http.NewRequest("POST", urlStr, body)
