@@ -9,6 +9,7 @@ import (
 	"google.golang.org/api/drive/v2"
 	//"io/ioutil"
 	"golang.org/x/net/context"
+	"google.golang.org/appengine"
 )
 
 var (
@@ -33,6 +34,7 @@ func main() {
 	http.HandleFunc("/GoogleLogin", handleGoogleLogin)
 	http.HandleFunc("/GoogleCallback", handleGoogleCallback)
 	fmt.Println(http.ListenAndServe(":3000", nil))
+	appengine.Main()
 }
 func handleMain(w http.ResponseWriter, r *http.Request) {
 	  fmt.Fprintf(w, htmlIndex)
