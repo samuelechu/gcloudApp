@@ -54,9 +54,11 @@ if appengine.IsDevAppServer(){
 
     redirectString := `https://accounts.google.com/o/oauth2/v2/
 auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly
+&access_type=offline
+&include_granted_scopes=true
 &state=state_parameter_passthrough_value
 &redirect_uri=` + redirectUri + 
-`&response_type=token
+`&response_type=code
 &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`
 
     redirectString = rstring.RemoveWhitespace(redirectString)
