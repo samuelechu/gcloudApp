@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"golang.org/x/oauth2"
-	"os"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/drive/v2"
 	//"io/ioutil"
