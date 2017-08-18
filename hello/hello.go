@@ -63,6 +63,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     req.Header.Set("Host", "www.googleapis.com")
     req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
+    log.Print("finished marshaling")
 
     ctx := appengine.NewContext(r)
     client := urlfetch.Client(ctx)
@@ -72,7 +73,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return
     }
-
+    log.Print("am here")
     defer resp.Body.Close()
     respBody, _ := ioutil.ReadAll(resp.Body)
     fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
