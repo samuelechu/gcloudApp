@@ -42,7 +42,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
 
     authCode := r.URL.Query().Get("code")
     
-    url := "/oauth2/v4/token"
+    urlStr := "/oauth2/v4/token"
 
     redirectUri := "https://gotesting-175718.appspot.com"
     if appengine.IsDevAppServer(){
@@ -59,7 +59,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
 
     body := bytes.NewBufferString(bodyVals.Encode())
 
-    req, _ := http.NewRequest("POST", url, body)
+    req, _ := http.NewRequest("POST", urlStr, body)
     req.Header.Set("Host", "www.googleapis.com")
     req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
