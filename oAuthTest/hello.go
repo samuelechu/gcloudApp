@@ -13,7 +13,7 @@ import (
 )
 
 const htmlIndex = `<html><body>
-<a href="/GoogleLogin">Log in with Google</a>
+<a href="/authorize">Log in with Google</a>
 </body></html>
 `
 var conf = &oauth2.Config{
