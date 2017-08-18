@@ -64,7 +64,7 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 
     token, err := googleOauthConfig.Exchange(oauth2.NoContext, code)
     if err != nil {
-        fmt.Printf("oauthConf.Exchange() failed with '%s'\n", err)
+        log.Print("oauthConf.Exchange() failed with '%s'\n", err)
         http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
         return
     }
