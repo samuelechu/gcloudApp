@@ -49,19 +49,20 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
 
-    redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com/authSuccess"
+    redirectUri := "https://gotesting-175718.appspot.com/authSuccess"
     if appengine.IsDevAppServer(){
-        redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com/authSuccess"
+        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/authSuccess"
     }
 
     bodyVals := url.Values{
         "code": {authCode},
         "client_id": {os.Getenv("CLIENT_ID")},
         "client_secret": {os.Getenv("CLIENT_SECRET")},
+        "redirect_uri": {redirectUri}
         "grant_type": {"authorization_code"},
     }
 
-    body := bytes.NewBufferString(bodyVals.Encode() + "&redirect_uri=" + redirectUri)
+    body := bytes.NewBufferString(bodyVals.Encode())
 
     log.Print(body)
     req, _ := http.NewRequest("POST", urlStr, body)
@@ -115,9 +116,9 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
 
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 
-redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com/checkToken"
+redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com%2FcheckToken"
 if appengine.IsDevAppServer(){
-    redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com/checkToken"
+    redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FcheckToken"
 }
 
     redirectString := `https://accounts.google.com/o/oauth2/v2/
