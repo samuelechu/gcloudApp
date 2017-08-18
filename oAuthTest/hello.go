@@ -44,6 +44,10 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleGoogleLogin(w http.ResponseWriter, r *http.Request) {
+    if appengine.IsDevAppServer(){
+        googleOauthConfig.RedirectURL = "https://8080-dot-2979131-dot-devshell.appspot.com/googleCallback"
+    }
+
     url := googleOauthConfig.AuthCodeURL(oauthStateString)
     http.Redirect(w, r, url, http.StatusTemporaryRedirect)
 }
@@ -57,17 +61,6 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     code := r.FormValue("code")
-
-
-
-    if appengine.IsDevAppServer(){
-        log.Print(googleOauthConfig.RedirectURL)
-        googleOauthConfig.RedirectURL = "https://8080-dot-2979131-dot-devshell.appspot.com/googleCallback"
-        log.Print("Listening on port 8080")
-        log.Print(googleOauthConfig.RedirectURL)
-    }
-
-    log.Print(googleOauthConfig.RedirectURL)
 
     token, err := googleOauthConfig.Exchange(oauth2.NoContext, code)
     if err != nil {
