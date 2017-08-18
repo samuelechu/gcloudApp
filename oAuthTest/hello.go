@@ -6,7 +6,7 @@ import (
     "google.golang.org/api/plus/v1"
     "google.golang.org/appengine"
     "google.golang.org/appengine/log"
-    "html/template"
+    //"html/template"
     "os"
     "net/http"
 )
