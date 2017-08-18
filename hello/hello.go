@@ -65,6 +65,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
 
     body := bytes.NewBufferString(bodyVals.Encode())
 
+    log.Print(body)
     req, _ := http.NewRequest("POST", urlStr, body)
     req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
