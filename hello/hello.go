@@ -7,6 +7,7 @@ package main
 
 import (
     "google.golang.org/appengine"
+    "google.golang.org/appengine/urlfetch"
     "fmt"
 	"log"
     "bytes"
@@ -38,25 +39,36 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     log.Print(r.URL.Query().Get("code"))
 
 
-    url := "http://restapi3.apiary.io/notes"
-    log.Print("URL:>", url)
-
-    var jsonStr = []byte(`{"title":"Buy cheese and bread for breakfast."}`)
-    req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
-    req.Header.Set("X-Custom-Header", "myvalue")
-    req.Header.Set("Content-Type", "application/json")
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
+    resp, err := client.Get("https://www.google.com/")
     if err != nil {
-        panic(err)
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+            return
     }
-    defer resp.Body.Close()
+    fmt.Fprintf(w, "HTTP GET returned status %v", resp.Status)
 
-    log.Print("response Status:", resp.Status)
-    log.Print("response Headers:", resp.Header)
-    body, _ := ioutil.ReadAll(resp.Body)
-    log.Print("response Body:", string(body))
+    // url := "http://restapi3.apiary.io/notes"
+    // log.Print("URL:>", url)
+
+    // var jsonStr = []byte(`{"title":"Buy cheese and bread for breakfast."}`)
+    // req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+    // req.Header.Set("X-Custom-Header", "myvalue")
+    // req.Header.Set("Content-Type", "application/json")
+
+    // client := &http.Client{}
+    // resp, err := client.Do(req)
+    // if err != nil {
+    //     panic(err)
+    // }
+    // defer resp.Body.Close()
+
+    // log.Print("response Status:", resp.Status)
+    // log.Print("response Headers:", resp.Header)
+    // body, _ := ioutil.ReadAll(resp.Body)
+    // log.Print("response Body:", string(body))
+
+
     // redirectUri := "https://gotesting-175718.appspot.com"
     // if appengine.IsDevAppServer(){
     //     redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com"
