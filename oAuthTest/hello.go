@@ -1,84 +1,5 @@
 package main
-import (
-    "golang.org/x/oauth2"
-    "golang.org/x/oauth2/google"
-    "google.golang.org/api/drive/v2"
-    "google.golang.org/api/plus/v1"
-    "google.golang.org/appengine"
-    "google.golang.org/appengine/log"
-    //"html/template"
-    "os"
-    "fmt"
-    "net/http"
-)
 
-const htmlIndex = `<html><body>
-<a href="/authorize">Log in with Google</a>
-</body></html>
-`
-var conf = &oauth2.Config{
-    ClientID:     os.Getenv("CLIENT_ID"),       // Replace with correct ClientID
-    ClientSecret: os.Getenv("CLIENT_SECRET"),   // Replace with correct ClientSecret
-    RedirectURL:  "https://gotesting-175718.appspot.com/googleCallback",
-    Scopes: []string{
-        "https://www.googleapis.com/auth/drive",
-        "profile",
-    },
-    Endpoint: google.Endpoint,
-}
-
-func init() {
-    http.HandleFunc("/", handleRoot)
-    http.HandleFunc("/authorize", handleAuthorize)
-    http.HandleFunc("/googleCallback", handleOAuth2Callback)
-}
-
-func handleRoot(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, htmlIndex)
-}
-
-func handleAuthorize(w http.ResponseWriter, r *http.Request) {
-
-    if appengine.IsDevAppServer(){
-        conf.RedirectURL = "https://8080-dot-2979131-dot-devshell.appspot.com/googleCallback"
-    }
-
-    url := conf.AuthCodeURL("")
-    http.Redirect(w, r, url, http.StatusFound)
-}
-
-func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
-    c := appengine.NewContext(r)
-    code := r.FormValue("code")
-    tok, err := conf.Exchange(c, code)
-    if err != nil {
-        log.Errorf(c, "%v", err)
-    }
-    client := conf.Client(c, tok)
-
-    // PLUS SERVICE CLIENT
-    pc, err := plus.New(client)
-    if err != nil {
-        log.Errorf(c, "An error occurred creating Plus client: %v", err)
-    }
-    person, err := pc.People.Get("me").Do()
-    if err != nil {
-        log.Errorf(c, "Person Error: %v", err)
-    }
-    log.Infof(c, "Name: %v", person.DisplayName)
-
-    // DRIVE CLIENT
-    dc, err := drive.New(client)
-    if err != nil {
-        log.Errorf(c, "An error occurred creating Drive client: %v", err)
-    }
-    files, err := dc.Files.List().Do()
-    for _, value := range files.Items {
-        log.Infof(c, "Files: %v", value.Title)
-    }
-}
-
-/*
 import (
     "fmt"
     "net/http"
@@ -140,7 +61,7 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     code := r.FormValue("code")
-
+    
     token, err := googleOauthConfig.Exchange(oauth2.NoContext, code)
     if err != nil {
         log.Print("oauthConf.Exchange() failed with '%s'\n", err)
@@ -168,4 +89,3 @@ func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
     //contents, err := ioutil.ReadAll(response.Body)
     //fmt.Fprintf(w, "Content: %s\n", contents)
 }
-*/
