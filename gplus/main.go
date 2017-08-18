@@ -49,7 +49,7 @@ func handleGoogleLogin(w http.ResponseWriter, r *http.Request) {
 func handleGoogleCallback(w http.ResponseWriter, r *http.Request) {
 	state := r.FormValue("state")
 	if state != oauthStateString {
-		fmt.Printf("invalid oauth state, expected '%s', got '%s'\n", oauthStateString, state)
+		log.Print("invalid oauth state, expected '%s', got '%s'\n", oauthStateString, state)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
