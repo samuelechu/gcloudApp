@@ -10,9 +10,11 @@ import (
     "google.golang.org/appengine/urlfetch"
     "fmt"
 	"log"
-    //"bytes"
-    //"io/ioutil"
+    "bytes"
+    "os"
+    "io/ioutil"
 	"net/http"
+    "net/url"
 	"github.com/samuelechu/rstring"
 	_ "github.com/samuelechu/cloudSQL"
     _ "google.golang.org/api/gmail/v1"
@@ -38,15 +40,42 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     log.Print("heyo")
     log.Print(r.URL.Query().Get("code"))
 
+    authCode := r.URL.Query().Get("code")
+    
+    url := "/oauth2/v4/token"
+
+    redirectUri := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
+
+    bodyVals := url.Values{
+        "code": {authCode}
+        "client_id": {os.Getenv("CLIENT_ID")}
+        "client_secret": {os.Getenv("CLIENT_SECRET")}
+        "redirect_uri": {redirectUri}
+        "grant_type": {authorization_code}
+    }
+
+    body := bytes.NewBufferString(bodyVals.Encode())
+
+    req, _ := http.NewRequest("POST", url, body)
+    req.Header.Set("Host", "www.googleapis.com")
+    req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
 
     ctx := appengine.NewContext(r)
     client := urlfetch.Client(ctx)
-    resp, err := client.Get("https://www.google.com/")
+
+    resp, err := client.Do(req)
     if err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return
     }
-    fmt.Fprintf(w, "HTTP GET returned status %v", resp.Status)
+    
+    defer resp.Body.Close()
+    respBody, _ := ioutil.ReadAll(resp.Body)
+    fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
     // url := "http://restapi3.apiary.io/notes"
     // log.Print("URL:>", url)
@@ -93,7 +122,7 @@ auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly
 &state=state_parameter_passthrough_value
 &redirect_uri=` + redirectUri + 
 `&response_type=code
-&client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`
+&client_id=` + os.Getenv("CLIENT_ID")
 
     redirectString = rstring.RemoveWhitespace(redirectString)
     //fmt.Fprint(w, redirectString)
