@@ -125,6 +125,7 @@ if appengine.IsDevAppServer(){
 auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly
 &access_type=offline
 &include_granted_scopes=true
+&prompt=consent
 &state=state_parameter_passthrough_value
 &redirect_uri=` + redirectUri + 
 `&response_type=code
