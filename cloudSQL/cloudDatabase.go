@@ -24,6 +24,8 @@ func init() {
 }
 
 func initDB(){
+    var err error
+
     user := "root"
     password := "dog"
     instance := "gotesting-175718:us-central1:database"
@@ -36,7 +38,7 @@ func initDB(){
             dbOpenString = fmt.Sprintf("%s:%s@tcp([localhost]:3306)/%s", user, password, dbName)
     }
 
-    db, err := sql.Open("mysql", dbOpenString)
+    db, err = sql.Open("mysql", dbOpenString)
 
     if err != nil {
         log.Print("Could not open db: %v", err)
