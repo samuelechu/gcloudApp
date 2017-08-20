@@ -39,8 +39,8 @@ func initDB(){
     db, err := sql.Open("mysql", dbOpenString)
 
     if err != nil {
-            http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
-            return    
+        log.Print("Could not open db: %v", err), 500)
+        return    
     }
 }
 
@@ -53,12 +53,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
         rows, err := db.Query("SHOW DATABASES")
         if err != nil {
-                http.Error(w, fmt.Sprintf("Could not query db: %v. DBString: %s", err, dbOpenString), 500)
+                http.Error(w, fmt.Sprintf("Could not query db: %v.", err), 500)
                 return
         }
         defer rows.Close()
 
-        buf := bytes.NewBufferString("dbOpenString: " + dbOpenString + "\nDatabases:\n")
+        buf := bytes.NewBufferString("Databases:\n")
         for rows.Next() {
                 var dbName string
                 if err := rows.Scan(&dbName); err != nil {
