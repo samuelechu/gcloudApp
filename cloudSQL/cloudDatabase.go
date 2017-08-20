@@ -16,7 +16,7 @@ import (
         _ "github.com/go-sql-driver/mysql"
 )
 
-var db DB
+var db sql.DB
 
 func init() {
         initDB()
