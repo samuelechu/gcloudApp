@@ -74,10 +74,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
                 http.Error(w, fmt.Sprintf("CREATE TABLE failed: %v", err), 500)
         }
 
-
-
-
-
         // insert
         stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
         checkErr(err)
