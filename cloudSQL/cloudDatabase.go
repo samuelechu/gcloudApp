@@ -16,32 +16,39 @@ import (
         _ "github.com/go-sql-driver/mysql"
 )
 
+var db DB
+
 func init() {
+        initDB()
         http.HandleFunc("/initDB", handler)
+}
+
+func initDB(){
+    user := "root"
+    password := "dog"
+    instance := "gotesting-175718:us-central1:database"
+    dbName := "samsDatabase"
+    
+    // dbOpenString := "root:dog@cloudsql(gotesting-175718:us-central1:database)/samsDatabase"
+    dbOpenString := fmt.Sprintf("%s:%s@cloudsql(%s)/%s", user, password, instance, dbName)
+
+    if appengine.IsDevAppServer() {
+            dbOpenString = fmt.Sprintf("%s:%s@tcp([localhost]:3306)/%s", user, password, dbName)
+    }
+
+    db, err := sql.Open("mysql", dbOpenString)
+
+    if err != nil {
+            http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
+            return    
+    }
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
         w.Header().Set("Content-Type", "text/plain")
 
-        user := "root"
-        password := "dog"
-        instance := "gotesting-175718:us-central1:database"
-        dbName := "samsDatabase"
         
-        // dbOpenString := "root:dog@cloudsql(gotesting-175718:us-central1:database)/samsDatabase"
-        dbOpenString := fmt.Sprintf("%s:%s@cloudsql(%s)/%s", user, password, instance, dbName)
-
-        if appengine.IsDevAppServer() {
-                dbOpenString = fmt.Sprintf("%s:%s@tcp([localhost]:3306)/%s", user, password, dbName)
-        }
-    
-        db, err := sql.Open("mysql", dbOpenString)
-
-        if err != nil {
-                http.Error(w, fmt.Sprintf("Could not open db: %v", err), 500)
-                return    
-        }
         defer db.Close()
 
         rows, err := db.Query("SHOW DATABASES")
