@@ -82,7 +82,7 @@ func getToken(w http.ResponseWriter, r *http.Request) {
     defer resp.Body.Close()
     respBody, _ := ioutil.ReadAll(resp.Body)
     fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
-    
+
 
     // log.Print("response Status:", resp.Status)
     // log.Print("response Headers:", resp.Header)
@@ -96,7 +96,6 @@ func getToken(w http.ResponseWriter, r *http.Request) {
     // }
 
     // http.Redirect(w, r, redirectUri, 301)
-    http.Redirect(w, r, redirectString, 301)
 
 }
 
