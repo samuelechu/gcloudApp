@@ -28,7 +28,7 @@ func main() {
      http.HandleFunc("/rstring", handle)
      http.HandleFunc("/_ah/health", healthCheckHandler)
      http.HandleFunc("/drivePermissions", askPermissions)
-     http.HandleFunc("/checkToken", checkToken)
+     http.HandleFunc("/getToken", getToken)
      http.HandleFunc("/authSuccess", authSuccessful)
 
      log.Print("Listening on port 8080")
@@ -40,7 +40,7 @@ func authSuccessful(w http.ResponseWriter, r *http.Request){
      fmt.Fprintf(w, "Hallo!")
 }
 
-func checkToken(w http.ResponseWriter, r *http.Request) {
+func getToken(w http.ResponseWriter, r *http.Request) {
     log.Print(r.URL.Query())
     log.Print("heyo")
     log.Print(r.URL.Query().Get("code"))
@@ -49,9 +49,9 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
 
-    redirectUri := "https://gotesting-175718.appspot.com/checkToken"
+    redirectUri := "https://gotesting-175718.appspot.com/getToken"
     if appengine.IsDevAppServer(){
-        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/checkToken"
+        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/getToken"
     }
 
     bodyVals := url.Values{
@@ -82,21 +82,7 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     defer resp.Body.Close()
     respBody, _ := ioutil.ReadAll(resp.Body)
     fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
-
-    // url := "http://restapi3.apiary.io/notes"
-    // log.Print("URL:>", url)
-
-    // var jsonStr = []byte(`{"title":"Buy cheese and bread for breakfast."}`)
-    // req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
-    // req.Header.Set("X-Custom-Header", "myvalue")
-    // req.Header.Set("Content-Type", "application/json")
-
-    // client := &http.Client{}
-    // resp, err := client.Do(req)
-    // if err != nil {
-    //     panic(err)
-    // }
-    // defer resp.Body.Close()
+    
 
     // log.Print("response Status:", resp.Status)
     // log.Print("response Headers:", resp.Header)
@@ -110,15 +96,15 @@ func checkToken(w http.ResponseWriter, r *http.Request) {
     // }
 
     // http.Redirect(w, r, redirectUri, 301)
-
+    http.Redirect(w, r, redirectString, 301)
 
 }
 
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 
-redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com%2FcheckToken"
+redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com%2FgetToken"
 if appengine.IsDevAppServer(){
-    redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FcheckToken"
+    redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FgetToken"
 }
 
     redirectString := `https://accounts.google.com/o/oauth2/v2/
