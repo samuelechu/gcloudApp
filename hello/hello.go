@@ -17,6 +17,7 @@ import (
     "net/url"
 	"github.com/samuelechu/rstring"
 	_ "github.com/samuelechu/cloudSQL"
+    _ "github.com/samuelechu/oauth"
     _ "google.golang.org/api/gmail/v1"
 )
 
@@ -27,8 +28,6 @@ func main() {
 
      http.HandleFunc("/rstring", handle)
      http.HandleFunc("/_ah/health", healthCheckHandler)
-     http.HandleFunc("/drivePermissions", askPermissions)
-     http.HandleFunc("/getToken", getToken)
      http.HandleFunc("/authSuccess", authSuccessful)
 
      log.Print("Listening on port 8080")
@@ -40,105 +39,91 @@ func authSuccessful(w http.ResponseWriter, r *http.Request){
      fmt.Fprintf(w, "Hallo!")
 }
 
-func getToken(w http.ResponseWriter, r *http.Request) {
-    log.Print(r.URL.Query())
-    log.Print("heyo")
-    log.Print(r.URL.Query().Get("code"))
+// func getToken(w http.ResponseWriter, r *http.Request) {
+//     log.Print(r.URL.Query())
+//     log.Print("heyo")
+//     log.Print(r.URL.Query().Get("code"))
 
-    authCode := r.URL.Query().Get("code")
+//     authCode := r.URL.Query().Get("code")
     
-    urlStr := "https://www.googleapis.com/oauth2/v4/token"
+//     urlStr := "https://www.googleapis.com/oauth2/v4/token"
 
-    redirectUri := "https://gotesting-175718.appspot.com/getToken"
-    if appengine.IsDevAppServer(){
-        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/getToken"
-    }
+//     redirectUri := "https://gotesting-175718.appspot.com/getToken"
+//     if appengine.IsDevAppServer(){
+//         redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/getToken"
+//     }
 
-    bodyVals := url.Values{
-        "code": {authCode},
-        "client_id": {os.Getenv("CLIENT_ID")},
-        "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "redirect_uri": {redirectUri},
-        "grant_type": {"authorization_code"},
-    }
+//     bodyVals := url.Values{
+//         "code": {authCode},
+//         "client_id": {os.Getenv("CLIENT_ID")},
+//         "client_secret": {os.Getenv("CLIENT_SECRET")},
+//         "redirect_uri": {redirectUri},
+//         "grant_type": {"authorization_code"},
+//     }
 
-    body := bytes.NewBufferString(bodyVals.Encode())
+//     body := bytes.NewBufferString(bodyVals.Encode())
 
-    log.Print(body)
-    req, _ := http.NewRequest("POST", urlStr, body)
-    req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+//     log.Print(body)
+//     req, _ := http.NewRequest("POST", urlStr, body)
+//     req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-    log.Print("finished marshaling")
+//     log.Print("finished marshaling")
 
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
+//     ctx := appengine.NewContext(r)
+//     client := urlfetch.Client(ctx)
 
-    resp, err := client.Do(req)
-    if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
-    }
-    log.Print("am here")
-    defer resp.Body.Close()
-    respBody, _ := ioutil.ReadAll(resp.Body)
-    fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
+//     resp, err := client.Do(req)
+//     if err != nil {
+//             http.Error(w, err.Error(), http.StatusInternalServerError)
+//             return
+//     }
+//     log.Print("am here")
+//     defer resp.Body.Close()
+//     respBody, _ := ioutil.ReadAll(resp.Body)
+//     fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
+// }
 
-    // log.Print("response Status:", resp.Status)
-    // log.Print("response Headers:", resp.Header)
-    // body, _ := ioutil.ReadAll(resp.Body)
-    // log.Print("response Body:", string(body))
+// func askPermissions(w http.ResponseWriter, r *http.Request) {
 
+// redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com%2FgetToken"
+// if appengine.IsDevAppServer(){
+//     redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FgetToken"
+// }
 
-    // redirectUri := "https://gotesting-175718.appspot.com"
-    // if appengine.IsDevAppServer(){
-    //     redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com"
-    // }
+//     redirectString := `https://accounts.google.com/o/oauth2/v2/
+// auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly
+// &access_type=offline
+// &include_granted_scopes=true
+// &prompt=consent
+// &state=state_parameter_passthrough_value
+// &redirect_uri=` + redirectUri + 
+// `&response_type=code
+// &client_id=` + os.Getenv("CLIENT_ID")
 
-    // http.Redirect(w, r, redirectUri, 301)
+//     redirectString = rstring.RemoveWhitespace(redirectString)
+//     //fmt.Fprint(w, redirectString)
 
-}
-
-func askPermissions(w http.ResponseWriter, r *http.Request) {
-
-redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com%2FgetToken"
-if appengine.IsDevAppServer(){
-    redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FgetToken"
-}
-
-    redirectString := `https://accounts.google.com/o/oauth2/v2/
-auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly
-&access_type=offline
-&include_granted_scopes=true
-&prompt=consent
-&state=state_parameter_passthrough_value
-&redirect_uri=` + redirectUri + 
-`&response_type=code
-&client_id=` + os.Getenv("CLIENT_ID")
-
-    redirectString = rstring.RemoveWhitespace(redirectString)
-    //fmt.Fprint(w, redirectString)
-
-    http.Redirect(w, r, redirectString, 301)
+//     http.Redirect(w, r, redirectString, 301)
 
     
-    // resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
-    //     auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
-    //     &state=state_parameter_passthrough_value
-    //     &redirect_uri=http%3a%2f%2fwww.example.com%2foauth2callback
-    //     &response_type=token
-    //     &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`)
+//     // resp, err := http.Get(`https://accounts.google.com/o/oauth2/v2/
+//     //     auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly
+//     //     &state=state_parameter_passthrough_value
+//     //     &redirect_uri=http%3a%2f%2fwww.example.com%2foauth2callback
+//     //     &response_type=token
+//     //     &client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com`)
 
-    // if err != nil {
-    //     body, _ := ioutil.ReadAll(resp.Body)
-    //     bodyString := string(body)
-    //     fmt.Println(bodyString)
-    // }
+//     // if err != nil {
+//     //     body, _ := ioutil.ReadAll(resp.Body)
+//     //     bodyString := string(body)
+//     //     fmt.Println(bodyString)
+//     // }
     
     
 
 
-}
+// }
 
 func handle(w http.ResponseWriter, r *http.Request) {
 
