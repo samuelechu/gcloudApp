@@ -2,9 +2,14 @@ package oauth
 
 import (
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/urlfetch"
 	"fmt"
 	"log"
+	"bytes"
+	"os"
+	"io/ioutil"
 	"net/http"
+	"net/url"
 	"github.com/samuelechu/rstring"
 )
 
