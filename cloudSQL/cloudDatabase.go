@@ -23,6 +23,13 @@ func init() {
         http.HandleFunc("/initDB", handler)
 }
 
+// func GetDB() *sql.DB {
+//     return db
+// }
+
+
+
+
 func initDB(){
     var err error
 
@@ -44,14 +51,25 @@ func initDB(){
         log.Print("Could not open db: %v", err)
         return    
     }
+
+    _, err = db.Exec(
+        `CREATE TABLE IF NOT EXISTS Users 
+        (uid INT(10) NOT NULL AUTO_INCREMENT,
+        username VARCHAR(64) NULL DEFAULT NULL,
+        departname VARCHAR(64) NULL DEFAULT NULL,
+        created DATE NULL DEFAULT NULL,
+        PRIMARY KEY (uid))`)
+
+
+if err != nil {
+        http.Error(w, fmt.Sprintf("CREATE TABLE failed: %v", err), 500)
+}
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
         w.Header().Set("Content-Type", "text/plain")
 
-        
-        defer db.Close()
 
         rows, err := db.Query("SHOW DATABASES")
         if err != nil {
@@ -61,6 +79,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
         defer rows.Close()
 
         buf := bytes.NewBufferString("Databases:\n")
+
         for rows.Next() {
                 var dbName string
                 if err := rows.Scan(&dbName); err != nil {
@@ -70,18 +89,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
                 fmt.Fprintf(buf, "- %s\n", dbName)
         }
 
-        _, err = db.Exec(
-                `CREATE TABLE IF NOT EXISTS userinfo 
-                (uid INT(10) NOT NULL AUTO_INCREMENT,
-                username VARCHAR(64) NULL DEFAULT NULL,
-                departname VARCHAR(64) NULL DEFAULT NULL,
-                created DATE NULL DEFAULT NULL,
-                PRIMARY KEY (uid))`)
 
-
-        if err != nil {
-                http.Error(w, fmt.Sprintf("CREATE TABLE failed: %v", err), 500)
-        }
 
         // insert
         stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
