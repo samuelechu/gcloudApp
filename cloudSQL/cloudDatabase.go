@@ -58,7 +58,7 @@ func initDB(){
 
 
     if err != nil {
-            http.Error(w, fmt.Sprintf("CREATE TABLE failed: %v", err), 500)
+        log.Printf("CREATE TABLE failed: %v", err)
     }
 }
 
@@ -115,24 +115,20 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
         log.Println(affect)
 
         // query
-        rows, err = db.Query("SELECT * FROM userinfo")
+        rows, err := db.Query("SELECT * FROM users")
         checkErr(err)
 
         for rows.Next() {
-            var uid int
-            var username string
-            var department string
-            var created string
-            err = rows.Scan(&uid, &username, &department, &created)
+            var uid string
+            var firstname string
+            err = rows.Scan(&uid, &firstname)
             checkErr(err)
             log.Println(uid)
-            log.Println(username)
-            log.Println(department)
-            log.Println(created)
+            log.Println(firstname)
         }
 
         // delete
-        stmt, err = db.Prepare("delete from userinfo where uid=?")
+        stmt, err = db.Prepare("delete from users where uid=?")
         checkErr(err)
 
         res, err = stmt.Exec(id)
