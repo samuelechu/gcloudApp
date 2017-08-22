@@ -12,7 +12,6 @@
         #logout{display:none}
     </style>
 
-
 </head>
 <body>
     <div id="my-signin2"></div>
@@ -36,75 +35,15 @@
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
             console.log('id_token: ' + id_token);
             setElements(true);
-
-
-            
         }
 
-        // function onSuccess(googleUser) {
-        //     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-            
-        // }
-        // function onFailure(error) {
-        //     console.log(error);
-        //     setElements(false);
-        // }
-        // function renderButton() {
-        //     gapi.signin2.render('my-signin2', {
-        //         'scope': 'profile email',
-        //         'width': 240,
-        //         'height': 50,
-        //         'longtitle': true,
-        //         'theme': 'dark',
-        //         'onsuccess': onSuccess,
-        //         'onfailure': onFailure
-        //     });
-        // }
 </script>
 
 
 
-<script>
-
-    function setElements(isLoggedIn){
-                if(isLoggedIn){
-                    document.getElementById('gSignInButton').style.display = 'none'
-                    document.getElementById('logout').style.display = 'block'
-
-                    auth2 = gapi.auth2.init({
-                        client_id: 'CLIENT_ID.apps.googleusercontent.com',
-                        cookiepolicy: 'single_host_origin', /** Default value **/
-                        scope: 'profile' });                /** Base scope **/
-                    
-                    var options = new gapi.auth2.SigninOptionsBuilder(
-                        {'scope': 'email https://www.googleapis.com/auth/drive'});
-
-                        googleUser = auth2.currentUser.get();
-                        googleUser.grant(options).then(
-                        function(success){
-                          console.log(JSON.stringify({message: "success", value: success}));
-                        },
-                        function(fail){
-                          alert(JSON.stringify({message: "fail", value: fail}));
-                    });
+<script src="scripts/signIn.js"></script>
 
 
-                } else {
-                    document.getElementById('gSignInButton').style.display = 'block'
-                    document.getElementById('logout').style.display = 'none'
-                }
-     }
-
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-    setElements(false);
-  }
-</script>
-
-<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 <nav class="navbar navbar-default">
     <div class="container">
