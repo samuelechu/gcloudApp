@@ -25,7 +25,8 @@ function signOut() {
     xhr.open('GET', 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + id_token);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
-      console.log('Signed in as: ' + xhr.responseText.aud);
+      console.log('Signed in as: ' + xhr.responseText);
+      console.log('Signed in as: ' + xhr.responseText["aud"]);
     //  if(xhr.responseText)
      // 65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com
 
