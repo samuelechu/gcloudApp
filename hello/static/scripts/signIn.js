@@ -26,7 +26,7 @@ function signOut() {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
       console.log('Signed in as: ' + xhr.responseText);
-      var obj = JSON.parse(text);
+      var obj = JSON.parse(xhr.responseText);
 
       console.log('Signed in as: ' + obj.aud);
     //  if(xhr.responseText)
