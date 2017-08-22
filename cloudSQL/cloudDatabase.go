@@ -91,7 +91,7 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
         log.Printf("Method was: %v!", r.Method)
         // insert
         //"INSERT userinfo SET username=?,departname=?,created=?")
-        if (r.Method != 'POST'){
+        if (r.Method != "POST"){
             stmt, err := db.Prepare("INSERT INTO users SET uid=?, firstname=?")
             checkErr(err)
 
