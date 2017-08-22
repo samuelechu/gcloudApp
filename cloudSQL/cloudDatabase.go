@@ -60,6 +60,7 @@ func initDB(){
     if err != nil {
         log.Printf("CREATE TABLE failed: %v", err)
     }
+    log.Print("table created!")
 }
 
 func showDatabases(w http.ResponseWriter, r *http.Request) {
