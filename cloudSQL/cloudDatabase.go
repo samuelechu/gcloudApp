@@ -34,7 +34,7 @@ func initDB(){
     user := "root"
     password := "dog"
     instance := "gotesting-175718:us-central1:database"
-    dbName := "samsDatabase"
+    dbName := "mailMigrationDatabase"
     
     // dbOpenString := "root:dog@cloudsql(gotesting-175718:us-central1:database)/samsDatabase"
     dbOpenString := fmt.Sprintf("%s:%s@cloudsql(%s)/%s", user, password, instance, dbName)
