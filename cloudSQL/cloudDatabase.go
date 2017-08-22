@@ -60,7 +60,6 @@ func initDB(){
     if err != nil {
         log.Printf("CREATE TABLE failed: %v", err)
     }
-    log.Print("table created!")
 }
 
 func showDatabases(w http.ResponseWriter, r *http.Request) {
@@ -89,58 +88,54 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
 
 func signInHandler(w http.ResponseWriter, r *http.Request) {
 
-
-        
-
+        log.Printf("Method was: %v!", r.Method)
         // insert
-        stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
+        stmt, err := db.Prepare("INSERT INTO users VALUE uid=?, firstname=?")
         checkErr(err)
 
-        res, err := stmt.Exec("Sam", "comp sci", "2012-12-09")
+        res, err := stmt.Exec("efefs", "Sam")
         checkErr(err)
 
-        id, err := res.LastInsertId()
-        checkErr(err)
+        // id, err := res.LastInsertId()
+        // checkErr(err)
 
-        log.Println(id)
-        // update
-        stmt, err = db.Prepare("update userinfo set username=? where uid=?")
-        checkErr(err)
+        // log.Println(id)
+        // // update
+        // stmt, err = db.Prepare("update userinfo set username=? where uid=?")
+        // checkErr(err)
 
-        res, err = stmt.Exec("samupdate", id)
-        checkErr(err)
+        // res, err = stmt.Exec("samupdate", id)
+        // checkErr(err)
 
-        affect, err := res.RowsAffected()
-        checkErr(err)
+        // affect, err := res.RowsAffected()
+        // checkErr(err)
 
-        log.Println(affect)
+        // log.Println(affect)
 
-        // query
-        rows, err := db.Query("SELECT * FROM users")
-        checkErr(err)
+        // // query
+        // rows, err := db.Query("SELECT * FROM users")
+        // checkErr(err)
 
-        for rows.Next() {
-            var uid string
-            var firstname string
-            err = rows.Scan(&uid, &firstname)
-            checkErr(err)
-            log.Println(uid)
-            log.Println(firstname)
-        }
+        // for rows.Next() {
+        //     var uid string
+        //     var firstname string
+        //     err = rows.Scan(&uid, &firstname)
+        //     checkErr(err)
+        //     log.Println(uid)
+        //     log.Println(firstname)
+        // }
 
-        // delete
-        stmt, err = db.Prepare("delete from users where uid=?")
-        checkErr(err)
+        // // delete
+        // stmt, err = db.Prepare("delete from users where uid=?")
+        // checkErr(err)
 
-        res, err = stmt.Exec(id)
-        checkErr(err)
+        // res, err = stmt.Exec(id)
+        // checkErr(err)
 
-        affect, err = res.RowsAffected()
-        checkErr(err)
+        // affect, err = res.RowsAffected()
+        // checkErr(err)
 
-        fmt.Println(affect)
-
-        
+        // fmt.Println(affect)
 }
 
 func checkErr(err error) {
