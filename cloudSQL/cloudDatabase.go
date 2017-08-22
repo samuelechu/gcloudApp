@@ -96,10 +96,10 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
         res, err := stmt.Exec("efefs", "Sam")
         checkErr(err)
 
-        // id, err := res.LastInsertId()
+         id, err := res.RowsAffected()
         // checkErr(err)
 
-        // log.Println(id)
+        log.Println(id)
         // // update
         // stmt, err = db.Prepare("update userinfo set username=? where uid=?")
         // checkErr(err)
