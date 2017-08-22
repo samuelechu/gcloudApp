@@ -102,9 +102,7 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
             // checkErr(err)
 
             log.Println(id)
-        }
-
-        else{
+        } else {
             log.Print("My request was " + r.URL.Query())
         }
         // // update
