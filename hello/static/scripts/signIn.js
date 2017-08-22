@@ -18,6 +18,15 @@ function signOut() {
   setElements(false);
 }
 
+function sendTokentoDB(id_token){
+//'idtoken=' + id_token
+  xhr.open('POST', 'signIn');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send('idtoken=' + id_token);
+  console.log("I sent");
+
+
+}
 
 function onSignIn(googleUser) {
   var id_token = googleUser.getAuthResponse().id_token;
@@ -31,13 +40,10 @@ function onSignIn(googleUser) {
 
     //token is valid, send to back end
     if (resp.aud === "65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com") {
-      //resp.sub
+      sendTokentoDB(resp.sub);
     }
-
-
-
   };
-  xhr.send('idtoken=' + id_token);
+  xhr.send();
   
 
   var profile = googleUser.getBasicProfile();

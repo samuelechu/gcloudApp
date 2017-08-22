@@ -91,16 +91,22 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
         log.Printf("Method was: %v!", r.Method)
         // insert
         //"INSERT userinfo SET username=?,departname=?,created=?")
-        stmt, err := db.Prepare("INSERT INTO users SET uid=?, firstname=?")
-        checkErr(err)
+        if (r.Method != 'POST'){
+            stmt, err := db.Prepare("INSERT INTO users SET uid=?, firstname=?")
+            checkErr(err)
 
-        res, err := stmt.Exec("efefs", "Sam")
-        checkErr(err)
+            res, err := stmt.Exec("efefs", "Sam")
+            checkErr(err)
 
-         id, err := res.RowsAffected()
-        // checkErr(err)
+            id, err := res.RowsAffected()
+            // checkErr(err)
 
-        log.Println(id)
+            log.Println(id)
+        }
+
+        else{
+            log.Print("My request was " + r.URL.Query())
+        }
         // // update
         // stmt, err = db.Prepare("update userinfo set username=? where uid=?")
         // checkErr(err)
