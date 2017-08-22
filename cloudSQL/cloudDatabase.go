@@ -52,7 +52,7 @@ func initDB(){
 
     _, err = db.Exec(
                 `CREATE TABLE IF NOT EXISTS users
-                (uid VARCHAR(64) UNIQUE DEFAULT NULL,
+                (uid VARCHAR(64) UNIQUE DEFAULT UNIQUE,
                 firstname VARCHAR(64) NULL DEFAULT NULL,
                 PRIMARY KEY (uid))`)
 
