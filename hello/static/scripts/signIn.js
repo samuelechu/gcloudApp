@@ -19,7 +19,8 @@ function signOut() {
 }
 
 function sendTokentoDB(id_token){
-//'idtoken=' + id_token
+  
+  var xhr = new XMLHttpRequest();
   xhr.open('POST', 'signIn');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.send('idtoken=' + id_token);
