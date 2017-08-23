@@ -103,7 +103,7 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
 
             log.Println(id)
         } else {
-            log.Printf("My request was %v", r.URL.Query())
+            log.Printf("My request was %v", r.Body)
         }
         // // update
         // stmt, err = db.Prepare("update userinfo set username=? where uid=?")
