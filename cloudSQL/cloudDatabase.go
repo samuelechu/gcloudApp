@@ -11,7 +11,6 @@ import (
         "bytes"
         "database/sql"
         "encoding/json"
-        "io/ioutil"
         "fmt"
         "log"
         "net/http"
