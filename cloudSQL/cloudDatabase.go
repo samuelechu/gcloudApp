@@ -10,6 +10,8 @@ import (
         "google.golang.org/appengine"
         "bytes"
         "database/sql"
+        "encoding/json"
+        "io/ioutil"
         "fmt"
         "log"
         "net/http"
@@ -86,6 +88,11 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
     w.Write(buf.Bytes())
 }
 
+type User struct{
+    uid     string
+    name    string
+}
+
 func signInHandler(w http.ResponseWriter, r *http.Request) {
 
         log.Printf("Method was: %v!", r.Method)
@@ -103,7 +110,18 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
 
             log.Println(id)
         } else {
-            log.Printf("My request was %v", r.Body)
+            var u User
+            if r.Body == nil {
+                http.Error(w, "Please send a request body", 400)
+                return
+            }
+            err := json.NewDecoder(r.Body).Decode(&u)
+            if err != nil {
+                http.Error(w, err.Error(), 400)
+                return
+            }
+
+            log.Printf("Post returned: %v", u)
         }
         // // update
         // stmt, err = db.Prepare("update userinfo set username=? where uid=?")
