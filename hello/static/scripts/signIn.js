@@ -27,9 +27,8 @@ function sendTokentoDB(googleUser, id_token){
   xhr.setRequestHeader("Content-Type", "application/json");
 
   var data = {
-      
-     Name : profile.getName()
-     ,uid : id_token
+      Uid : id_token
+    , Name : profile.getName()
   }
 
   xhr.send(JSON.stringify(data));

@@ -88,76 +88,38 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
 }
 
 type User struct{
-    uid     string
+    Uid     string
     Name    string
 }
 
 func signInHandler(w http.ResponseWriter, r *http.Request) {
 
-        log.Printf("Method was: %v!", r.Method)
-        // insert
-        //"INSERT userinfo SET username=?,departname=?,created=?")
-        if r.Method != "POST" {
-            stmt, err := db.Prepare("INSERT INTO users SET uid=?, firstname=?")
-            checkErr(err)
-
-            res, err := stmt.Exec("efefs", "Sam")
-            checkErr(err)
-
-            id, err := res.RowsAffected()
-            // checkErr(err)
-
-            log.Println(id)
-        } else {
-            var u User
-            if r.Body == nil {
-                http.Error(w, "Please send a request body", 400)
+    if r.Method != "POST" {
+                http.NotFound(w, r)
                 return
-            }
-            err := json.NewDecoder(r.Body).Decode(&u)
-            if err != nil {
-                http.Error(w, err.Error(), 400)
-                return
-            }
+    }
 
-            log.Printf(u.uid)
-        }
-        // // update
-        // stmt, err = db.Prepare("update userinfo set username=? where uid=?")
-        // checkErr(err)
+    var u User
+    if r.Body == nil {
+        http.Error(w, "Please send a request body", 400)
+        return
+    }
+    err := json.NewDecoder(r.Body).Decode(&u)
+    if err != nil {
+        http.Error(w, err.Error(), 400)
+        return
+    }
 
-        // res, err = stmt.Exec("samupdate", id)
-        // checkErr(err)
+    stmt, err := db.Prepare("INSERT INTO users SET uid=?, firstname=?")
+    checkErr(err)
 
-        // affect, err := res.RowsAffected()
-        // checkErr(err)
+    res, err := stmt.Exec(u.Uid, u.Name)
+    checkErr(err)
 
-        // log.Println(affect)
+    id, err := res.RowsAffected()
+    // checkErr(err)
 
-        // // query
-        // rows, err := db.Query("SELECT * FROM users")
-        // checkErr(err)
-
-        // for rows.Next() {
-        //     var uid string
-        //     var firstname string
-        //     err = rows.Scan(&uid, &firstname)
-        //     checkErr(err)
-        //     log.Println(uid)
-        //     log.Println(firstname)
-        // }
-
-        // // delete
-        // stmt, err = db.Prepare("delete from users where uid=?")
-        // checkErr(err)
-
-        // res, err = stmt.Exec(id)
-        // checkErr(err)
-
-        // affect, err = res.RowsAffected()
-        // checkErr(err)
-
-        // fmt.Println(affect)
+    log.Println(id)
 }
 
 func checkErr(err error) {
