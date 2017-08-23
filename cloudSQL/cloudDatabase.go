@@ -110,7 +110,7 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    stmt, err := db.Prepare("INSERT INTO users SET uid=?, firstname=?")
+    stmt, err := db.Prepare("INSERT IGNORE INTO users SET uid=?, Name=?")
     checkErr(err)
 
     res, err := stmt.Exec(u.Uid, u.Name)
