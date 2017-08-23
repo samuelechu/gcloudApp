@@ -120,7 +120,7 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
                 return
             }
 
-            log.Printf(u.uid)
+            log.Printf(u.Uid)
         }
         // // update
         // stmt, err = db.Prepare("update userinfo set username=? where uid=?")
