@@ -88,8 +88,8 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
 }
 
 type User struct{
-    uid     string
-    name    string
+    Uid     string
+    Name    string
 }
 
 func signInHandler(w http.ResponseWriter, r *http.Request) {
