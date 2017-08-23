@@ -29,7 +29,7 @@ function sendTokentoDB(googleUser, id_token){
   var data = {
       
      Name : profile.getName()
-     ,Uid : id_token
+     ,uid : id_token
   }
 
   xhr.send(JSON.stringify(data));

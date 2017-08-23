@@ -88,7 +88,7 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
 }
 
 type User struct{
-    Uid     string
+    uid     string
     Name    string
 }
 
@@ -120,7 +120,7 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
                 return
             }
 
-            log.Printf(u.Uid)
+            log.Printf(u.uid)
         }
         // // update
         // stmt, err = db.Prepare("update userinfo set username=? where uid=?")
