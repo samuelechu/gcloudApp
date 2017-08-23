@@ -26,13 +26,13 @@ function sendTokentoDB(googleUser, id_token){
   xhr.open('POST', 'signIn');
   xhr.setRequestHeader("Content-Type", "application/json");
 
-  var data = {firstname : profile.getName(), idtoken = id_token}
-
-
+  var data = {
+      firstname : profile.getName()
+    , idtoken : id_token
   }
 
   xhr.send(JSON.stringify(data));
-  
+
   console.log("I sent");
 
 
