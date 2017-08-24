@@ -8,6 +8,9 @@
     <meta name="google-signin-client_id"
     content="65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com">
     <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style media="screen">
         #logout{display:none}
     </style>
@@ -50,6 +53,23 @@
 
         <div id = "profile"></div>
     </div>
+
+    <div class = "container">
+    <button id="sourceAccount" onclick="location.href='askPermissions';">Select account to transfer emails from</button>
+
+    </div>
+
+    <div class="container">
+      <h3>Tooltip Example</h3>
+      <a href="#" data-toggle="tooltip" title="Hooray!">Hover over me</a>
+    </div>
+
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
+
 
 </body>
 </html>
