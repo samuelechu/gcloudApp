@@ -33,10 +33,7 @@ function sendTokentoDB(googleUser, id_token){
 
   xhr.send(JSON.stringify(data));
 
-  console.log("I sent");
-  console.log(JSON.stringify({name:"John Rambo", time:"2pm"}))
-  console.log(JSON.stringify(data))
-
+  console.log("Sent: " + JSON.stringify(data) + " to database");
 
 }
 
