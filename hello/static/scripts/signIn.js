@@ -25,9 +25,9 @@ function sendTokentoDB(googleUser, id_token){
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'signIn');
   xhr.setRequestHeader("Content-Type", "application/json");
-  // xhr.onload = function() {
-  //   $('.collapse').collapse("show")
-  // };
+  xhr.onload = function() {
+    $("#selectSection").addClass('hidden');
+  };
 
   var data = {
       Uid : id_token
