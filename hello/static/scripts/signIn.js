@@ -13,7 +13,7 @@ function setElements(isLoggedIn){
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    $("#selectSection").addClass('hidden');
+    $("#selectSection").collapse('hide')
     console.log('User signed out.');
   });
   setElements(false);
@@ -27,7 +27,7 @@ function sendTokentoDB(googleUser, id_token){
   xhr.open('POST', 'signIn');
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
-    $("#selectSection").removeClass('hidden');
+    $("#selectSection").collapse('show')
   };
 
   var data = {
