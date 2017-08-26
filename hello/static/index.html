@@ -7,9 +7,14 @@
     </title>
     <meta name="google-signin-client_id"
     content="65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com">
-    <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
     <style media="screen">
         #logout{display:none}
@@ -54,10 +59,9 @@
 
         <div id = "profile"></div>
     </div> -->
-<div id = "selectSection" class = "hidden">
+<div id="selectSection" class="hidden">
     <div class = "container">
-        <button id="sourceAccount" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Select an account to transfer emails from" 
-                onclick="location.href='askPermissions';">Select Source Email</button>
+        <button id="sourceAccount" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Select an account to transfer emails from" onclick="location.href='askPermissions';">Select Source Email</button>
 
         <p id = "sourceName"></p>
     </div>
