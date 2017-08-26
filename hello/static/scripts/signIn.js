@@ -26,7 +26,7 @@ function sendTokentoDB(googleUser, id_token){
   xhr.open('POST', 'signIn');
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
-    $("#selectSection").addClass('hidden');
+    $("#selectSection").removeClass('hidden');
   };
 
   var data = {
