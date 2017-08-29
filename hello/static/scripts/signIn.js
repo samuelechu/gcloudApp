@@ -1,22 +1,24 @@
 
 function setElements(isLoggedIn){
   if(isLoggedIn){
-      document.getElementById('gSignInButton').style.display = 'none'
-      document.getElementById('logout').style.display = 'block'
+
+    $("#gSignInButton").collapse('hide')
+    $("#logout").collapse('show')
+    $("#selectSection").collapse('show')
 
   } else {
-      document.getElementById('gSignInButton').style.display = 'block'
-      document.getElementById('logout').style.display = 'none'
+    $("#selectSection").collapse('hide')
+    $("#logout").collapse('hide')
+    $("#gSignInButton").collapse('show')
   }
 }
 
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    $("#selectSection").collapse('hide')
+    setElements(false);
     console.log('User signed out.');
-  });
-  setElements(false);
+  }); 
 }
 
 function sendTokentoDB(googleUser, id_token){
@@ -27,7 +29,7 @@ function sendTokentoDB(googleUser, id_token){
   xhr.open('POST', 'signIn');
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
-    $("#selectSection").collapse('show')
+     setElements(true);
   };
 
   var data = {
@@ -65,5 +67,5 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   console.log('id_token: ' + id_token);
-  setElements(true);
+ 
 }
