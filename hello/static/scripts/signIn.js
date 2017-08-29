@@ -1,11 +1,13 @@
 gapi.auth2.init({
   client_id: '65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com'
 })
+gauth = gapi.auth2.getAuthInstance()
+
 function setElements(isLoggedIn){
   if(isLoggedIn){
       document.getElementById('gSignInButton').style.display = 'none';
 
-      document.getElementById('googleUserName').innerHTML = GoogleAuth.currentUser.get().getBasicProfile().getName();
+      document.getElementById('googleUserName').innerHTML = gauth.currentUser.get().getBasicProfile().getName();
       document.getElementById('logout').style.display = 'block';
 
   } else {
