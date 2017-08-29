@@ -10,6 +10,6 @@
 .jumbotron{
     height: 85vh;
     width: 45%;
-	margin:10px auto
+	margin:10px auto !important
 	display:inline-block;
 }
