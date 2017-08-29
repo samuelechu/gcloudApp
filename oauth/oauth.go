@@ -24,8 +24,6 @@ type RespBody struct{
     access_token    string
     expires_in      int
     token_type      string
-    error           string
-    error_description   string
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
@@ -71,9 +69,8 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
         http.Error(w, err.Error(), 400)
         return
     }
-    if respBody.error == "" {
-        fmt.Fprintf(w, "HTTP Post returned %v %v %v", respBody.access_token, respBody.expires_in, respBody.token_type)
-    }
+    fmt.Fprintf(w, "HTTP Post returned %v %v %v", respBody.access_token, respBody.expires_in, respBody.token_type)
+    
     
 
 }
