@@ -1,7 +1,7 @@
 gapi.auth2.init({
   client_id: '65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com'
-})
-gauth = gapi.auth2.getAuthInstance()
+});
+var gauth = gapi.auth2.getAuthInstance();
 
 function setElements(isLoggedIn){
   if(isLoggedIn){
