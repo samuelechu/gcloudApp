@@ -2,12 +2,6 @@
 	padding:10px;
 }
 
-#doubleArrow{
-	width:10%;
-	display:inline-block;
-	height: 20vh;
-}
-
 .container-fluid{
 	text-align:center;
 	position:relative;
@@ -15,6 +9,6 @@
 
 .jumbotron{
     height: 45vh;
-    width: 40%;
+    width: 45%;
 	display:inline-block;
 }
