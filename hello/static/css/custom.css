@@ -2,13 +2,7 @@
 	padding:10px;
 }
 
-.container-fluid{
-	text-align:center !important;
-	position:relative !important;
-}
-
 .jumbotron{
     height: 89vh;
     width: 45%;
-	display:inline-block !important;
 }
