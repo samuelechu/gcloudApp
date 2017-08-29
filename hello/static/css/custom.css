@@ -3,6 +3,7 @@
 }
 
 .jumbotron{
-    height: 95vh;
-    width: 45vw;
+    height: 90vh;
+    width: 45%;
+    padding: 10px;
 }
