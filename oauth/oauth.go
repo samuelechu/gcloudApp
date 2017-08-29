@@ -57,6 +57,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     log.Print("am here")
     defer resp.Body.Close()
     respBody, _ := ioutil.ReadAll(resp.Body)
+    log.Printf("HTTP Post returned %v", string(respBody))
     // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
     var rb RespBody 
