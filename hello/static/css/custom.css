@@ -3,12 +3,12 @@
 }
 
 .container-fluid{
-	text-align:center;
-	position:relative;
+	text-align:center !important;
+	position:relative !important;
 }
 
 .jumbotron{
     height: 89vh;
     width: 45%;
-	display:inline-block;
+	display:inline-block !important;
 }
