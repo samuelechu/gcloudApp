@@ -3,12 +3,14 @@ function setElements(isLoggedIn){
   if(isLoggedIn){
 
     $("#gSignInButton").collapse('hide')
-    $("#logout").collapse('show')
+    //$("#logout").collapse('show')
+    document.getElementById('logout').style.display = 'block'
     $("#selectSection").collapse('show')
 
   } else {
     $("#selectSection").collapse('hide')
-    $("#logout").collapse('hide')
+    //$("#logout").collapse('hide')
+    document.getElementById('logout').style.display = 'none'
     $("#gSignInButton").collapse('show')
   }
 }
