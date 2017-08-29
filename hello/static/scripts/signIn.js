@@ -4,11 +4,9 @@ function setElements(isLoggedIn){
   var googleUser= auth2.currentUser.get();
   if(isLoggedIn){
       document.getElementById('gSignInButton').style.display = 'none';
-      document.getElementById('googleUserName').innerHTML = googleUser.getBasicProfile().getName();
       document.getElementById('logout').style.display = 'block';
 
   } else {
-      document.getElementById('googleUserName').innerHTML = "";
       document.getElementById('logout').style.display = 'none';
       document.getElementById('gSignInButton').style.display = 'block';
   }
