@@ -21,9 +21,9 @@ func init() {
 }
 
 type RespBody struct{
-    access_token    string
-    token_type      string
-    expires_in      float64
+    Access_token    string
+    Token_type      string
+    Expires_in      float64
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
@@ -70,7 +70,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
         http.Error(w, err.Error(), 400)
         return
     }
-    fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.access_token, rb.expires_in, rb.token_type)
+    fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
     
     
 
