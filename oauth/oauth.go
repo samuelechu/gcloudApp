@@ -20,18 +20,14 @@ func init() {
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
-        log.Print(r.URL.Query())
-    log.Print("heyo")
-    log.Print(r.URL.Query().Get("code"))
 
-    authCode := r.URL.Query().Get("code")
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
  
     bodyVals := url.Values{
         "client_id": {os.Getenv("CLIENT_ID")},
         "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "refresh_token":{"1/iDMKVLsBI8QC2KSjqwbdIvUkcdSFo8edj70unSDfjCM"}
+        "refresh_token":{"1/iDMKVLsBI8QC2KSjqwbdIvUkcdSFo8edj70unSDfjCM"},
         "grant_type": {"refresh_token"},
     }
 
