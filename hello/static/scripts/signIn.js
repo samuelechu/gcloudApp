@@ -1,19 +1,22 @@
 
 function setElements(isLoggedIn){
   if(isLoggedIn){
-      document.getElementById('gSignInButton').style.display = 'none'
-      document.getElementById('logout').style.display = 'block'
+      document.getElementById('gSignInButton').style.display = 'none';
+
+      document.getElementById('googleUserName').innerHTML = GoogleAuth.currentUser.get().getBasicProfile().getName();
+      document.getElementById('logout').style.display = 'block';
 
   } else {
-      document.getElementById('gSignInButton').style.display = 'block'
-      document.getElementById('logout').style.display = 'none'
+      document.getElementById('gSignInButton').style.display = 'block';
+      document.getElementById('googleUserName').innerHTML = "";
+      document.getElementById('logout').style.display = 'none';
   }
 }
 
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    $("#selectSection").collapse('hide')
+    $("#selectSection").collapse('hide');
     console.log('User signed out.');
   });
   setElements(false);
@@ -27,7 +30,7 @@ function sendTokentoDB(googleUser, id_token){
   xhr.open('POST', 'signIn');
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
-    $("#selectSection").collapse('show')
+    $("#selectSection").collapse('show');
   };
 
   var data = {
