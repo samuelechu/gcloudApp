@@ -5,6 +5,7 @@ function setElements(isLoggedIn){
       document.getElementById('gSignInButton').style.display = 'none';
 
       document.getElementById('googleUserName').innerHTML = auth2.currentUser.get().getBasicProfile().getName();
+      $("#signedInPanel").collapse('show');
       document.getElementById('logout').style.display = 'block';
 
   } else {
