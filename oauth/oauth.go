@@ -64,7 +64,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
         http.Error(w, "Please send a request body", 400)
         return
     }
-    err = json.Unmarshal(respBody, rb)
+    err = json.Unmarshal(respBody, &rb)
     if err != nil {
         http.Error(w, err.Error(), 400)
         return
