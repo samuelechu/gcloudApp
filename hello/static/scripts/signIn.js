@@ -1,17 +1,16 @@
 
 function setElements(isLoggedIn){
   var auth2 = gapi.auth2.getAuthInstance();
+  var googleUser= auth2.currentUser.get();
   if(isLoggedIn){
       document.getElementById('gSignInButton').style.display = 'none';
-
-      document.getElementById('googleUserName').innerHTML = auth2.currentUser.get().getBasicProfile().getName();
-      $("#signedInPanel").collapse('show');
+      document.getElementById('googleUserName').innerHTML = googleUser.getBasicProfile().getName();
       document.getElementById('logout').style.display = 'block';
 
   } else {
-      document.getElementById('gSignInButton').style.display = 'block';
       document.getElementById('googleUserName').innerHTML = "";
       document.getElementById('logout').style.display = 'none';
+      document.getElementById('gSignInButton').style.display = 'block';
   }
 }
 
@@ -24,8 +23,9 @@ function signOut() {
   setElements(false);
 }
 
-function sendTokentoDB(googleUser, id_token){
-
+function sendTokentoDB(id_token){
+  var auth2 = gapi.auth2.getAuthInstance();
+  var googleUser= auth2.currentUser.get();
   var profile = googleUser.getBasicProfile();
   
   var xhr = new XMLHttpRequest();
@@ -58,7 +58,7 @@ function onSignIn(googleUser) {
 
     //token is valid, send to back end
     if (resp.aud === "65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com") {
-      sendTokentoDB(googleUser, resp.sub);
+      sendTokentoDB(resp.sub);
     }
   };
   xhr.send();
