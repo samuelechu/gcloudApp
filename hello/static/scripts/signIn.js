@@ -1,13 +1,10 @@
-gapi.auth2.init({
-  client_id: '65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com'
-});
-var gauth = gapi.auth2.getAuthInstance();
 
 function setElements(isLoggedIn){
+  var auth2 = gapi.auth2.getAuthInstance();
   if(isLoggedIn){
       document.getElementById('gSignInButton').style.display = 'none';
 
-      document.getElementById('googleUserName').innerHTML = gauth.currentUser.get().getBasicProfile().getName();
+      document.getElementById('googleUserName').innerHTML = auth2.currentUser.get().getBasicProfile().getName();
       document.getElementById('logout').style.display = 'block';
 
   } else {
