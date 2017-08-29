@@ -3,5 +3,10 @@
 }
 
 .jumbotron{
-    height: 100vh;
+    height: 90vh;
+}
+
+.navbar {
+	height: 10vh;
+    margin:0;
 }
