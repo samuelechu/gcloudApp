@@ -4,9 +4,5 @@
 
 .jumbotron{
     height: 90vh;
-}
-
-.navbar {
-	height: 10vh;
-    margin:0;
+    width: 90vw;
 }
