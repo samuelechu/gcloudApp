@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"os"
 	"io/ioutil"
-    //"encoding/json"
+    "encoding/json"
 	"net/http"
 	"net/url"
 	"github.com/samuelechu/rstring"
@@ -20,11 +20,11 @@ func init() {
      http.HandleFunc("/testrefToken", getAccessToken)
 }
 
-// type RespBody struct{
-//     access_token    string
-//     expires_in      int
-//     token_type      string
-// }
+type RespBody struct{
+    access_token    string
+    token_type      string
+    expires_in      int
+}
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
 
@@ -55,21 +55,21 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
             return
     }
     log.Print("am here")
-    defer resp.Body.Close()
-    respBody, _ := ioutil.ReadAll(resp.Body)
-    fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
+    // defer resp.Body.Close()
+    // respBody, _ := ioutil.ReadAll(resp.Body)
+    // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
-    // var respBody RespBody 
-    // if resp.Body == nil {
-    //     http.Error(w, "Please send a request body", 400)
-    //     return
-    // }
-    // err = json.NewDecoder(resp.Body).Decode(&respBody)
-    // if err != nil {
-    //     http.Error(w, err.Error(), 400)
-    //     return
-    // }
-    // fmt.Fprintf(w, "HTTP Post returned %v %v %v", respBody.access_token, respBody.expires_in, respBody.token_type)
+    var respBody RespBody 
+    if resp.Body == nil {
+        http.Error(w, "Please send a request body", 400)
+        return
+    }
+    err = json.NewDecoder(resp.Body).Decode(&respBody)
+    if err != nil {
+        http.Error(w, err.Error(), 400)
+        return
+    }
+    fmt.Fprintf(w, "HTTP Post returned %v %v %v", respBody.access_token, respBody.expires_in, respBody.token_type)
     
     
 
