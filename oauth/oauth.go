@@ -55,21 +55,21 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
             return
     }
     log.Print("am here")
-    // defer resp.Body.Close()
-    // respBody, _ := ioutil.ReadAll(resp.Body)
+    defer resp.Body.Close()
+    respBody, _ := ioutil.ReadAll(resp.Body)
     // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
-    var respBody RespBody 
+    var rb RespBody 
     if resp.Body == nil {
         http.Error(w, "Please send a request body", 400)
         return
     }
-    err = json.Unmarshal(resp.Body, respBody)
+    err = json.Unmarshal(respBody, rb)
     if err != nil {
         http.Error(w, err.Error(), 400)
         return
     }
-    fmt.Fprintf(w, "HTTP Post returned %v %v %v", respBody.access_token, respBody.expires_in, respBody.token_type)
+    fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.access_token, rb.expires_in, rb.token_type)
     
     
 
