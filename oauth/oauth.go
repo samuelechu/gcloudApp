@@ -23,7 +23,7 @@ func init() {
 type RespBody struct{
     access_token    string
     token_type      string
-    expires_in      int
+    expires_in      float64
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
