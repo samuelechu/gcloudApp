@@ -1,4 +1,6 @@
-
+gapi.auth2.init({
+  client_id: '65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com'
+})
 function setElements(isLoggedIn){
   if(isLoggedIn){
       document.getElementById('gSignInButton').style.display = 'none';
