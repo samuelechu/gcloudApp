@@ -16,6 +16,46 @@ import (
 func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/getToken", getToken)
+     http.HandleFunc("/testrefToken", getAccessToken)
+}
+
+func getAccessToken(w http.ResponseWriter, r *http.Request) {
+        log.Print(r.URL.Query())
+    log.Print("heyo")
+    log.Print(r.URL.Query().Get("code"))
+
+    authCode := r.URL.Query().Get("code")
+    
+    urlStr := "https://www.googleapis.com/oauth2/v4/token"
+ 
+    bodyVals := url.Values{
+        "client_id": {os.Getenv("CLIENT_ID")},
+        "client_secret": {os.Getenv("CLIENT_SECRET")},
+        "refresh_token":{"1/iDMKVLsBI8QC2KSjqwbdIvUkcdSFo8edj70unSDfjCM"}
+        "grant_type": {"refresh_token"},
+    }
+
+    body := bytes.NewBufferString(bodyVals.Encode())
+
+    log.Print(body)
+    req, _ := http.NewRequest("POST", urlStr, body)
+    req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+    log.Print("finished marshaling")
+
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
+
+    resp, err := client.Do(req)
+    if err != nil {
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+            return
+    }
+    log.Print("am here")
+    defer resp.Body.Close()
+    respBody, _ := ioutil.ReadAll(resp.Body)
+    fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
+
 }
 
 func askPermissions(w http.ResponseWriter, r *http.Request) {
