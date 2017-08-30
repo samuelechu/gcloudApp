@@ -11,7 +11,6 @@ import (
     "encoding/json"
 	"net/http"
 	"net/url"
-	"github.com/samuelechu/rstring"
 )
 
 func init() {
