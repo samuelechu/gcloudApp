@@ -42,7 +42,7 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
 
     var respBody IDTokenRespBody
     var rb IDTokenRespBody
-    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody); ok {
+    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(IDTokenRespBody); ok {
         fmt.Fprintf(w, "HTTP Get returned %v %v", rb.Aud, rb.Sub)
 
         if rb.Aud == os.Getenv("CLIENT_ID") {
