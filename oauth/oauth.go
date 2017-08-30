@@ -33,7 +33,7 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
     token := r.URL.Query().Get("id_token")
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + token
 
-    req, _ := http.NewRequest("GET", urlStr, nil)
+    //req, _ := http.NewRequest("GET", urlStr, nil)
 
 
     resp, err := client.Get(urlStr)
