@@ -13,16 +13,11 @@ import (
 	"net/url"
 )
 
-var client *http.Client
-
 func init() {
-    ctx := appengine.NewContext(r)
-    client = urlfetch.Client(ctx)
-
-    http.HandleFunc("/askPermissions", askPermissions)
-    http.HandleFunc("/oauthCallback", oauthCallback)
-    http.HandleFunc("/testrefToken", getAccessToken)
-    http.HandleFunc("/testidToken", verifyIDToken)
+     http.HandleFunc("/askPermissions", askPermissions)
+     http.HandleFunc("/oauthCallback", oauthCallback)
+     http.HandleFunc("/testrefToken", getAccessToken)
+     http.HandleFunc("/testidToken", verifyIDToken)
 }
 
 type IDTokenRespBody struct{
@@ -33,6 +28,8 @@ type IDTokenRespBody struct{
 //verifies that the id_token that identifies user is genuine
 func verifyIDToken(w http.ResponseWriter, r *http.Request){
     
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
     
     token := r.URL.Query().Get("id_token")
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + token
@@ -94,6 +91,8 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
 
     log.Print("finished marshaling")
 
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
 
     resp, err := client.Do(req)
     if err != nil {
@@ -194,6 +193,8 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     log.Print("finished marshaling")
 
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
 
     resp, err := client.Do(req)
     if err != nil {
