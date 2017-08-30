@@ -40,9 +40,16 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
     //req, _ := http.NewRequest("GET", urlStr, nil)
 
 
-    var rb IDTokenRespBody
+    var respBody IDTokenRespBody
+    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody); ok {
+        fmt.Fprintf(w, "HTTP Get returned %v %v", rb.Aud, rb.Sub)
 
-    rb = getJSONRespBody(w, r, urlStr, bodyVals, rb)
+        if rb.Aud == os.Getenv("CLIENT_ID") {
+            fmt.Fprint(w, "aud was equal to client id!")
+        }
+    } else {
+        http.Error(w, "Error: incorrect responsebody", 400)
+    }
 
     // resp, err := client.Get(urlStr)
     // if err != nil {
@@ -65,11 +72,7 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
     //     http.Error(w, err.Error(), 400)
     //     return
     // }
-    fmt.Fprintf(w, "HTTP Get returned %v %v", rb.Aud, rb.Sub)
 
-    if rb.Aud == os.Getenv("CLIENT_ID") {
-        fmt.Fprint(w, "aud was equal to client id!")
-    }
 }
 
 type RespBody struct{
