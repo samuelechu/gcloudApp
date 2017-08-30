@@ -82,7 +82,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 	}
 
     queryVals := url.Values{
-        "scope" : {"https://www.googleapis.com/auth/gmail.readonly"},
+        "scope" : {"https://www.googleapis.com/auth/gmail.readonly profile"},
         "access_type" : {"offline"},
         "include_granted_scopes" : {"true"},
         "prompt" : {"consent"},
