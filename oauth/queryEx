@@ -9,3 +9,21 @@ map[
 scope:[https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile] 
 state:[state_parameter_passthrough_value] 
 code:[4/Mjk9qRdZ9zo0V1WjhIYaRzlhhV1P0s3aUIrhYJrIL_A]]
+
+
+bodyVals := url.Values{
+        "client_id": {os.Getenv("CLIENT_ID")},
+        "client_secret": {os.Getenv("CLIENT_SECRET")},
+        "refresh_token":{"1/08fGrbeZdKkEJmoNHhKqWxZuVvNWjSc_JjN1aMExhaU"},
+        "grant_type": {"refresh_token"},
+    }
+
+body := bytes.NewBufferString(bodyVals.Encode())
+
+
+log.Print(body):
+
+client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com&client_secret=0NjL7OoLyGYiZkTUKjzifqjd&grant_type=refresh_token&refresh_token=1%2F08fGrbeZdKkEJmoNHhKqWxZuVvNWjSc_JjN1aMExhaU
+
+
+https://accounts.google.com/o/oauth2/v2/auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FgetToken&response_type=code&client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com

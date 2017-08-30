@@ -76,13 +76,28 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
 }
 
 func askPermissions(w http.ResponseWriter, r *http.Request) {
-	redirectUri := "https://gotesting-175718.appspot.com/getToken"
+	
+    //request will be format :   /askPermissions?(source||destination)
+    callType := r.URL.Query().Get("type")
+    permissions := ""
+
+    switch callType {
+        case 'source':
+            permissions = "https://www.googleapis.com/auth/gmail.readonly"
+        case 'destination':
+            permissions = "https://www.googleapis.com/auth/gmail.insert"
+        default:
+            http.Error(w, "must specify in queryString type : source || destination", 400)
+            return
+    }
+
+    redirectUri := "https://gotesting-175718.appspot.com/getToken"
 	if appengine.IsDevAppServer(){
     	redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/getToken"
 	}
 
     queryVals := url.Values{
-        "scope" : {"profile"},
+        "scope" : {"profile " + permissions},
         "access_type" : {"offline"},
         "include_granted_scopes" : {"true"},
         "prompt" : {"consent"},
