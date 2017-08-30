@@ -93,7 +93,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         "client_id" : {os.Getenv("CLIENT_ID")},
     }
 
-    queryString := bytes.NewBufferString(bodyVals.Encode())
+    queryString := bytes.NewBufferString(queryVals.Encode())
 
     redirectString := "https://accounts.google.com/o/oauth2/v2/auth?" + queryString
 
