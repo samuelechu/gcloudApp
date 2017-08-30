@@ -26,4 +26,4 @@ log.Print(body):
 client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com&client_secret=0NjL7OoLyGYiZkTUKjzifqjd&grant_type=refresh_token&refresh_token=1%2F08fGrbeZdKkEJmoNHhKqWxZuVvNWjSc_JjN1aMExhaU
 
 
-https://accounts.google.com/o/oauth2/v2/auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FgetToken&response_type=code&client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com
+https://accounts.google.com/o/oauth2/v2/auth?scope=https%3a%2f%2fwww.googleapis.com/auth/gmail.insert&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FgetToken&response_type=code&client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com
