@@ -100,7 +100,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         "scope" : {"profile " + permissions},
         "access_type" : {"offline"},
         "include_granted_scopes" : {"true"},
-        "prompt" : {"consent"},
+        //"prompt" : {"consent"},
         "state" : {"state_parameter_passthrough_value"},
         "redirect_uri" : {redirectUri},
         "response_type" : {"code"},
@@ -111,9 +111,9 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 
     redirectString := "https://accounts.google.com/o/oauth2/v2/auth?" + queryString
 
-    fmt.Fprint(w, redirectString)
+    //fmt.Fprint(w, redirectString)
 
-    //http.Redirect(w, r, redirectString, 301)
+    http.Redirect(w, r, redirectString, 301)
 }
 
 func getToken(w http.ResponseWriter, r *http.Request) {
