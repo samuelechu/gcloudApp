@@ -17,6 +17,47 @@ func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/getToken", getToken)
      http.HandleFunc("/testrefToken", getAccessToken)
+     http.HandleFunc("/testidToken", verifyIDToken)
+}
+
+type IDTokenRespBody struct{
+    Aud     string
+    Sub     string
+}
+
+func verifyIDToken(w http.ResponseWriter, r *http.Request){
+    
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
+    
+    token := r.URL.Query().Get("id_token")
+    urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + token
+
+    req, _ := http.NewRequest("GET", urlStr, nil)
+
+
+    resp, err := client.Get(urlStr)
+    if err != nil {
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+            return
+    }
+
+    defer resp.Body.Close()
+    respBody, _ := ioutil.ReadAll(resp.Body)
+    log.Printf("HTTP Post returned %v", string(respBody))
+    // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
+
+    var rb IDTokenRespBody
+    if resp.Body == nil {
+        http.Error(w, "Error: No response body", 400)
+        return
+    }
+    err = json.Unmarshal(respBody, &rb)
+    if err != nil {
+        http.Error(w, err.Error(), 400)
+        return
+    }
+    fmt.Fprintf(w, "HTTP Get returned %v %v", rb.Aud, rb.Sub)
 }
 
 type RespBody struct{
