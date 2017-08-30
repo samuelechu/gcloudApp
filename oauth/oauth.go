@@ -13,11 +13,16 @@ import (
 	"net/url"
 )
 
+var client *http.Client
+
 func init() {
-     http.HandleFunc("/askPermissions", askPermissions)
-     http.HandleFunc("/getToken", getToken)
-     http.HandleFunc("/testrefToken", getAccessToken)
-     http.HandleFunc("/testidToken", verifyIDToken)
+    ctx := appengine.NewContext(r)
+    client = urlfetch.Client(ctx)
+
+    http.HandleFunc("/askPermissions", askPermissions)
+    http.HandleFunc("/oauthCallback", oauthCallback)
+    http.HandleFunc("/testrefToken", getAccessToken)
+    http.HandleFunc("/testidToken", verifyIDToken)
 }
 
 type IDTokenRespBody struct{
@@ -25,10 +30,9 @@ type IDTokenRespBody struct{
     Sub     string
 }
 
+//verifies that the id_token that identifies user is genuine
 func verifyIDToken(w http.ResponseWriter, r *http.Request){
     
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
     
     token := r.URL.Query().Get("id_token")
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + token
@@ -90,8 +94,6 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
 
     log.Print("finished marshaling")
 
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
 
     resp, err := client.Do(req)
     if err != nil {
@@ -120,6 +122,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//askPermissions from user, response is auth code
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 	
     //request will be format :   /askPermissions?(source||destination)
@@ -136,9 +139,9 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
             return
     }
 
-    redirectUri := "https://gotesting-175718.appspot.com/getToken"
+    redirectUri := "https://gotesting-175718.appspot.com/oauthCallback"
 	if appengine.IsDevAppServer(){
-    	redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/getToken"
+    	redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/oauthCallback"
 	}
 
     queryVals := url.Values{
@@ -161,18 +164,18 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
     http.Redirect(w, r, redirectString, 301)
 }
 
-func getToken(w http.ResponseWriter, r *http.Request) {
+//exchange auth code for access token
+func oauthCallback(w http.ResponseWriter, r *http.Request) {
 	log.Print(r.URL.Query())
-    log.Print("heyo")
     log.Print(r.URL.Query().Get("code"))
 
     authCode := r.URL.Query().Get("code")
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
 
-    redirectUri := "https://gotesting-175718.appspot.com/getToken"
+    redirectUri := "https://gotesting-175718.appspot.com/oauthCallback"
     if appengine.IsDevAppServer(){
-        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/getToken"
+        redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/oauthCallback"
     }
 
     bodyVals := url.Values{
@@ -191,8 +194,6 @@ func getToken(w http.ResponseWriter, r *http.Request) {
 
     log.Print("finished marshaling")
 
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
 
     resp, err := client.Do(req)
     if err != nil {
