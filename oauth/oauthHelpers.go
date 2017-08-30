@@ -29,7 +29,7 @@ func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
     resp, err := client.Do(req)
     if err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
+            return nil
     }
     log.Print("am here")
     defer resp.Body.Close()
@@ -39,13 +39,13 @@ func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
 
     if resp.Body == nil {
         http.Error(w, "Response body not found", 400)
-        return
+        return nil
     }
 
     err = json.Unmarshal(respBody, &rb)
     if err != nil {
         http.Error(w, err.Error(), 400)
-        return
+        return nil
     }
 
     return rb
