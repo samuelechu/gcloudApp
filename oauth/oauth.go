@@ -58,6 +58,10 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
         return
     }
     fmt.Fprintf(w, "HTTP Get returned %v %v", rb.Aud, rb.Sub)
+
+    if rb.Aud == os.Getenv("CLIENT_ID") {
+        fmt.Fprint(w, "aud was equal to client id!")
+    }
 }
 
 type RespBody struct{
