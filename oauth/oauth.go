@@ -28,8 +28,8 @@ type IDTokenRespBody struct{
 //verifies that the id_token that identifies user is genuine
 func verifyIDToken(w http.ResponseWriter, r *http.Request){
     
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
+    // ctx := appengine.NewContext(r)
+    // client := urlfetch.Client(ctx)
     
     token := r.URL.Query().Get("id_token")
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo"
@@ -41,7 +41,6 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
 
 
     var respBody IDTokenRespBody
-    var rb IDTokenRespBody
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(IDTokenRespBody); ok {
         fmt.Fprintf(w, "HTTP Get returned %v %v", rb.Aud, rb.Sub)
 
