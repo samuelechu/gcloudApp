@@ -13,7 +13,12 @@ import (
 )
 
 
-func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data url.Values, rb interface{}) interface{} {
+func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data url.Values, rbType interface{}) interface{} {
+
+	// switch type := rbType.(type) {
+	// 	case IDTokenRespBody:
+	// }
+	rb := rbType.(IDTokenRespBody)
 
 	body := bytes.NewBufferString(data.Encode())
 
