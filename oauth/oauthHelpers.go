@@ -18,7 +18,7 @@ func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
 	// switch type := rbType.(type) {
 	// 	case IDTokenRespBody:
 	// }
-	rb := rbType.(IDTokenRespBody)
+	rb := rbType.(type)
 
 	body := bytes.NewBufferString(data.Encode())
 
