@@ -77,22 +77,26 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
 }
 
 func askPermissions(w http.ResponseWriter, r *http.Request) {
-	redirectUri := "https%3a%2f%2fgotesting-175718.appspot.com%2FgetToken"
+	redirectUri := "https://gotesting-175718.appspot.com/getToken"
 	if appengine.IsDevAppServer(){
-    	redirectUri = "https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FgetToken"
+    	redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/getToken"
 	}
 
-    redirectString := `https://accounts.google.com/o/oauth2/v2/
-		auth?scope=https%3a%2f%2fwww.googleapis.com%2fauth%2fgmail.readonly
-		&access_type=offline
-		&include_granted_scopes=true
-		&prompt=consent
-		&state=state_parameter_passthrough_value
-		&redirect_uri=` + redirectUri + 
-		`&response_type=code
-		&client_id=` + os.Getenv("CLIENT_ID")
+    queryVals := url.Values{
+        "scope" : {"https://www.googleapis.com/auth/gmail.readonly"},
+        "access_type" : {"offline"},
+        "include_granted_scopes" : {"true"},
+        "prompt" : {"consent"},
+        "state" : {"state_parameter_passthrough_value"},
+        "redirect_uri" : {redirectUri},
+        "response_type" : {"code"},
+        "client_id" : {os.Getenv("CLIENT_ID")},
+    }
 
-    redirectString = rstring.RemoveWhitespace(redirectString)
+    queryString := bytes.NewBufferString(bodyVals.Encode())
+
+    redirectString := "https://accounts.google.com/o/oauth2/v2/auth?" + queryString
+
     //fmt.Fprint(w, redirectString)
 
     http.Redirect(w, r, redirectString, 301)

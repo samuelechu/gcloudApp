@@ -1,0 +1,11 @@
+https://8080-dot-2979131-dot-devshell.appspot.com/getToken
+
+?state=state_parameter_passthrough_value
+&code=4/Mjk9qRdZ9zo0V1WjhIYaRzlhhV1P0s3aUIrhYJrIL_A
+&scope=https://www.googleapis.com/auth/gmail.readonly+https://www.googleapis.com/auth/plus.me+https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile#
+
+r.URL.Query():
+map[
+scope:[https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile] 
+state:[state_parameter_passthrough_value] 
+code:[4/Mjk9qRdZ9zo0V1WjhIYaRzlhhV1P0s3aUIrhYJrIL_A]]
