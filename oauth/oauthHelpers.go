@@ -3,10 +3,9 @@ package oauth
 import (
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/urlfetch"
-	"fmt"
+
 	"log"
 	"bytes"
-	"os"
 	"io/ioutil"
     "encoding/json"
 	"net/http"
@@ -14,7 +13,7 @@ import (
 )
 
 
-func getJSONRespBody(r *http.Request, url string, data url.Values, rb interface{}) interface{} {
+func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data url.Values, rb interface{}) interface{} {
 
 	body := bytes.NewBufferString(data.Encode())
 
