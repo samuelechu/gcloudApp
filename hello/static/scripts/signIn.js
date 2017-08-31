@@ -33,6 +33,7 @@ function sendTokentoDB(id_token){
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
     setElements(true);
+    $('gSignInButton').prop('disabled', false);
   };
 
   var data = {
@@ -48,6 +49,7 @@ function sendTokentoDB(id_token){
 
 //after sign in, verify token
 function onSignIn(googleUser) {
+  $('gSignInButton').prop('disabled', true);
   var id_token = googleUser.getAuthResponse().id_token;
 
   var xhr = new XMLHttpRequest();
