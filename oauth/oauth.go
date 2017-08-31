@@ -127,7 +127,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     if uid != "" {
-        fmt.Fprintf(w, "\n Token verified! UserId: %v, Refresh_token: %v", uid, )
+        fmt.Fprintf(w, "\n Token verified! UserId: %v, Refresh_token: %v", uid, refreshToken)
     } else {
         fmt.Fprint(w, "\n Token verification failed!")
     }
