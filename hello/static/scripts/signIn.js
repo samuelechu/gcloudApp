@@ -5,6 +5,7 @@ function setElements(isLoggedIn){
   if(isLoggedIn){
       document.getElementById('gSignInButton').style.display = 'none';
       document.getElementById('logout').style.display = 'block';
+      $("#selectSection").collapse('show');
 
   } else {
       $("#selectSection").collapse('hide');
@@ -16,9 +17,10 @@ function setElements(isLoggedIn){
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
+    setElements(false);
     console.log('User signed out.');
   });
-  setElements(false);
+  
 }
 
 function sendTokentoDB(id_token){
@@ -30,7 +32,7 @@ function sendTokentoDB(id_token){
   xhr.open('POST', 'signIn');
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onload = function() {
-    $("#selectSection").collapse('show');
+    setElements(true);
   };
 
   var data = {
@@ -44,6 +46,7 @@ function sendTokentoDB(id_token){
 
 }
 
+//after sign in, verify token
 function onSignIn(googleUser) {
   var id_token = googleUser.getAuthResponse().id_token;
 
@@ -57,6 +60,8 @@ function onSignIn(googleUser) {
     //token is valid, send to back end
     if (resp.aud === "65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com") {
       sendTokentoDB(resp.sub);
+    } else {
+      signOut();
     }
   };
   xhr.send();
@@ -68,5 +73,5 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   console.log('id_token: ' + id_token);
-  setElements(true);
+  
 }
