@@ -29,6 +29,10 @@ func init() {
 //     return db
 // }
 
+func InsertUser(user_id string, name string, refresh_token string) {
+    
+}
+
 func initDB(){
     var err error
 

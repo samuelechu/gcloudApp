@@ -1,0 +1,1 @@
+insert into users (uid, Name, refreshToken) values("0", "testUser", "333ff") on duplicate key update  Name = "ffd", refreshToken = "Woww Ia m refresh";

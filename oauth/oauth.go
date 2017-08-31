@@ -7,6 +7,8 @@ import (
 	"os"
 	"net/http"
 	"net/url"
+    "github.com/samuelechu/cloudSQL"
+    "github.com/samuelechu/jsonHelper"
 )
 
 func init() {
@@ -29,7 +31,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     }
 
     var respBody accessTokenRespBody 
-    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(accessTokenRespBody); ok {
+    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(accessTokenRespBody); ok {
         fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
 
     }
@@ -99,17 +101,19 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     var respBody oauthRespBody
-    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(oauthRespBody); ok {
+    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(oauthRespBody); ok {
         respBody = rb
         //fmt.Fprintf(w, "HTTP Post returned %+v", rb)
     }
 
     uid, name := verifyIDToken(w, r, respBody.Id_token)
     if uid != "" {
-        fmt.Fprintf(w, "\n Token verified! Name %v UserId: %v, Refresh_token: %v, Access_token: %v",
+        fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
                         name, uid, respBody.Refresh_token, respBody.Access_token)
     } else {
         fmt.Fprint(w, "\n Token verification failed!")
     }
+
+    cloudSql.InsertUser(uid, Name, respBody.Refresh_token)
 
 }
