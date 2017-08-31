@@ -101,10 +101,10 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     var respBody oauthRespBody
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(oauthRespBody); ok {
         respBody = rb
-        fmt.Fprintf(w, "HTTP Post returned %v", string(rb))
+        fmt.Fprintf(w, "HTTP Post returned %+v", rb)
     }
 
-    uid := verifyIDToken(w, r, rb.Id_token)
+    uid := verifyIDToken(w, r, respBody.Id_token)
     if uid != "" {
         fmt.Fprintf(w, "\n Token verified! UserId: %v, Refresh_token: %v, Access_token: %v", uid, respBody.Refresh_token, respBody.Access_token)
     } else {
