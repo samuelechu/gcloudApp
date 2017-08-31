@@ -43,53 +43,21 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
-
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
  
     bodyVals := url.Values{
         "client_id": {os.Getenv("CLIENT_ID")},
         "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "refresh_token":{"1/08fGrbeZdKkEJmoNHhKqWxZuVvNWjSc_JjN1aMExhaU"},
+        "refresh_token":{"1/pI4NYPkOnY_73TvjIPvZZ8jy9x7sqgmltw43cQDc-4g"},
         "grant_type": {"refresh_token"},
     }
 
-    body := bytes.NewBufferString(bodyVals.Encode())
-
-    log.Print(body)
-    req, _ := http.NewRequest("POST", urlStr, body)
-    req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-
-    log.Print("finished marshaling")
-
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
-
-    resp, err := client.Do(req)
-    if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
-    }
-    log.Print("am here")
-    defer resp.Body.Close()
-    respBody, _ := ioutil.ReadAll(resp.Body)
-    log.Printf("HTTP Post returned %v", string(respBody))
-    // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
-
     var rb accessTokenRespBody 
-    if resp.Body == nil {
-        http.Error(w, "Please send a request body", 400)
-        return
-    }
-    err = json.Unmarshal(respBody, &rb)
-    if err != nil {
-        http.Error(w, err.Error(), 400)
-        return
-    }
-    fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
-    
-    
+    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(accessTokenRespBody); ok {
+        fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
 
+    }
 }
 
 //askPermissions from user, response is auth code
@@ -129,8 +97,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 
     redirectString := "https://accounts.google.com/o/oauth2/v2/auth?" + queryString
 
-    //fmt.Fprint(w, redirectString)
-
+    //exchange auth code for access/refresh token in oauthCallback 
     http.Redirect(w, r, redirectString, 301)
 }
 
