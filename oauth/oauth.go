@@ -20,25 +20,15 @@ func init() {
      http.HandleFunc("/testidToken", verifyIDToken)
 }
 
-type idTokenRespBody struct{
-    Aud     string
-    Sub     string
-}
-
 //verifies that the id_token that identifies user is genuine
 func verifyIDToken(w http.ResponseWriter, r *http.Request){
-    
-    // ctx := appengine.NewContext(r)
-    // client := urlfetch.Client(ctx)
-    
+
     token := r.URL.Query().Get("id_token")
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo"
 
     bodyVals := url.Values{
         "id_token": {token},
     }
-    //req, _ := http.NewRequest("GET", urlStr, nil)
-
 
     var respBody idTokenRespBody
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(idTokenRespBody); ok {
@@ -50,35 +40,6 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
     } else {
         http.Error(w, "Error: incorrect responsebody", 400)
     }
-
-    // resp, err := client.Get(urlStr)
-    // if err != nil {
-    //         http.Error(w, err.Error(), http.StatusInternalServerError)
-    //         return
-    // }
-
-    // defer resp.Body.Close()
-    // respBody, _ := ioutil.ReadAll(resp.Body)
-    // log.Printf("HTTP Post returned %v", string(respBody))
-    // // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
-
-    // var rb IDTokenRespBody
-    // if resp.Body == nil {
-    //     http.Error(w, "Error: No response body", 400)
-    //     return
-    // }
-    // err = json.Unmarshal(respBody, &rb)
-    // if err != nil {
-    //     http.Error(w, err.Error(), 400)
-    //     return
-    // }
-
-}
-
-type accessTokenRespBody struct{
-    Access_token    string
-    Expires_in      float64
-    Token_type      string
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
@@ -195,24 +156,30 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         "grant_type": {"authorization_code"},
     }
 
-    body := bytes.NewBufferString(bodyVals.Encode())
+    var respBody oauthRespBody
+    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(oauthRespBody); ok {
+        fmt.Fprintf(w, "HTTP Post returned %v", rb)
 
-    log.Print(body)
-    req, _ := http.NewRequest("POST", urlStr, body)
-    req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-
-    log.Print("finished marshaling")
-
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
-
-    resp, err := client.Do(req)
-    if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
     }
-    log.Print("am here")
-    defer resp.Body.Close()
-    respBody, _ := ioutil.ReadAll(resp.Body)
-    fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
+
+    // body := bytes.NewBufferString(bodyVals.Encode())
+
+    // log.Print(body)
+    // req, _ := http.NewRequest("POST", urlStr, body)
+    // req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+    // log.Print("finished marshaling")
+
+    // ctx := appengine.NewContext(r)
+    // client := urlfetch.Client(ctx)
+
+    // resp, err := client.Do(req)
+    // if err != nil {
+    //         http.Error(w, err.Error(), http.StatusInternalServerError)
+    //         return
+    // }
+    // log.Print("am here")
+    // defer resp.Body.Close()
+    // respBody, _ := ioutil.ReadAll(resp.Body)
+    // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 }
