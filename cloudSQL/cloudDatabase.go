@@ -10,11 +10,11 @@ import (
         "google.golang.org/appengine"
         "bytes"
         "database/sql"
-        "encoding/json"
         "fmt"
         "log"
         "net/http"
         _ "github.com/go-sql-driver/mysql"
+        "github.com/samuelechu/jsonHelper"
 )
 
 var db *sql.DB
@@ -99,8 +99,8 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     var u jsonHelper.User
-    if u, ok := jsonHelper.UnmarshalJSON(w, r, r.Body, user_struct).(jsonHelper.User); ok {
-        log.Printf(w, "UnmarshalJSON returned %v %v", u.Uid, u.Name)
+    if u, ok := jsonHelper.UnmarshalJSON(w, r, r.Body, u).(jsonHelper.User); ok {
+        log.Printf("UnmarshalJSON returned %v %v", u.Uid, u.Name)
 
     }
 
