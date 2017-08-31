@@ -119,14 +119,15 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     var respBody oauthRespBody
-    uid := ""
+    var uid, refreshToken string 
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(oauthRespBody); ok {
         fmt.Fprintf(w, "HTTP Post returned %v", rb.Id_token)
         uid = verifyIDToken(w, r, rb.Id_token)
+        refreshToken = rb.Refresh_token
     }
 
     if uid != "" {
-        fmt.Fprintf(w, "\n Token verified! UserId: %v", uid)
+        fmt.Fprintf(w, "\n Token verified! UserId: %v, Refresh_token: %v", uid, )
     } else {
         fmt.Fprint(w, "\n Token verification failed!")
     }
