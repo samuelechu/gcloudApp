@@ -79,7 +79,7 @@ func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
 }
 
 //verifies that the id_token that identifies user is genuine
-func verifyIDToken(w http.ResponseWriter, r *http.Request, token string) string {
+func verifyIDToken(w http.ResponseWriter, r *http.Request, token string) string, string {
 
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo"
 
@@ -91,11 +91,11 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request, token string) string 
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(idTokenRespBody); ok {
 
         if rb.Aud == os.Getenv("CLIENT_ID") {
-            return rb.Sub
+            return rb.Sub, rb.Name
         }
     } else {
         http.Error(w, "Error: incorrect responsebody", 400)
     }
 
-    return ""
+    return "",""
 }
