@@ -14,6 +14,7 @@ import (
 type idTokenRespBody struct{
     Aud     string
     Sub     string
+    Name	string
 }
 
 type accessTokenRespBody struct{
