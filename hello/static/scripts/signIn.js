@@ -7,13 +7,13 @@ function setElements(isLoggedIn){
       document.getElementById('logout').style.display = 'block';
 
   } else {
+      $("#selectSection").collapse('hide');
       document.getElementById('logout').style.display = 'none';
       document.getElementById('gSignInButton').style.display = 'block';
   }
 }
 
 function signOut() {
-  $("#selectSection").collapse('hide');
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('User signed out.');
