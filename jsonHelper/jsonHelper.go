@@ -58,7 +58,7 @@ func GetJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
 	// } 
 }
 
-func UnmarshalJSON(w http.ResponseWriter, r *http.Request, body *(http.Response).Body, struct_type interface{}) interface{} {
+func UnmarshalJSON(w http.ResponseWriter, r *http.Request, body io.ReadCloser, struct_type interface{}) interface{} {
 
 	defer body.Close()
 
