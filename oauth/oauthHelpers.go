@@ -15,11 +15,6 @@ import (
 
 func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data url.Values, rbType interface{}) interface{} {
 
-	// switch type := rbType.(type) {
-	// 	case IDTokenRespBody:
-	// }
-	rb := rbType.(type)
-
 	body := bytes.NewBufferString(data.Encode())
 
     log.Print(body)
@@ -47,13 +42,24 @@ func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
         return nil
     }
 
-    err = json.Unmarshal(respBody, &rb)
-    if err != nil {
-        http.Error(w, err.Error(), 400)
-        return nil
-    }
+    switch type := rbType.(type) {
+		case IDTokenRespBody:
+			rb := rbType.(idTokenRespBody)
+			json.Unmarshal(respBody, &rb)
+			return rb
 
-    return rb
+		case RespBody:
+			rb := rbType.(accessTokenRespBody)
+			json.Unmarshal(respBody, &rb)
+			return rb
+		
+		default :
+			return rbType
+
+
+	}
+	
+ 
     
     
 }

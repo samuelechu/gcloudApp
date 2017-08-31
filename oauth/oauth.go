@@ -20,7 +20,7 @@ func init() {
      http.HandleFunc("/testidToken", verifyIDToken)
 }
 
-type IDTokenRespBody struct{
+type idTokenRespBody struct{
     Aud     string
     Sub     string
 }
@@ -40,8 +40,8 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
     //req, _ := http.NewRequest("GET", urlStr, nil)
 
 
-    var respBody IDTokenRespBody
-    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(IDTokenRespBody); ok {
+    var respBody idTokenRespBody
+    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(idTokenRespBody); ok {
         fmt.Fprintf(w, "HTTP Get returned %v %v", rb.Aud, rb.Sub)
 
         if rb.Aud == os.Getenv("CLIENT_ID") {
@@ -75,7 +75,7 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
 
 }
 
-type RespBody struct{
+type accessTokenRespBody struct{
     Access_token    string
     Expires_in      float64
     Token_type      string
@@ -115,7 +115,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     log.Printf("HTTP Post returned %v", string(respBody))
     // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
-    var rb RespBody 
+    var rb accessTokenRespBody 
     if resp.Body == nil {
         http.Error(w, "Please send a request body", 400)
         return
