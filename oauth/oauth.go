@@ -15,27 +15,7 @@ func init() {
      http.HandleFunc("/testrefToken", getAccessToken)
 }
 
-//verifies that the id_token that identifies user is genuine
-func verifyIDToken(w http.ResponseWriter, r *http.Request, token string) string {
 
-    urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo"
-
-    bodyVals := url.Values{
-        "id_token": {token},
-    }
-
-    var respBody idTokenRespBody
-    if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(idTokenRespBody); ok {
-
-        if rb.Aud == os.Getenv("CLIENT_ID") {
-            return rb.Sub
-        }
-    } else {
-        http.Error(w, "Error: incorrect responsebody", 400)
-    }
-
-    return ""
-}
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
     
@@ -119,15 +99,14 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     var respBody oauthRespBody
-    var uid, refreshToken string 
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(oauthRespBody); ok {
-        fmt.Fprintf(w, "HTTP Post returned %v", rb.Id_token)
-        uid = verifyIDToken(w, r, rb.Id_token)
-        refreshToken = rb.Refresh_token
+        respBody = rb
+        fmt.Fprintf(w, "HTTP Post returned %v", string(rb))
     }
 
+    uid := verifyIDToken(w, r, rb.Id_token)
     if uid != "" {
-        fmt.Fprintf(w, "\n Token verified! UserId: %v, Refresh_token: %v", uid, refreshToken)
+        fmt.Fprintf(w, "\n Token verified! UserId: %v, Refresh_token: %v, Access_token: %v", uid, respBody.Refresh_token, respBody.Access_token)
     } else {
         fmt.Fprint(w, "\n Token verification failed!")
     }
