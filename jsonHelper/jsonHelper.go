@@ -58,37 +58,38 @@ func GetJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
 	// } 
 }
 
-func UnmarshalJSON(w http.ResponseWriter, r *http.Request, body Body, struct_type interface{}) interface{} {
+func UnmarshalJSON(w http.ResponseWriter, r *http.Request, body http.Response.Body, struct_type interface{}) interface{} {
 
 	defer body.Close()
-    respBody, _ := ioutil.ReadAll(body)
-    log.Printf("HTTP PostForm returned %v", string(respBody))
-    // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
-    if resp.Body == nil {
+	if body == nil {
         http.Error(w, "Response body not found", 400)
         return nil
     }
 
+    respBody, _ := ioutil.ReadAll(body)
+    log.Printf("HTTP PostForm returned %v", string(respBody))
+    // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
+
     switch values := struct_type.(type) {
 		case IdTokenRespBody:
-			values = rbType.(IdTokenRespBody)
-			json.Unmarshal(respBody, &rb)
+			values = struct_type.(IdTokenRespBody)
+			json.Unmarshal(respBody, &values)
 			return values
 
 		case AccessTokenRespBody:
 			values = struct_type.(AccessTokenRespBody)
-			json.Unmarshal(respBody, &rb)
+			json.Unmarshal(respBody, &values)
 			return values
 
 		case OauthRespBody:
 			values = struct_type.(OauthRespBody)
-			json.Unmarshal(respBody, &rb)
+			json.Unmarshal(respBody, &values)
 			return values
 
 		case User:
 			values = struct_type.(User)
-			json.Unmarshal(respBody, &rb)
+			json.Unmarshal(respBody, &values)
 			return values
 		
 		default:
