@@ -3,9 +3,7 @@ package oauth
 import (
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/urlfetch"
-
 	"log"
-	"bytes"
 	"io/ioutil"
     "encoding/json"
 	"net/http"
