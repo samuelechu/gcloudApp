@@ -2,13 +2,9 @@ package oauth
 
 import (
 	"google.golang.org/appengine"
-	"google.golang.org/appengine/urlfetch"
 	"fmt"
 	"log"
-	"bytes"
 	"os"
-	"io/ioutil"
-    "encoding/json"
 	"net/http"
 	"net/url"
 )
@@ -53,7 +49,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
         "grant_type": {"refresh_token"},
     }
 
-    var rb accessTokenRespBody 
+    var respBody accessTokenRespBody 
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(accessTokenRespBody); ok {
         fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
 
