@@ -158,28 +158,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     var respBody oauthRespBody
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(oauthRespBody); ok {
-        fmt.Fprintf(w, "HTTP Post returned %v", rb)
+        fmt.Fprintf(w, "HTTP Post returned %v", rb.Refresh_token)
 
     }
-
-    // body := bytes.NewBufferString(bodyVals.Encode())
-
-    // log.Print(body)
-    // req, _ := http.NewRequest("POST", urlStr, body)
-    // req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-
-    // log.Print("finished marshaling")
-
-    // ctx := appengine.NewContext(r)
-    // client := urlfetch.Client(ctx)
-
-    // resp, err := client.Do(req)
-    // if err != nil {
-    //         http.Error(w, err.Error(), http.StatusInternalServerError)
-    //         return
-    // }
-    // log.Print("am here")
-    // defer resp.Body.Close()
-    // respBody, _ := ioutil.ReadAll(resp.Body)
-    // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 }
