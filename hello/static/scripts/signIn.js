@@ -13,9 +13,9 @@ function setElements(isLoggedIn){
 }
 
 function signOut() {
+  $("#selectSection").collapse('hide');
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    $("#selectSection").collapse('hide');
     console.log('User signed out.');
   });
   setElements(false);
