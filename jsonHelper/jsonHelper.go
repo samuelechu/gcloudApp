@@ -34,18 +34,18 @@ func GetJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
     }
 
     switch rb := rbType.(type) {
-		case idTokenRespBody:
-			rb = rbType.(idTokenRespBody)
+		case IdTokenRespBody:
+			rb = rbType.(IdTokenRespBody)
 			json.Unmarshal(respBody, &rb)
 			return rb
 
-		case accessTokenRespBody:
-			rb = rbType.(accessTokenRespBody)
+		case AccessTokenRespBody:
+			rb = rbType.(AccessTokenRespBody)
 			json.Unmarshal(respBody, &rb)
 			return rb
 
-		case oauthRespBody:
-			rb = rbType.(oauthRespBody)
+		case OauthRespBody:
+			rb = rbType.(OauthRespBody)
 			json.Unmarshal(respBody, &rb)
 			return rb
 		
