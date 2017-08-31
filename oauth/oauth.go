@@ -29,7 +29,7 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request) string {
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(idTokenRespBody); ok {
 
         if rb.Aud == os.Getenv("CLIENT_ID") {
-            return rb.sub
+            return rb.Sub
         }
     } else {
         http.Error(w, "Error: incorrect responsebody", 400)
