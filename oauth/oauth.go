@@ -124,7 +124,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "HTTP Post returned %v", rb.Id_token)
     }
 
-    uid := verifyIDToken(w http.ResponseWriter, r *http.Request) string
+    uid := verifyIDToken(w,r)
 
     if uid != "" {
         fmt.Fprintf(w, "\n Token verified! UserId: %v", uid)
