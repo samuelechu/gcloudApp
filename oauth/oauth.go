@@ -16,9 +16,8 @@ func init() {
 }
 
 //verifies that the id_token that identifies user is genuine
-func verifyIDToken(w http.ResponseWriter, r *http.Request) string {
+func verifyIDToken(w http.ResponseWriter, r *http.Request, token string) string {
 
-    token := r.URL.Query().Get("id_token")
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo"
 
     bodyVals := url.Values{
@@ -124,7 +123,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "HTTP Post returned %v", rb.Id_token)
     }
 
-    uid := verifyIDToken(w,r)
+    uid := verifyIDToken(w, r, rb.Id_token)
 
     if uid != "" {
         fmt.Fprintf(w, "\n Token verified! UserId: %v", uid)
