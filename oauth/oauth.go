@@ -13,11 +13,10 @@ func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/oauthCallback", oauthCallback)
      http.HandleFunc("/testrefToken", getAccessToken)
-     http.HandleFunc("/testidToken", verifyIDToken)
 }
 
 //verifies that the id_token that identifies user is genuine
-func verifyIDToken(w http.ResponseWriter, r *http.Request){
+func verifyIDToken(w http.ResponseWriter, r *http.Request) string {
 
     token := r.URL.Query().Get("id_token")
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo"
@@ -28,14 +27,15 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request){
 
     var respBody idTokenRespBody
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(idTokenRespBody); ok {
-        fmt.Fprintf(w, "HTTP Get returned %v %v", rb.Aud, rb.Sub)
 
         if rb.Aud == os.Getenv("CLIENT_ID") {
-            fmt.Fprint(w, "aud was equal to client id!")
+            return rb.sub
         }
     } else {
         http.Error(w, "Error: incorrect responsebody", 400)
     }
+
+    return nil
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
@@ -82,7 +82,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         "scope" : {"profile " + permissions},
         "access_type" : {"offline"},
         "include_granted_scopes" : {"true"},
-        "prompt" : {"consent"},
+        //"prompt" : {"consent"},
         "state" : {"state_parameter_passthrough_value"},
         "redirect_uri" : {redirectUri},
         "response_type" : {"code"},
@@ -121,7 +121,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     var respBody oauthRespBody
     if rb, ok := getJSONRespBody(w, r, urlStr, bodyVals, respBody).(oauthRespBody); ok {
-        fmt.Fprintf(w, "HTTP Post returned %v", rb.Refresh_token)
+        fmt.Fprintf(w, "HTTP Post returned %v", rb.Id_token)
 
     }
 }
