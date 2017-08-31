@@ -42,7 +42,7 @@ func getJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
         return nil
     }
 
-    switch varType := rbType.(type) {
+    switch _ := rbType.(type) {
 		case idTokenRespBody:
 			rb := rbType.(idTokenRespBody)
 			json.Unmarshal(respBody, &rb)
