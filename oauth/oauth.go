@@ -30,8 +30,8 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
         "grant_type": {"refresh_token"},
     }
 
-    var respBody AccessTokenRespBody 
-    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(AccessTokenRespBody); ok {
+    var respBody jsonHelper.AccessTokenRespBody 
+    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.AccessTokenRespBody); ok {
         fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
 
     }
@@ -100,8 +100,8 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         "grant_type": {"authorization_code"},
     }
 
-    var respBody OauthRespBody
-    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(OauthRespBody); ok {
+    var respBody jsonHelper.OauthRespBody
+    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.OauthRespBody); ok {
         respBody = rb
         //fmt.Fprintf(w, "HTTP Post returned %+v", rb)
     }
@@ -114,6 +114,6 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         fmt.Fprint(w, "\n Token verification failed!")
     }
 
-    cloudSql.InsertUser(uid, name, respBody.Refresh_token)
+    cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
 
 }
