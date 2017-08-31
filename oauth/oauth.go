@@ -35,7 +35,7 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request) string {
         http.Error(w, "Error: incorrect responsebody", 400)
     }
 
-    return nil
+    return ""
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
