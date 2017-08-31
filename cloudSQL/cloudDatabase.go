@@ -30,7 +30,7 @@ func init() {
 // }
 
 func InsertUser(user_id string, name string, refresh_token string) {
-    
+    log.Print("In InsertUser!")
 }
 
 func initDB(){

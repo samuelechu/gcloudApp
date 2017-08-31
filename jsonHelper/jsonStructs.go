@@ -1,20 +1,20 @@
 package jsonHelper
 
 //oauth
-type idTokenRespBody struct{
+type IdTokenRespBody struct{
     Aud     string
     Sub     string
     Name	string
 }
 
-type accessTokenRespBody struct{
+type AccessTokenRespBody struct{
     Access_token    string
     Expires_in      float64
     Token_type      string
 }
 
 //response after user grants permissions
-type oauthRespBody struct{
+type OauthRespBody struct{
 	Access_token    string
     Expires_in      float64
     Token_type      string
