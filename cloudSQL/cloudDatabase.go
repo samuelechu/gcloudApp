@@ -91,11 +91,6 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
     w.Write(buf.Bytes())
 }
 
-type User struct{
-    Uid     string
-    Name    string
-}
-
 func signInHandler(w http.ResponseWriter, r *http.Request) {
 
     if r.Method != "POST" {
@@ -103,15 +98,10 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
                 return
     }
 
-    var u User
-    if r.Body == nil {
-        http.Error(w, "Please send a request body", 400)
-        return
-    }
-    err := json.NewDecoder(r.Body).Decode(&u)
-    if err != nil {
-        http.Error(w, err.Error(), 400)
-        return
+    var u jsonHelper.User
+    if u, ok := jsonHelper.UnmarshalJSON(w, r, r.Body, user_struct).(jsonHelper.User); ok {
+        log.Printf(w, "UnmarshalJSON returned %v %v", u.Uid, u.Name)
+
     }
 
     stmt, err := db.Prepare("INSERT IGNORE INTO users SET uid=?, Name=?")
