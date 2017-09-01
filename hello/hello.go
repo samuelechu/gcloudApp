@@ -21,6 +21,8 @@ func main() {
      fs := http.FileServer(http.Dir("static"))
      http.Handle("/", fs)
 
+
+     http.HandleFunc("/testTemplate", handler)
      http.HandleFunc("/rstring", handle)
      http.HandleFunc("/_ah/health", healthCheckHandler)
      http.HandleFunc("/authSuccess", authSuccessful)
@@ -28,6 +30,13 @@ func main() {
      log.Print("Listening on port 8080")
      http.ListenAndServe(":8080", nil)
      appengine.Main()
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    t := template.New("test") // Create a template.
+    t, _ = t.ParseFiles("static/index.html")  // Parse template file.
+    //user := GetUser() // Get current user infomration.
+    t.Execute(w, nil)  // merge.
 }
 
 func authSuccessful(w http.ResponseWriter, r *http.Request){
