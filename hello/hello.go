@@ -10,6 +10,7 @@ import (
     "fmt"
 	"log"
 	"net/http"
+    "http/template"
 	"github.com/samuelechu/rstring"
 	_ "github.com/samuelechu/cloudSQL"
     _ "github.com/samuelechu/oauth"
