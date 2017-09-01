@@ -8,7 +8,6 @@ import (
         "log"
         "net/http"
         _ "github.com/go-sql-driver/mysql"
-        "github.com/samuelechu/jsonHelper"
 )
 
 var db *sql.DB

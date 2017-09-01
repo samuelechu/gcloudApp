@@ -1,10 +1,6 @@
 package cloudSQL
 
 import (
-        "google.golang.org/appengine"
-        "bytes"
-        "database/sql"
-        "fmt"
         "log"
         "net/http"
         _ "github.com/go-sql-driver/mysql"
