@@ -10,6 +10,7 @@ import (
     "fmt"
 	"log"
 	"net/http"
+    "os"
     "html/template"
 	"github.com/samuelechu/rstring"
 	_ "github.com/samuelechu/cloudSQL"
@@ -33,11 +34,22 @@ func main() {
      appengine.Main()
 }
 
+type Person struct {
+    UserName string
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
-    t := template.New("test") // Create a template.
+/*    t := template.New("test") // Create a template.
     t, _ = t.ParseFiles("static/index.html")  // Parse template file.
     //user := GetUser() // Get current user infomration.
-    t.Execute(w, nil)  // merge.
+    t.Execute(w, nil)  // merge.*/
+
+
+    t := template.New("fieldname example")
+    t, _ = t.Parse("hello {{.UserName}}!")
+    p := Person{UserName: "Astaxie"}
+    t.Execute(os.Stdout, p)
+
 }
 
 func authSuccessful(w http.ResponseWriter, r *http.Request){
