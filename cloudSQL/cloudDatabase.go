@@ -1,11 +1,5 @@
-// cloudsql.go - Creates Google Cloud SQL table
 package cloudSQL
 
-// Copyright 2016 Google Inc. All rights reserved.
-// Use of this source code is governed by the Apache 2.0
-// license that can be found in the LICENSE file.
-
-// Sample cloudsql demonstrates connection to a Cloud SQL instance from App Engine standard.
 import (
         "google.golang.org/appengine"
         "bytes"
@@ -54,17 +48,6 @@ func initDB(){
         log.Print("Could not open db: %v", err)
         return    
     }
-
-    _, err = db.Exec(
-                `CREATE TABLE IF NOT EXISTS users
-                (uid VARCHAR(64) UNIQUE,
-                firstname VARCHAR(64) NULL DEFAULT NULL,
-                PRIMARY KEY (uid))`)
-
-
-    if err != nil {
-        log.Printf("CREATE TABLE failed: %v", err)
-    }
 }
 
 func showDatabases(w http.ResponseWriter, r *http.Request) {
@@ -91,34 +74,4 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
     w.Write(buf.Bytes())
 }
 
-func signInHandler(w http.ResponseWriter, r *http.Request) {
 
-    if r.Method != "POST" {
-                http.NotFound(w, r)
-                return
-    }
-
-    var u, user jsonHelper.User
-    if u, ok := jsonHelper.UnmarshalJSON(w, r, r.Body, u).(jsonHelper.User); ok {
-        user = u
-        log.Printf("UnmarshalJSON returned %v %v", user.Uid, user.Name)
-
-    }
-
-    stmt, err := db.Prepare("INSERT IGNORE INTO users SET uid=?, Name=?")
-    checkErr(err)
-
-    res, err := stmt.Exec(user.Uid, user.Name)
-    checkErr(err)
-
-    id, err := res.RowsAffected()
-    // checkErr(err)
-
-    log.Println(id)
-}
-
-func checkErr(err error) {
-        if err != nil {
-            panic(err)
-        }
-}
