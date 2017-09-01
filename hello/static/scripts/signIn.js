@@ -85,9 +85,7 @@ function askPermissions(accountType) {
   xhr.onload = function() {
     console.log('Got ' + xhr.responseText + ' from server');
   };
-
-
-  xhr.send(JSON.stringify(data));
+  xhr.send();
 
   console.log("Sent: askPermissions?type=" + accountType + " to server");
 
