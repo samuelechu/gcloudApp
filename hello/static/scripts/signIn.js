@@ -76,3 +76,19 @@ function onSignIn(googleUser) {
   console.log('id_token: ' + id_token);
   
 }
+
+function askPermissions(accountType) {
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'askPermissions?type=' + accountType);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onload = function() {
+    console.log('Got ' + xhr.responseText + ' from server');
+  };
+
+
+  xhr.send(JSON.stringify(data));
+
+  console.log("Sent: askPermissions?type=" + accountType + " to server");
+
+}

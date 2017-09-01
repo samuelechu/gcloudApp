@@ -114,5 +114,13 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
     
+    jsonHelper.MarshalJSON(w, r, jsonHelper.User{Uid : uid, Name: name})
+    
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
+
+    http.Redirect(w, r, redirectString, 301)
 
 }
