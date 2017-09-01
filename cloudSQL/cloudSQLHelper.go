@@ -12,7 +12,7 @@ func InsertUser(user_id string, name string, refresh_token string) {
 								refreshToken = ?`)
 	checkErr(err)
 
-	_, err := stmt.Exec(user_id, name, refresh_token, refresh_token)
+	_, err = stmt.Exec(user_id, name, refresh_token, refresh_token)
     checkErr(err)
 
 
