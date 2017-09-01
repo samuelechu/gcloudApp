@@ -17,8 +17,6 @@ func init() {
      http.HandleFunc("/testrefToken", getAccessToken)
 }
 
-
-
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
@@ -115,5 +113,6 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
+    
 
 }

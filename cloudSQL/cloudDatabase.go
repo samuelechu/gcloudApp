@@ -18,14 +18,6 @@ func init() {
         http.HandleFunc("/showDatabases", showDatabases)
 }
 
-// func GetDB() *sql.DB {
-//     return db
-// }
-
-func InsertUser(user_id string, name string, refresh_token string) {
-    log.Print("In InsertUser!")
-}
-
 func initDB(){
     var err error
 
