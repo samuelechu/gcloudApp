@@ -10,12 +10,14 @@ func init() {
 }
 
 type Person struct {
-    Title string
+    UserName string
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-    t, _ := template.ParseFiles("header.html")
-    p := Person{Title: "Astaxie"}
+    t := template.New("fieldname example")
+    t, _ = t.Parse("hello {{.UserName}}!")
+    p := Person{UserName: "Astaxie"}
+
     t.Execute(w, p)
 
 }
