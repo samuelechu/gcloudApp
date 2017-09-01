@@ -14,7 +14,7 @@ type Person struct {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-    t := template.New("fieldname example")
+    t := template.New("header.html")
     t, _ = t.ParseFiles("header.html")
     p := Person{UserName: "Astaxie"}
 
