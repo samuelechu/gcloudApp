@@ -14,13 +14,12 @@ type Person struct {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-   	t := template.New("header.tmpl")
+   	t := template.New("index.html")
 
 
-    p := Person{UserName: "Astaxie"}
-   	t, _ = t.ParseFiles("../templateTest/header.tmpl")
+   	t, _ = t.ParseFiles("static/index.html")
  
-   	t.Execute(w, p)
+   	t.Execute(w, nil)
 
 }
 
