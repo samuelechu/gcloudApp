@@ -13,6 +13,7 @@ import (
 	"github.com/samuelechu/rstring"
 	_ "github.com/samuelechu/cloudSQL"
     _ "github.com/samuelechu/oauth"
+    _ "github.com/samuelechu/templateTest"
     _ "google.golang.org/api/gmail/v1"
 )
 

@@ -65,3 +65,15 @@ func UnmarshalJSON(w http.ResponseWriter, r *http.Request, body io.ReadCloser, s
 			return struct_type
 	} 
 }
+
+//writes a json object to the responseWriter
+func MarshalJSON(w http.ResponseWriter, r *http.Request, json_object interface{}){
+	data, err := json.Marshal(json_object)
+	
+	if err != nil {
+        http.Error(w, "Error marshaling json object", 500)
+        return
+    }
+	w.Write(data)
+
+}

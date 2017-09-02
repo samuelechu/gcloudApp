@@ -79,19 +79,12 @@ function onSignIn(googleUser) {
 
 function askPermissions(accountType) {
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'signIn');
-  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.open('GET', 'askPermissions?type=' + accountType);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.onload = function() {
-    setElements(true);
+    console.log('Got ' + xhr.responseText + ' from server');
   };
+  xhr.send();
 
-  var data = {
-      Uid : id_token
-    , Name : profile.getName()
-  }
-
-  xhr.send(JSON.stringify(data));
-
-  console.log("Sent: " + JSON.stringify(data) + " to database");
-  
+  console.log("Sent: askPermissions?type=" + accountType + " to server");
 }
