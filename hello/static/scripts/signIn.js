@@ -76,3 +76,22 @@ function onSignIn(googleUser) {
   console.log('id_token: ' + id_token);
   
 }
+
+function askPermissions(accountType) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'signIn');
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onload = function() {
+    setElements(true);
+  };
+
+  var data = {
+      Uid : id_token
+    , Name : profile.getName()
+  }
+
+  xhr.send(JSON.stringify(data));
+
+  console.log("Sent: " + JSON.stringify(data) + " to database");
+  
+}
