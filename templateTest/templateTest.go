@@ -15,7 +15,7 @@ type Person struct {
 
 func handler(w http.ResponseWriter, r *http.Request) {
     t := template.New("header.tmpl")
-    t, _ = t.Parse("header.tmpl")
+    t, _ = t.ParseFiles("header.tmpl")
     p := Person{UserName: "Astaxie"}
 
     t.Execute(w, p)
