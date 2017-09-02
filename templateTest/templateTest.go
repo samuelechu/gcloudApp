@@ -22,7 +22,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
  
 
 
-    template.Must(template.ParseFiles("header.tmpl")).Execute(w, p)
+    template.Must(template.ParseFiles("../templateTest/header.tmpl")).Execute(w, p)
 
 
 }
