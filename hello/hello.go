@@ -10,6 +10,7 @@ import (
     "fmt"
 	"log"
 	"net/http"
+    "html/template"
 	_ "github.com/samuelechu/cloudSQL"
     _ "github.com/samuelechu/oauth"
     _ "github.com/samuelechu/templateTest"
@@ -27,6 +28,10 @@ func main() {
      log.Print("Listening on port 8080")
      http.ListenAndServe(":8080", nil)
      appengine.Main()
+}
+
+type Person struct {
+    UserName string
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
