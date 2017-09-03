@@ -23,7 +23,7 @@ func main() {
      //fs := http.FileServer(http.Dir("static"))
      http.HandleFunc("/", index)
 
-     http.Handle("/scripts", http.FileServer(http.Dir("static/scripts")))
+     http.Handle("/scripts", http.FileServer(http.Dir("static")))
     // http.HandleFunc("/index.html", index)
 
      http.HandleFunc("/_ah/health", healthCheckHandler)
