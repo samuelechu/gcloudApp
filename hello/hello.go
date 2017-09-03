@@ -21,12 +21,13 @@ import (
 func main() {
 
      //fs := http.FileServer(http.Dir("static"))
-     http.HandleFunc("/", index)
+    http.HandleFunc("/", index)
 
-     http.Handle("/scripts", http.FileServer(http.Dir("static")))
+    http.Handle("/scripts/", http.FileServer(http.Dir("static")))
     // http.HandleFunc("/index.html", index)
 
-     http.HandleFunc("/_ah/health", healthCheckHandler)
+    http.HandleFunc("/_ah/health", healthCheckHandler)
+    
 
      log.Print("Listening on port 8080")
      http.ListenAndServe(":8080", nil)
