@@ -20,8 +20,10 @@ import (
 
 func main() {
 
-     //fs := http.FileServer(http.Dir("static"))
-     http.HandleFunc("/", index)
+     fs := http.FileServer(http.Dir("static"))
+     http.Handle("/", fs)
+
+     http.HandleFunc("/index.html", index)
 
      http.HandleFunc("/_ah/health", healthCheckHandler)
 
