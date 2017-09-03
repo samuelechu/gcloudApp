@@ -20,7 +20,7 @@ import (
 func main() {
 
      //fs := http.FileServer(http.Dir("static"))
-     http.Handle("/", handler)
+     http.Handle("/", index)
 
      http.HandleFunc("/_ah/health", healthCheckHandler)
 
@@ -29,7 +29,7 @@ func main() {
      appengine.Main()
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func index(w http.ResponseWriter, r *http.Request) {
     t := template.New("index.html")
 
 
