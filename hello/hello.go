@@ -14,6 +14,7 @@ import (
 	_ "github.com/samuelechu/cloudSQL"
     _ "github.com/samuelechu/oauth"
     _ "github.com/samuelechu/templateTest"
+    _ "github.com/samuelechu/cookieTest"
     _ "google.golang.org/api/gmail/v1"
 )
 
