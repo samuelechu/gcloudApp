@@ -13,13 +13,18 @@ func init() {
 func handleCookie(w http.ResponseWriter, r *http.Request) {
 
 	http.SetCookie(w, &http.Cookie{
-		Name: "my-cookie",
-		Value: map[string]string{
-			"source" : "id_token source",
-			"destination" : "id_token dest",
-		},
+		Name: "source",
+		Value: "id_token source",
 	})
 
-	cookie, err := r.Cookie("my-cookie")
-	fmt.Fprintf(w, "Cookie: %v, Err: %v", cookie, err)
+	http.SetCookie(w, &http.Cookie{
+		Name: "dest",
+		Value: "id_token dest",
+	})
+
+	cookie, err := r.Cookie("source")
+	cookie1, err1 := r.Cookie("dest")
+
+	fmt.Fprintf(w, "Source Cookie: %v, Err: %v\n", cookie, err)
+	fmt.Fprintf(w, "Dest Cookie: %v, Err: %v\n", cookie1, err1)
 }
