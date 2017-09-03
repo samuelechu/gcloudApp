@@ -10,7 +10,6 @@ import (
     "fmt"
 	"log"
 	"net/http"
-	"github.com/samuelechu/rstring"
 	_ "github.com/samuelechu/cloudSQL"
     _ "github.com/samuelechu/oauth"
     _ "github.com/samuelechu/templateTest"
@@ -20,30 +19,25 @@ import (
 
 func main() {
 
-     fs := http.FileServer(http.Dir("static"))
-     http.Handle("/", fs)
+     //fs := http.FileServer(http.Dir("static"))
+     http.Handle("/", handler)
 
-     http.HandleFunc("/rstring", handle)
      http.HandleFunc("/_ah/health", healthCheckHandler)
-     http.HandleFunc("/authSuccess", authSuccessful)
 
      log.Print("Listening on port 8080")
      http.ListenAndServe(":8080", nil)
      appengine.Main()
 }
 
-func authSuccessful(w http.ResponseWriter, r *http.Request){
-     fmt.Fprintf(w, "Hallo!")
-}
+func handler(w http.ResponseWriter, r *http.Request) {
+    t := template.New("index.html")
 
-func handle(w http.ResponseWriter, r *http.Request) {
 
-     if r.URL.Path != "/rstring" {
-                http.NotFound(w, r)
-                return
-     }
+    p := Person{UserName: "Sam"}
+    t, _ = t.ParseFiles("static/index.html")
+ 
+    t.Execute(w, p)
 
-	fmt.Fprint(w, rstring.Reverse("Hallos world!"))
 }
 
 func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
