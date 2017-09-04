@@ -131,5 +131,5 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         Value: respBody.Id_token,
     })
 
-    http.Redirect(w, r, redirectString, 301)
+    //http.Redirect(w, r, redirectString, 301)
 }
