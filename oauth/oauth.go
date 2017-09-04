@@ -130,10 +130,10 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     log.Printf("The type is %v", rOrig.URL.Query().Get("type"))
 
-    // http.SetCookie(wOrig, &http.Cookie{
-    //     Name: rOrig.URL.Query().Get("type"),
-    //     Value: respBody.Id_token,
-    // })
+    http.SetCookie(wOrig, &http.Cookie{
+        Name: rOrig.URL.Query().Get("type"),
+        Value: respBody.Id_token,
+    })
 
     //http.Redirect(wOrig, rOrig, redirectString, 301)
 }
