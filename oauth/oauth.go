@@ -36,14 +36,15 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     }
 }
 
+var accountType string
 //askPermissions from user, response is auth code
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 	
     //request will be format :   /askPermissions?(source||destination)
-    callType := r.URL.Query().Get("type")
+    accountType = r.URL.Query().Get("type")
     permissions := ""
 
-    switch callType {
+    switch accountType {
         case "source":
             permissions = "https://www.googleapis.com/auth/gmail.readonly"
         case "destination":
@@ -124,9 +125,9 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     log.Printf("The type is %v", r.URL.Query().Get("type"))
-    
+
     http.SetCookie(w, &http.Cookie{
-        Name: r.URL.Query().Get("type"),
+        Name: accountType,
         Value: respBody.Id_token,
     })
 
