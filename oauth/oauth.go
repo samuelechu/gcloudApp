@@ -42,7 +42,7 @@ var rOrig *http.Request
 //askPermissions from user, response is auth code
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 	http.SetCookie(w, &http.Cookie{
-        Name: rOrig.URL.Query().Get("type"),
+        Name: r.URL.Query().Get("type"),
         Value: "fdfdf",
     })
     //request will be format :   /askPermissions?(source||destination)
