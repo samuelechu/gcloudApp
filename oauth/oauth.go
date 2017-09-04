@@ -36,8 +36,8 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-wOrig http.ResponseWriter 
-rOrig *http.Request
+var wOrig http.ResponseWriter 
+var rOrig *http.Request
 
 //askPermissions from user, response is auth code
 func askPermissions(w http.ResponseWriter, r *http.Request) {
@@ -123,17 +123,17 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     //store the user and refresh token into database
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
     
-    // redirectString := "https://gotesting-175718.appspot.com"
-    // if appengine.IsDevAppServer(){
-    //     redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
-    // }
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
 
     log.Printf("The type is %v", accountType)
 
     http.SetCookie(wOrig, &http.Cookie{
         Name: rOrig.URL.Query().Get("type"),
-        Value: "respBody.Id_token",
+        Value: respBody.Id_token,
     })
 
-    //http.Redirect(w, r, redirectString, 301)
+    http.Redirect(wOrig, rOrig, redirectString, 301)
 }
