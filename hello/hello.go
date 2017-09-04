@@ -59,8 +59,8 @@ func index(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source Cookie: %v\n", sourceCookie)
     log.Printf("Dest Cookie: %v\n", destCookie)
 
-    sourceName, _ = verifyIDToken(w, r, sourceToken)
-    destName, _ = verifyIDToken(w, r, destToken)
+    sourceName, _ := oauth.VerifyIDToken(w, r, sourceToken)
+    destName, _ := oauth.VerifyIDToken(w, r, destToken)
 
     names := AccountNames{Source: sourceName, Destination: destName,}
  

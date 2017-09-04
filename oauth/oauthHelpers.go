@@ -8,7 +8,7 @@ import (
 )
 
 //verifies that the id_token that identifies user is genuine
-func verifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string, string) {
+func VerifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string, string) {
 
     urlStr := "https://www.googleapis.com/oauth2/v3/tokeninfo"
 
@@ -33,7 +33,7 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
 }
 
 func deleteCookies(w http.ResponseWriter, r *http.Request) {
-	
+
 	sourceCookie, err := r.Cookie("source")
     if err == nil {
         sourceCookie.MaxAge = -1
