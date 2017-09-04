@@ -38,8 +38,8 @@ func main() {
 }
 
 type AccountNames struct {
-    Source string,
-    Destination string,
+    Source string
+    Destination string
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -62,7 +62,7 @@ func index(w http.ResponseWriter, r *http.Request) {
     sourceName, _ = verifyIDToken(w, r, sourceToken)
     destName, _ = verifyIDToken(w, r, destToken)
 
-    names := AccountNames{Source: sourceName, Destination: destName}
+    names := AccountNames{Source: sourceName, Destination: destName,}
  
     indexTemplate.Execute(w, names)
 
