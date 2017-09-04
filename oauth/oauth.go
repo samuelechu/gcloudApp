@@ -36,7 +36,9 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-var accountType string
+wOrig http.ResponseWriter 
+rOrig *http.Request
+
 //askPermissions from user, response is auth code
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 	
@@ -75,6 +77,8 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
     redirectString := "https://accounts.google.com/o/oauth2/v2/auth?" + queryString
 
     //exchange auth code for access/refresh token in oauthCallback 
+    wOrig = w
+    rOrig = r
     http.Redirect(w, r, redirectString, 301)
 }
 
@@ -126,9 +130,9 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     log.Printf("The type is %v", accountType)
 
-    http.SetCookie(w, &http.Cookie{
-        Name: "soeor",
-        Value: "terter",
+    http.SetCookie(wOrig, &http.Cookie{
+        Name: rOrig.URL.Query().Get("type"),
+        Value: "respBody.Id_token",
     })
 
     //http.Redirect(w, r, redirectString, 301)
