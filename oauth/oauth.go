@@ -43,7 +43,7 @@ var rOrig *http.Request
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 	
     //request will be format :   /askPermissions?(source||destination)
-    accountType := r.URL.Query().Get("type")
+    accountType = r.URL.Query().Get("type")
     permissions := ""
 
     switch accountType {
@@ -113,12 +113,12 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     //verify the signed in user
     uid, name := VerifyIDToken(w, r, respBody.Id_token)
-    // if uid != "" {
-    //     fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
-    //                     name, uid, respBody.Refresh_token, respBody.Access_token)
-    // } else {
-    //     fmt.Fprint(w, "\n Token verification failed!")
-    // }
+    if uid != "" {
+        fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
+                        name, uid, respBody.Refresh_token, respBody.Access_token)
+    } else {
+        fmt.Fprint(w, "\n Token verification failed!")
+    }
 
     //store the user and refresh token into database
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
@@ -128,12 +128,12 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
     }
 
-    log.Printf("The type is %v", rOrig.URL.Query().Get("type"))
+    log.Printf("The type is %v", accountType)
 
-    http.SetCookie(wOrig, &http.Cookie{
-        Name: rOrig.URL.Query().Get("type"),
-        Value: respBody.Id_token,
-    })
+    // http.SetCookie(wOrig, &http.Cookie{
+    //     Name: rOrig.URL.Query().Get("type"),
+    //     Value: respBody.Id_token,
+    // })
 
     http.Redirect(wOrig, rOrig, redirectString, 301)
 }
