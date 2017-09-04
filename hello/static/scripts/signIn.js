@@ -16,11 +16,18 @@ function setElements(isLoggedIn){
 
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    setElements(false);
-    console.log('User signed out.');
-  });
-  
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'deleteCookies');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    auth2.signOut().then(function () {
+      setElements(false);
+      console.log('User signed out.');
+    });
+  };
+
+  xhr.send();
 }
 
 function sendTokentoDB(id_token){

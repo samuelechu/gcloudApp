@@ -21,10 +21,27 @@ func verifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
 
         if rb.Aud == os.Getenv("CLIENT_ID") {
             return rb.Sub, rb.Name
+        } else {
+        	return "",""
         }
+
     } else {
         http.Error(w, "Error: incorrect responsebody", 400)
     }
 
-    return "",""
+    return "",""   
+}
+
+func deleteCookies(w http.ResponseWriter, r *http.Request) {
+	
+	sourceCookie, err := r.Cookie("source")
+    if err == nil {
+        sourceCookie.MaxAge = -1
+    }
+
+    destCookie, err := r.Cookie("destination")
+    if err == nil {
+        destCookie.MaxAge = -1
+    }
+
 }

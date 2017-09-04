@@ -15,6 +15,7 @@ func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/oauthCallback", oauthCallback)
      http.HandleFunc("/testrefToken", getAccessToken)
+     http.HandleFunc("/deleteCookies", deleteCookies)
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
@@ -98,12 +99,14 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         "grant_type": {"authorization_code"},
     }
 
+    //  OauthRespBody struct: Access_token, Expires_in, Token_type, Refresh_token, Id_token string
     var respBody jsonHelper.OauthRespBody
     if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.OauthRespBody); ok {
         respBody = rb
         //fmt.Fprintf(w, "HTTP Post returned %+v", rb)
     }
 
+    //verify the signed in user
     uid, name := verifyIDToken(w, r, respBody.Id_token)
     if uid != "" {
         fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
@@ -112,6 +115,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         fmt.Fprint(w, "\n Token verification failed!")
     }
 
+    //store the user and refresh token into database
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
     
     jsonHelper.MarshalJSON(w, r, jsonHelper.User{Uid : uid, Name: name})
@@ -121,6 +125,10 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
     }
 
-    http.Redirect(w, r, redirectString, 301)
+    http.SetCookie(w, &http.Cookie{
+        Name: r.URL.Query().Get("type"),
+        Value: respBody.Id_token,
+    })
 
+    http.Redirect(w, r, redirectString, 301)
 }

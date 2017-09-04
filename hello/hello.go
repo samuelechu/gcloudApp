@@ -18,37 +18,53 @@ import (
     _ "google.golang.org/api/gmail/v1"
 )
 
+var indexTemplate *template.Template
+
 func main() {
 
-     //fs := http.FileServer(http.Dir("static"))
-    http.HandleFunc("/", index)
 
     http.Handle("/scripts/", http.FileServer(http.Dir("static")))
     http.Handle("/css/", http.FileServer(http.Dir("static")))
     http.Handle("/img/", http.FileServer(http.Dir("static")))
-    
-    // http.HandleFunc("/index.html", index)
 
+    http.HandleFunc("/", index)
     http.HandleFunc("/_ah/health", healthCheckHandler)
     
+    indexTemplate = template.Must(template.ParseFiles("static/index.html"))
 
-     log.Print("Listening on port 8080")
-     http.ListenAndServe(":8080", nil)
-     appengine.Main()
+    log.Print("Listening on port 8080")
+    http.ListenAndServe(":8080", nil)
+    appengine.Main()
 }
 
-type Person struct {
-    UserName string
+type AccountNames struct {
+    Source string,
+    Destination string,
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-    t := template.New("index.html")
+    sourceToken := ""
+    destToken := ""
+    
+    sourceCookie, err := r.Cookie("source")
+    if err == nil {
+        sourceToken = sourceCookie.Value
+    }
 
+    destCookie, err := r.Cookie("destination")
+    if err == nil {
+        destToken = destCookie.Value
+    }
 
-    p := Person{UserName: "Sam"}
-    t, _ = t.ParseFiles("static/index.html")
+    log.Printf("Source Cookie: %v\n", sourceCookie)
+    log.Printf("Dest Cookie: %v\n", destCookie)
+
+    sourceName, _ = verifyIDToken(w, r, sourceToken)
+    destName, _ = verifyIDToken(w, r, destToken)
+
+    names := AccountNames{Source: sourceName, Destination: destName}
  
-    t.Execute(w, p)
+    indexTemplate.Execute(w, names)
 
 }
 
