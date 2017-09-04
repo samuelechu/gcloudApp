@@ -43,7 +43,7 @@ var rOrig *http.Request
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 	
     //request will be format :   /askPermissions?(source||destination)
-    accountType = r.URL.Query().Get("type")
+    accountType := r.URL.Query().Get("type")
     permissions := ""
 
     switch accountType {
@@ -128,12 +128,12 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
     }
 
-    log.Printf("The type is %v", accountType)
+    log.Printf("The type is %v", rOrig.URL.Query().Get("type"))
 
     // http.SetCookie(wOrig, &http.Cookie{
     //     Name: rOrig.URL.Query().Get("type"),
     //     Value: respBody.Id_token,
     // })
 
-    http.Redirect(wOrig, rOrig, redirectString, 301)
+    //http.Redirect(wOrig, rOrig, redirectString, 301)
 }
