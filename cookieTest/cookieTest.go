@@ -18,12 +18,12 @@ func handleCookie(w http.ResponseWriter, r *http.Request) {
 	})
 
 	http.SetCookie(w, &http.Cookie{
-		Name: "dest",
+		Name: "destination",
 		Value: "id_token dest",
 	})
 
 	cookie, err := r.Cookie("source")
-	cookie1, err1 := r.Cookie("dest")
+	cookie1, err1 := r.Cookie("destination")
 
 	fmt.Fprintf(w, "Source Cookie: %v, Err: %v\n", cookie, err)
 	fmt.Fprintf(w, "Dest Cookie: %v, Err: %v\n", cookie1, err1)
