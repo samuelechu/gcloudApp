@@ -43,7 +43,7 @@ var rOrig *http.Request
 func askPermissions(w http.ResponseWriter, r *http.Request) {
 	
     //request will be format :   /askPermissions?(source||destination)
-    accountType = r.URL.Query().Get("type")
+    accountType := r.URL.Query().Get("type")
     permissions := ""
 
     switch accountType {
