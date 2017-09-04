@@ -123,10 +123,10 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     //store the user and refresh token into database
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
     
-    redirectString := "https://gotesting-175718.appspot.com"
-    if appengine.IsDevAppServer(){
-        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
-    }
+    // redirectString := "https://gotesting-175718.appspot.com"
+    // if appengine.IsDevAppServer(){
+    //     redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    // }
 
     log.Printf("The type is %v", rOrig.URL.Query().Get("type"))
 
