@@ -46,11 +46,4 @@ func deleteCookies(w http.ResponseWriter, r *http.Request) {
         destinationCookie.MaxAge = -1
         http.SetCookie(w, destinationCookie)
     }
-
-    destCookie, err := r.Cookie("dest")
-    if err == nil {
-        destCookie.MaxAge = -1
-        http.SetCookie(w, destCookie)
-    }
-
 }
