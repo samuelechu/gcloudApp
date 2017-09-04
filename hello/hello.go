@@ -24,6 +24,9 @@ func main() {
     http.HandleFunc("/", index)
 
     http.Handle("/scripts/", http.FileServer(http.Dir("static")))
+    http.Handle("/css/", http.FileServer(http.Dir("static")))
+    http.Handle("/img/", http.FileServer(http.Dir("static")))
+    
     // http.HandleFunc("/index.html", index)
 
     http.HandleFunc("/_ah/health", healthCheckHandler)
