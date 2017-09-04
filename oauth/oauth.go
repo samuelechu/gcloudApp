@@ -107,7 +107,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     }
 
     //verify the signed in user
-    uid, name := verifyIDToken(w, r, respBody.Id_token)
+    uid, name := VerifyIDToken(w, r, respBody.Id_token)
     if uid != "" {
         fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
                         name, uid, respBody.Refresh_token, respBody.Access_token)
