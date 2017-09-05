@@ -43,7 +43,7 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
     deleteCookies(w, r)
 
     if curCookies == nil {
-        curCookies = cookies{}
+        curCookies = &cookies{}
         return
     }
 
