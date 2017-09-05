@@ -47,10 +47,8 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
         log.Print("Initializing curCookies")
         curCookies = &cookies{}
         log.Printf("Curcookies: %v", curCookies)
+        return
     }
-
-    log.Printf("Curcookies: %v", curCookies)
-    return
 
     if curCookies.sourceCookie != nil {
         log.Printf("setting the sourceCookie: %v", curCookies.sourceCookie)
