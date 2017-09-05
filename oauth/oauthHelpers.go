@@ -38,17 +38,10 @@ type cookies struct{
 	destCookie *http.Cookie
 }
 
-var curCookies *cookies
+var curCookies *cookies //initialized in init
 
 func GetCookies(w http.ResponseWriter, r *http.Request) {
     deleteCookies(w, r)
-
-    if curCookies == nil {
-        log.Print("Initializing curCookies")
-        curCookies = &cookies{}
-        log.Printf("Curcookies: %v", curCookies)
-        return
-    }
 
     if curCookies.sourceCookie != nil {
         log.Printf("setting the sourceCookie: %v", curCookies.sourceCookie)
