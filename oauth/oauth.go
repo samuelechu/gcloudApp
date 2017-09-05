@@ -120,8 +120,14 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         //fmt.Fprintf(w, "HTTP Post returned %+v", rb)
     }
 
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
+    http.Redirect(w, r, redirectString, 302)
+
     //verify the signed in user
-    uid, name := VerifyIDToken(w, r, respBody.Id_token)
+/*    uid, name := VerifyIDToken(w, r, respBody.Id_token)
     if uid != "" {
         fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
                         name, uid, respBody.Refresh_token, respBody.Access_token)
@@ -156,6 +162,6 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     log.Println(cookieJar.Cookies(u))
 
-    accountType = ""
-    //http.Redirect(wOrig, rOrig, redirectString, 301)
+    accountType = ""*/
+    
 }
