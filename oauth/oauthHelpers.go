@@ -90,7 +90,7 @@ func deleteCookies(w http.ResponseWriter, r *http.Request) {
         http.SetCookie(w, destinationCookie)
     }
 
-    if r.URL.Query().Get("resetStruct") == 'true' {
+    if r.URL.Query().Get("resetStruct") == "true" {
         curCookies = &cookies{}
     }
 }
