@@ -71,9 +71,9 @@ func index(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source Name: %v\n", sourceName)
     log.Printf("Dest Name: %v\n", destName)
 
-    //names := AccountNames{Source: sourceName, Destination: destName,}
+    names := AccountNames{Source: sourceName, Destination: destName,}
  
-    //indexTemplate.Execute(w, names)
+    indexTemplate.Execute(w, names)
 
 }
 
