@@ -59,8 +59,8 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func setCookies(accountType string, id_token string){
-	switch accountType {
+func setCookies(accType string, id_token string){
+	switch accType {
 		case "source":
 			curCookies.sourceCookie = &http.Cookie{
 		        Name: "source",

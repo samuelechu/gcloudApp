@@ -128,5 +128,6 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     setCookies(accountType, respBody.Id_token)
 
+    accountType = ""
     //http.Redirect(wOrig, rOrig, redirectString, 301)
 }
