@@ -48,13 +48,13 @@ func setCookies(cookieStruct *cookies, accountType string, id_token string){
 	switch accountType {
 		case "source":
 			cookieStruct.sourceCookie = &http.Cookie{
-		        Name: "source"
+		        Name: "source",
 		        Value: id_token,
 			}
 
 		case "destination":
 			cookieStruct.destCookie = &http.Cookie{
-		        Name: "destination"
+		        Name: "destination",
 		        Value: id_token,
 			}
 	}
