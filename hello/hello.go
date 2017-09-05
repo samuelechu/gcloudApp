@@ -43,6 +43,9 @@ type AccountNames struct {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
+
+    oauth.GetCookies(w, r)
+    
     sourceToken := ""
     destToken := ""
     

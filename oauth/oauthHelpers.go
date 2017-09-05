@@ -32,6 +32,34 @@ func VerifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
     return "",""   
 }
 
+type cookies struct{
+	sourceCookie *Cookie
+	destCookie *Cookie
+}
+
+func GetCookies(w http.ResponseWriter, r *http.Request) {
+    deleteCookies(w, r)
+
+    http.SetCookie(w, curCookies.sourceCookie)
+    http.SetCookie(w, curCookies.destCookie)
+}
+
+func setCookies(cookieStruct *cookies, type string, id_token string){
+	switch type {
+		case "source":
+			cookieStruct.sourceCookie = &http.Cookie{
+		        Name: "source"
+		        Value: id_token,
+			}
+
+		case "destination":
+			cookieStruct.destCookie = &http.Cookie{
+		        Name: "destination"
+		        Value: id_token,
+			}
+	}
+}
+
 func deleteCookies(w http.ResponseWriter, r *http.Request) {
 
 	sourceCookie, err := r.Cookie("source")
