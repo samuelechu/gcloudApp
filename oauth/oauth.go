@@ -163,7 +163,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     log.Println(cookieJar.Cookies(u))
     log.Print(r)
     log.Print(r.Host)
-    log.Printf("%v", r.url)
+    log.Printf("%v", r.URL)
     accountType = ""
     http.Redirect(w, r, redirectString, 302)
 }
