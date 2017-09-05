@@ -33,8 +33,8 @@ func VerifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
 }
 
 type cookies struct{
-	sourceCookie *Cookie
-	destCookie *Cookie
+	sourceCookie *http.Cookie
+	destCookie *http.Cookie
 }
 
 func GetCookies(w http.ResponseWriter, r *http.Request) {
