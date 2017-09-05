@@ -37,9 +37,15 @@ type cookies struct{
 	destCookie *http.Cookie
 }
 
+var curCookies *cookies
+
 func GetCookies(w http.ResponseWriter, r *http.Request) {
     deleteCookies(w, r)
 
+    if curCookies == nil {
+        return
+    }
+    
     if curCookies.sourceCookie != nil {
         http.SetCookie(w, curCookies.sourceCookie)
     }

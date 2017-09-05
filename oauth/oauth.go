@@ -36,7 +36,6 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-var curCookies *cookies
 var accountType string
 
 //askPermissions from user, response is auth code
