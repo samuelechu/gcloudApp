@@ -49,7 +49,12 @@ type AccountNames struct {
 
 func index(w http.ResponseWriter, r *http.Request) {
 
-    log.Printf("index was triggered! %v", r.URL.Path)
+    if r.URL.Path != "/" {
+                http.NotFound(w, r)
+                return
+    }
+    
+    log.Print("index was triggered!")
 
     oauth.GetCookies(w, r)
 
