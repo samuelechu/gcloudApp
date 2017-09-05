@@ -40,6 +40,10 @@ type cookies struct{
 
 var curCookies *cookies //initialized in init
 
+func GetCookieJar() *cookiejar.Jar {
+    return cookieJar
+}
+
 func GetCookies(w http.ResponseWriter, r *http.Request) {
 
     u, _ := url.Parse("https://8080-dot-2979131-dot-devshell.appspot.com")

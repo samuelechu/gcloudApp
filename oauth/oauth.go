@@ -86,7 +86,9 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
     redirectString := "https://accounts.google.com/o/oauth2/v2/auth?" + queryString
 
     //exchange auth code for access/refresh token in oauthCallback
-    http.Redirect(w, r, redirectString, 301)
+    http.Redirect(w, r, redirectString, 302)
+
+    log.Print("woohooooooo redirect")
 }
 
 //exchange auth code for access token

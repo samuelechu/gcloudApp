@@ -56,8 +56,14 @@ func index(w http.ResponseWriter, r *http.Request) {
 
     // log.Print("index was triggered!")
 
-    oauth.GetCookies(w, r)
+    //oauth.GetCookies(w, r)
+    cookieJar := oauth.GetCookieJar()
 
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
+
+
+    client.CookieJar = cookieJar
     sourceToken := ""
     destToken := ""
     
