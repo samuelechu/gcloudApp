@@ -44,8 +44,8 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
     http.SetCookie(w, curCookies.destCookie)
 }
 
-func setCookies(cookieStruct *cookies, type string, id_token string){
-	switch type {
+func setCookies(cookieStruct *cookies, accountType string, id_token string){
+	switch accountType {
 		case "source":
 			cookieStruct.sourceCookie = &http.Cookie{
 		        Name: "source"
