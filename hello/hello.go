@@ -45,7 +45,7 @@ type AccountNames struct {
 func index(w http.ResponseWriter, r *http.Request) {
 
     oauth.GetCookies(w, r)
-    
+
     sourceToken := ""
     destToken := ""
     
@@ -62,8 +62,8 @@ func index(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source Cookie: %v\n", sourceCookie)
     log.Printf("Dest Cookie: %v\n", destCookie)
 
-    sourceName, _ := oauth.VerifyIDToken(w, r, sourceToken)
-    destName, _ := oauth.VerifyIDToken(w, r, destToken)
+    _, sourceName := oauth.VerifyIDToken(w, r, sourceToken)
+    _, destName := oauth.VerifyIDToken(w, r, destToken)
 
     names := AccountNames{Source: sourceName, Destination: destName,}
  
