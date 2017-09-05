@@ -2,14 +2,18 @@ package oauth
 
 import (
 	"google.golang.org/appengine"
+
 	"fmt"
 	"log"
 	"os"
 	"net/http"
+    "net/http/cookiejar"
 	"net/url"
     "github.com/samuelechu/cloudSQL"
     "github.com/samuelechu/jsonHelper"
 )
+
+var cookieJar *Jar
 
 func init() {
      http.HandleFunc("/askPermissions", askPermissions)
@@ -19,6 +23,8 @@ func init() {
 
     log.Print("Initializing curCookies")
     curCookies = &cookies{}
+    cookieJar, _ = cookiejar.New(nil)
+
     log.Printf("Curcookies: %v", curCookies)
 }
 
@@ -131,13 +137,19 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     log.Printf("In oauth Callback. The type is %v, id token is \n%v", accountType, respBody.Id_token)
 
-    http.SetCookie(w, &http.Cookie{
+    var cookies []*http.Cookie
+
+    cookie := http.Cookie{
         Name: accountType,
         Value: respBody.Id_token,
         Path: "/",
         Domain: "8080-dot-2979131-dot-devshell.appspot.com",
     })
+    cookies = append(cookies, cookie)
+    
     //setCookies(accountType, respBody.Id_token)
+    u, _ := url.Parse("https://8080-dot-2979131-dot-devshell.appspot.com")
+    cookieJar.SetCookies(u, cookies)
 
     accountType = ""
     //http.Redirect(wOrig, rOrig, redirectString, 301)
