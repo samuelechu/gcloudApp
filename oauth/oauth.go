@@ -135,7 +135,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         Name: accountType,
         Value: respBody.Id_token,
         Path: "/",
-        Domain: "8080-dot-2979131-dot-devshell.appspot.com"
+        Domain: "8080-dot-2979131-dot-devshell.appspot.com",
     })
     //setCookies(accountType, respBody.Id_token)
 
