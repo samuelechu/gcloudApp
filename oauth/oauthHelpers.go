@@ -2,6 +2,7 @@ package oauth
 
 import (
 	"os"
+    "log"
 	"net/http"
 	"net/url"
 	"github.com/samuelechu/jsonHelper"
@@ -43,6 +44,7 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
     deleteCookies(w, r)
 
     if curCookies == nil {
+        log.Print("Initializing curCookies")
         curCookies = &cookies{}
         return
     }
@@ -57,16 +59,16 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func setCookies(cookieStruct *cookies, accountType string, id_token string){
+func setCookies(accountType string, id_token string){
 	switch accountType {
 		case "source":
-			cookieStruct.sourceCookie = &http.Cookie{
+			curCookies.sourceCookie = &http.Cookie{
 		        Name: "source",
 		        Value: id_token,
 			}
 
 		case "destination":
-			cookieStruct.destCookie = &http.Cookie{
+			curCookies.destCookie = &http.Cookie{
 		        Name: "destination",
 		        Value: id_token,
 			}
