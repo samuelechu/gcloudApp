@@ -4,6 +4,7 @@ import (
 	"os"
     "log"
 	"net/http"
+    "net/http/cookiejar"
 	"net/url"
 	"github.com/samuelechu/jsonHelper"
 )

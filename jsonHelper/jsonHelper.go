@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
     "encoding/json"
 	"net/http"
-	"net/http/cookiejar"
 	"net/url"
 )
 
