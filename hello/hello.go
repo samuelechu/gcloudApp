@@ -30,7 +30,7 @@ func main() {
     http.HandleFunc("/", index)
     http.HandleFunc("/_ah/health", healthCheckHandler)
     
-    indexTemplate = template.Must(template.ParseFiles("static/index.html"))
+    indexTemplate = template.Must(template.ParseFiles("static/home.html"))
 
     log.Print("Listening on port 8080")
     http.ListenAndServe(":8080", nil)
