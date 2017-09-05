@@ -18,7 +18,7 @@ function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'deleteCookies');
+  xhr.open('GET', 'deleteCookies?resetStruct=true');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onload = function() {
     auth2.signOut().then(function () {

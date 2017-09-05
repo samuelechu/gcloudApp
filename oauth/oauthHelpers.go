@@ -89,4 +89,8 @@ func deleteCookies(w http.ResponseWriter, r *http.Request) {
         destinationCookie.MaxAge = -1
         http.SetCookie(w, destinationCookie)
     }
+
+    if r.URL.Query().Get("resetStruct") == 'true' {
+        curCookies = &cookies{}
+    }
 }
