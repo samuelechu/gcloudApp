@@ -131,7 +131,13 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     log.Printf("In oauth Callback. The type is %v, id token is \n%v", accountType, respBody.Id_token)
 
-    setCookies(accountType, respBody.Id_token)
+    http.SetCookie(w, &http.Cookie{
+        Name: accountType,
+        Value: respBody.Id_token,
+        Path: "/",
+        Domain: "8080-dot-2979131-dot-devshell.appspot.com"
+    })
+    //setCookies(accountType, respBody.Id_token)
 
     accountType = ""
     //http.Redirect(wOrig, rOrig, redirectString, 301)

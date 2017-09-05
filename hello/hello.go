@@ -49,17 +49,17 @@ type AccountNames struct {
 
 func index(w http.ResponseWriter, r *http.Request) {
 
-    if r.URL.Path != "/" {
-                http.NotFound(w, r)
-                return
-    }
+    // if r.URL.Path != "/" {
+    //             http.NotFound(w, r)
+    //             return
+    // }
     
-    log.Print("index was triggered!")
+    // log.Print("index was triggered!")
 
-    oauth.GetCookies(w, r)
+    // oauth.GetCookies(w, r)
 
-    sourceToken := ""
-    destToken := ""
+    // sourceToken := ""
+    // destToken := ""
     
     sourceCookie, err := r.Cookie("source")
     if err == nil {
