@@ -64,7 +64,7 @@ func index(w http.ResponseWriter, r *http.Request) {
     client := urlfetch.Client(ctx)
 
 
-    client.CookieJar = cookieJar
+    client.Jar = cookieJar
 
     sourceToken := ""
     destToken := ""
