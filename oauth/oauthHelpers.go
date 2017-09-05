@@ -51,10 +51,12 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
     }
 
     if curCookies.sourceCookie != nil {
+        log.Printf("setting the sourceCookie: %v", curCookies.sourceCookie)
         http.SetCookie(w, curCookies.sourceCookie)
     }
     
     if curCookies.destCookie != nil {
+        log.Printf("setting the destCookie: %v", curCookies.destCookie)
         http.SetCookie(w, curCookies.destCookie)
     }
 
@@ -86,7 +88,8 @@ func setCookies(accType string, id_token string){
 
 func deleteCookies(w http.ResponseWriter, r *http.Request) {
 
-    log.Printf("Curcookies: %v", curCookies)
+
+    log.Printf("In deleteCookies. Curcookies: %v", curCookies)
 
 	sourceCookie, err := r.Cookie("source")
     if err == nil {
@@ -108,5 +111,5 @@ func deleteCookies(w http.ResponseWriter, r *http.Request) {
         curCookies = &cookies{}
     }
 
-    log.Printf("Curcookies: %v", curCookies)
+    log.Printf("end of deleteCookies. Curcookies: %v", curCookies)
 }
