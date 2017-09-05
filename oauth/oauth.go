@@ -145,11 +145,14 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         Path: "/",
         Domain: "8080-dot-2979131-dot-devshell.appspot.com",
     }
+
     cookies = append(cookies, cookie)
     
     //setCookies(accountType, respBody.Id_token)
     u, _ := url.Parse("https://8080-dot-2979131-dot-devshell.appspot.com")
     cookieJar.SetCookies(u, cookies)
+
+    log.Println(cookieJar.Cookies(u))
 
     accountType = ""
     //http.Redirect(wOrig, rOrig, redirectString, 301)
