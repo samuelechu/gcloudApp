@@ -40,8 +40,14 @@ type cookies struct{
 func GetCookies(w http.ResponseWriter, r *http.Request) {
     deleteCookies(w, r)
 
-    http.SetCookie(w, curCookies.sourceCookie)
-    http.SetCookie(w, curCookies.destCookie)
+    if curCookies.sourceCookie != nil {
+        http.SetCookie(w, curCookies.sourceCookie)
+    }
+    
+    if curCookies.destCookie != nil {
+        http.SetCookie(w, curCookies.destCookie)
+    }
+
 }
 
 func setCookies(cookieStruct *cookies, accountType string, id_token string){
