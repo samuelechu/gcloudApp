@@ -122,20 +122,26 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     //verify the signed in user
     uid, name := VerifyIDToken(w, r, respBody.Id_token)
-    if uid != "" {
-        fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
-                        name, uid, respBody.Refresh_token, respBody.Access_token)
-    } else {
-        fmt.Fprint(w, "\n Token verification failed!")
+
+    if uid == "" {
+        http.Error(w, "Error with token", 500)
     }
 
+
+    // if uid != "" {
+    //     fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
+    //                     name, uid, respBody.Refresh_token, respBody.Access_token)
+    // } else {
+    //     fmt.Fprint(w, "\n Token verification failed!")
+    // }
+    
     //store the user and refresh token into database
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
     
-    // redirectString := "https://gotesting-175718.appspot.com"
-    // if appengine.IsDevAppServer(){
-    //     redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
-    // }
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
 
     log.Printf("In oauth Callback. The type is %v, id token is \n%v", accountType, respBody.Id_token)
 
