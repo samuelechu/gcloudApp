@@ -13,7 +13,7 @@ import (
     "github.com/samuelechu/jsonHelper"
 )
 
-var cookieJar *Jar
+var cookieJar *cookiejar.Jar
 
 func init() {
      http.HandleFunc("/askPermissions", askPermissions)
