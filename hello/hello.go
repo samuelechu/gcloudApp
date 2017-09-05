@@ -67,6 +67,10 @@ func index(w http.ResponseWriter, r *http.Request) {
     _, sourceName := oauth.VerifyIDToken(w, r, sourceToken)
     _, destName := oauth.VerifyIDToken(w, r, destToken)
 
+
+    log.Printf("Source Name: %v\n", sourceName)
+    log.Printf("Dest Name: %v\n", destName)
+
     names := AccountNames{Source: sourceName, Destination: destName,}
  
     indexTemplate.Execute(w, names)
