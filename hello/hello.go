@@ -53,10 +53,10 @@ func index(w http.ResponseWriter, r *http.Request) {
     //             http.NotFound(w, r)
     //             return
     // }
-    
+
     // log.Print("index was triggered!")
 
-    // oauth.GetCookies(w, r)
+    oauth.GetCookies(w, r)
 
     sourceToken := ""
     destToken := ""

@@ -41,17 +41,22 @@ type cookies struct{
 var curCookies *cookies //initialized in init
 
 func GetCookies(w http.ResponseWriter, r *http.Request) {
-    deleteCookies(w, r)
 
-    if curCookies.sourceCookie != nil {
-        log.Printf("setting the sourceCookie: %v", curCookies.sourceCookie)
-        http.SetCookie(w, curCookies.sourceCookie)
-    }
+    u, _ := url.Parse("https://8080-dot-2979131-dot-devshell.appspot.com")
+    //cookieJar.SetCookies(u, cookies)
+
+    log.Println(cookieJar.Cookies(u))
+    // deleteCookies(w, r)
+
+    // if curCookies.sourceCookie != nil {
+    //     log.Printf("setting the sourceCookie: %v", curCookies.sourceCookie)
+    //     http.SetCookie(w, curCookies.sourceCookie)
+    // }
     
-    if curCookies.destCookie != nil {
-        log.Printf("setting the destCookie: %v", curCookies.destCookie)
-        http.SetCookie(w, curCookies.destCookie)
-    }
+    // if curCookies.destCookie != nil {
+    //     log.Printf("setting the destCookie: %v", curCookies.destCookie)
+    //     http.SetCookie(w, curCookies.destCookie)
+    // }
 
 }
 
