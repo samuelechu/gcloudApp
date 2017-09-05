@@ -46,6 +46,7 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
     if curCookies == nil {
         log.Print("Initializing curCookies")
         curCookies = &cookies{}
+        log.Print("Curcookies: %v", curCookies)
         return
     }
 
@@ -60,25 +61,36 @@ func GetCookies(w http.ResponseWriter, r *http.Request) {
 }
 
 func setCookies(accType string, id_token string){
+    log.Printf("In setCookies. The type is %v, id token is \n%v", accType, id_token)
+
+    log.Print("Curcookies: %v", curCookies)
+
 	switch accType {
 		case "source":
+            log.Print("setting source cookie")
 			curCookies.sourceCookie = &http.Cookie{
 		        Name: "source",
 		        Value: id_token,
 			}
 
 		case "destination":
+            log.Print("setting dest cookie")
 			curCookies.destCookie = &http.Cookie{
 		        Name: "destination",
 		        Value: id_token,
 			}
 	}
+
+    log.Print("Curcookies: %v", curCookies)
 }
 
 func deleteCookies(w http.ResponseWriter, r *http.Request) {
 
+    log.Print("Curcookies: %v", curCookies)
+
 	sourceCookie, err := r.Cookie("source")
     if err == nil {
+        log.Print("deleting source cookie")
         sourceCookie.MaxAge = -1
         http.SetCookie(w, sourceCookie)
     }
@@ -86,11 +98,15 @@ func deleteCookies(w http.ResponseWriter, r *http.Request) {
 
     destinationCookie, err := r.Cookie("destination")
     if err == nil {
+        log.Print("deleting dest cookie")
         destinationCookie.MaxAge = -1
         http.SetCookie(w, destinationCookie)
     }
 
     if r.URL.Query().Get("resetStruct") == "true" {
+        log.Print("resetting struct")
         curCookies = &cookies{}
     }
+
+    log.Print("Curcookies: %v", curCookies)
 }

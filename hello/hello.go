@@ -44,6 +44,8 @@ type AccountNames struct {
 
 func index(w http.ResponseWriter, r *http.Request) {
 
+    log.Print("index was triggered!")
+
     oauth.GetCookies(w, r)
 
     sourceToken := ""

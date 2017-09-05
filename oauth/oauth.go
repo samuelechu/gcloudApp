@@ -44,6 +44,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
     accountType = r.URL.Query().Get("type")
     permissions := ""
 
+    log.Print("In askPermissions: account type was %v", accountType)
     switch accountType {
         case "source":
             permissions = "https://www.googleapis.com/auth/gmail.readonly"
@@ -124,7 +125,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     //     redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
     // }
 
-    log.Printf("The type is %v", accountType)
+    log.Printf("In oauth Callback. The type is %v, id token is \n%v", accountType, respBody.Id_token)
 
     setCookies(accountType, respBody.Id_token)
 
