@@ -139,7 +139,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
     var cookies []*http.Cookie
 
-    cookie := http.Cookie{
+    cookie := &http.Cookie{
         Name: accountType,
         Value: respBody.Id_token,
         Path: "/",
