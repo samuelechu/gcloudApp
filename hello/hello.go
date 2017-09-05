@@ -58,8 +58,8 @@ func index(w http.ResponseWriter, r *http.Request) {
 
     // oauth.GetCookies(w, r)
 
-    // sourceToken := ""
-    // destToken := ""
+    sourceToken := ""
+    destToken := ""
     
     sourceCookie, err := r.Cookie("source")
     if err == nil {
