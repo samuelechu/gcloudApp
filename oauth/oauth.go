@@ -134,7 +134,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     // } else {
     //     fmt.Fprint(w, "\n Token verification failed!")
     // }
-    
+
     //store the user and refresh token into database
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
     
@@ -161,7 +161,9 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     cookieJar.SetCookies(u, cookies)
 
     log.Println(cookieJar.Cookies(u))
-
+    log.Print(r)
+    log.Print(r.Host)
+    log.Printf("%v", r.url)
     accountType = ""
     http.Redirect(w, r, redirectString, 302)
 }
