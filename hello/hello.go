@@ -28,6 +28,7 @@ func main() {
     http.Handle("/img/", http.FileServer(http.Dir("static")))
 
     http.HandleFunc("/", index)
+    http.HandleFunc("/favicon.ico", faviconHandler)
     http.HandleFunc("/_ah/health", healthCheckHandler)
     
     indexTemplate = template.Must(template.ParseFiles("static/home.html"))
@@ -35,6 +36,10 @@ func main() {
     log.Print("Listening on port 8080")
     http.ListenAndServe(":8080", nil)
     appengine.Main()
+}
+
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "static/img/favicon.ico")
 }
 
 type AccountNames struct {
