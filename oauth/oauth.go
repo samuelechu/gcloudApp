@@ -44,7 +44,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
     accountType = r.URL.Query().Get("type")
     permissions := ""
 
-    log.Print("In askPermissions: account type was %v", accountType)
+    log.Printf("In askPermissions: account type was %v", accountType)
     switch accountType {
         case "source":
             permissions = "https://www.googleapis.com/auth/gmail.readonly"
