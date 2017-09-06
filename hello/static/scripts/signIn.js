@@ -35,7 +35,7 @@ function signOut() {
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onload = function() {
     location.reload();
-    auth2.disconnect().then(function () {
+    auth2.signOut().then(function () {
       setElements(false);
       console.log('User signed out.');
     });
