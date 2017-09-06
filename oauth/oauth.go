@@ -169,7 +169,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
 
 
     http.SetCookie(w, &http.Cookie{
-        Name: accountType,
+        Name: "source",
         Value: "id_tokensss source",
     })
     http.Redirect(w, r, redirectString, 302)
