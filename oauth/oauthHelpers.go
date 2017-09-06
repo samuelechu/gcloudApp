@@ -48,4 +48,10 @@ func deleteCookies(w http.ResponseWriter, r *http.Request) {
         destinationCookie.MaxAge = -1
         http.SetCookie(w, destinationCookie)
     }
+
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
+    http.Redirect(w, r, redirectString, 302)
 }
