@@ -2,12 +2,10 @@ package oauth
 
 import (
 	"google.golang.org/appengine"
-
 	"fmt"
 	"log"
 	"os"
 	"net/http"
-    "net/http/cookiejar"
 	"net/url"
     "github.com/samuelechu/cloudSQL"
     "github.com/samuelechu/jsonHelper"
@@ -20,12 +18,6 @@ func init() {
      http.HandleFunc("/oauthCallback", oauthCallback)
      http.HandleFunc("/testrefToken", getAccessToken)
      http.HandleFunc("/deleteCookies", deleteCookies)
-
-    log.Print("Initializing curCookies")
-    curCookies = &cookies{}
-    cookieJar, _ = cookiejar.New(nil)
-
-    log.Printf("Curcookies: %v", curCookies)
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
@@ -50,12 +42,10 @@ var accountType string
 
 //askPermissions from user, response is auth code
 func askPermissions(w http.ResponseWriter, r *http.Request) {
-    log.Printf("in askPermissions. R is %v............W is %v", r, w)
     //request will be format :   /askPermissions?(source||destination)
     accountType = r.URL.Query().Get("type")
     permissions := ""
 
-    log.Printf("In askPermissions: account type was %v", accountType)
     switch accountType {
         case "source":
             permissions = "https://www.googleapis.com/auth/gmail.readonly"
@@ -88,15 +78,10 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 
     //exchange auth code for access/refresh token in oauthCallback
     http.Redirect(w, r, redirectString, 302)
-
-    log.Print("woohooooooo redirect")
 }
 
 //exchange auth code for access token
 func oauthCallback(w http.ResponseWriter, r *http.Request) {
-	log.Printf("In oauthCallback R is %v............W is %v", r, w)
-    log.Print(r.URL.Query().Get("code"))
-
     authCode := r.URL.Query().Get("code")
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
@@ -128,52 +113,27 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         http.Error(w, "Error with token", 500)
     }
 
-
-    // if uid != "" {
-    //     fmt.Fprintf(w, "\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
-    //                     name, uid, respBody.Refresh_token, respBody.Access_token)
-    // } else {
-    //     fmt.Fprint(w, "\n Token verification failed!")
-    // }
+    if uid != "" {
+        log.Printf("\n Token verified! Name: %v, UserId: %v, Refresh_token: %v, Access_token: %v",
+                        name, uid, respBody.Refresh_token, respBody.Access_token)
+    } else {
+        log.Print("\n Token verification failed!")
+    }
 
     //store the user and refresh token into database
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
-    
-    redirectString := "https://gotesting-175718.appspot.com"
-    if appengine.IsDevAppServer(){
-        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
-    }
 
-    log.Printf("In oauth Callback. The type is %v, id token is \n%v", accountType, respBody.Id_token)
-
-    var cookies []*http.Cookie
-
-    cookie := &http.Cookie{
-        Name: accountType,
-        Value: respBody.Id_token,
-        //Path: "/",
-        //Domain: "8080-dot-2979131-dot-devshell.appspot.com",
-    }
-
-    cookies = append(cookies, cookie)
-    
-    //setCookies(accountType, respBody.Id_token)
-    u, _ := url.Parse("https://8080-dot-2979131-dot-devshell.appspot.com")
-    cookieJar.SetCookies(u, cookies)
-
-    log.Println(cookieJar.Cookies(u))
-    log.Print(r)
-    log.Print(r.Host)
-    log.Printf("%v", r.URL)
-    
-
-
+    //send id_token to browser to identify the signed in user 
     http.SetCookie(w, &http.Cookie{
         Name: accountType,
         Value: respBody.Id_token,
     })
 
     accountType = ""
-    
+
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
     http.Redirect(w, r, redirectString, 302)
 }
