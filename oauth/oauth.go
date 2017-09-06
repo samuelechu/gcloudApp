@@ -68,7 +68,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         "redirect_uri" : {redirectUri},
         "response_type" : {"code"},
         "client_id" : {os.Getenv("CLIENT_ID")},
-        "account_type" : accountType
+        "account_type" : accountType,
     }
 
     queryString := queryVals.Encode()
