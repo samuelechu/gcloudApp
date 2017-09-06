@@ -68,6 +68,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         "redirect_uri" : {redirectUri},
         "response_type" : {"code"},
         "client_id" : {os.Getenv("CLIENT_ID")},
+        "account_type" : accountType
     }
 
     queryString := queryVals.Encode()
@@ -81,6 +82,8 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 //exchange auth code for access token
 func oauthCallback(w http.ResponseWriter, r *http.Request) {
     authCode := r.URL.Query().Get("code")
+
+    log.Printf("account type is %v", r.URL.Query().Get("account_type"))
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
 
