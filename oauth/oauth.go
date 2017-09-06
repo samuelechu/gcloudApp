@@ -44,6 +44,11 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
     accountType = r.URL.Query().Get("type")
     permissions := ""
 
+    http.SetCookie(w, &http.Cookie{
+        Name: "wow",
+        Value: "awesome",
+    })
+
     switch accountType {
         case "source":
             permissions = "https://www.googleapis.com/auth/gmail.readonly"
@@ -68,7 +73,6 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         "redirect_uri" : {redirectUri},
         "response_type" : {"code"},
         "client_id" : {os.Getenv("CLIENT_ID")},
-        "account_type" : {accountType},
     }
 
     queryString := queryVals.Encode()
@@ -83,7 +87,12 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 func oauthCallback(w http.ResponseWriter, r *http.Request) {
     authCode := r.URL.Query().Get("code")
 
-    log.Printf("account type is %v", r.URL.Query().Get("account_type"))
+    wowCookie, err := r.Cookie("wow")
+    if err == nil {
+        log.Printf("account type is %v", wowCookie.Value)
+    } else {
+        log.Print("nnuuuuuuuuuuuuuuuuuu cookie not found")
+    }
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
 
