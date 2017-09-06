@@ -50,6 +50,7 @@ var accountType string
 
 //askPermissions from user, response is auth code
 func askPermissions(w http.ResponseWriter, r *http.Request) {
+    log.Printf("in askPermissions. R is %v............W is %v", r, w)
     //request will be format :   /askPermissions?(source||destination)
     accountType = r.URL.Query().Get("type")
     permissions := ""
@@ -93,7 +94,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 
 //exchange auth code for access token
 func oauthCallback(w http.ResponseWriter, r *http.Request) {
-	log.Print(r.URL.Query())
+	log.Printf("In oauthCallback R is %v............W is %v", r, w)
     log.Print(r.URL.Query().Get("code"))
 
     authCode := r.URL.Query().Get("code")
