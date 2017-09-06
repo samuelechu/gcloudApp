@@ -36,17 +36,16 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-var accountType string
-
 //askPermissions from user, response is auth code
 func askPermissions(w http.ResponseWriter, r *http.Request) {
     //request will be format :   /askPermissions?(source||destination)
-    accountType = r.URL.Query().Get("type")
+    accountType := r.URL.Query().Get("type")
     permissions := ""
 
+    //pass on account type to redirect
     http.SetCookie(w, &http.Cookie{
-        Name: "wow",
-        Value: "awesome",
+        Name: "account_type",
+        Value: accountType,
     })
 
     switch accountType {
@@ -87,11 +86,13 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 func oauthCallback(w http.ResponseWriter, r *http.Request) {
     authCode := r.URL.Query().Get("code")
 
-    wowCookie, err := r.Cookie("wow")
+    //retrieve account type and reset cookie
+    accountType := ""
+    typeCookie, err := r.Cookie("account_type")
     if err == nil {
-        log.Printf("account type is %v", wowCookie.Value)
-    } else {
-        log.Print("nnuuuuuuuuuuuuuuuuuu cookie not found")
+        accountType = typeCookie.Value
+        typeCookie.MaxAge = -1
+        http.SetCookie(w, typeCookie)
     }
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
@@ -138,8 +139,6 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         Name: accountType,
         Value: respBody.Id_token,
     })
-
-    accountType = ""
 
     redirectString := "https://gotesting-175718.appspot.com"
     if appengine.IsDevAppServer(){
