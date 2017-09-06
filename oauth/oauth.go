@@ -63,7 +63,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         "scope" : {"profile " + permissions},
         "access_type" : {"offline"},
         "include_granted_scopes" : {"true"},
-        //"prompt" : {"consent"},
+        "prompt" : {"select_account"},
         "state" : {"state_parameter_passthrough_value"},
         "redirect_uri" : {redirectUri},
         "response_type" : {"code"},

@@ -14,6 +14,12 @@ function setElements(isLoggedIn){
   }
 }
 
+function signIn() {
+  var auth2 = gapi.auth2.getAuthInstance();
+
+  auth2.signIn({scope: 'profile', prompt : 'select_account'} ).then(onSignIn(auth2.currentUser.get()));
+}
+
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
 
