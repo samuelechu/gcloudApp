@@ -11,8 +11,6 @@ import (
     "github.com/samuelechu/jsonHelper"
 )
 
-var cookieJar *cookiejar.Jar
-
 func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/oauthCallback", oauthCallback)
