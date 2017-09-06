@@ -14,19 +14,6 @@ function setElements(isLoggedIn){
   }
 }
 
-function onLoad() {
-  gapi.signin2.render('custom_signin_button', {
-    scope: 'profile',
-    onsuccess: onSignIn
-  });
-}
-
-function signIn() {
-  var auth2 = gapi.auth2.getAuthInstance();
-
-  auth2.signIn({scope: 'profile', prompt : 'select_account'} ).then(onSignIn(auth2.currentUser.get()));
-}
-
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
 
