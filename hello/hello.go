@@ -50,21 +50,12 @@ type AccountNames struct {
 
 func index(w http.ResponseWriter, r *http.Request) {
 
-    // if r.URL.Path != "/" {
-    //             http.NotFound(w, r)
-    //             return
-    // }
+    if r.URL.Path != "/" {
+                http.NotFound(w, r)
+                return
+    }
 
-    // log.Print("index was triggered!")
-
-    //oauth.GetCookies(w, r)
-    cookieJar := oauth.GetCookieJar()
-
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
-
-
-    client.Jar = cookieJar
+    log.Print("index was triggered!")
 
     sourceToken := ""
     destToken := ""
@@ -84,7 +75,6 @@ func index(w http.ResponseWriter, r *http.Request) {
 
     _, sourceName := oauth.VerifyIDToken(w, r, sourceToken)
     _, destName := oauth.VerifyIDToken(w, r, destToken)
-
 
     log.Printf("Source Name: %v\n", sourceName)
     log.Printf("Dest Name: %v\n", destName)
