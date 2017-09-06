@@ -24,6 +24,7 @@ function signOut() {
     auth2.signOut().then(function () {
       setElements(false);
       console.log('User signed out.');
+      location.reload();
     });
   };
 
