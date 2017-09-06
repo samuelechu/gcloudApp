@@ -1,7 +1,6 @@
 package oauth
 
 import (
-    "google.golang.org/appengine"
 	"os"
     "log"
 	"net/http"
