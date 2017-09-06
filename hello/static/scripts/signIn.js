@@ -21,8 +21,8 @@ function signOut() {
   xhr.open('GET', 'deleteCookies');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onload = function() {
+    location.reload();
     auth2.signOut().then(function () {
-      location.reload();
       setElements(false);
       console.log('User signed out.');
     });
