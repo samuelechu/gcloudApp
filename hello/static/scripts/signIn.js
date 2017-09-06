@@ -18,7 +18,6 @@ function onLoad() {
   gapi.signin2.render('custom_signin_button', {
     scope: 'profile',
     onsuccess: onSignIn
-    prompt : 'select_account'
   });
 }
 
@@ -36,7 +35,7 @@ function signOut() {
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onload = function() {
     location.reload();
-    auth2.signOut().then(function () {
+    auth2.disconnect().then(function () {
       setElements(false);
       console.log('User signed out.');
     });
