@@ -165,12 +165,15 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     log.Print(r)
     log.Print(r.Host)
     log.Printf("%v", r.URL)
-    accountType = ""
+    
 
 
     http.SetCookie(w, &http.Cookie{
-        Name: "source",
+        Name: accountType,
         Value: respBody.Id_token,
     })
+
+    accountType = ""
+    
     http.Redirect(w, r, redirectString, 302)
 }
