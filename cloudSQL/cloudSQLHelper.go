@@ -18,7 +18,7 @@ func initPrepareStatements() {
 func InsertUser(user_id string, name string, refresh_token string) {
 	
     if refresh_token != "" {
-        _, err := stmt.Exec(user_id, name, refresh_token, refresh_token)
+        _, err := insertUserStmt.Exec(user_id, name, refresh_token, refresh_token)
         checkErr(err)
         log.Printf("inserted refresh token for %v!", name)
     }
