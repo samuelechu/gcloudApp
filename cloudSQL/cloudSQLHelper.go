@@ -7,7 +7,7 @@ import (
         "github.com/samuelechu/jsonHelper"
 )
 
-var insertUserStmt *Stmt
+var insertUserStmt *sql.Stmt
 
 func initPrepareStatements() {
     insertUserStmt, err := db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
