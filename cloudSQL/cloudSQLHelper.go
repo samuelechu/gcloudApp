@@ -7,19 +7,20 @@ import (
         "github.com/samuelechu/jsonHelper"
 )
 
-var insertUserStmt *mysql.Stmt
+//var insertUserStmt *mysql.Stmt
 
 func initPrepareStatements() {
     insertUserStmt, err := db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
                                 refreshToken = ?`)
+    log.Print(reflect.TypeOf(insertUserStmt))
     checkErr(err)
 }
 
 func InsertUser(user_id string, name string, refresh_token string) {
 	
     if refresh_token != "" {
-        _, err := insertUserStmt.Exec(user_id, name, refresh_token, refresh_token)
-        checkErr(err)
+        // _, err := insertUserStmt.Exec(user_id, name, refresh_token, refresh_token)
+        // checkErr(err)
         log.Printf("inserted refresh token for %v!", name)
     }
 }
