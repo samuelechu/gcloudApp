@@ -57,22 +57,6 @@ func GetAccessToken(uid string) string{
         fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
 
     }
-    refreshToken, err := cloudSQL.GetRefreshToken(uid)
-    
-    urlStr := "https://www.googleapis.com/oauth2/v4/token"
- 
-    bodyVals := url.Values{
-        "client_id": {os.Getenv("CLIENT_ID")},
-        "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "refresh_token":{refresh_token},
-        "grant_type": {"refresh_token"},
-    }
-
-    var respBody jsonHelper.AccessTokenRespBody 
-    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.AccessTokenRespBody); ok {
-        fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
-
-    }
 }
 
 func deleteCookies(w http.ResponseWriter, r *http.Request) {
