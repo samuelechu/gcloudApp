@@ -38,6 +38,6 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     dAccess := oauth.GetAccessToken(w, r, destID)
 
     log.Printf("Source ID: %v\n", sAccess)
-    log.Printf("Dest ID: %v\n", sAccess)
+    log.Printf("Dest ID: %v\n", dAccess)
 
 }
