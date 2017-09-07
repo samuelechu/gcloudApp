@@ -34,7 +34,7 @@ func getAccessToken(w http.ResponseWriter, r *http.Request) {
     bodyVals := url.Values{
         "client_id": {os.Getenv("CLIENT_ID")},
         "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "refresh_token":{refresh_token},
+        "refresh_token":{refreshToken},
         "grant_type": {"refresh_token"},
     }
 
