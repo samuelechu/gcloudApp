@@ -21,7 +21,13 @@ func init() {
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
     
     uid := r.URL.Query().Get("uid")
-    refreshToken := cloudSQL.GetRefreshToken(uid)
+    refreshToken, err := cloudSQL.GetRefreshToken(uid)
+
+
+    if err != nil {
+        http.Error(w, fmt.Sprintf("DB err: %v.", err), 500)
+        return
+    }
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
  
