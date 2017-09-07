@@ -32,4 +32,12 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
     log.Printf("Source ID: %v\n", sourceID)
     log.Printf("Dest ID: %v\n", destID)
+
+
+    sAccess := oauth.GetAccessToken(w, r, sourceID)
+    dAccess := oauth.GetAccessToken(w, r, destID)
+
+    log.Printf("Source ID: %v\n", sAccess)
+    log.Printf("Dest ID: %v\n", sAccess)
+
 }
