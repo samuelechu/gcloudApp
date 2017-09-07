@@ -7,18 +7,21 @@ import (
         "github.com/samuelechu/jsonHelper"
 )
 
-func InsertUser(user_id string, name string, refresh_token string) {
-	stmt, err := db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
-								refreshToken = ?`)
-	checkErr(err)
+var insertUserStmt *Stmt
 
-	_, err = stmt.Exec(user_id, name, refresh_token, refresh_token)
+func initPrepareStatements() {
+    insertUserStmt, err := db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
+                                refreshToken = ?`)
     checkErr(err)
+}
 
-
-	//INSERT INTO table (id, name, age) VALUES(1, "A", 19) ON DUPLICATE KEY UPDATE    
-	//insert into users (uid, Name, refreshToken) values("0", "testUser", "333ff") on duplicate key update  Name = "ffd", refreshToken = "Woww Ia m refresh";
-    log.Printf("inserted refresh token for %v!", name)
+func InsertUser(user_id string, name string, refresh_token string) {
+	
+    if refresh_token != "" {
+        _, err = stmt.Exec(user_id, name, refresh_token, refresh_token)
+        checkErr(err)
+        log.Printf("inserted refresh token for %v!", name)
+    }
 }
 
 func signInHandler(w http.ResponseWriter, r *http.Request) {
