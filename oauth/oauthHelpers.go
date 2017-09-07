@@ -34,30 +34,30 @@ func VerifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
     return "",""   
 }
 
-func GetAccessToken(uid string) string{
+// func GetAccessToken(uid string) string{
 
-    refreshToken, err := cloudSQL.GetRefreshToken(uid)
+//     refreshToken, err := cloudSQL.GetRefreshToken(uid)
 
-    if err != nil {
-        log.Print("DB err: %v", err)
-        return ""
-    }
+//     if err != nil {
+//         log.Print("DB err: %v", err)
+//         return ""
+//     }
     
-    urlStr := "https://www.googleapis.com/oauth2/v4/token"
+//     urlStr := "https://www.googleapis.com/oauth2/v4/token"
  
-    bodyVals := url.Values{
-        "client_id": {os.Getenv("CLIENT_ID")},
-        "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "refresh_token":{refreshToken},
-        "grant_type": {"refresh_token"},
-    }
+//     bodyVals := url.Values{
+//         "client_id": {os.Getenv("CLIENT_ID")},
+//         "client_secret": {os.Getenv("CLIENT_SECRET")},
+//         "refresh_token":{refreshToken},
+//         "grant_type": {"refresh_token"},
+//     }
 
-    var respBody jsonHelper.AccessTokenRespBody 
-    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.AccessTokenRespBody); ok {
-        fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
+//     var respBody jsonHelper.AccessTokenRespBody 
+//     if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.AccessTokenRespBody); ok {
+//         fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
 
-    }
-}
+//     }
+// }
 
 func deleteCookies(w http.ResponseWriter, r *http.Request) {
 
