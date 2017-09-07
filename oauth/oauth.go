@@ -16,7 +16,6 @@ func init() {
      http.HandleFunc("/oauthCallback", oauthCallback)
      http.HandleFunc("/testrefToken", getAccessToken)
      http.HandleFunc("/deleteCookies", deleteCookies)
-     initPrepareStatements()
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {

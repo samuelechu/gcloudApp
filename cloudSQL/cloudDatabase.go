@@ -14,6 +14,7 @@ var db *sql.DB
 
 func init() {
         initDB()
+        initPrepareStatements()
         http.HandleFunc("/signIn", signInHandler)
         http.HandleFunc("/showDatabases", showDatabases)
 }
