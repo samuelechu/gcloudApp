@@ -1,14 +1,8 @@
 package transferMail
 
 import (
-	"google.golang.org/appengine"
-	"fmt"
 	"log"
-	"os"
 	"net/http"
-	"net/url"
-    "github.com/samuelechu/cloudSQL"
-    "github.com/samuelechu/jsonHelper"
 )
 
 func init() {
