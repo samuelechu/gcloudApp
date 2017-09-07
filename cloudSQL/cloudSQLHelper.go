@@ -11,7 +11,8 @@ import (
 var insertUserStmt *sql.Stmt
 
 func initPrepareStatements() {
-    insertUserStmt, err := db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
+    var err error
+    insertUserStmt, err = db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
                                 refreshToken = ?`)
     checkErr(err)
 }
