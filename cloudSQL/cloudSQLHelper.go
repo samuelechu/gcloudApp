@@ -2,6 +2,7 @@ package cloudSQL
 
 import (
         "log"
+        "errors"
         "net/http"
         "database/sql"
         _ "github.com/go-sql-driver/mysql"
@@ -9,21 +10,44 @@ import (
 )
 
 var insertUserStmt *sql.Stmt
+var getRefTokenStmt *sql.Stmt
 
 func initPrepareStatements() {
     var err error
+    
     insertUserStmt, err = db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
                                 refreshToken = ?`)
     checkErr(err)
+
+    getRefTokenStmt, err = db.Prepare(`SELECT refreshToken FROM users WHERE uid = ?`)
+    checkErr(err)
+
 }
 
-func InsertUser(user_id string, name string, refresh_token string) {
+func InsertUser(user_id, name, refresh_token string) {
 	
     if refresh_token != "" {
         _, err := insertUserStmt.Exec(user_id, name, refresh_token, refresh_token)
         checkErr(err)
         log.Printf("inserted refresh token for %v!", name)
     }
+}
+
+func GetRefreshToken(uid string) (string, error){
+    
+    result, err := getRefTokenStmt.Exec(uid)
+    checkErr(err)
+    result.Next()
+
+    var refToken string
+    err = result.Scan(&refToken)
+    checkErr(err)
+
+    if refToken == "" {
+        return refToken, errors.New("Error: refreshToken not found")
+    }
+
+    return refToken, nil
 }
 
 func signInHandler(w http.ResponseWriter, r *http.Request) {

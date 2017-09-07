@@ -14,18 +14,21 @@ import (
 func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/oauthCallback", oauthCallback)
-     http.HandleFunc("/testrefToken", getAccessToken)
      http.HandleFunc("/deleteCookies", deleteCookies)
+     http.HandleFunc("/getAccessToken", getAccessToken)
 }
 
 func getAccessToken(w http.ResponseWriter, r *http.Request) {
+    
+    uid := r.URL.Query().Get("uid")
+    refreshToken := cloudSQL.GetRefreshToken(uid)
     
     urlStr := "https://www.googleapis.com/oauth2/v4/token"
  
     bodyVals := url.Values{
         "client_id": {os.Getenv("CLIENT_ID")},
         "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "refresh_token":{"1/pI4NYPkOnY_73TvjIPvZZ8jy9x7sqgmltw43cQDc-4g"},
+        "refresh_token":{refresh_token},
         "grant_type": {"refresh_token"},
     }
 
