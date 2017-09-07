@@ -15,7 +15,7 @@ import (
 	_ "github.com/samuelechu/cloudSQL"
     _ "github.com/samuelechu/templateTest"
     _ "github.com/samuelechu/cookieTest"
-    _ "github.com/samuelechu/transferMail
+    _ "github.com/samuelechu/transferMail"
     _ "google.golang.org/api/gmail/v1"
 )
 
