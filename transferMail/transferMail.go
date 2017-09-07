@@ -3,6 +3,7 @@ package transferMail
 import (
 	"log"
 	"net/http"
+	"github.com/samuelechu/oauth"
 )
 
 func init() {
@@ -29,6 +30,6 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     sourceID, _ := oauth.VerifyIDToken(w, r, sourceToken)
     destID, _ := oauth.VerifyIDToken(w, r, destToken)
 
-    log.Printf("Source ID: %v\n", sourceName)
-    log.Printf("Dest ID: %v\n", destName)
+    log.Printf("Source ID: %v\n", sourceID)
+    log.Printf("Dest ID: %v\n", destID)
 }
