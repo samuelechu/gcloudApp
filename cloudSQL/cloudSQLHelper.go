@@ -3,25 +3,24 @@ package cloudSQL
 import (
         "log"
         "net/http"
+        "database/sql"
         _ "github.com/go-sql-driver/mysql"
         "github.com/samuelechu/jsonHelper"
-        "reflect"
 )
 
-//var insertUserStmt *mysql.Stmt
+var insertUserStmt *sql.Stmt
 
 func initPrepareStatements() {
     insertUserStmt, err := db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
                                 refreshToken = ?`)
-    log.Print(reflect.TypeOf(insertUserStmt))
     checkErr(err)
 }
 
 func InsertUser(user_id string, name string, refresh_token string) {
 	
     if refresh_token != "" {
-        // _, err := insertUserStmt.Exec(user_id, name, refresh_token, refresh_token)
-        // checkErr(err)
+        _, err := insertUserStmt.Exec(user_id, name, refresh_token, refresh_token)
+        checkErr(err)
         log.Printf("inserted refresh token for %v!", name)
     }
 }
