@@ -35,7 +35,7 @@ func InsertUser(user_id, name, refresh_token string) {
 
 func GetRefreshToken(uid string) (string, error){
     
-    result, err := getRefTokenStmt.Exec(uid)
+    result, err := getRefTokenStmt.Query(uid)
     checkErr(err)
     result.Next()
 
