@@ -121,7 +121,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     http.SetCookie(w, &http.Cookie{
         Name: accountType,
         Value: access_token,
-        MaxAge: 15,
+        MaxAge: 3500,
     })
 
     redirectString := "https://gotesting-175718.appspot.com"
