@@ -42,12 +42,12 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
     resp, err := client.Do(req)
 
-    body = resp.Body
+    body := resp.Body
     defer body.Close()
 
     if body == nil {
         http.Error(w, "Response body not found", 400)
-        return nil
+        return
     }
 
     respBody, _ := ioutil.ReadAll(body)
