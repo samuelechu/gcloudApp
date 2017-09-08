@@ -11,6 +11,21 @@ import (
 	"net/url"
 )
 
+func GetJSONRespBodyGET(w http.ResponseWriter, r *http.Request, url string, rbType interface{}) interface{} {
+
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
+
+    resp, err := client.Get(url)
+
+    if err != nil {
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+            return nil
+    }
+
+    return UnmarshalJSON(w, r, resp.Body, rbType)
+}
+
 func GetJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data url.Values, rbType interface{}) interface{} {
 
     ctx := appengine.NewContext(r)
@@ -23,7 +38,6 @@ func GetJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
             return nil
     }
 
-    log.Print("am here")
     return UnmarshalJSON(w, r, resp.Body, rbType)
 }
 
