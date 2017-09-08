@@ -143,10 +143,11 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     //store the user and refresh token into database
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
 
+    access_token := oauth.GetAccessToken(w, r, uid)
     //send id_token to browser to identify the signed in user 
     http.SetCookie(w, &http.Cookie{
         Name: accountType,
-        Value: respBody.Id_token,
+        Value: access_token,
     })
 
     redirectString := "https://gotesting-175718.appspot.com"
