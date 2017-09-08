@@ -43,7 +43,7 @@ func GetUserInfo(w http.ResponseWriter, r *http.Request, accessToken string) (st
     req.Header.Set("Authorization", "Bearer " + accessToken)
 
     var respBody jsonHelper.UserInfoRespBody
-    if rb, ok := jsonHelper.GetJSONRespBody(w, r, req, respBody).(jsonHelper.UserInfoRespBody); ok {
+    if rb, ok := jsonHelper.GetJSONRespBodyDo(w, r, req, respBody).(jsonHelper.UserInfoRespBody); ok {
         return rb.Id, rb.Name
     }
 

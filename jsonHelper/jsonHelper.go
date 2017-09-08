@@ -11,12 +11,12 @@ import (
 	"net/url"
 )
 
-func GetJSONRespBody(w http.ResponseWriter, r *http.Request, req *http.Request, rbType interface{}) interface{} {
+func GetJSONRespBodyDo(w http.ResponseWriter, r *http.Request, req *http.Request, rbType interface{}) interface{} {
 
     ctx := appengine.NewContext(r)
     client := urlfetch.Client(ctx)
 
-    resp, err := client.Do(url)
+    resp, err := client.Do(req)
 
     if err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
