@@ -34,6 +34,19 @@ func VerifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
     return "",""   
 }
 
+//return uid, name of given access token
+func GetUserInfo(w http.ResponseWriter, r *http.Request, accessToken string) (string, string) {
+
+    urlStr := "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + accessToken
+
+    var respBody jsonHelper.UserInfoRespBody
+    if rb, ok := jsonHelper.GetJSONRespBodyGET(w, r, urlStr, respBody).(jsonHelper.UserInfoRespBody); ok {
+        return rb.Id, rb.Name
+    }
+
+    return "", ""
+}
+
 func GetAccessToken(w http.ResponseWriter, r *http.Request, uid string) string{
 
     refreshToken, err := cloudSQL.GetRefreshToken(uid)

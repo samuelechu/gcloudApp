@@ -15,20 +15,6 @@ func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/oauthCallback", oauthCallback)
      http.HandleFunc("/deleteCookies", deleteCookies)
-     http.HandleFunc("/testGetInfo", getInfo)
-}
-
-func getInfo(w http.ResponseWriter, r *http.Request) {
-    accessToken := r.URL.Query().Get("access_token")
-
-    urlStr := "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + accessToken
-
-    var respBody jsonHelper.UserInfoRespBody
-    if rb, ok := jsonHelper.GetJSONRespBodyGET(w, r, urlStr, respBody).(jsonHelper.UserInfoRespBody); ok {
-        fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Id, rb.Name, rb.Picture)
-
-    }
-
 }
 
 //askPermissions from user, response is auth code
@@ -135,6 +121,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     http.SetCookie(w, &http.Cookie{
         Name: accountType,
         Value: access_token,
+        MaxAge: 15
     })
 
     redirectString := "https://gotesting-175718.appspot.com"

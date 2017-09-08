@@ -51,7 +51,7 @@ func UnmarshalJSON(w http.ResponseWriter, r *http.Request, body io.ReadCloser, s
     }
 
     respBody, _ := ioutil.ReadAll(body)
-    log.Printf("HTTP PostForm returned %v", string(respBody))
+    log.Printf("HTTP PostForm/GET returned %v", string(respBody))
     // fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
     switch values := struct_type.(type) {

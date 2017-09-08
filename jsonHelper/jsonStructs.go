@@ -23,7 +23,6 @@ type OauthRespBody struct{
 }
 
 type UserInfoRespBody struct{
-
     Id              string
     Name            string
     Given_name      string
