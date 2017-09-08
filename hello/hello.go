@@ -13,8 +13,6 @@ import (
     "html/template"
     "github.com/samuelechu/oauth"
 	_ "github.com/samuelechu/cloudSQL"
-    _ "github.com/samuelechu/templateTest"
-    _ "github.com/samuelechu/cookieTest"
     _ "github.com/samuelechu/transferMail"
     _ "google.golang.org/api/gmail/v1"
 )
@@ -56,6 +54,7 @@ func index(w http.ResponseWriter, r *http.Request) {
     }
 
     log.Print("index was triggered!")
+
 
     sourceToken := ""
     destToken := ""
