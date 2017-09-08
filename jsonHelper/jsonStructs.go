@@ -22,6 +22,16 @@ type OauthRespBody struct{
     Id_token 		string
 }
 
+type UserInfoRespBody struct{
+
+    Id              string
+    Name            string
+    Given_name      string
+    Family_name     string
+    Picture         string
+    Locale          string
+}
+
 //cloudSQL
 type User struct{
     Uid     string

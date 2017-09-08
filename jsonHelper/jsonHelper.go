@@ -56,6 +56,11 @@ func UnmarshalJSON(w http.ResponseWriter, r *http.Request, body io.ReadCloser, s
 			json.Unmarshal(respBody, &values)
 			return values
 
+		case UserInfoRespBody:
+			values = struct_type.(UserInfoRespBody)
+			json.Unmarshal(respBody, &values)
+			return values
+
 		case User:
 			values = struct_type.(User)
 			json.Unmarshal(respBody, &values)

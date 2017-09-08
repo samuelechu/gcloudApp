@@ -15,34 +15,23 @@ func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/oauthCallback", oauthCallback)
      http.HandleFunc("/deleteCookies", deleteCookies)
-     http.HandleFunc("/getAccessToken", getAccessToken)
+     http.HandleFunc("/testGetInfo", getInfo)
 }
 
-func getAccessToken(w http.ResponseWriter, r *http.Request) {
-    
-    uid := r.URL.Query().Get("uid")
-    refreshToken, err := cloudSQL.GetRefreshToken(uid)
+func getInfo(w http.ResponseWriter, r *http.Request) {
+    accessToken := r.URL.Query().Get("access_token")
 
-
-    if err != nil {
-        http.Error(w, fmt.Sprintf("DB err: %v.", err), 500)
-        return
-    }
-    
-    urlStr := "https://www.googleapis.com/oauth2/v4/token"
- 
+    urlStr := "https://www.googleapis.com/oauth2/v1/userinfo"
     bodyVals := url.Values{
-        "client_id": {os.Getenv("CLIENT_ID")},
-        "client_secret": {os.Getenv("CLIENT_SECRET")},
-        "refresh_token":{refreshToken},
-        "grant_type": {"refresh_token"},
+        "access_token": {accessToken},
     }
 
-    var respBody jsonHelper.AccessTokenRespBody 
-    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.AccessTokenRespBody); ok {
-        fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Access_token, rb.Expires_in, rb.Token_type)
+    var respBody jsonHelper.UserInfoRespBody
+    if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.UserInfoRespBody); ok {
+        fmt.Fprintf(w, "HTTP Post returned %v %v %v", rb.Id, rb.Name, rb.Picture)
 
     }
+
 }
 
 //askPermissions from user, response is auth code
@@ -144,7 +133,8 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     cloudSQL.InsertUser(uid, name, respBody.Refresh_token)
 
     access_token := GetAccessToken(w, r, uid)
-    //send id_token to browser to identify the signed in user 
+
+    //send access_token to browser to identify the signed in user 
     http.SetCookie(w, &http.Cookie{
         Name: accountType,
         Value: access_token,
