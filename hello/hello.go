@@ -48,16 +48,14 @@ type AccountNames struct {
 
 func index(w http.ResponseWriter, r *http.Request) {
 
+    var sourceToken, sourceName, destToken, destName string 
+
     if r.URL.Path != "/" {
                 http.NotFound(w, r)
                 return
     }
 
     log.Print("index was triggered!")
-
-
-    sourceToken := ""
-    destToken := ""
     
     sourceCookie, err := r.Cookie("source")
     if err == nil {
@@ -68,9 +66,9 @@ func index(w http.ResponseWriter, r *http.Request) {
     if err == nil {
         destToken = destCookie.Value
     }
-
-    _, sourceName := oauth.GetUserInfo(w, r, sourceToken)
-    _, destName := oauth.GetUserInfo(w, r, destToken)
+    
+    _, sourceName = oauth.GetUserInfo(w, r, sourceToken)
+    _, destName = oauth.GetUserInfo(w, r, destToken)
 
     log.Printf("Source Name: %v\n", sourceName)
     log.Printf("Dest Name: %v\n", destName)

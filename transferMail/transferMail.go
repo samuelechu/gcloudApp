@@ -11,8 +11,7 @@ func init() {
 }
 
 func transferEmail(w http.ResponseWriter, r *http.Request) {
-	sourceToken := ""
-    destToken := ""
+	var sourceToken, sourceID, destToken, destID string
     
     sourceCookie, err := r.Cookie("source")
     if err == nil {
@@ -27,8 +26,10 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source Cookie: %v\n", sourceCookie)
     log.Printf("Dest Cookie: %v\n", destCookie)
 
-    sourceID, _ := oauth.VerifyIDToken(w, r, sourceToken)
-    destID, _ := oauth.VerifyIDToken(w, r, destToken)
+    sourceID, _ = oauth.GetUserInfo(w, r, sourceToken)
+    destID, _ = oauth.GetUserInfo(w, r, destToken)
+
+
 
     log.Printf("Source ID: %v\n", sourceID)
     log.Printf("Dest ID: %v\n", destID)
