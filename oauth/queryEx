@@ -1,15 +1,12 @@
-https://8080-dot-2979131-dot-devshell.appspot.com/getToken
+ urlStr := "https://www.googleapis.com/oauth2/v1/userinfo"
 
-?state=state_parameter_passthrough_value
-&code=4/Mjk9qRdZ9zo0V1WjhIYaRzlhhV1P0s3aUIrhYJrIL_A
-&scope=https://www.googleapis.com/auth/gmail.readonly+https://www.googleapis.com/auth/plus.me+https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile#
+    req, _ := http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + accessToken)
 
-r.URL.Query():
-map[
-scope:[https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile] 
-state:[state_parameter_passthrough_value] 
-code:[4/Mjk9qRdZ9zo0V1WjhIYaRzlhhV1P0s3aUIrhYJrIL_A]]
-
+    var respBody jsonHelper.UserInfoRespBody
+    if rb, ok := jsonHelper.GetJSONRespBodyDo(w, r, req, respBody).(jsonHelper.UserInfoRespBody); ok {
+        return rb.Id, rb.Name
+    }
 
 bodyVals := url.Values{
         "client_id": {os.Getenv("CLIENT_ID")},
@@ -27,63 +24,6 @@ client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.co
 
 
 https://accounts.google.com/o/oauth2/v2/auth?scope=https%3a%2f%2fwww.googleapis.com/auth/gmail.insert&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=https%3a%2f%2f8080-dot-2979131-dot-devshell.appspot.com%2FgetToken&response_type=code&client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com
-
-
-
-in askPermissions. 
-R is &{GET /askPermissions?type=source HTTP/1.1 1 1 
-	map[X-Appengine-User-Email:[] 
-	X-Appengine-Default-Version-Hostname:[127.0.0.1:8080] 
-	X-Forwarded-For:[98.185.215.139, 216.58.194.148] 
-	X-Appengine-Server-Port:[8080] 
-	Referer:[https://8080-dot-2979131-dot-devshell.appspot.com/?authuser=1] 
-	X-Appengine-Remote-Addr:[127.0.0.1] 
-	X-Appengine-City:[goleta] 
-Cookie:[G_ENABLED_IDPS=google; devshell-proxy-session=0850a5d4916bd0df2effaa457c392f594576f5df141393cd4fe75d987c7df5c1; G_AUTHUSER_H=0] 
-
-
-X-Appengine-User-Is-Admin:[0] 
-X-Appengine-Server-Protocol:[HTTP/1.0] 
-X-Appengine-Request-Id-Hash:[676E1FEB] 
-
-Accept-Language:[en-US,en;q=0.8] 
-X-Appengine-Request-Log-Id:[4a8d8e7b7ae09f9af10ff9fe8388e2f7666764d09eefa] 
-Accept-Encoding:[identity] 
-User-Agent:[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36] Upgrade-Insecure-Requests:[1] 
-X-Appengine-Citylatlong:[34.435829,-119.827639]
- X-Appengine-User-Nickname:[] 
- X-Appengine-User-Organization:[]
-  X-Forwarded-Proto:[https]
-   Dnt:[1]
-    Accept:[text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8] X-Cloud-Trace-Context:[18f374bae8eb46bdb9ea885b304fe884/9165195896142908536] X-Appengine-Country:[ZZ] 
-    X-Appengine-Region:[ca]
-     X-Appengine-User-Id:[] 
-     X-Goog-Cloud-Shell-Target-Host:[127.0.0.1]
-      X-Appengine-Server-Software:[Development/2.0] 
-      X-Appengine-Server-Name:[127.0.0.1] Via:[1.1 google]]
-       0xc77780 0 [] false 127.0.0.1:8080 map[] map[] <nil> map[] 127.0.0.1 /askPermissions?type=source <nil> <nil>}............
-
-
-
-
-
-       W is &{0xc820049a80 0xc8201556c0 0xc77780 false false 0xc8201a6400 {0xc8201c3380 map[] false false} map[] false 0 -1 0 false false [] 0 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0] <nil>}
-
-2017/09/06 05:06:55 In askPermissions: account type was source
-2017/09/06 05:06:55 woohooooooo redirect
-
-
-INFO     2017-09-06 05:06:55,781 module.py:806] default: "GET /askPermissions?type=source HTTP/1.0" 302 436
-2017/09/06 05:06:58 In oauthCallback R is &{
-
-GET /oauthCallback?state=state_parameter_passthrough_value&code=4/Jtpq69WIiw3boKP7fnC2aIdMj9IK-baM3nsJoqqBN9I&scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/gmail.insert+https://www.googleapis.com/auth/plus.me+https://www.googleapis.com/auth/gmail.readonly+https://www.googleapis.com/auth/userinfo.email HTTP/1.1 1 1 map[X-Forwarded-Proto:[https] X-Appengine-User-Id:[] Accept-Encoding:[identity] Upgrade-Insecure-Requests:[1] X-Appengine-Server-Protocol:[HTTP/1.0] Accept:[text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8] X-Appengine-User-Is-Admin:[0] X-Appengine-Citylatlong:[34.435829,-119.827639] X-Appengine-Remote-Addr:[127.0.0.1] Accept-Language:[en-US,en;q=0.8] X-Cloud-Trace-Context:[3724dcf50ccc70b0858c14babb80e726/12507765099035999510] User-Agent:[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36] X-Appengine-Server-Name:[127.0.0.1] X-Appengine-Request-Log-Id:[74ffe6e97da0dbd3a1aa9d3fd25cd7d13d38c95ea44fe1e67d08cc74cab0e9e7aeee7a] X-Appengine-User-Organization:[] X-Appengine-User-Email:[] X-Appengine-Default-Version-Hostname:[127.0.0.1:8080] X-Appengine-Server-Software:[Development/2.0] X-Appengine-Request-Id-Hash:[C92C9E6F] X-Appengine-Region:[ca] X-Appengine-Country:[ZZ] Via:[1.1 google] X-Appengine-City:[goleta] X-Appengine-User-Nickname:[] Cookie:[G_ENABLED_IDPS=google; devshell-proxy-session=0850a5d4916bd0df2effaa457c392f594576f5df141393cd4fe75d987c7df5c1; G_AUTHUSER_H=0] X-Appengine-Server-Port:[8080] Referer:[https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com&as=-49ba3d988c69e414&destination=https%3A%2F%2F8080-dot-2979131-dot-devshell.appspot.com&approval_state=!ChRzeGZGNk1XR19OVWxGSjdicklaNhIfYzJWUzNnYlJMcFFhZ0dULWVTYTM3MXpaVWxoWjVSVQ%E2%88%99AHw7d_cAAAAAWbDT79-ZkVMdAbBSrzOXekV-OUGrawXF&xsrfsig=AHgIfE-v6kbVQx0ApeYSYcA14CbCxr4w3g&flowName=GeneralOAuthFlow] X-Forwarded-For:[98.185.215.139, 216.58.194.148] X-Goog-Cloud-Shell-Target-Host:[127.0.0.1] Dnt:[1]] 0xc77780 0 [] false 127.0.0.1:8080 map[] map[] <nil> map[] 127.0.0.1 /oauthCallback?state=state_parameter_passthrough_value&code=4/Jtpq69WIiw3boKP7fnC2aIdMj9IK-baM3nsJoqqBN9I&scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/gmail.insert+https://www.googleapis.com/auth/plus.me+https://www.googleapis.com/auth/gmail.readonly+https://www.googleapis.com/auth/userinfo.email <nil> <nil>}............
-
-
-
-
-W is &{0xc820049d00 0xc820155a40 0xc77780 false false 0xc8201a6400 {0xc8201c36c0 map[] false false} map[] false 0 -1 0 false false [] 0 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0] <nil>}
-
-W is &{0xc820049a80 0xc8201556c0 0xc77780 false false 0xc8201a6400 {0xc8201c3380 map[] false false} map[] false 0 -1 0 false false [] 0 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0] <nil>}
 
 
 

@@ -36,3 +36,16 @@ type User struct{
     Uid     string
     Name    string
 }
+
+//gmail api
+// type Threads struct{
+//     Threads     string
+//     Name    string
+// }
+// {
+//   "threads": [
+//     users.threads Resource
+//   ],
+//   "nextPageToken": string,
+//   "resultSizeEstimate": unsigned integer
+// }
