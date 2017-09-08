@@ -37,10 +37,13 @@ func VerifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
 //return uid, name of given access token
 func GetUserInfo(w http.ResponseWriter, r *http.Request, accessToken string) (string, string) {
 
-    urlStr := "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + accessToken
+    urlStr := "https://www.googleapis.com/oauth2/v1/userinfo"
+
+    req, _ := http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + accessToken)
 
     var respBody jsonHelper.UserInfoRespBody
-    if rb, ok := jsonHelper.GetJSONRespBodyGET(w, r, urlStr, respBody).(jsonHelper.UserInfoRespBody); ok {
+    if rb, ok := jsonHelper.GetJSONRespBody(w, r, req, respBody).(jsonHelper.UserInfoRespBody); ok {
         return rb.Id, rb.Name
     }
 
