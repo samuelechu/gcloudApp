@@ -32,7 +32,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source ID: %v\n", sourceID)
     log.Printf("Dest ID: %v\n", destID)
 
-    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads"
+    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads/15e5d6ed5bb68a29"
 
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
