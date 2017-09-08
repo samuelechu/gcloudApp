@@ -21,7 +21,7 @@ func init() {
 func getInfo(w http.ResponseWriter, r *http.Request) {
     accessToken := r.URL.Query().Get("access_token")
 
-    urlStr := "https://www.googleapis.com/oauth2/v1/userinfo?access_token" + accessToken
+    urlStr := "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + accessToken
 
     var respBody jsonHelper.UserInfoRespBody
     if rb, ok := jsonHelper.GetJSONRespBodyGET(w, r, urlStr, respBody).(jsonHelper.UserInfoRespBody); ok {
