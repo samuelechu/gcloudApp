@@ -63,7 +63,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         id, _, _, _ := jsonparser.Get(value, "id")
-        log.Println(id)
+        log.Println(string(id))
     }, "threads")
 
 
