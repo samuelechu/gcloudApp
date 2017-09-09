@@ -31,7 +31,6 @@ type UserInfoRespBody struct{
     Locale          string
 }
 
-//cloudSQL
 type User struct{
     Uid     string
     Name    string

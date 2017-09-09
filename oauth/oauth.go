@@ -15,6 +15,29 @@ func init() {
      http.HandleFunc("/askPermissions", askPermissions)
      http.HandleFunc("/oauthCallback", oauthCallback)
      http.HandleFunc("/deleteCookies", deleteCookies)
+     http.HandleFunc("/signIn", signInHandler)
+}
+
+
+func signInHandler(w http.ResponseWriter, r *http.Request) {
+
+    if r.Method != "POST" {
+                http.NotFound(w, r)
+                return
+    }
+
+    var u, user jsonHelper.User
+    if u, ok := jsonHelper.UnmarshalJSON(w, r, r.Body, u).(jsonHelper.User); ok {
+        user = u
+        log.Printf("UnmarshalJSON returned %v %v", user.Uid, user.Name)
+
+        cloudSQL.InsertUser(user.Uid, user.Name, "")
+
+        http.SetCookie(w, &http.Cookie{
+            Name: "current_user",
+            Value: user.Uid,
+        })
+    }
 }
 
 //askPermissions from user, response is auth code

@@ -7,6 +7,7 @@ import (
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
 	"github.com/samuelechu/oauth"
+    "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
 )
 
@@ -15,7 +16,12 @@ func init() {
 }
 
 func transferEmail(w http.ResponseWriter, r *http.Request) {
-	var sourceToken, sourceID, destToken, destID string
+	var curUserID, sourceToken, sourceID, destToken, destID string
+
+    curUserCookie, err := r.Cookie("current_user")
+    if err == nil {
+        curUserID = curUserCookie.Value
+    }
     
     sourceCookie, err := r.Cookie("source")
     if err == nil {
@@ -62,8 +68,13 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     // }
     
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-        id, _, _, _ := jsonparser.Get(value, "id")
-        log.Println(string(id))
+        uid, _, _, _ := jsonparser.Get(value, "id")
+        if "id" != "" {
+            log.Print("Inserting into database: Thread %v", string(id))
+            cloudSQL.InsertThread(curUserID, name, respBody.Refresh_token)
+
+        }
+        
     }, "threads")
 
 
