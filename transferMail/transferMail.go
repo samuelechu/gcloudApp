@@ -54,11 +54,12 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     respBody, _ := ioutil.ReadAll(body)
     log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    if message_id, ok := jsonparser.GetString(respBody, "id"); ok == nil{
-        log.Printf("ID of messsage was %v", message_id)
-    }
+    // if message_id, ok := jsonparser.GetString(respBody, "id"); ok == nil{
+    //     log.Printf("ID of messsage was %v", message_id)
+    // }
     
-
+    res, _, _, _ := jsonparser.GetString(respBody, "id")
+    log.Printf("jsonparser returned %v", string(res))
     // urlStr := "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=media"
 
     // bodyVals := url.Values{
