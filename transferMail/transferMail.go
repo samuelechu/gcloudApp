@@ -54,7 +54,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     respBody, _ := ioutil.ReadAll(body)
     log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    if message_id, ok := jsonparser.Get(respBody, "id").(string); ok{
+    if message_id, ok := jsonparser.GetString(respBody, "id"); ok == nil{
         log.Printf("ID of messsage was %v", message_id)
     }
     
