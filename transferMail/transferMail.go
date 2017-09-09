@@ -58,7 +58,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     //     log.Printf("ID of messsage was %v", message_id)
     // }
     
-    res, _, _, _ := jsonparser.GetString(respBody, "id")
+    res, _, _, _ := jsonparser.Get(respBody, "id")
     log.Printf("jsonparser returned %v", string(res))
     // urlStr := "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=media"
 
