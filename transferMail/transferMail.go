@@ -68,10 +68,10 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     // }
     
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-        uid, _, _, _ := jsonparser.Get(value, "id")
-        if "id" != "" {
-            log.Print("Inserting into database: Thread %v", string(id))
-            cloudSQL.InsertThread(curUserID, name, respBody.Refresh_token)
+        thread_id, _, _, _ := jsonparser.Get(value, "id")
+        if string(thread_id) != "" {
+            log.Print("Inserting into database: Thread %v", string(thread_id))
+            cloudSQL.InsertThread(curUserID, string(thread_id))
 
         }
         

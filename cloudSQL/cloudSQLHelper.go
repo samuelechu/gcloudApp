@@ -10,6 +10,7 @@ import (
 )
 
 var insertUserStmt *sql.Stmt
+var insertThreadStmt *sql.Stmt
 var getRefTokenStmt *sql.Stmt
 
 func initPrepareStatements() {
@@ -17,6 +18,9 @@ func initPrepareStatements() {
     
     insertUserStmt, err = db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
                                 refreshToken = ?`)
+    checkErr(err)
+
+    insertThreadStmt, err = db.Prepare(`INSERT IGNORE INTO threads (uid, thread_id) VALUES(?, ?) )
     checkErr(err)
 
     getRefTokenStmt, err = db.Prepare(`SELECT refreshToken FROM users WHERE uid = ?`)
@@ -38,6 +42,14 @@ func InsertUser(user_id, name, refresh_token string) {
         checkErr(err)
     }
 }
+
+func InsertThread(uid, thread_id string) {
+    _, err := insertThreadStmt.Exec(uid, thread_id)
+        checkErr(err)
+
+    log.Printf("inserted thread %v!", thread_id)
+
+} 
 
 func GetRefreshToken(uid string) (string, error){
     
