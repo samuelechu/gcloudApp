@@ -3,10 +3,8 @@ package cloudSQL
 import (
         "log"
         "errors"
-        "net/http"
         "database/sql"
         _ "github.com/go-sql-driver/mysql"
-        "github.com/samuelechu/jsonHelper"
 )
 
 var insertUserStmt *sql.Stmt
