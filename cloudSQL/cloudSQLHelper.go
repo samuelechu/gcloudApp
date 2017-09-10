@@ -36,7 +36,7 @@ func InsertUser(user_id, name, refresh_token string) {
         stmt, err := db.Prepare("INSERT IGNORE INTO users SET uid=?, Name=?")
         checkErr(err)
 
-        _, err := stmt.Exec(user_id, name)
+        _, err = stmt.Exec(user_id, name)
         checkErr(err)
     }
 }
