@@ -20,7 +20,7 @@ func initPrepareStatements() {
                                 refreshToken = ?`)
     checkErr(err)
 
-    insertThreadStmt, err = db.Prepare(`INSERT IGNORE INTO threads (uid, thread_id) VALUES(?, ?) )
+    insertThreadStmt, err = db.Prepare(`INSERT IGNORE INTO threads (uid, thread_id) VALUES(?, ?)` )
     checkErr(err)
 
     getRefTokenStmt, err = db.Prepare(`SELECT refreshToken FROM users WHERE uid = ?`)
