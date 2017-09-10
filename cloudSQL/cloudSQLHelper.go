@@ -47,7 +47,30 @@ func InsertThread(uid, thread_id string) {
 
     log.Printf("inserted thread %v!", thread_id)
 
-} 
+}
+
+func GetThreadsForUser(uid string) []string {
+
+    getThreadsStmt, err := db.Prepare(`SELECT thread_id FROM threads WHERE uid=? AND done='F'`)
+    checkErr(err)
+
+    rows, err := getThreadsStmt.Query(uid)
+    checkErr(err)
+
+    var threads []string
+    defer rows.Close()
+    for rows.Next() {
+        var thread_id string
+        err = rows.Scan(&thread_id)
+        threads = append(threads, thread_id)
+        checkErr(err)
+    }
+    // get any error encountered during iteration
+    err = rows.Err()
+    checkErr(err)
+
+    return threads
+}
 
 func GetRefreshToken(uid string) (string, error){
     
