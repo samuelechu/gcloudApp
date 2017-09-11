@@ -20,8 +20,9 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
-    ctx := appengine.NewContext(req)
-    client := urlfetch.Client(ctx)
+	var client = &http.Client{
+	  Timeout: time.Second * 10,
+	}
 
     resp, err := client.Do(req)
 
