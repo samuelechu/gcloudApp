@@ -66,7 +66,7 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     urlStr = "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=multipart"
 
     body = strings.NewReader("--foobar\nContent-Type: application/json; charset=UTF-8\n{" +
-"\n\"raw\":\"" + raw + "\"\n\"labelIds\": [\"INBOX\", \"UNREAD\"]\n}" +
+"\n\"raw\":\"" + string(raw) + "\"\n\"labelIds\": [\"INBOX\", \"UNREAD\"]\n}" +
 "--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")
 
     insertReq, _ := http.NewRequest("POST", urlStr, body)
