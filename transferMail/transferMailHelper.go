@@ -44,7 +44,7 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     respBody, _ := ioutil.ReadAll(body)
     //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    labels, _, _, _ := jsonparser.Get(value, "labelIds")
+    labels, _, _, _ := jsonparser.Get(respBody, "labelIds")
 	log.Printf("Got labels: %v", string(labels))
 
 
