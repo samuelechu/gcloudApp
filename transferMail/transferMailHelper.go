@@ -79,7 +79,7 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
 
     insertReq, _ := http.NewRequest("POST", urlStr, body)
     insertReq.Header.Set("Authorization", "Bearer " + destToken)
-    insertReq.Header.Set("Content-Type", "multipart/related; boundary=foo_bar")
+    insertReq.Header.Set("Content-Type", "multipart/related; boundary=\"foo_bar\"")
 
     resp, err = client.Do(insertReq)
 
