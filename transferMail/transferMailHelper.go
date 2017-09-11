@@ -70,7 +70,11 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
 
 	// }
 
-    log.Print(string(raw))
+    err = ioutil.WriteFile("../transferMail/output.txt", raw, 0644)
+    if err != nil {
+        panic(err)
+    }
+
     urlStr = "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=multipart"
 
     body = nopCloser{bytes.NewBufferString("--foo_bar\nContent-Type: application/json; charset=UTF-8\n{" +
