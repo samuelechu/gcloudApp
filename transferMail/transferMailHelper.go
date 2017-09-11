@@ -45,7 +45,7 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
     labels, _, _, _ := jsonparser.Get(value, "labelIds")
-	log.Printf("Got labels: %v", []string(labels))
+	log.Printf("Got labels: %v", string(labels))
 
 
     // jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
