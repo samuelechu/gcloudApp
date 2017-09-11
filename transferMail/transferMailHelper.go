@@ -19,9 +19,12 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
-	var client = &http.Client{
-	  Timeout: time.Second * 10,
-	}
+    transport := http.Transport{}
+
+    client := &http.Client{
+        Transport: &transport,
+        Timeout: time.Second * 10,
+    }     
 
     resp, err := client.Do(req)
 
