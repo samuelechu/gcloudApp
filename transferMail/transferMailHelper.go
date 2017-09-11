@@ -27,7 +27,7 @@ func startTransfer(w http.ResponseWriter, r *http.Request, curUserID, sourceToke
 
     if err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
-            return nil
+            return
     }
     
     body := resp.Body
