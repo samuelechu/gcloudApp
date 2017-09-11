@@ -95,7 +95,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
     resp2, err := client.Do(req2)
 
-    body2 := resp.Body
+    body2 := resp2.Body
     defer body2.Close()
 
     if body2 == nil {
