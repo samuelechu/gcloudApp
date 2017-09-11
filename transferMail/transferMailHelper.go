@@ -3,7 +3,6 @@ package transferMail
 import (
     "log"
 	"net/http"
-	"strings"
 	"io"
     "io/ioutil"
     "bytes"
