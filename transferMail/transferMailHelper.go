@@ -12,7 +12,7 @@ import (
 func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)
-
+	log.Printf("curUserID : %v, sourceToken : %v, sourceID : %v, destToken : %v, destID : %v", curUserID, sourceToken, sourceID, destToken, destID)
 	
 	urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/15d3d8e8de90ebcc" //testTransfer label
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
