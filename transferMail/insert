@@ -8,6 +8,22 @@ Content-Length	15448 (Body size)
 
 Body:...............................
 
+
+Body: strings.NewReader(
+			"--foo\r\nFoo: one\r\n\r\nA section\r\n" +
+				"--foo\r\nFoo: two\r\n\r\nAnd another\r\n" +
+				"--foo--\r\n"),
+
+'--foobar\nContent-Type: application/json; charset=UTF-8\n{' +
+'\n\"raw\":\"' + raw + '\"\n\"labelIds\": ["INBOX", "UNREAD"]\n}' +
+'--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--'
+
+
+
+
+
+
+
 --foo_bar
 Content-Type: application/json; charset=UTF-8
 

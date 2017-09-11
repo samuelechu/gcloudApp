@@ -3,6 +3,7 @@ package transferMail
 import (
     "log"
 	"net/http"
+	"strings"
     "io/ioutil"
     "time"
     "github.com/samuelechu/cloudSQL"
@@ -44,8 +45,8 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     respBody, _ := ioutil.ReadAll(body)
     //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    labels, _, _, _ := jsonparser.Get(respBody, "labelIds")
-	log.Printf("Got labels: %v", string(labels))
+    raw, _, _, _ := jsonparser.Get(respBody, "raw")
+	//log.Printf("Got labels: %v", string(labels))
 
 
     // jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
@@ -61,4 +62,34 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
 	// for _, thread := range threads {
 
 	// }
+
+    urlStr = "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=multipart"
+
+    body := strings.NewReader('--foobar\nContent-Type: application/json; charset=UTF-8\n{' +
+'\n\"raw\":\"' + raw + '\"\n\"labelIds\": ["INBOX", "UNREAD"]\n}' +
+'--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--')
+
+    insertReq, _ := http.NewRequest("POST", urlStr, body)
+    insertReq.Header.Set("Authorization", "Bearer " + destToken)
+    insertReq.Header.Set("Content-Type", "multipart/related; boundary=foo_bar")
+
+    resp, err = client.Do(insertReq)
+
+    if err != nil {
+    		log.Printf("Error: %v", err)
+            return
+    }
+    
+    body = resp.Body
+    defer body.Close()
+
+    if body == nil {
+    	log.Print("Error: Response body not found")
+        return
+    }
+
+    respBody, _ = ioutil.ReadAll(body)
+    log.Printf("HTTP PostForm/GET returned %v", string(respBody))
+
+
 }
