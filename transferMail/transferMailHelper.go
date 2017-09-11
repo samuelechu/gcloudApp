@@ -26,7 +26,7 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     resp, err := client.Do(req)
 
     if err != nil {
-    		log.Printf("Error: %v", http.StatusInternalServerError)
+    		log.Printf("Error: %v", err)
             return
     }
     
