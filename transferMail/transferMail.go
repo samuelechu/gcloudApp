@@ -6,6 +6,7 @@ import (
     "io/ioutil"
     "fmt"
     "bytes"
+    "time"
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
 	"github.com/samuelechu/oauth"
@@ -154,7 +155,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
     fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
-
+    time.Sleep(15)
 
 
 }
