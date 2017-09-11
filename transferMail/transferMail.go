@@ -87,26 +87,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     res, _, _, _ := jsonparser.Get(respBody, "resultSizeEstimate")
     log.Printf("jsonparser returned %v", string(res))
 
-
-
-
-    req2, _ := http.NewRequest("GET", urlStr, nil)
-    req2.Header.Set("Authorization", "Bearer " + sourceToken)
-
-    resp2, err := client.Do(req2)
-
-    body2 := resp2.Body
-    defer body2.Close()
-
-    if body2 == nil {
-        http.Error(w, "Response body not found", 400)
-        return
-    }
-
-    respBody2, _ := ioutil.ReadAll(body2)
-    log.Printf("HTTP PostForm/GET returned %v", string(respBody2))
-
-    go startTransfer(w, client, curUserID, sourceToken, sourceID, destToken, destID)
+    go startTransfer(curUserID, sourceToken, sourceID, destToken, destID)
     // urlStr := "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=media"
 
     // bodyVals := url.Values{
