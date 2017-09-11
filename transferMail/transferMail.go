@@ -155,7 +155,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
     fmt.Fprintf(w, "HTTP Post returned %v", string(respBody))
 
-    time.Sleep(15)
+    time.Sleep(time.Duration(15)*time.Second)
 
 
 }
