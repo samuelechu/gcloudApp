@@ -24,6 +24,11 @@ func startTransfer(w http.ResponseWriter, r *http.Request, curUserID, sourceToke
     client := urlfetch.Client(ctx)
 
     resp, err := client.Do(req)
+
+    if err != nil {
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+            return nil
+    }
     
     body := resp.Body
     defer body.Close()
