@@ -34,7 +34,7 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     defer body.Close()
 
     if body == nil {
-        http.Error(w, "Response body not found", 400)
+    	log.Print("Error: Response body not found")
         return
     }
 
