@@ -1,0 +1,1620 @@
+{
+ "id": "15d22fce271fd54c",
+ "historyId": "3049109",
+ "messages": [
+  {
+   "id": "15d22fce271fd54c",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hello, I recently came across a job posting for a software engineer position at TrueVision Systems. I am a 4th year CS undergrad at UCSB planning to graduate this winter. Over my time at UCSB, I have",
+   "historyId": "3049109",
+   "internalDate": "1499530585000",
+   "payload": {
+    "mimeType": "multipart/mixed",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.237.63.5 with HTTP; Sat, 8 Jul 2017 09:16:25 -0700 (PDT)"
+     },
+     {
+      "name": "Date",
+      "value": "Sat, 8 Jul 2017 09:16:25 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "jobs@truevisionsys.com"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/mixed; boundary=\"001a11403d68da01500553d0ab61\""
+     }
+    ]
+   },
+   "sizeEstimate": 93361
+  },
+  {
+   "id": "15d39dd875902c8c",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Hi Sam, Thanks for reaching out to us! Your background looks like a very good fit for what we are looking for. This week is really crazy, because the software team is moving offices to a larger space",
+   "historyId": "3049109",
+   "internalDate": "1499914396000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.34.247 with SMTP id g52csp1603981qta;        Wed, 12 Jul 2017 19:53:25 -0700 (PDT)"
+     },
+     {
+      "name": "X-Received",
+      "value": "by 10.36.81.211 with SMTP id s202mr26473055ita.113.1499914405926;        Wed, 12 Jul 2017 19:53:25 -0700 (PDT)"
+     },
+     {
+      "name": "ARC-Seal",
+      "value": "i=1; a=rsa-sha256; t=1499914405; cv=none;        d=google.com; s=arc-20160816;        b=aCMFnJDn2qUddlXQblMFndNCb2QhUAbmyZjdYEG+cwGrDirLj63MLDsrDvyntPP6TK         NHGUEkBddvTrXKKOsgLsWetEmCZpFV/FwWe2wS7o7/R1SBZySpYE20QI0lv2Xu2dswPu         85xkVxRGbdeqhau5H8YgMKpJsco2xwL+f6vl+LjpQl0WGIMBoF3kYc5UmwyIewl/trew         eZZSDExnF6pV/u7munTq370TXUxNNV8dIWiuh2BZw7ceWQirs97cOD8SB/31eUNgHr/8         u9mgOzwupLymF2sU1EPaYiCA25frd2bqv4pjqVx3WxSnN1nVBSOsHYGT8+sAE6yXVV1v         lbQg=="
+     },
+     {
+      "name": "ARC-Message-Signature",
+      "value": "i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;        h=mime-version:content-language:accept-language:in-reply-to         :references:message-id:date:thread-index:thread-topic:subject:cc:to         :from:arc-authentication-results;        bh=5Gimnw+dMYjp4FRR/cGijxhjLf3hw6yw6wRNGfuYqDU=;        b=d4UXIjk6R9WJNy0e3q2FMJmuljCPiO4dtSBYrrwZGO6CTz8h6gYBBFVdWZgkdTlujK         51F0JikTF9igeFjNequWyf/ozc81c3mx3fJ+67vob1Md9ACyFR+lE4mH3kbuJSZH7JoH         reqOJiD9A2bM5kw0eDmMgNBqqimwFKHehYgyXIDIjVC71qwlL3GDWtjvNFZPOa6ruZS0         vHbKu4mblwfE1hdL6hc70SSTPBwYjv368cnLDxLD5H8CmASZwRL5DXQ5v4ks3nOA4ZN6         sioJKVGrSi9UhfLmk3DxbXHW1HUiSTTd0YoLTeDxuWDn8MNcRx8PCx70WS6CqzCVhAAk         A9LA=="
+     },
+     {
+      "name": "ARC-Authentication-Results",
+      "value": "i=1; mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of btripathi@truevisionsys.com) smtp.mailfrom=btripathi@truevisionsys.com"
+     },
+     {
+      "name": "Return-Path",
+      "value": "\u003cbtripathi@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (antispam1.ciosolutions.com. [52.52.106.245])        by mx.google.com with ESMTPS id b2si4313983iti.91.2017.07.12.19.53.25        for \u003csamuelechu@gmail.com\u003e        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);        Wed, 12 Jul 2017 19:53:25 -0700 (PDT)"
+     },
+     {
+      "name": "Received-SPF",
+      "value": "neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of btripathi@truevisionsys.com) client-ip=52.52.106.245;"
+     },
+     {
+      "name": "Authentication-Results",
+      "value": "mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of btripathi@truevisionsys.com) smtp.mailfrom=btripathi@truevisionsys.com"
+     },
+     {
+      "name": "Received",
+      "value": "from localhost (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id DCDF8176874 for \u003csamuelechu@gmail.com\u003e; Wed, 12 Jul 2017 19:53:24 -0700 (PDT)"
+     },
+     {
+      "name": "X-Virus-Scanned",
+      "value": "by SpamTitan at us-west-1.compute.internal"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id 6B38C17686C for \u003csamuelechu@gmail.com\u003e; Wed, 12 Jul 2017 19:53:17 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from mail.ciosolutions.com (unknown [136.179.3.130]) (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)) (No client certificate requested) by antispam1.ciosolutions.com (Postfix) with ESMTPS id 5B95317686E for \u003csamuelechu@gmail.com\u003e; Wed, 12 Jul 2017 19:53:17 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) by SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) with Microsoft SMTP Server (TLS) id 15.0.1210.3; Wed, 12 Jul 2017 19:53:16 -0700"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com ([::1]) by SHRD-NV-EXMB1.ciosolutions.com ([::1]) with mapi id 15.00.1210.000; Wed, 12 Jul 2017 19:53:16 -0700"
+     },
+     {
+      "name": "From",
+      "value": "Burton Tripathi \u003cbtripathi@truevisionsys.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "CC",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e, George Polchin \u003cGPolchin@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "RE: Software Engineer I"
+     },
+     {
+      "name": "Thread-Topic",
+      "value": "Software Engineer I"
+     },
+     {
+      "name": "Thread-Index",
+      "value": "AQHS+AWQu8pKfo4I0UCJRAc9cCPRHqJRFZjg"
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 13 Jul 2017 02:53:16 +0000"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Accept-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "Content-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "X-MS-Has-Attach",
+      "value": ""
+     },
+     {
+      "name": "X-MS-TNEF-Correlator",
+      "value": ""
+     },
+     {
+      "name": "x-ms-exchange-transport-fromentityheader",
+      "value": "Hosted"
+     },
+     {
+      "name": "x-originating-ip",
+      "value": "[98.173.167.162]"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"_000_d712785b860c48cdae496c377a2c9a93SHRDNVEXMB1ciosolutions_\""
+     },
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     }
+    ]
+   },
+   "sizeEstimate": 15332
+  },
+  {
+   "id": "15d3d8e8de90ebcc",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hi, Thanks for getting back to me! My transcript and a couple C++ projects are attached. One of them is a solution to the closest pair problem and the other is the implementation for the lexer, parser,",
+   "historyId": "3049109",
+   "internalDate": "1499976338000",
+   "payload": {
+    "mimeType": "multipart/mixed",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.237.63.5 with HTTP; Thu, 13 Jul 2017 13:05:38 -0700 (PDT)"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 13 Jul 2017 13:05:38 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Re: Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Burton Tripathi \u003cbtripathi@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Cc",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e, George Polchin \u003cGPolchin@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/mixed; boundary=\"001a11455eacd9231005543874e3\""
+     }
+    ]
+   },
+   "sizeEstimate": 735167
+  },
+  {
+   "id": "15d3f62678b4b7fb",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Looks like the zip file didn&#39;t get through. I uploaded it to google drive instead. Here&#39;s the link : https://drive.google.com/file/d/0BysppSOJ4VnCUml6SVVXSGJTcDQ/view?usp=sharing Let me know if",
+   "historyId": "3049109",
+   "internalDate": "1500006999000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.237.63.5 with HTTP; Thu, 13 Jul 2017 21:36:39 -0700 (PDT)"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 13 Jul 2017 21:36:39 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Re: Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Burton Tripathi \u003cbtripathi@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Cc",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e, George Polchin \u003cGPolchin@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"94eb2c19031c64999b05543f9887\""
+     }
+    ]
+   },
+   "sizeEstimate": 10410
+  },
+  {
+   "id": "15d619d790f668ff",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Hi Samuel, Sorry it has taken a while to get back to you, it has indeed been a hectic couple of weeks! Now that the dust has settled a bit, I&#39;d like to schedule a brief phone call with you. Topics",
+   "historyId": "3049109",
+   "internalDate": "1500581287000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.34.247 with SMTP id g52csp2466632qta;        Thu, 20 Jul 2017 13:08:16 -0700 (PDT)"
+     },
+     {
+      "name": "X-Received",
+      "value": "by 10.36.204.9 with SMTP id x9mr4767481itf.5.1500581296402;        Thu, 20 Jul 2017 13:08:16 -0700 (PDT)"
+     },
+     {
+      "name": "ARC-Seal",
+      "value": "i=1; a=rsa-sha256; t=1500581296; cv=none;        d=google.com; s=arc-20160816;        b=yJou5S1HKTkqB/5nWOuvB96yEtiNo7hjjdUtAEgKISg3OcvL+NI0W6DvatarMBCj64         gmVOf2UxNHGP1wExXN+M5oKeHDK7EGYdQtHzUpGFmUUqaxfaSykZzzm0BDt7trd/nUw9         enNvWJK3zGDOj6eZvljUYrovK1XoFX2UbsY8xmzfXvP7D/emlVmCrRlsWeQwPNbd3B60         fHd/+blfqga+bSmWocub/3VwJWQv6jAWFIfMTNjHYcf5pJEBZ2mYdD/SUM7orWRIauv7         +G9ZCqb8bpQlF5z0D5tZMHLWqM+FZmXpQ+Blfq0kVEnaMknziyn53gs6+oFNTNFWEp5l         PL4w=="
+     },
+     {
+      "name": "ARC-Message-Signature",
+      "value": "i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;        h=mime-version:content-language:accept-language:in-reply-to         :references:message-id:date:thread-index:thread-topic:subject:to         :from:arc-authentication-results;        bh=JsK4JkReMdQKeL3ciOGezk5gqKGANIHgV1k3+BZfuwQ=;        b=YvBSTvTuKhmR1FTJaD4ipsmrwdbnQzPbr2aInMw+A9R4DB4yJcBBydZvCWVAg4xOB9         9Y1ZxIXlJt7GaYpx6l5xbZU1rkXwHlyTRhkId/UDvUQpBapTzKhqiiprRSg60lJgzJLu         kv+1MmeLz440HYgWHgaj+e3YxHbDapxo5XkohIfsbec4VT6UX23N51rRjaC1S0dZTmi8         QTWkx4WWCyrfb7MOhUApg4hVWpMnNYaYdG6+Q7/eKcKZWxjv6Q50ACqEBR1LEyt2WMFB         GICz9MvOxSgV8cz+QrZMCmXTcbp2EeXghVtoqbF6a7DzyU7N/MUMHoIIfXjBdssdjlap         SZSA=="
+     },
+     {
+      "name": "ARC-Authentication-Results",
+      "value": "i=1; mx.google.com;       spf=neutral (google.com: 52.53.91.241 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Return-Path",
+      "value": "\u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam2.ciosolutions.com (antispam2.ciosolutions.com. [52.53.91.241])        by mx.google.com with ESMTPS id i187si2643301itc.193.2017.07.20.13.08.15        for \u003csamuelechu@gmail.com\u003e        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);        Thu, 20 Jul 2017 13:08:16 -0700 (PDT)"
+     },
+     {
+      "name": "Received-SPF",
+      "value": "neutral (google.com: 52.53.91.241 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) client-ip=52.53.91.241;"
+     },
+     {
+      "name": "Authentication-Results",
+      "value": "mx.google.com;       spf=neutral (google.com: 52.53.91.241 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Received",
+      "value": "from localhost (localhost [127.0.0.1]) by antispam2.ciosolutions.com (Postfix) with ESMTP id 9063960518 for \u003csamuelechu@gmail.com\u003e; Thu, 20 Jul 2017 13:08:15 -0700 (PDT)"
+     },
+     {
+      "name": "X-Virus-Scanned",
+      "value": "by SpamTitan at us-west-1.compute.internal"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam2.ciosolutions.com (localhost [127.0.0.1]) by antispam2.ciosolutions.com (Postfix) with ESMTP id 554F260507 for \u003csamuelechu@gmail.com\u003e; Thu, 20 Jul 2017 13:08:08 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from mail.ciosolutions.com (unknown [136.179.3.130]) (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)) (No client certificate requested) by antispam2.ciosolutions.com (Postfix) with ESMTPS id 3DD8A6050C for \u003csamuelechu@gmail.com\u003e; Thu, 20 Jul 2017 13:08:08 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) by SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) with Microsoft SMTP Server (TLS) id 15.0.1210.3; Thu, 20 Jul 2017 13:08:07 -0700"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com ([::1]) by SHRD-NV-EXMB1.ciosolutions.com ([::1]) with mapi id 15.00.1210.000; Thu, 20 Jul 2017 13:08:07 -0700"
+     },
+     {
+      "name": "From",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "RE: Software Engineer I"
+     },
+     {
+      "name": "Thread-Topic",
+      "value": "Software Engineer I"
+     },
+     {
+      "name": "Thread-Index",
+      "value": "AQHS+AWQu8pKfo4I0UCJRAc9cCPRHqJRFZjggAGv+qCACnD3wA=="
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 20 Jul 2017 20:08:07 +0000"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Accept-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "Content-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "X-MS-Has-Attach",
+      "value": ""
+     },
+     {
+      "name": "X-MS-TNEF-Correlator",
+      "value": ""
+     },
+     {
+      "name": "x-ms-exchange-transport-fromentityheader",
+      "value": "Hosted"
+     },
+     {
+      "name": "x-originating-ip",
+      "value": "[98.173.167.162]"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"_000_0671e81f3f2043c2b2001e5f0ede9440SHRDNVEXMB1ciosolutions_\""
+     },
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     }
+    ]
+   },
+   "sizeEstimate": 27550
+  },
+  {
+   "id": "15d6202a120acac4",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hi David, No worries, moving offices is probably a lot of work! My schedule is pretty flexible, how does 3 pm tomorrow should? Thanks, Sam On Thursday, July 20, 2017, David Reed &lt;DReed@truevisionsys",
+   "historyId": "3049109",
+   "internalDate": "1500587925000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.46.36 with HTTP; Thu, 20 Jul 2017 14:58:45 -0700 (PDT)"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 20 Jul 2017 14:58:45 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Re: Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"f4030435b7ac484e0a0554c6da20\""
+     }
+    ]
+   },
+   "sizeEstimate": 16149
+  },
+  {
+   "id": "15d620fdb2af42bb",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Sounds good. Is the number on your resume the best to reach you at? - David -------- Original message -------- From: Samuel Chu Date:07/20/2017 14:58 (GMT-08:00) To: David Reed Subject: Re: Software",
+   "historyId": "3049109",
+   "internalDate": "1500588782000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.34.247 with SMTP id g52csp2564083qta;        Thu, 20 Jul 2017 15:13:12 -0700 (PDT)"
+     },
+     {
+      "name": "X-Received",
+      "value": "by 10.107.2.66 with SMTP id 63mr5813926ioc.276.1500588792870;        Thu, 20 Jul 2017 15:13:12 -0700 (PDT)"
+     },
+     {
+      "name": "ARC-Seal",
+      "value": "i=1; a=rsa-sha256; t=1500588792; cv=none;        d=google.com; s=arc-20160816;        b=suUHzvygBic5KSD/MfjDdKDA9YCFfoDFpHT/yE57uVT8YF7nCoa3ULwbsfd6SorVXO         TGGfX1gv1ILJSUlFmS00luAlfsVj2thEpcQyxBqR+7CsnGOOy6hKwYBzTpv1Gl7WYgoq         g1UpM3qra0DOcUc/CqwWOxl4c22uQgx49vg1Pci/8DpkRly3K3GZKXGmqw3aUiIIL8vf         U6QEYEyGRXm1CPQ4nH5TgiW1nj5m8Wyjjz/WPMr5ZdkZmfVDXcNdGNWv3+QOQZ/t3AlB         8N/l6nYXb/EGWwuOnwFRXo5kSAZI6lSGoHnc7Cn1xx2jWheLNqH04R7kCx/QeXMx9VpZ         xNIQ=="
+     },
+     {
+      "name": "ARC-Message-Signature",
+      "value": "i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;        h=mime-version:content-language:accept-language:in-reply-to         :references:message-id:date:thread-index:thread-topic:subject:to         :from:arc-authentication-results;        bh=hmQfgEr/v3mE94bSGYcXd5XQSWM5z02ylPQh1J0PcPo=;        b=ahDFyD5SIEjymB4f570XL+DtmRiDnMsbK/BfJz9k1gFK5+/K3z3EHRki/6OjZVj+56         f+IdFphrUyQQxvNJDFGbfkXKPm2/vqoEwqizXOcP+bcrQ4fk1yQHmm2TO8X+eWKyp8ly         GqwjsUdmu8ToGHlJ9J2v8EniCO0ugJ/LkQSOM4QKe0/tCh/hBMmPqDfm5wBHIrGTEdvO         Wt5xj/8fez2W4CDB/8j0KZk9KejIPgFtDLzy8LYcqDQecTFEJQkY/j5xZWs8P+lHlVuQ         wCE4Nq7FyLsXeN6hZuvxrrW0otnmStvw0wlMZpZDJce1mrEVTrcgJ9ghlNNqYnEkpnB1         3cfg=="
+     },
+     {
+      "name": "ARC-Authentication-Results",
+      "value": "i=1; mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Return-Path",
+      "value": "\u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (antispam1.ciosolutions.com. [52.52.106.245])        by mx.google.com with ESMTPS id v64si619693ioi.266.2017.07.20.15.13.12        for \u003csamuelechu@gmail.com\u003e        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);        Thu, 20 Jul 2017 15:13:12 -0700 (PDT)"
+     },
+     {
+      "name": "Received-SPF",
+      "value": "neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) client-ip=52.52.106.245;"
+     },
+     {
+      "name": "Authentication-Results",
+      "value": "mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Received",
+      "value": "from localhost (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id 56B15176879 for \u003csamuelechu@gmail.com\u003e; Thu, 20 Jul 2017 15:13:12 -0700 (PDT)"
+     },
+     {
+      "name": "X-Virus-Scanned",
+      "value": "by SpamTitan at us-west-1.compute.internal"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id 8924A176870 for \u003csamuelechu@gmail.com\u003e; Thu, 20 Jul 2017 15:13:03 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from mail.ciosolutions.com (unknown [136.179.3.130]) (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)) (No client certificate requested) by antispam1.ciosolutions.com (Postfix) with ESMTPS id 76DE8176879 for \u003csamuelechu@gmail.com\u003e; Thu, 20 Jul 2017 15:13:03 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) by SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) with Microsoft SMTP Server (TLS) id 15.0.1210.3; Thu, 20 Jul 2017 15:13:02 -0700"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com ([::1]) by SHRD-NV-EXMB1.ciosolutions.com ([::1]) with mapi id 15.00.1210.000; Thu, 20 Jul 2017 15:13:02 -0700"
+     },
+     {
+      "name": "From",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "RE: Software Engineer I"
+     },
+     {
+      "name": "Thread-Topic",
+      "value": "Software Engineer I"
+     },
+     {
+      "name": "Thread-Index",
+      "value": "AQHS+AWQu8pKfo4I0UCJRAc9cCPRHqJRFZjggAGv+qCACnD3wIAAlXuA//+Opoc="
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 20 Jul 2017 22:13:02 +0000"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e,\u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Accept-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "Content-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "X-MS-Has-Attach",
+      "value": ""
+     },
+     {
+      "name": "X-MS-TNEF-Correlator",
+      "value": ""
+     },
+     {
+      "name": "x-ms-exchange-transport-fromentityheader",
+      "value": "Hosted"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"_000_ithi6qgrbm2bo2wjimrd8ecj1500588777239emailandroidcom_\""
+     },
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     }
+    ]
+   },
+   "sizeEstimate": 19306
+  },
+  {
+   "id": "15d62220ce696124",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Yes it is On Thu, Jul 20, 2017 at 3:13 PM, David Reed &lt;DReed@truevisionsys.com&gt; wrote: Sounds good. Is the number on your resume the best to reach you at? - David -------- Original message ------",
+   "historyId": "3049109",
+   "internalDate": "1500589984000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.46.36 with HTTP; Thu, 20 Jul 2017 15:33:04 -0700 (PDT)"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e"
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 20 Jul 2017 15:33:04 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Re: Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"001a11c1122a015ca40554c75561\""
+     }
+    ]
+   },
+   "sizeEstimate": 16343
+  },
+  {
+   "id": "15d672d6660d34dd",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Hi Samuel, We are trying to call 805 895 4515 but we are going straight to voicemail. Are you still available for the call today? Thanks, David From: Samuel Chu [mailto:samuelechu@gmail.com] Sent:",
+   "historyId": "3049109",
+   "internalDate": "1500674605000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.34.200 with SMTP id g8csp297808qta;        Fri, 21 Jul 2017 15:03:35 -0700 (PDT)"
+     },
+     {
+      "name": "X-Received",
+      "value": "by 10.36.37.143 with SMTP id g137mr437066itg.35.1500674615165;        Fri, 21 Jul 2017 15:03:35 -0700 (PDT)"
+     },
+     {
+      "name": "ARC-Seal",
+      "value": "i=1; a=rsa-sha256; t=1500674615; cv=none;        d=google.com; s=arc-20160816;        b=ICwxU19iC9Io0XvF3lLEP6ewDVPqg/hGcMWJYxCU7edh8+AlpJ30rM+63IS1lvs5mZ         zYF1bhXGbEXaFbSf4FUesroHzU24A5/MUHN6urZamK3IoqYR+z1vk5816l1mK5F7BLhg         NJrXdoEI/jFfczgf/Sj/fHCpEyzhOpR/ob1z/42UsUH0Hzzb40gVvR3qA4o6kBKuXiBO         gM3SxMgBfcPEttYfthzPOjOLFIXKguWnhuFwIB96ouDrtpEX41NQ+olfxBH5AYtonX4L         xe2Gxltm4q+MlAI4L+gFKKen3nZNnDJhJRh0JE+7uw4VDpd6W/ELhciCJXSrVeR8v9xP         zhEg=="
+     },
+     {
+      "name": "ARC-Message-Signature",
+      "value": "i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;        h=mime-version:content-language:accept-language:in-reply-to         :references:message-id:date:thread-index:thread-topic:subject:to         :from:arc-authentication-results;        bh=bPq66QqcMowCEWrGlj0xFdImS84t9FJ9LfUPG0CuKr4=;        b=wOtIYC2GWfsbxSK7nhA/hJqC9Jz2U1dcq9DpDXmGz04/KiSqVvivY/Ky/wxLwjQHlN         3yl6o7FOxj1cN9RHBVGR7g8T5FB3MFKVGFO07If/gUKjsCeu2slGCRdhpRNIMUjBesiC         TZdXMO5aSeNDzzeY3z/aKhSMy93Ef+FIhXBk4uvP3ONlIe5VsYv6Qosp3QrWFt4FXPBD         Z8orRaDs/1cL1xlx1zCOpe9FahReuVlwiR3+Xe+nf7IzjI9Ha9SScifL3WbpGg+8XTWe         vcULL8OBHmLDRjjdnBUVtunZE79WDvP34RxWlyYGAX19xu3OpvMvwefuFdwvai13jRQQ         Fu2Q=="
+     },
+     {
+      "name": "ARC-Authentication-Results",
+      "value": "i=1; mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Return-Path",
+      "value": "\u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (antispam1.ciosolutions.com. [52.52.106.245])        by mx.google.com with ESMTPS id q10si2003937ita.176.2017.07.21.15.03.34        for \u003csamuelechu@gmail.com\u003e        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);        Fri, 21 Jul 2017 15:03:35 -0700 (PDT)"
+     },
+     {
+      "name": "Received-SPF",
+      "value": "neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) client-ip=52.52.106.245;"
+     },
+     {
+      "name": "Authentication-Results",
+      "value": "mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Received",
+      "value": "from localhost (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id 6112D1768CC for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:03:34 -0700 (PDT)"
+     },
+     {
+      "name": "X-Virus-Scanned",
+      "value": "by SpamTitan at us-west-1.compute.internal"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id 149F11768BE for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:03:27 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from mail.ciosolutions.com (unknown [136.179.3.130]) (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)) (No client certificate requested) by antispam1.ciosolutions.com (Postfix) with ESMTPS id F1C491768CB for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:03:26 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) by SHRD-NV-EXMB2.ciosolutions.com (10.11.17.36) with Microsoft SMTP Server (TLS) id 15.0.1210.3; Fri, 21 Jul 2017 15:03:26 -0700"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com ([::1]) by SHRD-NV-EXMB1.ciosolutions.com ([::1]) with mapi id 15.00.1210.000; Fri, 21 Jul 2017 15:03:26 -0700"
+     },
+     {
+      "name": "From",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "RE: Software Engineer I"
+     },
+     {
+      "name": "Thread-Topic",
+      "value": "Software Engineer I"
+     },
+     {
+      "name": "Thread-Index",
+      "value": "AQHS+AWQu8pKfo4I0UCJRAc9cCPRHqJRFZjggAGv+qCACnD3wIAAlXuA//+OpoeAAHrxAIABFIwQ"
+     },
+     {
+      "name": "Date",
+      "value": "Fri, 21 Jul 2017 22:03:25 +0000"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e \u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Accept-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "Content-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "X-MS-Has-Attach",
+      "value": ""
+     },
+     {
+      "name": "X-MS-TNEF-Correlator",
+      "value": ""
+     },
+     {
+      "name": "x-ms-exchange-transport-fromentityheader",
+      "value": "Hosted"
+     },
+     {
+      "name": "x-originating-ip",
+      "value": "[98.173.167.162]"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"_000_7a9e2fcae6ea4519ae7f616a6eb0bc00SHRDNVEXMB1ciosolutions_\""
+     },
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     }
+    ]
+   },
+   "sizeEstimate": 34883
+  },
+  {
+   "id": "15d672e47b8f202f",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "That&#39;s odd. Can you give me your number so I can call you? On Fri, Jul 21, 2017 at 3:03 PM, David Reed &lt;DReed@truevisionsys.com&gt; wrote: Hi Samuel, We are trying to call 805 895 4515 but we",
+   "historyId": "3049109",
+   "internalDate": "1500674672000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.46.36 with HTTP; Fri, 21 Jul 2017 15:04:32 -0700 (PDT)"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e \u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e \u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "Date",
+      "value": "Fri, 21 Jul 2017 15:04:32 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Re: Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"001a11454d22c70f4c0554db0c47\""
+     }
+    ]
+   },
+   "sizeEstimate": 19858
+  },
+  {
+   "id": "15d672ff1276739d",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "You can call us at 805 845 9407 - David From: Samuel Chu [mailto:samuelechu@gmail.com] Sent: Friday, July 21, 2017 3:05 PM To: David Reed &lt;DReed@truevisionsys.com&gt; Subject: Re: Software Engineer",
+   "historyId": "3049109",
+   "internalDate": "1500674772000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.34.200 with SMTP id g8csp300326qta;        Fri, 21 Jul 2017 15:06:21 -0700 (PDT)"
+     },
+     {
+      "name": "X-Received",
+      "value": "by 10.107.173.150 with SMTP id m22mr8749170ioo.264.1500674781466;        Fri, 21 Jul 2017 15:06:21 -0700 (PDT)"
+     },
+     {
+      "name": "ARC-Seal",
+      "value": "i=1; a=rsa-sha256; t=1500674781; cv=none;        d=google.com; s=arc-20160816;        b=ZuXWBUfitnzWrwHTvd5YdIYIwPvMyQyEmuLqELPpNUFb1+DVTLkPT+yfJzbV2jr6vj         s6X0VG3K1OtN/+cSb2x5lrF3r2Mm+LYbHs0JTwFSxi17UZgqXzBzzOHW5yLxuoGBqrx0         fxkR0+k+ot6Foc3M2fFe745iO6eo96E6KVLQQ4r0klmrttsBWd86icnVGbFdUd5ZOy27         a0YE+FPetqlHETJRU046uwsSB4ELs3KhBkjpZJerZB/qnS8Zi0ioHwuhCo2BPbMexDUc         lb2yB7pzPQLqVLmtbJuhwgTyoKkGHTAfwW3Z52zc508FgvsMDSiZVMu8prc98qBVBLoh         oVsQ=="
+     },
+     {
+      "name": "ARC-Message-Signature",
+      "value": "i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;        h=mime-version:content-language:accept-language:in-reply-to         :references:message-id:date:thread-index:thread-topic:subject:to         :from:arc-authentication-results;        bh=lr1EthjgrhwDCIUUicgIxkkx8UkelliiSRczLpshSTs=;        b=yQzDTTjO8JXhkpXMFqpiS/U1T+/8qVpilLJiTL+M0h0E+bhtHYA5otgdr9EYfc4y4q         R2vUp5U7cyTVnuys2MOcXWF6CUmHc1rPmm3EcNfkASpkbTZjLBJzkQakrobAc+4pUPBQ         IPe4CxNkrs4TqjIYwvnmNQMDFH8lrxxiZl7Q6jHHn+TNLKXjDedTxcHOdTct7RMPQ+pI         yQ2xEdJkDb4OsOVLEWAZXUmPB+OoA5IIWpcBa5Hl42sbKFlUnhBpVz5BmcGmoTW8R00g         bvprqWItdpwTAOl/c7L4fc2nqNjsWHNM39MunrG9nPc19Cemq2BzrgqqO07+kvQzbiux         Nusg=="
+     },
+     {
+      "name": "ARC-Authentication-Results",
+      "value": "i=1; mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Return-Path",
+      "value": "\u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (antispam1.ciosolutions.com. [52.52.106.245])        by mx.google.com with ESMTPS id l189si1959283itd.139.2017.07.21.15.06.21        for \u003csamuelechu@gmail.com\u003e        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);        Fri, 21 Jul 2017 15:06:21 -0700 (PDT)"
+     },
+     {
+      "name": "Received-SPF",
+      "value": "neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) client-ip=52.52.106.245;"
+     },
+     {
+      "name": "Authentication-Results",
+      "value": "mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Received",
+      "value": "from localhost (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id E93571768C3 for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:06:20 -0700 (PDT)"
+     },
+     {
+      "name": "X-Virus-Scanned",
+      "value": "by SpamTitan at us-west-1.compute.internal"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id AD2991768A4 for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:06:13 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from mail.ciosolutions.com (unknown [136.179.3.130]) (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)) (No client certificate requested) by antispam1.ciosolutions.com (Postfix) with ESMTPS id 8F18A1768CB for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:06:13 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) by SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) with Microsoft SMTP Server (TLS) id 15.0.1210.3; Fri, 21 Jul 2017 15:06:13 -0700"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com ([::1]) by SHRD-NV-EXMB1.ciosolutions.com ([::1]) with mapi id 15.00.1210.000; Fri, 21 Jul 2017 15:06:13 -0700"
+     },
+     {
+      "name": "From",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "RE: Software Engineer I"
+     },
+     {
+      "name": "Thread-Topic",
+      "value": "Software Engineer I"
+     },
+     {
+      "name": "Thread-Index",
+      "value": "AQHS+AWQu8pKfo4I0UCJRAc9cCPRHqJRFZjggAGv+qCACnD3wIAAlXuA//+OpoeAAHrxAIABFIwQgAB10AD//4rvYA=="
+     },
+     {
+      "name": "Date",
+      "value": "Fri, 21 Jul 2017 22:06:12 +0000"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003c6602529b2d8b437eb4e120644d028aa7@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e \u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e \u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Accept-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "Content-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "X-MS-Has-Attach",
+      "value": ""
+     },
+     {
+      "name": "X-MS-TNEF-Correlator",
+      "value": ""
+     },
+     {
+      "name": "x-ms-exchange-transport-fromentityheader",
+      "value": "Hosted"
+     },
+     {
+      "name": "x-originating-ip",
+      "value": "[98.173.167.162]"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"_000_6602529b2d8b437eb4e120644d028aa7SHRDNVEXMB1ciosolutions_\""
+     },
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     }
+    ]
+   },
+   "sizeEstimate": 40434
+  },
+  {
+   "id": "15d6732044e0d512",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "If that&#39;s not working, can you see if you can join our remote session at: http://collabedit.com/rmr84 - David From: Samuel Chu [mailto:samuelechu@gmail.com] Sent: Friday, July 21, 2017 3:05 PM To:",
+   "historyId": "3049109",
+   "internalDate": "1500674907000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.34.200 with SMTP id g8csp302315qta;        Fri, 21 Jul 2017 15:08:37 -0700 (PDT)"
+     },
+     {
+      "name": "X-Received",
+      "value": "by 10.36.4.139 with SMTP id 133mr467140itb.142.1500674917467;        Fri, 21 Jul 2017 15:08:37 -0700 (PDT)"
+     },
+     {
+      "name": "ARC-Seal",
+      "value": "i=1; a=rsa-sha256; t=1500674917; cv=none;        d=google.com; s=arc-20160816;        b=mJhaZZMq9tyCRsG9exbF5112ruFTu4Pm8pdeezz+4sS7XT/BcDlDHQbxapK3YXY1wi         q7ZTlsbqB+kAFZZHnYOH3pgldAQnAyJnyxsW6ewkYhgCSX92a+QkaS1oNJLp6wdboEeM         eRjW0UjQ1ifl8DU5ELtqFkfo7SDwlmSyXMwmQg1vMC2akvMaeohifjrGFC4I+x1iETyT         QOaiIPvFhXIrB3n5TUzHRe4pZXpJnxWQhd3VXjBNY1m15BC6vaH+Y0c5hgDXhLdSA7/A         2AeUeBqXZL0Q1rZR0vFJTrh27z/ywqMxenomRerhkyIT7VX2BBpeuNwHVOzACTeXw9Ox         buxg=="
+     },
+     {
+      "name": "ARC-Message-Signature",
+      "value": "i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;        h=mime-version:content-language:accept-language:in-reply-to         :references:message-id:date:thread-index:thread-topic:subject:to         :from:arc-authentication-results;        bh=tUwolY6vPvk0nnZSman5iD5c4jOIS1HfFft1P/eJpcE=;        b=ax97AqTHv4mt9r5GfQn+S+TSwcS4/etdsuf+Im2i+q90LrnDE3vSkucMtBUs7qtUxt         KLYRvkjLqDBTfmIeGnL9CfRm01QG1qGhtr2PW3zLq3P35RXa40c4Yp5dOqoxEGm23OJp         pYM0PETr4zY0piVtr8Ubmx2+wQe1JdkVvPLeLVPNJ6ixnFkla8UNFXK0zgs6pDw/mkz5         NmAvy8GTHEvigFlmTDLIVs0rKKsSO6d3rS7yD9ODPXMFgjHntgeiJenEZ3/LL8yREPY9         0tH9n4hRvuxXo6JwQwJXyUPkBK5xuGhNeFpTAlB1X/I9JSgcB0Qi45sUEUubjLA9DaPe         Ab2w=="
+     },
+     {
+      "name": "ARC-Authentication-Results",
+      "value": "i=1; mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Return-Path",
+      "value": "\u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (antispam1.ciosolutions.com. [52.52.106.245])        by mx.google.com with ESMTPS id p2si5137968iof.334.2017.07.21.15.08.37        for \u003csamuelechu@gmail.com\u003e        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);        Fri, 21 Jul 2017 15:08:37 -0700 (PDT)"
+     },
+     {
+      "name": "Received-SPF",
+      "value": "neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) client-ip=52.52.106.245;"
+     },
+     {
+      "name": "Authentication-Results",
+      "value": "mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Received",
+      "value": "from localhost (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id D19CB1768C3 for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:08:36 -0700 (PDT)"
+     },
+     {
+      "name": "X-Virus-Scanned",
+      "value": "by SpamTitan at us-west-1.compute.internal"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id 3A6211768CD for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:08:28 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from mail.ciosolutions.com (unknown [136.179.3.130]) (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)) (No client certificate requested) by antispam1.ciosolutions.com (Postfix) with ESMTPS id 269871768CB for \u003csamuelechu@gmail.com\u003e; Fri, 21 Jul 2017 15:08:28 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) by SHRD-NV-EXMB2.ciosolutions.com (10.11.17.36) with Microsoft SMTP Server (TLS) id 15.0.1210.3; Fri, 21 Jul 2017 15:08:27 -0700"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com ([::1]) by SHRD-NV-EXMB1.ciosolutions.com ([::1]) with mapi id 15.00.1210.000; Fri, 21 Jul 2017 15:08:27 -0700"
+     },
+     {
+      "name": "From",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "RE: Software Engineer I"
+     },
+     {
+      "name": "Thread-Topic",
+      "value": "Software Engineer I"
+     },
+     {
+      "name": "Thread-Index",
+      "value": "AQHS+AWQu8pKfo4I0UCJRAc9cCPRHqJRFZjggAGv+qCACnD3wIAAlXuA//+OpoeAAHrxAIABFIwQgAB10AD//4upwA=="
+     },
+     {
+      "name": "Date",
+      "value": "Fri, 21 Jul 2017 22:08:27 +0000"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003c700a1ffe2c5d4a9ab3fab0de9d7321fa@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e \u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e \u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Accept-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "Content-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "X-MS-Has-Attach",
+      "value": ""
+     },
+     {
+      "name": "X-MS-TNEF-Correlator",
+      "value": ""
+     },
+     {
+      "name": "x-ms-exchange-transport-fromentityheader",
+      "value": "Hosted"
+     },
+     {
+      "name": "x-originating-ip",
+      "value": "[98.173.167.162]"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"_000_700a1ffe2c5d4a9ab3fab0de9d7321faSHRDNVEXMB1ciosolutions_\""
+     },
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     }
+    ]
+   },
+   "sizeEstimate": 40736
+  },
+  {
+   "id": "15d86d4467660277",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hey David, It was nice interviewing with you the other day! I remember you said that you would be giving a take-home coding assignment. Around when are you planning to send it out? Thanks, Sam On",
+   "historyId": "3049109",
+   "internalDate": "1501205645000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.46.36 with HTTP; Thu, 27 Jul 2017 18:34:05 -0700 (PDT)"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003c700a1ffe2c5d4a9ab3fab0de9d7321fa@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e \u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e \u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e \u003c700a1ffe2c5d4a9ab3fab0de9d7321fa@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 27 Jul 2017 18:34:05 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==__Vjc=k7sHF_mVJhBfbNfmDzVVDk6CYsyV1n7TcnnnLA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Re: Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"001a113f42a037bb79055556adf3\""
+     }
+    ]
+   },
+   "sizeEstimate": 23690
+  },
+  {
+   "id": "15d86d44ffe791ad",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hey David, It was nice interviewing with you the other day! I remember you said that you would be giving a take-home coding assignment. Around when are you planning to send it out? Thanks, Sam On",
+   "historyId": "3049109",
+   "internalDate": "1501205647000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.46.36 with HTTP; Thu, 27 Jul 2017 18:34:07 -0700 (PDT)"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003c700a1ffe2c5d4a9ab3fab0de9d7321fa@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e \u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e \u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e \u003c700a1ffe2c5d4a9ab3fab0de9d7321fa@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "Date",
+      "value": "Thu, 27 Jul 2017 18:34:07 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==-Gz8eP7T_MZnPK_WGLN-dz3vPEsggw2An3MU4cFaTuqQ@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Re: Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"001a113d830a57e31c055556ade9\""
+     }
+    ]
+   },
+   "sizeEstimate": 23690
+  },
+  {
+   "id": "15d8a3fe3191a48b",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Hi Sam, Thanks for your time, it was a pleasure speaking with you too! After discussion with the group, we felt like it would make more sense if we continued the interview process closer to your",
+   "historyId": "3049109",
+   "internalDate": "1501263017000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.34.246 with SMTP id g51csp1188678qta;        Fri, 28 Jul 2017 10:30:29 -0700 (PDT)"
+     },
+     {
+      "name": "X-Received",
+      "value": "by 10.107.164.130 with SMTP id d2mr10993311ioj.14.1501263029045;        Fri, 28 Jul 2017 10:30:29 -0700 (PDT)"
+     },
+     {
+      "name": "ARC-Seal",
+      "value": "i=1; a=rsa-sha256; t=1501263028; cv=none;        d=google.com; s=arc-20160816;        b=YY7uN158Ct+YsBJcfS5lvsktbETvFZ4t2KkbwFkPjKpVnmwpmiv913t6UAzTstRxpR         0dESLXME2iWqOV6p3GzWqtb52tnOVvjFIAF4LcOSgtpEHGtunYKZIGevpqxY8sP2l8c8         V8/2BVIvvh7+Vo8V5zQjs4ujqDOMbBrGBC4ACZCrJI/bKnk2b1CgHCYRyiIWNUGMsq72         uhpMlXehJWYUOVgLCJFlB7V3oVSEPw67FPrwHn3G6H721N2zhyspzfhBZ3tlb6IZpejG         xyiPNtY7IvSrZlFp9sl4eCUU9tuMhvFUhAzcTwYkYtryb9yBjvHTjH2FLFHdSKW5DSB9         ORDQ=="
+     },
+     {
+      "name": "ARC-Message-Signature",
+      "value": "i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;        h=mime-version:content-language:accept-language:in-reply-to         :references:message-id:date:thread-index:thread-topic:subject:to         :from:arc-authentication-results;        bh=SWS08UT1+//UvKxxXiQxvuJc8va+YTeiA9KCCQtVtGM=;        b=OYHcKA6N5HzY9lrjgQFjZi97aPTm1on4u2oz97Mm4wJeMni5gqeztjeex33lFFXEu+         uEB1g5pNt7kzvb4J1GseY5ygBBbSDKrbobdb/Wg2y8hYRrc4jahfmeR1ZtH1VtgjQy1x         88rMW6X6UuBcLFWcsyhrgtXnlGwLl4nARh//hdwrnPaViC1mLZzz3TZXgSVoGXwfywWS         c1Fv18d3EfJQ4db/DiNMWB8qH6H9tuSd67C5CfGfCunh2+vSUBRuYS5vILcS0UIMHD6L         ChDUJsk1LuVe/uY2iYjJl2kAq7ozuIorMDkPGZOHesQqVWYhFghrXALntnqFptgtCOj5         yJbQ=="
+     },
+     {
+      "name": "ARC-Authentication-Results",
+      "value": "i=1; mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Return-Path",
+      "value": "\u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (antispam1.ciosolutions.com. [52.52.106.245])        by mx.google.com with ESMTPS id n63si20894999iof.365.2017.07.28.10.30.28        for \u003csamuelechu@gmail.com\u003e        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);        Fri, 28 Jul 2017 10:30:28 -0700 (PDT)"
+     },
+     {
+      "name": "Received-SPF",
+      "value": "neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) client-ip=52.52.106.245;"
+     },
+     {
+      "name": "Authentication-Results",
+      "value": "mx.google.com;       spf=neutral (google.com: 52.52.106.245 is neither permitted nor denied by best guess record for domain of dreed@truevisionsys.com) smtp.mailfrom=DReed@truevisionsys.com"
+     },
+     {
+      "name": "Received",
+      "value": "from localhost (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id 726821768A5 for \u003csamuelechu@gmail.com\u003e; Fri, 28 Jul 2017 10:30:28 -0700 (PDT)"
+     },
+     {
+      "name": "X-Virus-Scanned",
+      "value": "by SpamTitan at us-west-1.compute.internal"
+     },
+     {
+      "name": "Received",
+      "value": "from antispam1.ciosolutions.com (localhost [127.0.0.1]) by antispam1.ciosolutions.com (Postfix) with ESMTP id 54A34176888 for \u003csamuelechu@gmail.com\u003e; Fri, 28 Jul 2017 10:30:19 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from mail.ciosolutions.com (unknown [136.179.3.130]) (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)) (No client certificate requested) by antispam1.ciosolutions.com (Postfix) with ESMTPS id 3D1381768AA for \u003csamuelechu@gmail.com\u003e; Fri, 28 Jul 2017 10:30:19 -0700 (PDT)"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com (10.11.17.35) by SHRD-NV-EXMB2.ciosolutions.com (10.11.17.36) with Microsoft SMTP Server (TLS) id 15.0.1210.3; Fri, 28 Jul 2017 10:30:18 -0700"
+     },
+     {
+      "name": "Received",
+      "value": "from SHRD-NV-EXMB1.ciosolutions.com ([::1]) by SHRD-NV-EXMB1.ciosolutions.com ([::1]) with mapi id 15.00.1210.000; Fri, 28 Jul 2017 10:30:18 -0700"
+     },
+     {
+      "name": "From",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "RE: Software Engineer I"
+     },
+     {
+      "name": "Thread-Topic",
+      "value": "Software Engineer I"
+     },
+     {
+      "name": "Thread-Index",
+      "value": "AQHS+AWQu8pKfo4I0UCJRAc9cCPRHqJRFZjggAGv+qCACnD3wIAAlXuA//+OpoeAAHrxAIABFIwQgAB10AD//4upwIAKHOCAgACUiYA="
+     },
+     {
+      "name": "Date",
+      "value": "Fri, 28 Jul 2017 17:30:17 +0000"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cff696604572546a4b6649ba307b65bab@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e \u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e \u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e \u003c700a1ffe2c5d4a9ab3fab0de9d7321fa@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==__Vjc=k7sHF_mVJhBfbNfmDzVVDk6CYsyV1n7TcnnnLA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cCAJ_V==__Vjc=k7sHF_mVJhBfbNfmDzVVDk6CYsyV1n7TcnnnLA@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Accept-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "Content-Language",
+      "value": "en-US"
+     },
+     {
+      "name": "X-MS-Has-Attach",
+      "value": ""
+     },
+     {
+      "name": "X-MS-TNEF-Correlator",
+      "value": ""
+     },
+     {
+      "name": "x-ms-exchange-transport-fromentityheader",
+      "value": "Hosted"
+     },
+     {
+      "name": "x-originating-ip",
+      "value": "[98.173.167.162]"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"_000_ff696604572546a4b6649ba307b65babSHRDNVEXMB1ciosolutions_\""
+     },
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     }
+    ]
+   },
+   "sizeEstimate": 47844
+  },
+  {
+   "id": "15d8a953e4354321",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Early January sounds good! On Fri, Jul 28, 2017 at 10:30 AM, David Reed &lt;DReed@truevisionsys.com&gt; wrote: Hi Sam, Thanks for your time, it was a pleasure speaking with you too! After discussion",
+   "historyId": "3049109",
+   "internalDate": "1501268623000",
+   "payload": {
+    "mimeType": "multipart/alternative",
+    "headers": [
+     {
+      "name": "MIME-Version",
+      "value": "1.0"
+     },
+     {
+      "name": "Received",
+      "value": "by 10.200.46.36 with HTTP; Fri, 28 Jul 2017 12:03:43 -0700 (PDT)"
+     },
+     {
+      "name": "In-Reply-To",
+      "value": "\u003cff696604572546a4b6649ba307b65bab@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "References",
+      "value": "\u003cCAJ_V==9Tn5dqNO5W+7=tJOqTOgTkOhLYh9GX278wQXGkEDx=zw@mail.gmail.com\u003e \u003cd712785b860c48cdae496c377a2c9a93@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_nWCmcYrHMwA6OSD-YT74-M=PgL2kF8aNAiO6g67Qw=g@mail.gmail.com\u003e \u003cCAJ_V==-XyOtGvuF5Syf-i27+eGFf8Fms2cV6JvEmJJ4EjJwppg@mail.gmail.com\u003e \u003c0671e81f3f2043c2b2001e5f0ede9440@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==_AN+upLUyes24DFXg3hi5qwm+st3Le-hvO2+q-X3aPUA@mail.gmail.com\u003e \u003cithi6qgrbm2bo2wjimrd8ecj.1500588777239@email.android.com\u003e \u003cCAJ_V==-p7FZkYMmrw66LhGyOV-Nx07P04JY8f2rN=e8JJf8-Gw@mail.gmail.com\u003e \u003c7a9e2fcae6ea4519ae7f616a6eb0bc00@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==9onD4QE9m6MyJgJTTbQ2+z8sZdOVNufRFfhUvOGJ2qtA@mail.gmail.com\u003e \u003c700a1ffe2c5d4a9ab3fab0de9d7321fa@SHRD-NV-EXMB1.ciosolutions.com\u003e \u003cCAJ_V==__Vjc=k7sHF_mVJhBfbNfmDzVVDk6CYsyV1n7TcnnnLA@mail.gmail.com\u003e \u003cff696604572546a4b6649ba307b65bab@SHRD-NV-EXMB1.ciosolutions.com\u003e"
+     },
+     {
+      "name": "Date",
+      "value": "Fri, 28 Jul 2017 12:03:43 -0700"
+     },
+     {
+      "name": "Delivered-To",
+      "value": "samuelechu@gmail.com"
+     },
+     {
+      "name": "Message-ID",
+      "value": "\u003cCAJ_V==_r=BpM-Z3Jf10eEhuhHT6wd1hURhiC81tZf=3saViHEQ@mail.gmail.com\u003e"
+     },
+     {
+      "name": "Subject",
+      "value": "Re: Software Engineer I"
+     },
+     {
+      "name": "From",
+      "value": "Samuel Chu \u003csamuelechu@gmail.com\u003e"
+     },
+     {
+      "name": "To",
+      "value": "David Reed \u003cDReed@truevisionsys.com\u003e"
+     },
+     {
+      "name": "Content-Type",
+      "value": "multipart/alternative; boundary=\"001a11418554fe033a05556556dd\""
+     }
+    ]
+   },
+   "sizeEstimate": 24584
+  }
+ ]
+}

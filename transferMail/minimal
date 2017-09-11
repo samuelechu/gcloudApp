@@ -1,0 +1,220 @@
+{
+ "id": "15d22fce271fd54c",
+ "historyId": "3049109",
+ "messages": [
+  {
+   "id": "15d22fce271fd54c",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hello, I recently came across a job posting for a software engineer position at TrueVision Systems. I am a 4th year CS undergrad at UCSB planning to graduate this winter. Over my time at UCSB, I have",
+   "historyId": "3049109",
+   "internalDate": "1499530585000",
+   "sizeEstimate": 93361
+  },
+  {
+   "id": "15d39dd875902c8c",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Hi Sam, Thanks for reaching out to us! Your background looks like a very good fit for what we are looking for. This week is really crazy, because the software team is moving offices to a larger space",
+   "historyId": "3049109",
+   "internalDate": "1499914396000",
+   "sizeEstimate": 15332
+  },
+  {
+   "id": "15d3d8e8de90ebcc",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hi, Thanks for getting back to me! My transcript and a couple C++ projects are attached. One of them is a solution to the closest pair problem and the other is the implementation for the lexer, parser,",
+   "historyId": "3049109",
+   "internalDate": "1499976338000",
+   "sizeEstimate": 735167
+  },
+  {
+   "id": "15d3f62678b4b7fb",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Looks like the zip file didn&#39;t get through. I uploaded it to google drive instead. Here&#39;s the link : https://drive.google.com/file/d/0BysppSOJ4VnCUml6SVVXSGJTcDQ/view?usp=sharing Let me know if",
+   "historyId": "3049109",
+   "internalDate": "1500006999000",
+   "sizeEstimate": 10410
+  },
+  {
+   "id": "15d619d790f668ff",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Hi Samuel, Sorry it has taken a while to get back to you, it has indeed been a hectic couple of weeks! Now that the dust has settled a bit, I&#39;d like to schedule a brief phone call with you. Topics",
+   "historyId": "3049109",
+   "internalDate": "1500581287000",
+   "sizeEstimate": 27550
+  },
+  {
+   "id": "15d6202a120acac4",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hi David, No worries, moving offices is probably a lot of work! My schedule is pretty flexible, how does 3 pm tomorrow should? Thanks, Sam On Thursday, July 20, 2017, David Reed &lt;DReed@truevisionsys",
+   "historyId": "3049109",
+   "internalDate": "1500587925000",
+   "sizeEstimate": 16149
+  },
+  {
+   "id": "15d620fdb2af42bb",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Sounds good. Is the number on your resume the best to reach you at? - David -------- Original message -------- From: Samuel Chu Date:07/20/2017 14:58 (GMT-08:00) To: David Reed Subject: Re: Software",
+   "historyId": "3049109",
+   "internalDate": "1500588782000",
+   "sizeEstimate": 19306
+  },
+  {
+   "id": "15d62220ce696124",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Yes it is On Thu, Jul 20, 2017 at 3:13 PM, David Reed &lt;DReed@truevisionsys.com&gt; wrote: Sounds good. Is the number on your resume the best to reach you at? - David -------- Original message ------",
+   "historyId": "3049109",
+   "internalDate": "1500589984000",
+   "sizeEstimate": 16343
+  },
+  {
+   "id": "15d672d6660d34dd",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Hi Samuel, We are trying to call 805 895 4515 but we are going straight to voicemail. Are you still available for the call today? Thanks, David From: Samuel Chu [mailto:samuelechu@gmail.com] Sent:",
+   "historyId": "3049109",
+   "internalDate": "1500674605000",
+   "sizeEstimate": 34883
+  },
+  {
+   "id": "15d672e47b8f202f",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "That&#39;s odd. Can you give me your number so I can call you? On Fri, Jul 21, 2017 at 3:03 PM, David Reed &lt;DReed@truevisionsys.com&gt; wrote: Hi Samuel, We are trying to call 805 895 4515 but we",
+   "historyId": "3049109",
+   "internalDate": "1500674672000",
+   "sizeEstimate": 19858
+  },
+  {
+   "id": "15d672ff1276739d",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "You can call us at 805 845 9407 - David From: Samuel Chu [mailto:samuelechu@gmail.com] Sent: Friday, July 21, 2017 3:05 PM To: David Reed &lt;DReed@truevisionsys.com&gt; Subject: Re: Software Engineer",
+   "historyId": "3049109",
+   "internalDate": "1500674772000",
+   "sizeEstimate": 40434
+  },
+  {
+   "id": "15d6732044e0d512",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "If that&#39;s not working, can you see if you can join our remote session at: http://collabedit.com/rmr84 - David From: Samuel Chu [mailto:samuelechu@gmail.com] Sent: Friday, July 21, 2017 3:05 PM To:",
+   "historyId": "3049109",
+   "internalDate": "1500674907000",
+   "sizeEstimate": 40736
+  },
+  {
+   "id": "15d86d4467660277",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hey David, It was nice interviewing with you the other day! I remember you said that you would be giving a take-home coding assignment. Around when are you planning to send it out? Thanks, Sam On",
+   "historyId": "3049109",
+   "internalDate": "1501205645000",
+   "sizeEstimate": 23690
+  },
+  {
+   "id": "15d86d44ffe791ad",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Hey David, It was nice interviewing with you the other day! I remember you said that you would be giving a take-home coding assignment. Around when are you planning to send it out? Thanks, Sam On",
+   "historyId": "3049109",
+   "internalDate": "1501205647000",
+   "sizeEstimate": 23690
+  },
+  {
+   "id": "15d8a3fe3191a48b",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "IMPORTANT",
+    "Label_8",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+   ],
+   "snippet": "Hi Sam, Thanks for your time, it was a pleasure speaking with you too! After discussion with the group, we felt like it would make more sense if we continued the interview process closer to your",
+   "historyId": "3049109",
+   "internalDate": "1501263017000",
+   "sizeEstimate": 47844
+  },
+  {
+   "id": "15d8a953e4354321",
+   "threadId": "15d22fce271fd54c",
+   "labelIds": [
+    "Label_8",
+    "SENT"
+   ],
+   "snippet": "Early January sounds good! On Fri, Jul 28, 2017 at 10:30 AM, David Reed &lt;DReed@truevisionsys.com&gt; wrote: Hi Sam, Thanks for your time, it was a pleasure speaking with you too! After discussion",
+   "historyId": "3049109",
+   "internalDate": "1501268623000",
+   "sizeEstimate": 24584
+  }
+ ]
+}
