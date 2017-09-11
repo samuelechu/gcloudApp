@@ -17,6 +17,7 @@ func init() {
 }
 
 func GetAccountCredentials(r *http.Request){
+    var curUserID, sourceToken, sourceID, destToken, destID string
     time.Sleep(time.Duration(15)*time.Second)
 
     curUserCookie, err := r.Cookie("current_user")
