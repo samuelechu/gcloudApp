@@ -44,14 +44,18 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     respBody, _ := ioutil.ReadAll(body)
     //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-        label, _, _, _ := jsonparser.Get(value, "")
-        if string(label) != "" {
-            log.Printf("Got label: %v", string(label))
+    labels, _, _, _ := jsonparser.Get(value, "labelIds")
+	log.Printf("Got labels: %v", []string(labels))
 
-        }
+
+    // jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+    //     label, _, _, _ := jsonparser.Get(value, "")
+    //     if string(label) != "" {
+    //         log.Printf("Got label: %v", string(label))
+
+    //     }
         
-    }, "labelIds")
+    // }, "labelIds")
 
 	//15d3d8e8de90ebcc
 	// for _, thread := range threads {
