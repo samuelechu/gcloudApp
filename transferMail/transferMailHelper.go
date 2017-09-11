@@ -80,7 +80,7 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
 
     urlStr = "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=multipart"
 
-    body = nopCloser{bytes.NewBufferString("--foo_bar\nContent-Type: application/json; charset=UTF-8\n{" +
+    body = nopCloser{bytes.NewBufferString("--foo_bar\nContent-Type: application/json; charset=UTF-8\n\n{" +
 "\n\"raw\":\"" + rawReal + "\",\n\"labelIds\": [\"INBOX\", \"UNREAD\"]\n}" +
 "\n--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")} 
 
@@ -107,8 +107,8 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     respBody, _ = ioutil.ReadAll(body)
     log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    log.Print("--foo_bar\nContent-Type: application/json; charset=UTF-8\n{" +
+    log.Print("--foo_bar\nContent-Type: application/json; charset=UTF-8\n\n{" +
 "\n\"raw\":\"" + rawReal + "\",\n\"labelIds\": [\"INBOX\", \"UNREAD\"]\n}" +
-"--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")
+"\n--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")
 
 }
