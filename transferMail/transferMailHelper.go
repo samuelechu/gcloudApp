@@ -6,7 +6,6 @@ import (
 	"io"
     "io/ioutil"
     "bytes"
-    "os"
     "time"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
@@ -16,7 +15,7 @@ type nopCloser struct {
     io.Reader 
 } 
 
-func (nopCloser) Close() os.Error { return nil } 
+func (nopCloser) Close() error { return nil } 
 
 func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
 	threads := cloudSQL.GetThreadsForUser(curUserID)
