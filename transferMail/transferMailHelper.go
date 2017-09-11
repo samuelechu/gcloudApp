@@ -6,6 +6,8 @@ import (
 	"strings"
 	"io"
     "io/ioutil"
+    "bytes"
+    "os"
     "time"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
