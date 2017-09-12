@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
     "io/ioutil"
-   // "time"
+    "time"
 
     "golang.org/x/net/context"
     "google.golang.org/appengine"
@@ -152,7 +152,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
 
 
-
+    time.Sleep(time.Duration(15)*time.Second)
 
 
 }
