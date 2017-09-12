@@ -22,8 +22,43 @@ type nopCloser struct {
 
 func (nopCloser) Close() error { return nil } 
 
+func getLabels(ctx context.Context, token string){
+
+    client := urlfetch.Client(ctx)
+
+    urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels" //testTransfer label
+    //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
+    req, _ := http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + token)
+
+    resp, err := client.Do(req)
+
+    if err != nil {
+            log.Printf("Error: %v", err)
+            return
+    }
+    
+    body := resp.Body
+    defer body.Close()
+
+    if body == nil {
+        log.Print("Error: Response body not found")
+        return
+    }
+
+    respBody, _ := ioutil.ReadAll(body)
+    log.Printf("HTTP PostForm/GET returned %v", string(respBody))
+
+
+
+}
+
+
+
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
+
+    getLabels(ctx,sourceToken)
 
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)
