@@ -23,16 +23,16 @@ type nopCloser struct {
 
 func (nopCloser) Close() error { return nil } 
 
-func startTransfer(ctx context.Context) {
+func startTransfers(ctx context.Context) {
 
 	var curUserID, sourceToken, sourceID, destToken, destID string
     //ctx.Value("cookieInfo").(Values).Get("sourceToken"))
-	//ctxValues := ctx.Value("cookieInfo").(Values)
-	curUserID = ctx.Value("cookieInfo").(Values).Get("sourceToken")//ctxValues.Get("curUserID")
-	// sourceToken = ctxValues.Get("sourceToken")
-	// sourceID = ctxValues.Get("sourceID")
-	// destToken = ctxValues.Get("destToken")
-	// destID = ctxValues.Get("destID")
+	ctxValues := ctx.Value("cookieInfo").(Values)
+	curUserID = ctxValues.Get("curUserID")
+	sourceToken = ctxValues.Get("sourceToken")
+	sourceID = ctxValues.Get("sourceID")
+	destToken = ctxValues.Get("destToken")
+	destID = ctxValues.Get("destID")
 
 
     client := urlfetch.Client(ctx)
