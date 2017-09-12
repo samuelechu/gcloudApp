@@ -67,7 +67,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
         "destID": destID,
     }}
 
-    ctx := appengine.NewContext(r)
+    c := appengine.NewContext(r)
     ctx := context.WithValue(c, "cookieInfo", cookieInfo)
 
     client := urlfetch.Client(ctx)
