@@ -153,6 +153,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
 
     time.Sleep(time.Duration(15)*time.Second)
+    log.Print("I finished sleeping")
 
 
 }
