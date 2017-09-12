@@ -54,7 +54,7 @@ func addMissingLabels(ctx context.Context, sourceToken, destToken string){
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         labelName, _, _, _ := jsonparser.Get(value, "name")
         if string(labelName) != "" {
-            sourceLabels = append(sourceLabels, string(labelName)
+            sourceLabels = append(sourceLabels, string(labelName))
         }
         
     }, "labels")
@@ -86,7 +86,7 @@ func addMissingLabels(ctx context.Context, sourceToken, destToken string){
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         labelName, _, _, _ := jsonparser.Get(value, "name")
         if string(labelName) != "" {
-            destLabels = append(destLabels, string(labelName)
+            destLabels = append(destLabels, string(labelName))
         }
         
     }, "labels")
