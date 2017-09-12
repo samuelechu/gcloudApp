@@ -112,7 +112,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     res, _, _, _ := jsonparser.Get(respBody, "resultSizeEstimate")
     log.Printf("jsonparser returned %v", string(res))
 
-    go startTransfer(curUserID, sourceToken, sourceID, destToken, destID)
+    //go startTransfer(curUserID, sourceToken, sourceID, destToken, destID)
     // urlStr := "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=media"
 
     // bodyVals := url.Values{
