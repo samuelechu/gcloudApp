@@ -7,9 +7,6 @@ import (
     "time"
 
 
-
-    "bytes"
-
     "golang.org/x/net/context"
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
@@ -149,6 +146,9 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     log.Print(ctx.Value("cookieInfo").(*Values).Get("sourceToken"))
     
     err = runtime.RunInBackground(ctx, func(ctx context.Context) {
+
+        time.Sleep(time.Duration(15)*time.Second)
+        log.Print("I finished sleeping")
         startTransfer(ctx, curUserID, sourceToken, sourceID, destToken, destID)
 //     // var curUserID, sourceToken, sourceID, destToken, destID string
 //     // //ctx.Value("cookieInfo").(Values).Get("sourceToken"))
