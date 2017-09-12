@@ -24,17 +24,6 @@ type nopCloser struct {
 func (nopCloser) Close() error { return nil } 
 
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
-
-	// var curUserID, sourceToken, sourceID, destToken, destID string
- //    //ctx.Value("cookieInfo").(Values).Get("sourceToken"))
-	// ctxValues := ctx.Value("cookieInfo").(Values)
-	// curUserID = ctxValues.Get("curUserID")
-	// sourceToken = ctxValues.Get("sourceToken")
-	// sourceID = ctxValues.Get("sourceID")
-	// destToken = ctxValues.Get("destToken")
-	// destID = ctxValues.Get("destID")
-
-
     client := urlfetch.Client(ctx)
 
 	threads := cloudSQL.GetThreadsForUser(curUserID)
@@ -118,9 +107,5 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
 
     respBody, _ = ioutil.ReadAll(body)
     log.Printf("HTTP PostForm/GET returned %v", string(respBody))
-
-//     log.Print("--foo_bar\nContent-Type: application/json; charset=UTF-8\n\n{" +
-// "\n\"raw\":\"" + rawReal + "\",\n\"labelIds\": [\"INBOX\", \"UNREAD\"]\n}" +
-// "\n--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")
 
 }
