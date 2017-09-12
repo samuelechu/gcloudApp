@@ -4,9 +4,6 @@ import (
 	"log"
 	"net/http"
     "io/ioutil"
-    "time"
-
-
     "golang.org/x/net/context"
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
