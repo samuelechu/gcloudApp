@@ -5,9 +5,11 @@ import (
 	"net/http"
     "io/ioutil"
    // "time"
+
     "golang.org/x/net/context"
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
+    "google.golang.org/appengine/runtime"
 	"github.com/samuelechu/oauth"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
@@ -70,8 +72,8 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
     client := urlfetch.Client(ctx)
 
-    log.Print("Printing Source Token:::!!!!!")
-    log.Print(ctx.Value("cookieInfo").(Values).Get("sourceToken"))
+    //log.Print("Printing Source Token:::!!!!!")
+    //log.Print(ctx.Value("cookieInfo").(Values).Get("sourceToken"))
 
     resp, err := client.Do(req)
 
@@ -143,6 +145,12 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     // log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
     
+    err = runtime.RunInBackground(ctx, startTransfer)
+    if err != nil {
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+            return
+    }
+
 
 
 

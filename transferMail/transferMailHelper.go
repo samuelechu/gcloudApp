@@ -9,8 +9,9 @@ import (
     "time"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
-    // "google.golang.org/appengine"
-    // "google.golang.org/appengine/urlfetch"
+    "golang.org/x/net/context"
+    //"google.golang.org/appengine"
+    "google.golang.org/appengine/urlfetch"
     // "google.golang.org/appengine/runtime"
 )
 
@@ -18,9 +19,23 @@ type nopCloser struct {
     io.Reader 
 } 
 
+
+
 func (nopCloser) Close() error { return nil } 
 
-func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
+func startTransfer(ctx context.Context) {
+
+	var curUserID, sourceToken, sourceID, destToken, destID string
+	ctxValues := ctx.Value("cookieInfo").(Values)
+	curUserID = ctxValues.Get("curUserID")
+	sourceToken = ctxValues.Get("sourceToken")
+	sourceID = ctxValues.Get("sourceID")
+	destToken = ctxValues.Get("destToken")
+	destID = ctxValues.Get("destID")
+
+
+    client := urlfetch.Client(ctx)
+
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)
 	log.Printf("curUserID : %v, sourceToken : %v, sourceID : %v, destToken : %v, destID : %v", curUserID, sourceToken, sourceID, destToken, destID)
@@ -29,13 +44,6 @@ func startTransfer(curUserID, sourceToken, sourceID, destToken, destID string) {
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
-
-    transport := http.Transport{}
-
-    client := &http.Client{
-        Transport: &transport,
-        Timeout: time.Second * 10,
-    }     
 
     resp, err := client.Do(req)
 
