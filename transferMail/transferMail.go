@@ -158,7 +158,8 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     // sourceID = ctxValues.Get("sourceID")
     // destToken = ctxValues.Get("destToken")
     // destID = ctxValues.Get("destID")
-
+    time.Sleep(time.Duration(15)*time.Second)
+    log.Print("I finished sleeping")
 
     client := urlfetch.Client(ctx)
 
@@ -256,9 +257,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
 
 
-    time.Sleep(time.Duration(15)*time.Second)
-    log.Print("I finished sleeping")
-    log.Print(ctx.Value("cookieInfo").(*Values).Get("sourceToken"))
+
 
 }
 
