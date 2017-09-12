@@ -58,7 +58,7 @@ func getLabels(ctx context.Context, token string){
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
 
-    getLabels(ctx,sourceToken)
+    getLabels(ctx,destToken)
 
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)
