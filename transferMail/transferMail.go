@@ -59,13 +59,13 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
-    cookieInfo := Values{map[string]string{
-        "curUserID": curUserID,
-        "sourceToken": sourceToken,
-        "sourceID": sourceID,
-        "destToken": destToken,
-        "destID": destID,
-    }}
+    // cookieInfo := Values{map[string]string{
+    //     "curUserID": curUserID,
+    //     "sourceToken": sourceToken,
+    //     "sourceID": sourceID,
+    //     "destToken": destToken,
+    //     "destID": destID,
+    // }}
 
     ctx := appengine.NewContext(r)
     //ctx := context.WithValue(c, "cookieInfo", cookieInfo)
