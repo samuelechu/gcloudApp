@@ -150,14 +150,14 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     
     err = runtime.RunInBackground(ctx, func(ctx context.Context) {
 
-    var curUserID, sourceToken, sourceID, destToken, destID string
-    //ctx.Value("cookieInfo").(Values).Get("sourceToken"))
-    ctxValues := ctx.Value("cookieInfo").(*Values)
-    curUserID = ctxValues.Get("curUserID")
-    sourceToken = ctxValues.Get("sourceToken")
-    sourceID = ctxValues.Get("sourceID")
-    destToken = ctxValues.Get("destToken")
-    destID = ctxValues.Get("destID")
+    // var curUserID, sourceToken, sourceID, destToken, destID string
+    // //ctx.Value("cookieInfo").(Values).Get("sourceToken"))
+    // ctxValues := ctx.Value("cookieInfo").(*Values)
+    // curUserID = ctxValues.Get("curUserID")
+    // sourceToken = ctxValues.Get("sourceToken")
+    // sourceID = ctxValues.Get("sourceID")
+    // destToken = ctxValues.Get("destToken")
+    // destID = ctxValues.Get("destID")
 
 
     client := urlfetch.Client(ctx)
