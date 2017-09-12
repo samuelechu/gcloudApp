@@ -7,7 +7,7 @@ import (
     "time"
 
 
-    
+
     "bytes"
 
     "golang.org/x/net/context"
@@ -63,7 +63,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
-    cookieInfo := Values{map[string]string{
+    cookieInfo := &Values{map[string]string{
         "curUserID": curUserID,
         "sourceToken": sourceToken,
         "sourceID": sourceID,
@@ -158,7 +158,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
     time.Sleep(time.Duration(15)*time.Second)
     log.Print("I finished sleeping")
-    log.Print(ctx.Value("cookieInfo").(Values).Get("sourceToken"))
+    log.Print(ctx.Value("cookieInfo").(*Values).Get("sourceToken"))
 
 }
 
@@ -167,7 +167,7 @@ func startTransfer(ctx context.Context) {
 
     var curUserID, sourceToken, sourceID, destToken, destID string
     //ctx.Value("cookieInfo").(Values).Get("sourceToken"))
-    ctxValues := ctx.Value("cookieInfo").(Values)
+    ctxValues := ctx.Value("cookieInfo").(*Values)
     curUserID = ctxValues.Get("curUserID")
     sourceToken = ctxValues.Get("sourceToken")
     sourceID = ctxValues.Get("sourceID")
