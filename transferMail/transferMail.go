@@ -146,7 +146,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     // log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
     log.Print("Printing Source Token:::!!!!!")
-    log.Print(ctx.Value("cookieInfo").(Values).Get("sourceToken"))
+    log.Print(ctx.Value("cookieInfo").(*Values).Get("sourceToken"))
     
     err = runtime.RunInBackground(ctx, startTransfer)
     if err != nil {
