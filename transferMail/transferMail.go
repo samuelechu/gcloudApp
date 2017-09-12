@@ -148,22 +148,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     log.Print("Printing Source Token:::!!!!!")
     log.Print(ctx.Value("cookieInfo").(*Values).Get("sourceToken"))
     
-    err = runtime.RunInBackground(ctx, startTransfer)
-    if err != nil {
-            log.Printf("Could not start background thread: %v", err)
-            return
-    }
-
-
-
-    time.Sleep(time.Duration(15)*time.Second)
-    log.Print("I finished sleeping")
-    log.Print(ctx.Value("cookieInfo").(*Values).Get("sourceToken"))
-
-}
-
-
-func startTransfer(ctx context.Context) {
+    err = runtime.RunInBackground(ctx, func(ctx context.Context) {
 
     var curUserID, sourceToken, sourceID, destToken, destID string
     //ctx.Value("cookieInfo").(Values).Get("sourceToken"))
@@ -263,4 +248,17 @@ func startTransfer(ctx context.Context) {
 // "\n\"raw\":\"" + rawReal + "\",\n\"labelIds\": [\"INBOX\", \"UNREAD\"]\n}" +
 // "\n--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")
 
+})
+    if err != nil {
+            log.Printf("Could not start background thread: %v", err)
+            return
+    }
+
+
+
+    time.Sleep(time.Duration(15)*time.Second)
+    log.Print("I finished sleeping")
+    log.Print(ctx.Value("cookieInfo").(*Values).Get("sourceToken"))
+
 }
+
