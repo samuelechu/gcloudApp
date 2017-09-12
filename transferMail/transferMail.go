@@ -5,6 +5,7 @@ import (
 	"net/http"
     "io/ioutil"
     "time"
+    "context"
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
 	"github.com/samuelechu/oauth"
@@ -12,35 +13,16 @@ import (
     "github.com/buger/jsonparser"
 )
 
-func init() {
-     http.HandleFunc("/transferStart", transferEmail)
+type Values struct {
+    m map[string]string
 }
 
-func GetAccountCredentials(r *http.Request){
-    var curUserID, sourceToken, sourceID, destToken, destID string
-    time.Sleep(time.Duration(15)*time.Second)
+func (v Values) Get(key string) string {
+    return v.m[key]
+}
 
-    curUserCookie, err := r.Cookie("current_user")
-    if err == nil {
-        curUserID = curUserCookie.Value
-    }
-    
-    sourceCookie, err := r.Cookie("source")
-    if err == nil {
-        sourceToken = sourceCookie.Value
-    }
-
-    destCookie, err := r.Cookie("destination")
-    if err == nil {
-        destToken = destCookie.Value
-    }
-
-    sourceID, _ = oauth.GetUserInfo(w, r, sourceToken)
-    destID, _ = oauth.GetUserInfo(w, r, destToken)
-
-    log.Printf("Source ID: %v\n", sourceID)
-    log.Printf("Dest ID: %v\n", destID)
-
+func init() {
+     http.HandleFunc("/transferStart", transferEmail)
 }
 
 func transferEmail(w http.ResponseWriter, r *http.Request) {
@@ -75,8 +57,21 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
-    ctx := appengine.NewContext(r)
+    cookieInfo := Values{map[string]string{
+        "curUserID": curUserID,
+        "sourceToken": sourceToken,
+        "sourceID": sourceID,
+        "destToken": destToken,
+        "destID": destID,
+    }}
+
+    c := appengine.NewContext(r)
+    ctx := context.WithValue(c, "cookieInfo", cookieInfo)
+
     client := urlfetch.Client(ctx)
+
+    log.Print("Printing Source Token:::!!!!!")
+    log.Print(ctx.Value("cookieInfo").(Values).Get("sourceToken"))
 
     resp, err := client.Do(req)
 
@@ -116,7 +111,6 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     log.Printf("jsonparser returned %v", string(res))
 
     go startTransfer(curUserID, sourceToken, sourceID, destToken, destID)
-    go GetAccountCredentials(r)
     // urlStr := "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=media"
 
     // bodyVals := url.Values{
