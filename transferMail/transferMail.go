@@ -6,7 +6,7 @@ import (
     "io/ioutil"
    // "time"
 
-   // "golang.org/x/net/context"
+    "golang.org/x/net/context"
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
     "google.golang.org/appengine/runtime"
@@ -59,16 +59,16 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
-    // cookieInfo := Values{map[string]string{
-    //     "curUserID": curUserID,
-    //     "sourceToken": sourceToken,
-    //     "sourceID": sourceID,
-    //     "destToken": destToken,
-    //     "destID": destID,
-    // }}
+    cookieInfo := Values{map[string]string{
+        "curUserID": curUserID,
+        "sourceToken": sourceToken,
+        "sourceID": sourceID,
+        "destToken": destToken,
+        "destID": destID,
+    }}
 
     ctx := appengine.NewContext(r)
-    //ctx := context.WithValue(c, "cookieInfo", cookieInfo)
+    ctx := context.WithValue(c, "cookieInfo", cookieInfo)
 
     client := urlfetch.Client(ctx)
 
