@@ -67,8 +67,8 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
         "destID": destID,
     }}
 
-    c := appengine.NewContext(r)
-    ctx := context.WithValue(c, "cookieInfo", cookieInfo)
+    ctx := appengine.NewContext(r)
+    //ctx := context.WithValue(c, "cookieInfo", cookieInfo)
 
     client := urlfetch.Client(ctx)
 
@@ -147,7 +147,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     
     err = runtime.RunInBackground(ctx, startTransfer)
     if err != nil {
-            log.Print("Could not start background thread: %v", err)
+            log.Printf("Could not start background thread: %v", err)
             return
     }
 
