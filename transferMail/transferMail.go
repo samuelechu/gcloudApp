@@ -72,9 +72,6 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
     client := urlfetch.Client(ctx)
 
-    log.Print("Printing Source Token:::!!!!!")
-    log.Print(ctx.Value("cookieInfo").(Values).Get("sourceToken"))
-
     resp, err := client.Do(req)
 
     if err != nil {
@@ -144,6 +141,8 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     // respBody, _ := ioutil.ReadAll(body)
     // log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
+    log.Print("Printing Source Token:::!!!!!")
+    log.Print(ctx.Value("cookieInfo").(Values).Get("sourceToken"))
     
     err = runtime.RunInBackground(ctx, startTransfer)
     if err != nil {

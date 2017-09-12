@@ -26,6 +26,7 @@ func (nopCloser) Close() error { return nil }
 func startTransfer(ctx context.Context) {
 
 	var curUserID, sourceToken, sourceID, destToken, destID string
+    //ctx.Value("cookieInfo").(Values).Get("sourceToken"))
 	ctxValues := ctx.Value("cookieInfo").(Values)
 	curUserID = ctxValues.Get("curUserID")
 	sourceToken = ctxValues.Get("sourceToken")
