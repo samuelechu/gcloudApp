@@ -147,7 +147,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     
     err = runtime.RunInBackground(ctx, startTransfer)
     if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
+            log.Print("Could not start background thread: %v", err)
             return
     }
 
