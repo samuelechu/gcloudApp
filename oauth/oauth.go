@@ -56,7 +56,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
         case "source":
             permissions = "https://www.googleapis.com/auth/gmail.readonly"
         case "destination":
-            permissions = "https://www.googleapis.com/auth/gmail.insert"
+            permissions = "https://www.googleapis.com/auth/gmail.insert https://www.googleapis.com/auth/gmail.labels"
         default:
             http.Error(w, "must specify in queryString type : source || destination", 400)
             return
