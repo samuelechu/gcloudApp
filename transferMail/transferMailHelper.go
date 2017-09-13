@@ -45,27 +45,14 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
         
     }, "labels")
 
-
     req, _ = http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + destToken)
 
-    resp, err = client.Do(req)
-
-    if err != nil {
-            log.Printf("Error: %v", err)
-            return
+    respBody := jsonHelper.GetRespBody(req, client)
+    if len(respBody) == 0 {
+         log.Print("Error: empty respBody")
+         return
     }
-    
-    body = resp.Body
-    defer body.Close()
-
-    if body == nil {
-        log.Print("Error: Response body not found")
-        return
-    }
-
-    respBody, _ = ioutil.ReadAll(body)
-  //  log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
     var destLabels []string
 
