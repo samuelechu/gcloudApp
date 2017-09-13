@@ -22,6 +22,7 @@ func createNewLabel(client *http.Client, access_token, name, messageVis, labelVi
 
     req, _ := http.NewRequest("POST", urlStr, body)
     req.Header.Set("Authorization", "Bearer " + access_token)
+    req.Header.Set("Content-Type", "application/json")
 
     respBody := jsonHelper.GetRespBody(req, client)
     if len(respBody) == 0 {
