@@ -96,3 +96,25 @@ func MarshalJSON(w http.ResponseWriter, r *http.Request, json_object interface{}
 	w.Write(data)
 
 }
+
+func GetRespBody(req *http.Request, client *http.Client) []byte{
+
+	resp, err := client.Do(req)
+
+    if err != nil {
+            log.Printf("Error: %v", err)
+            return []byte{}
+    }
+    
+    body := resp.Body
+    defer body.Close()
+
+    if body == nil {
+        log.Print("Error: Response body not found")
+        return []byte{}
+    }
+
+    respBody, _ := ioutil.ReadAll(body)
+
+    return respBody
+}

@@ -9,9 +9,8 @@ import (
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
     "golang.org/x/net/context"
-    //"google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
-    // "google.golang.org/appengine/runtime"
+    "github.com/samuelechu/jsonHelper"
 )
 
 type nopCloser struct { 
@@ -22,32 +21,19 @@ type nopCloser struct {
 
 func (nopCloser) Close() error { return nil } 
 
-func addMissingLabels(ctx context.Context, sourceToken, destToken string){
+func addMissingLabels(client *http.Client, sourceToken, destToken string){
 
-    client := urlfetch.Client(ctx)
 
     urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels" //testTransfer label
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
-    resp, err := client.Do(req)
-
-    if err != nil {
-            log.Printf("Error: %v", err)
-            return
+    respBody := jsonHelper.GetRespBody(req, client)
+    if len(respBody) == 0 {
+         log.Print("Error: empty respBody")
+         return
     }
-    
-    body := resp.Body
-    defer body.Close()
-
-    if body == nil {
-        log.Print("Error: Response body not found")
-        return
-    }
-
-    respBody, _ := ioutil.ReadAll(body)
- //   log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
     var sourceLabels []string
 
@@ -101,7 +87,7 @@ func addMissingLabels(ctx context.Context, sourceToken, destToken string){
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
 
-    addMissingLabels(ctx,sourceToken,destToken)
+    addMissingLabels(client,sourceToken,destToken)
 
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)
