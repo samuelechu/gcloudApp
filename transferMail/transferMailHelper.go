@@ -101,7 +101,7 @@ func addMissingLabels(ctx context.Context, sourceToken, destToken string){
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
 
-    getLabels(ctx,sourceToken,destToken)
+    addMissingLabels(ctx,sourceToken,destToken)
 
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)
