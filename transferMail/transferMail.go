@@ -43,8 +43,8 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
         destToken = destCookie.Value
     }
 
-    sourceID, _ = oauth.GetUserInfo(w, r, sourceToken)
-    destID, _ = oauth.GetUserInfo(w, r, destToken)
+    sourceID, _, _ = oauth.GetUserInfo(w, r, sourceToken)
+    destID, _, _ = oauth.GetUserInfo(w, r, destToken)
 
     log.Printf("Source ID: %v\n", sourceID)
     log.Printf("Dest ID: %v\n", destID)

@@ -25,6 +25,7 @@ type OauthRespBody struct{
 type UserInfoRespBody struct{
     Id              string
     Name            string
+    Email           string
     Given_name      string
     Family_name     string
     Picture         string

@@ -35,7 +35,7 @@ func VerifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
 }
 
 //return uid, name of given access token
-func GetUserInfo(w http.ResponseWriter, r *http.Request, accessToken string) (string, string) {
+func GetUserInfo(w http.ResponseWriter, r *http.Request, accessToken string) (string, string, string) {
 
     urlStr := "https://www.googleapis.com/oauth2/v1/userinfo"
 
@@ -44,10 +44,10 @@ func GetUserInfo(w http.ResponseWriter, r *http.Request, accessToken string) (st
 
     var respBody jsonHelper.UserInfoRespBody
     if rb, ok := jsonHelper.GetJSONRespBodyDo(w, r, req, respBody).(jsonHelper.UserInfoRespBody); ok {
-        return rb.Id, rb.Name
+        return rb.Id, rb.Name, rb.Email
     }
 
-    return "", ""
+    return "", "", ""
 }
 
 func GetAccessToken(w http.ResponseWriter, r *http.Request, uid string) string{
