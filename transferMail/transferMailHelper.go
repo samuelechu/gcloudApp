@@ -4,7 +4,6 @@ import (
     "log"
 	"net/http"
 	"io"
-    "io/ioutil"
     "bytes"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
@@ -31,7 +30,9 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
          log.Print("Error: empty respBody")
          return
     }
+
     log.Print(string(respBody))
+
     var sourceLabels []string
 
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
@@ -96,7 +97,7 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
 
 //post message
     urlStr = "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=multipart"
-    body = nopCloser{bytes.NewBufferString("--foo_bar\nContent-Type: application/json; charset=UTF-8\n\n{" +
+    body := nopCloser{bytes.NewBufferString("--foo_bar\nContent-Type: application/json; charset=UTF-8\n\n{" +
 "\n\"raw\":\"" + rawReal + "\",\n\"labelIds\": [\"INBOX\", \"UNREAD\"]\n}" +
 "\n--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")} 
 
