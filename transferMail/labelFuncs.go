@@ -35,7 +35,7 @@ func createNewLabel(client *http.Client, access_token, name, messageVis, labelVi
 func addMissingLabels(client *http.Client, sourceToken, destToken string){
 
     var sourceEmail string
-    var destLabels map[string]bool
+    destLabels := make(map[string]bool)
 
     urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels" //testTransfer label
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"

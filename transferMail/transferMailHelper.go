@@ -18,9 +18,6 @@ type nopCloser struct {
 
 func (nopCloser) Close() error { return nil } 
 
-
-
-
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
 
