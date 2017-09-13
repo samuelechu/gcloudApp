@@ -91,7 +91,7 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
 
     //add nested email labels
     jsonparser.ArrayEach(respBodySource, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-        var name, messageListVisibility, labelListVisibility string
+        var name, messageListVisibility, labelListVisibility, labelType string
         
         jsonparser.EachKey(value, func(idx int, value []byte, vt jsonparser.ValueType, err error){
             switch idx {
