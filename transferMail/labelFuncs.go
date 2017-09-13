@@ -3,13 +3,10 @@ package transferMail
 import (
     "log"
 	"net/http"
-	"io"
+	"net/url"
     "bytes"
-    "github.com/samuelechu/cloudSQL"
     "github.com/samuelechu/oauth"
     "github.com/buger/jsonparser"
-    "golang.org/x/net/context"
-    "google.golang.org/appengine/urlfetch"
     "github.com/samuelechu/jsonHelper"
 )
 
@@ -38,7 +35,7 @@ func createNewLabel(client *http.Client, access_token, name, messageVis, labelVi
 
 func addMissingLabels(client *http.Client, sourceToken, destToken string){
 
-    _, _, sourceEmail := oauth.GetUserInfo(w, r, sourceToken)
+    var sourceEmail string
     var destLabels map[string]bool
 
     urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels" //testTransfer label
@@ -78,6 +75,19 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
         []string{"messageListVisibility"},
         []string{"labelListVisibility"},
     }
+
+    urlStr = "https://www.googleapis.com/oauth2/v1/userinfo"
+
+    req, _ = http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+    respBodyUserInfo := jsonHelper.GetRespBody(req, client)
+    if len(respBodySource) == 0 {
+         log.Print("Error: empty respBody")
+         return
+    }
+
+    sourceEmail, _ = jsonparser.GetString(respBodyUserInfo, "email")
 
     //add main email label
     if !destLabels[sourceEmail] {
