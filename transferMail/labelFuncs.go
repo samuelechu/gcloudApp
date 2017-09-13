@@ -98,7 +98,7 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
     jsonparser.ArrayEach(respBodySource, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         var name, messageListVisibility, labelListVisibility string
         
-        jsonparser.EachKey(smallFixture, func(idx int, value []byte, vt jsonparser.ValueType, err error){
+        jsonparser.EachKey(value, func(idx int, value []byte, vt jsonparser.ValueType, err error){
             switch idx {
             case 0:
                 name, _ = jsonparser.ParseString(value)
