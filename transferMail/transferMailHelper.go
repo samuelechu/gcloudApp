@@ -105,7 +105,7 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
     insertReq.Header.Set("Authorization", "Bearer " + destToken)
     insertReq.Header.Set("Content-Type", "multipart/related; boundary=\"foo_bar\"")
 
-    respBody = jsonHelper.GetRespBody(req, client)
+    respBody = jsonHelper.GetRespBody(insertReq, client)
     if len(respBody) == 0 {
          log.Print("Error: empty respBody")
          return
