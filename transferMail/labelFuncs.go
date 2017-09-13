@@ -2,6 +2,7 @@ package transferMail
 
 import (
     "log"
+    "fmt"
 	"net/http"
 	"net/url"
     "bytes"
@@ -11,16 +12,10 @@ import (
 
 func createNewLabel(client *http.Client, access_token, name, messageVis, labelVis string){
 	urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
+    bodyStr := fmt.Sprintf(`{"name": "%v", "messageListVisibility": "%v", "labelListVisibility": "%v"}`, name, messageVis, labelVis)
+    var jsonStr = []byte(bodyStr)
 
-    bodyVals := url.Values{
-        "name": {name},
-        "messageListVisibility": {messageVis},
-        "labelListVisibility":{labelVis},
-    }
-
-    body := nopCloser{bytes.NewBufferString(bodyVals.Encode())}
-
-    req, _ := http.NewRequest("POST", urlStr, body)
+    req, _ := http.NewRequest("POST", urlStr, bytes.NewBufferString(jsonStr))
     req.Header.Set("Authorization", "Bearer " + access_token)
     req.Header.Set("Content-Type", "application/json")
 
