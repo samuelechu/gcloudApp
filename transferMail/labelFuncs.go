@@ -68,6 +68,7 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
         []string{"name"},
         []string{"messageListVisibility"},
         []string{"labelListVisibility"},
+        []string{"type"},
     }
 
     urlStr = "https://www.googleapis.com/oauth2/v1/userinfo"
@@ -94,16 +95,23 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
         
         jsonparser.EachKey(value, func(idx int, value []byte, vt jsonparser.ValueType, err error){
             switch idx {
-            case 0:
-                name, _ = jsonparser.ParseString(value)
-            case 1:
-                messageListVisibility, _ = jsonparser.ParseString(value)
-            case 2:
-                labelListVisibility, _ = jsonparser.ParseString(value)
+	            case 0:
+	                name, _ = jsonparser.ParseString(value)
+	            case 1:
+	                messageListVisibility, _ = jsonparser.ParseString(value)
+	            case 2:
+	                labelListVisibility, _ = jsonparser.ParseString(value)
+	            case 3:
+                	labelType, _ = jsonparser.ParseString(value)
             }
         }, fields...)
 
         if !destLabels[sourceEmail + "/" + name] {
+        	if labelType == "system" {
+        		labelListVisibility = "labelHide"
+        	}
+
+        	log.Printf("Adding new Label: %v", sourceEmail + "/" + name)
             createNewLabel(client, destToken, sourceEmail + "/" + name, messageListVisibility, labelListVisibility)
         }
     }, "labels")
