@@ -14,7 +14,7 @@ func createNewLabel(client *http.Client, access_token, name, messageVis, labelVi
     bodyStr := fmt.Sprintf(`{"name": "%v", "messageListVisibility": "%v", "labelListVisibility": "%v"}`, name, messageVis, labelVis)
     jsonStr := []byte(bodyStr)
 
-    req, _ := http.NewRequest("POST", urlStr, bytes.NewBufferString(jsonStr))
+    req, _ := http.NewRequest("POST", urlStr, bytes.NewBuffer(jsonStr))
     req.Header.Set("Authorization", "Bearer " + access_token)
     req.Header.Set("Content-Type", "application/json")
 
