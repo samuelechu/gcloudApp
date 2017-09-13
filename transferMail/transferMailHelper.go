@@ -52,6 +52,7 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
          return
     }
 
+    log.Print(string(respBody))
     var destLabels []string
 
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
