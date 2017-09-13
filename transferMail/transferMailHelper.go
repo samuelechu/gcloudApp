@@ -17,26 +17,76 @@ type nopCloser struct {
 } 
 
 func (nopCloser) Close() error { return nil } 
-
+/*
 func addMissingLabels(client *http.Client, sourceToken, destToken string){
+
+    var sourceLabels []string
+    var destLabels map[string]bool
 
     urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels" //testTransfer label
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     req, _ := http.NewRequest("GET", urlStr, nil)
-    req.Header.Set("Authorization", "Bearer " + sourceToken)
+    req.Header.Set("Authorization", "Bearer " + destToken)
 
-    respBody := jsonHelper.GetRespBody(req, client)
-    if len(respBody) == 0 {
+    //get Labels from destination account
+    respBodyDest := jsonHelper.GetRespBody(req, client)
+    if len(respBodyDest) == 0 {
          log.Print("Error: empty respBody")
          return
     }
 
-    log.Print(string(respBody))
+    jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+        labelName, err := jsonparser.GetString(value, "name")
+        if err != nil {
+            log.Print("Error: invalid label")
+            return
+        }
+        destLabels[labelName] = true
+        
+    }, "labels")
 
-    var sourceLabels []string
 
-    jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-        labelName, _, _, _ := jsonparser.Get(value, "name")
+
+    //get labels from source account and add if not in dest
+    req, _ = http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+    respBodySource := jsonHelper.GetRespBody(req, client)
+    if len(respBodySource) == 0 {
+         log.Print("Error: empty respBody")
+         return
+    }
+
+
+    urlStr = "https://www.googleapis.com/oauth2/v1/userinfo"
+    req, _ := http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+    fields := [][]string{
+        []string{"name"},
+        []string{"messageListVisibility"},
+        []string{"labelListVisibility"},
+    }
+
+    jsonparser.ArrayEach(respBodySource, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+        var name, messageListVisibility, labelListVisibility string
+        
+        jsonparser.EachKey(smallFixture, func(idx int, value []byte, vt jsonparser.ValueType, err error){
+            switch idx {
+            case 0:
+                name, _ = jsonparser.ParseString(value)
+            case 1:
+                messageListVisibility, _ = jsonparser.ParseString(value)
+            case 2:
+                labelListVisibility, _ = jsonparser.ParseString(value)
+            }
+        }, fields...)
+
+        if !destLabels[]
+
+
+        labelName, err := jsonparser.GetString(value, "name")
+        label
         if string(labelName) != "" {
             sourceLabels = append(sourceLabels, string(labelName))
         }
@@ -53,27 +103,19 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
     }
 
     log.Print(string(respBody))
-    var destLabels []string
-
-    jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-        labelName, _, _, _ := jsonparser.Get(value, "name")
-        if string(labelName) != "" {
-            destLabels = append(destLabels, string(labelName))
-        }
-        
-    }, "labels")
+    
 
 
     log.Printf("Source Labels: %v", sourceLabels)
     log.Printf("Dest Labels: %v", destLabels)
 }
 
-
+*/
 
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
 
-    addMissingLabels(client,sourceToken,destToken)
+  //  addMissingLabels(client,sourceToken,destToken)
 //get threads
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)

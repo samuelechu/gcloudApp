@@ -68,7 +68,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 	}
 
     queryVals := url.Values{
-        "scope" : {"profile " + permissions},
+        "scope" : {"profile email" + permissions},
         "access_type" : {"offline"},
         "include_granted_scopes" : {"true"},
         "prompt" : {"select_account"},
