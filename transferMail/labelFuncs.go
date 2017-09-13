@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"net/url"
     "bytes"
-    "github.com/samuelechu/oauth"
     "github.com/buger/jsonparser"
     "github.com/samuelechu/jsonHelper"
 )

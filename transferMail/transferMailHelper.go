@@ -6,7 +6,6 @@ import (
 	"io"
     "bytes"
     "github.com/samuelechu/cloudSQL"
-    "github.com/samuelechu/oauth"
     "github.com/buger/jsonparser"
     "golang.org/x/net/context"
     "google.golang.org/appengine/urlfetch"
