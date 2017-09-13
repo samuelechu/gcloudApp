@@ -4,7 +4,6 @@ import (
     "log"
     "fmt"
 	"net/http"
-	"net/url"
     "bytes"
     "github.com/buger/jsonparser"
     "github.com/samuelechu/jsonHelper"
@@ -13,7 +12,7 @@ import (
 func createNewLabel(client *http.Client, access_token, name, messageVis, labelVis string){
 	urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     bodyStr := fmt.Sprintf(`{"name": "%v", "messageListVisibility": "%v", "labelListVisibility": "%v"}`, name, messageVis, labelVis)
-    var jsonStr = []byte(bodyStr)
+    jsonStr := []byte(bodyStr)
 
     req, _ := http.NewRequest("POST", urlStr, bytes.NewBufferString(jsonStr))
     req.Header.Set("Authorization", "Bearer " + access_token)
