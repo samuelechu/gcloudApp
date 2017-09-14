@@ -65,26 +65,26 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
     }
     log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    fields := [][]string{
-        []string{"name"},
-        []string{"messageListVisibility"},
-        []string{"labelListVisibility"},
-        []string{"type"},
-    }
+    // fields := [][]string{
+    //     []string{"name"},
+    //     []string{"messageListVisibility"},
+    //     []string{"labelListVisibility"},
+    //     []string{"type"},
+    // }
 
-    var name, messageListVisibility, labelListVisibility string// labelType string
-    jsonparser.EachKey(value, func(idx int, value []byte, vt jsonparser.ValueType, err error){
-        switch idx {
-            case 0:
-                name, _ = jsonparser.ParseString(value)
-            case 1:
-                messageListVisibility, _ = jsonparser.ParseString(value)
-            case 2:
-                labelListVisibility, _ = jsonparser.ParseString(value)
-            // case 3:
-         //     labelType, _ = jsonparser.ParseString(value)
-        }
-    }, fields...)
+    // var name, messageListVisibility, labelListVisibility string// labelType string
+    // jsonparser.EachKey(value, func(idx int, value []byte, vt jsonparser.ValueType, err error){
+    //     switch idx {
+    //         case 0:
+    //             name, _ = jsonparser.ParseString(value)
+    //         case 1:
+    //             messageListVisibility, _ = jsonparser.ParseString(value)
+    //         case 2:
+    //             labelListVisibility, _ = jsonparser.ParseString(value)
+    //         // case 3:
+    //      //     labelType, _ = jsonparser.ParseString(value)
+    //     }
+    // }, fields...)
 //     HTTP PostForm/GET returned {
 //  "id": "15e827062708e520",
 //  "threadId": "15e827062708e520",
