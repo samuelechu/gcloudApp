@@ -72,6 +72,7 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
 	    
 	}, "labels")
 
+    log.Print("\n\n\n\nprinting respBodySource!!")
     log.Print(string(respBodySource))
 
 	log.Print("\n\n\nPrinting labelIdMap")
