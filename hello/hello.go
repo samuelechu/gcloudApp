@@ -60,16 +60,15 @@ func index(w http.ResponseWriter, r *http.Request) {
     sourceCookie, err := r.Cookie("source")
     if err == nil {
         sourceToken = sourceCookie.Value
+        _, sourceName, _ = oauth.GetUserInfo(w, r, sourceToken)
     }
 
     destCookie, err := r.Cookie("destination")
     if err == nil {
         destToken = destCookie.Value
+        _, destName, _ = oauth.GetUserInfo(w, r, destToken)
     }
     
-    _, sourceName, _ = oauth.GetUserInfo(w, r, sourceToken)
-    _, destName, _ = oauth.GetUserInfo(w, r, destToken)
-
     log.Printf("Source Name: %v\n", sourceName)
     log.Printf("Dest Name: %v\n", destName)
 
