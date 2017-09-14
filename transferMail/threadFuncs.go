@@ -17,7 +17,7 @@ func insertThreads(client *http.Client, sourceThreads []string, sourceToken, des
 
 func insertThread(client *http.Client, threadId, sourceToken, destToken string){
 
-	urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads/" + threadId
+	urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads/" + threadId + "?format=minimal"
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
