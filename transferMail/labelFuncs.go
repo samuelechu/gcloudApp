@@ -26,7 +26,7 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
     respBodyDest := jsonHelper.GetRespBody(req, client)
     if len(respBodyDest) == 0 {
          log.Print("Error: empty respBody")
-         return
+         return labelIdMap
     }
 
     jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
@@ -47,9 +47,9 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
     respBodyUserInfo := jsonHelper.GetRespBody(req, client)
-    if len(respBodySource) == 0 {
+    if len(respBodyUserInfo) == 0 {
          log.Print("Error: empty respBody")
-         return
+         return labelIdMap
     }
 
     sourceEmail, _ = jsonparser.GetString(respBodyUserInfo, "email")
@@ -61,14 +61,14 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
     respBodySource := jsonHelper.GetRespBody(req, client)
     if len(respBodySource) == 0 {
          log.Print("Error: empty respBody")
-         return
+         return labelIdMap
     }
 
     jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
 	    labelName, _ := jsonparser.GetString(value, "name")
 	    labelId, _ := jsonparser.GetString(value, "name")
 
-	    labelIdMap[labelId] = destLabels[sourceEmail + "/" + name]
+	    labelIdMap[labelId] = destLabels[sourceEmail + "/" + labelName]
 	    
 	}, "labels")
 
