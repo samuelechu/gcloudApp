@@ -55,6 +55,7 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
     sourceEmail, _ = jsonparser.GetString(respBodyUserInfo, "email")
 
     //create map:   map[sourceLabel id] = destLabels[sourceEmail + name] <--maps to an id
+    urlStr = "https://www.googleapis.com/gmail/v1/users/me/labels"
     req, _ = http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
