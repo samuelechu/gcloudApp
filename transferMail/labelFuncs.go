@@ -37,7 +37,7 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
 	    
 	}, "labels")
 
-
+    log.Print("printing respBodyDest!!")
     log.Print(string(respBodyDest))
 
     //get sourceEmail
