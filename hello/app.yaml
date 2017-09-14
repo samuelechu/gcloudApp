@@ -5,7 +5,6 @@ manual_scaling:
 
 env_variables:
   CLIENT_ID: 65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com
-  CLIENT_SECRET: 0NjL7OoLyGYiZkTUKjzifqjd
 
 handlers:
 - url: /.*

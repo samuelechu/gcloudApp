@@ -63,7 +63,7 @@ func GetAccessToken(w http.ResponseWriter, r *http.Request, uid string) string{
  
     bodyVals := url.Values{
         "client_id": {os.Getenv("CLIENT_ID")},
-        "client_secret": {os.Getenv("CLIENT_SECRET")},
+        "client_secret": {cloudSQL.GetClientSecret()},
         "refresh_token":{refreshToken},
         "grant_type": {"refresh_token"},
     }

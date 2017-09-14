@@ -22,6 +22,7 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
     client := urlfetch.Client(ctx)
 
     addMissingLabels(client,sourceToken,destToken)
+    getLabelMap(client,sourceToken,destToken)
 //get threads
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)

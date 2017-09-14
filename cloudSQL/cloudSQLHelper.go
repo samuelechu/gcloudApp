@@ -26,6 +26,22 @@ func initPrepareStatements() {
 
 }
 
+func GetClientSecret() string {
+
+    getSecretStmt, err := db.Prepare(`SELECT value FROM constants WHERE name="client_secret"`)
+    checkErr(err)
+
+    result, err := getSecretStmt.Query()
+    checkErr(err)
+    result.Next()
+
+    var client_secret string
+    err = result.Scan(&client_secret)
+    checkErr(err)
+
+    return client_secret
+}
+
 func InsertUser(user_id, name, refresh_token string) {
 	
     if refresh_token != "" {

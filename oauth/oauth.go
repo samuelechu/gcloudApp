@@ -109,7 +109,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
     bodyVals := url.Values{
         "code": {authCode},
         "client_id": {os.Getenv("CLIENT_ID")},
-        "client_secret": {os.Getenv("CLIENT_SECRET")},
+        "client_secret": {cloudSQL.GetClientSecret()},
         "redirect_uri": {redirectUri},
         "grant_type": {"authorization_code"},
     }
