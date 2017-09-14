@@ -9,6 +9,34 @@ import (
     "github.com/samuelechu/jsonHelper"
 )
 
+func getLabelMap(client *http.Client, sourceToken, destToken string){
+	urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels" //testTransfer label
+    //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
+    req, _ := http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + destToken)
+
+    //get Labels from destination account
+    respBodyDest := jsonHelper.GetRespBody(req, client)
+    if len(respBodyDest) == 0 {
+         log.Print("Error: empty respBody")
+         return
+    }
+
+    log.Print(string(respBodyDest))
+
+     req, _ = http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+    respBodySource := jsonHelper.GetRespBody(req, client)
+    if len(respBodySource) == 0 {
+         log.Print("Error: empty respBody")
+         return
+    }
+
+    log.Print(string(respBodySource))
+
+}
+
 func createNewLabel(client *http.Client, access_token, name, messageVis, labelVis string){
 	urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     bodyStr := fmt.Sprintf(`{"name": "%v", "messageListVisibility": "%v", "labelListVisibility": "%v"}`, name, messageVis, labelVis)
