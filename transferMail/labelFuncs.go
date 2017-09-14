@@ -65,7 +65,7 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
          return labelIdMap
     }
 
-    jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+    jsonparser.ArrayEach(respBodySource, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
 	    labelName, _ := jsonparser.GetString(value, "name")
 	    labelId, _ := jsonparser.GetString(value, "id")
 
