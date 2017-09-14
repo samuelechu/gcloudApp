@@ -21,8 +21,11 @@ func (nopCloser) Close() error { return nil }
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
 
-    addMissingLabels(client,sourceToken,destToken)
-    getLabelMap(client,sourceToken,destToken)
+    labelMap := getLabelMap(client,sourceToken,destToken)
+    log.Print("\n\n\nPrinting labelIdMap")
+        for key, value := range labelIdMap {
+        log.Print("Key:", key, " Value:", value)
+    }
 //get threads
 	threads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", threads)

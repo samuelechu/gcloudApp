@@ -12,6 +12,8 @@ import (
 //returns map of source label id to corresponding destination label id
 func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]string {
 
+    addMissingLabels(client,sourceToken,destToken)
+
 	var sourceEmail string
 	labelIdMap := make(map[string]string)
 	destLabels := make(map[string]string)
@@ -36,9 +38,6 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
 	    destLabels[labelName] = labelId
 	    
 	}, "labels")
-
-    log.Print("printing respBodyDest!!")
-    log.Print(string(respBodyDest))
 
     //get sourceEmail
     urlStr = "https://www.googleapis.com/oauth2/v1/userinfo"
@@ -73,13 +72,7 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
 	    
 	}, "labels")
 
-    log.Print("\n\n\n\nprinting respBodySource!!")
-    log.Print(string(respBodySource))
-
-	log.Print("\n\n\nPrinting labelIdMap")
-    for key, value := range labelIdMap {
-    	log.Print("Key:", key, " Value:", value)
-	}
+	labelIdMap[sourceEmail] = destLabels[sourceEmail]
 
 	return labelIdMap
 }
@@ -98,8 +91,6 @@ func createNewLabel(client *http.Client, access_token, name, messageVis, labelVi
          log.Print("Error: empty respBody")
          return
     }
-
-    log.Print(string(respBody))
 }
 
 func addMissingLabels(client *http.Client, sourceToken, destToken string){
@@ -190,7 +181,7 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
         		labelListVisibility = "labelShow"
         	}
 
-        	log.Printf("Adding new Label: %v", sourceEmail + "/" + name)
+        	//log.Printf("Adding new Label: %v", sourceEmail + "/" + name)
             createNewLabel(client, destToken, sourceEmail + "/" + name, messageListVisibility, labelListVisibility)
         }
     }, "labels")
