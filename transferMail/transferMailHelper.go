@@ -23,7 +23,7 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
 
     labelMap := getLabelMap(client,sourceToken,destToken)
     log.Print("\n\n\nPrinting labelIdMap")
-        for key, value := range labelIdMap {
+        for key, value := range labelMap {
         log.Print("Key:", key, " Value:", value)
     }
 //get threads
