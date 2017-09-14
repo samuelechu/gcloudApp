@@ -76,7 +76,7 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
 
 
     for key, value := range labelIdMap {
-    	fmt.Println("Key:", key, "Value:", value)
+    	log.Print("Key:", key, "Value:", value)
 	}
 
 
