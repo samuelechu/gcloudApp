@@ -9,8 +9,15 @@ import (
     "github.com/samuelechu/jsonHelper"
 )
 
-func getLabelMap(client *http.Client, sourceToken, destToken string){
-	urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels" //testTransfer label
+//returns map of source label id to corresponding destination label id
+func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]string {
+
+	var sourceEmail string
+	labelIdMap := make(map[string]string)
+	destLabels := make(map[string]string)
+
+	//get destLabels
+	urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + destToken)
@@ -22,9 +29,33 @@ func getLabelMap(client *http.Client, sourceToken, destToken string){
          return
     }
 
+    jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+	    labelName, _ := jsonparser.GetString(value, "name")
+	    labelId, _ := jsonparser.GetString(value, "name")
+
+	    destLabels[labelName] = labelId
+	    
+	}, "labels")
+
+
     log.Print(string(respBodyDest))
 
-     req, _ = http.NewRequest("GET", urlStr, nil)
+    //get sourceEmail
+    urlStr = "https://www.googleapis.com/oauth2/v1/userinfo"
+
+    req, _ = http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+    respBodyUserInfo := jsonHelper.GetRespBody(req, client)
+    if len(respBodySource) == 0 {
+         log.Print("Error: empty respBody")
+         return
+    }
+
+    sourceEmail, _ = jsonparser.GetString(respBodyUserInfo, "email")
+
+    //create map:   map[sourceLabel id] = destLabels[sourceEmail + name] <--maps to an id
+    req, _ = http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
     respBodySource := jsonHelper.GetRespBody(req, client)
@@ -33,7 +64,23 @@ func getLabelMap(client *http.Client, sourceToken, destToken string){
          return
     }
 
+    jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+	    labelName, _ := jsonparser.GetString(value, "name")
+	    labelId, _ := jsonparser.GetString(value, "name")
+
+	    labelIdMap[labelId] = destLabels[sourceEmail + "/" + name]
+	    
+	}, "labels")
+
     log.Print(string(respBodySource))
+
+
+    for key, value := range labelIdMap {
+    	fmt.Println("Key:", key, "Value:", value)
+	}
+
+
+	return labelIdMap
 
 }
 
