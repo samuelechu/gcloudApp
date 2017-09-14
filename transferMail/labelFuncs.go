@@ -75,8 +75,14 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
     log.Print(string(respBodySource))
 
 
+    log.Print("\n\n\nPrinting destLabels")
+    for key, value := range destLabels {
+		log.Print("Key:", key, " Value:", value)
+	}
+
+	log.Print("\n\n\nPrinting labelIdMap")
     for key, value := range labelIdMap {
-    	log.Print("Key:", key, "Value:", value)
+    	log.Print("Key:", key, " Value:", value)
 	}
 
 
