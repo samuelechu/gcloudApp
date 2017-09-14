@@ -3,18 +3,15 @@ package transferMail
 import (
     "log"
 	"net/http"
-	"io"
-    "bytes"
-    "github.com/samuelechu/cloudSQL"
-    "github.com/buger/jsonparser"
-    "golang.org/x/net/context"
-    "google.golang.org/appengine/urlfetch"
+    //"bytes"
+    //"github.com/samuelechu/cloudSQL"
+    //"github.com/buger/jsonparser"
     "github.com/samuelechu/jsonHelper"
 )
 
 func insertThreads(client *http.Client, sourceThreads []string, sourceToken, destToken string){
 
-	threadId = sourceThreads[0]
+	threadId := sourceThreads[0]
 	insertThread(client,threadId,sourceToken, destToken)
 }
 
@@ -29,9 +26,9 @@ func insertThread(client *http.Client, threadId, sourceToken, destToken string){
     respBody := jsonHelper.GetRespBody(req, client)
     if len(respBody) == 0 {
          log.Print("Error: empty respBody")
-         return labelIdMap
+         return
     }
-    log.print(string(respBody))
+    log.Print(string(respBody))
 
  //    jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
 	//     labelName, _ := jsonparser.GetString(value, "name")
