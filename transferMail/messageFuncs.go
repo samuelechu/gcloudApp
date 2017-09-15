@@ -22,12 +22,12 @@ func insertMessage(client *http.Client, labelMap map[string]string, messageId, s
     }
     //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    raw, _, _, _ := jsonparser.Get(respBody, "raw")
+    //raw, _, _, _ := jsonparser.Get(respBody, "raw")
     var messageLabels []string
 
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         labelId, _ := jsonparser.ParseString(value)
-        messageLabels = append(messageLabels, "\"labelMap[labelId]\", ")
+        messageLabels = append(messageLabels, "\"" + labelMap[labelId] + "\", ")
         
     }, "labelIds")
 
