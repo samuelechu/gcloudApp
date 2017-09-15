@@ -2,6 +2,7 @@ package transferMail
 
 import (
     "log"
+    "fmt"
 	"net/http"
     "bytes"
     //"github.com/samuelechu/cloudSQL"
@@ -36,14 +37,13 @@ func insertMessage(client *http.Client, labelMap map[string]string, messageId, s
 	changedNdx = changedNdx[0:len(changedNdx)-2]
 	messageLabels[len(messageLabels)-1] = changedNdx
 
-
     log.Print("printing labels")
     log.Print(messageLabels)
 
 	//post message
 	    urlStr = "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=multipart"
 	    body := nopCloser{bytes.NewBufferString("--foo_bar\nContent-Type: application/json; charset=UTF-8\n\n{" +
-	"\n\"raw\":\"" + raw + "\",\n\"labelIds\": " + messageLabels + "\n}" +
+	"\n\"raw\":\"" + raw + "\",\n\"labelIds\": " + fmt.Sprintf("%v", messageLabels) + "\n}" +
 	"\n--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")} 
 
 	    req, _ = http.NewRequest("POST", urlStr, body)
