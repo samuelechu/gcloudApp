@@ -1,4 +1,12 @@
-{
+017/09/14 22:41:35 HTTP PostForm/GET returned {
+ "id": "15e828df4268e520",
+ "threadId": "15e828df4268e520",
+ "labelIds": [
+  "UNREAD",
+  "INBOX"
+ ]
+}
+2017/09/14 22:41:35 {
  "id": "15d22fce271fd54c",
  "historyId": "3049109",
  "messages": [

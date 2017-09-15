@@ -30,6 +30,31 @@ func insertThread(client *http.Client, threadId, sourceToken, destToken string){
     }
     log.Print(string(respBody))
 
+    messageID, _ := jsonparser.GetString(respBody, "messages", "[0]", "id")
+
+    log.Printf("MessageId is :: %v", messageID)
+
+ //    "id": "15d22fce271fd54c",
+ // "historyId": "3049109",
+ // "messages": [
+ //  {
+ //   "id": "15d22fce271fd54c",
+ //   "threadId": "15d22fce271fd54c",
+ //   "labelIds": [
+ //    "IMPORTANT",
+ //    "Label_8",
+ //    "SENT"
+ //   ],
+ //   "snippet": "Hello, I recently came across a job posting for a software engineer position at TrueVision Systems. I am a 4th year CS undergrad at UCSB planning to graduate this winter. Over my time at UCSB, I have",
+ //   "historyId": "3049109",
+ //   "internalDate": "1499530585000",
+ //   "sizeEstimate": 93361
+ //  },
+
+
+    insertMessage(client, messageID, sourceToken, destToken)
+    //client *http.Client, messageId, sourceToken, destToken string
+
  //    jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
 	//     labelName, _ := jsonparser.GetString(value, "name")
 	//     labelId, _ := jsonparser.GetString(value, "id")
