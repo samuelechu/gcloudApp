@@ -43,7 +43,7 @@ func insertMessage(client *http.Client, labelMap map[string]string, messageId, s
 	//post message
 	    urlStr = "https://www.googleapis.com/upload/gmail/v1/users/me/messages?uploadType=multipart"
 	    body := nopCloser{bytes.NewBufferString("--foo_bar\nContent-Type: application/json; charset=UTF-8\n\n{" +
-	"\n\"raw\":\"" + raw + "\",\n\"labelIds\": " + messageLabels + "\n}" +
+	"\n\"raw\":\"" + string(raw) + "\",\n\"labelIds\": " + messageLabels + "\n}" +
 	"\n--foo_bar\nContent-Type: message/rfc822\n\nstringd\n--foo_bar--")} 
 
 	    req, _ = http.NewRequest("POST", urlStr, body)
