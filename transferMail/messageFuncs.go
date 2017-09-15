@@ -34,8 +34,8 @@ func insertMessage(client *http.Client, labelMap map[string]string, messageId, s
 
 
 	messageLabels = append(messageLabels, "\"" + labelMap["sourceEmailLabel"] + "\", ")
-	messageLabels = append(messageLabels, "\"" + INBOX + "\", ")
-	messageLabels = append(messageLabels, "\"" + UNREAD + "\"")
+	messageLabels = append(messageLabels, "\"INBOX\", ")
+	messageLabels = append(messageLabels, "\"UNREAD\"")
 
     log.Print("printing labels")
     log.Print(messageLabels)
