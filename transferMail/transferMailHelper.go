@@ -20,7 +20,7 @@ func (nopCloser) Close() error { return nil }
 
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
-
+    
 //get threads
 	sourceThreads := cloudSQL.GetThreadsForUser(curUserID)
 	log.Printf("GetThreads returned %v", sourceThreads)
