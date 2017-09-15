@@ -72,7 +72,7 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
 	    
 	}, "labels")
 
-	labelIdMap[sourceEmail] = destLabels[sourceEmail]
+	labelIdMap["sourceEmailLabel"] = destLabels[sourceEmail]
 
 	return labelIdMap
 }

@@ -32,10 +32,7 @@ func insertMessage(client *http.Client, labelMap map[string]string, messageId, s
         
     }, "labelIds")
 
-    //remove comma from last array element
-    changedNdx := messageLabels[len(messageLabels)-1]
-	changedNdx = changedNdx[0:len(changedNdx)-2]
-	messageLabels[len(messageLabels)-1] = changedNdx
+	messageLabels = append(messageLabels, "\"" + labelMap["sourceEmailLabel"] + "\"")
 
     log.Print("printing labels")
     log.Print(messageLabels)
