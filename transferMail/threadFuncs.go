@@ -42,15 +42,28 @@ func insertThread(client *http.Client, labelMap map[string]string, threadId, sou
 
     threadID := insertMessage(client, labelMap, "", messageID, sourceToken, destToken)
 
-    log.Printf("threadID is :: %v", messageID)
+    log.Printf("threadID is :: %v", threadID)
 
     messageID2, _ := jsonparser.GetString(respBody, "messages", "[1]", "id")
 
-    log.Printf("MessageId is :: %v", messageID)
+    log.Printf("MessageId is :: %v", messageID2)
 
     threadID = insertMessage(client, labelMap, threadID, messageID2, sourceToken, destToken)
 
-    log.Printf("threadID is :: %v", messageID)
+    log.Printf("threadID is :: %v", threadID)
+
+    messageID3, _ := jsonparser.GetString(respBody, "messages", "[2]", "id")
+
+    log.Printf("MessageId is :: %v", messageID3)
+
+    threadID = insertMessage(client, labelMap, threadID, messageID3, sourceToken, destToken)
+    log.Printf("threadID is :: %v", threadID)
+
+
+
+
+
+
 
     //client *http.Client, messageId, sourceToken, destToken string
 
