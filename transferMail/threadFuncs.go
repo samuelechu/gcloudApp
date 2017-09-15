@@ -21,7 +21,7 @@ func insertThreads(client *http.Client, sourceThreads []string, sourceToken, des
 	insertThread(client, labelMap, threadId, sourceToken, destToken)
 }
 
-func insertThread(client *http.Client, labelMap [string]string, threadId, sourceToken, destToken string){
+func insertThread(client *http.Client, labelMap map[string]string, threadId, sourceToken, destToken string){
 
 	urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads/" + threadId + "?format=minimal"
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"

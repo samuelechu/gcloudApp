@@ -9,7 +9,7 @@ import (
     "github.com/samuelechu/jsonHelper"
 )
 
-func insertMessage(client *http.Client, labelMap [string]string, messageId, sourceToken, destToken string){
+func insertMessage(client *http.Client, labelMap map[string]string, messageId, sourceToken, destToken string){
 
 	urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/" + messageId + "?format=raw" 
     req, _ := http.NewRequest("GET", urlStr, nil)
