@@ -52,7 +52,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/15e5d6ed5bb68a29?format=raw"
 //retrieve threads
 
-    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads?labelIds=Label_8" //testTransfer label
+    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads" //testTransfer label
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
