@@ -26,5 +26,5 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
 	log.Printf("GetThreads returned %v", sourceThreads)
 	log.Printf("curUserID : %v, sourceToken : %v, sourceID : %v, destToken : %v, destID : %v", curUserID, sourceToken, sourceID, destToken, destID)
 
-    insertThreads(client,sourceThreads,sourceToken,destToken)
+    insertThreads(client,sourceThreads,sourceToken,destToken,curUserID)
 }

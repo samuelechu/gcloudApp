@@ -105,5 +105,11 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
             log.Printf("Could not start background thread: %v", err)
             return
     }
+
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
+    http.Redirect(w, r, redirectString, 302)
 }
 

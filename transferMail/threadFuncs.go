@@ -4,12 +4,25 @@ import (
     "log"
 	"net/http"
     //"bytes"
-    //"github.com/samuelechu/cloudSQL"
+    "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
     "github.com/samuelechu/jsonHelper"
 )
 
-func insertThreads(client *http.Client, sourceThreads []string, sourceToken, destToken string){
+func insertThreads(client *http.Client, sourceThreads []string, sourceToken, destToken, curUserID string){
+
+	urlStr = "https://www.googleapis.com/oauth2/v1/userinfo"
+
+    req, _ = http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+    respBodyUserInfo := jsonHelper.GetRespBody(req, client)
+    if len(respBodyUserInfo) == 0 {
+         log.Print("Error: empty respBody")
+         return labelIdMap
+    }
+
+    sourceEmail, _ = jsonparser.GetString(respBodyUserInfo, "email")
 
 	labelMap := getLabelMap(client,sourceToken,destToken)
     log.Print("\n\n\nPrinting labelIdMap")
@@ -18,12 +31,12 @@ func insertThreads(client *http.Client, sourceThreads []string, sourceToken, des
     }
 
 	for _, threadId := range sourceThreads {
-		insertThread(client, labelMap, threadId, sourceToken, destToken)
+		insertThread(client, labelMap, threadId, sourceToken, destToken, curUserID)
 	}
 	
 }
 
-func insertThread(client *http.Client, labelMap map[string]string, threadId, sourceToken, destToken string){
+func insertThread(client *http.Client, labelMap map[string]string, threadID, sourceToken, destToken, curUserID string){
 
 	urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads/" + threadId + "?format=minimal"
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
@@ -38,7 +51,7 @@ func insertThread(client *http.Client, labelMap map[string]string, threadId, sou
     }
     log.Print(string(respBody))
 
-    threadId = ""
+    threadId := ""
 
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         messageId, _ := jsonparser.GetString(value, "id")
@@ -51,4 +64,6 @@ func insertThread(client *http.Client, labelMap map[string]string, threadId, sou
         }
         
     }, "messages")
+
+    cloudSQL.MarkThreadDone(curUserID, threadID)
 }
