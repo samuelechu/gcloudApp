@@ -157,7 +157,7 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
 
     //add nested email labels
     jsonparser.ArrayEach(respBodySource, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-        var name, messageListVisibility, labelListVisibility string// labelType string
+        var name, messageListVisibility, labelListVisibility, labelType string
         
         jsonparser.EachKey(value, func(idx int, value []byte, vt jsonparser.ValueType, err error){
             switch idx {
@@ -167,23 +167,24 @@ func addMissingLabels(client *http.Client, sourceToken, destToken string){
 	                messageListVisibility, _ = jsonparser.ParseString(value)
 	            case 2:
 	                labelListVisibility, _ = jsonparser.ParseString(value)
-	            // case 3:
-             //    	labelType, _ = jsonparser.ParseString(value)
+	            case 3:
+                 	labelType, _ = jsonparser.ParseString(value)
             }
         }, fields...)
 
         if !destLabels[sourceEmail + "/" + name] {
-        	// if labelType == "system" {
-        	// 	labelListVisibility = "labelHide"
-        	// }
         	if labelListVisibility == "" {
         		messageListVisibility= "show"
         		labelListVisibility = "labelShow"
+        	}
+
+        	if labelType == "system" {
+        	 	messageListVisibility = "hide"
         	}
 
         	//log.Printf("Adding new Label: %v", sourceEmail + "/" + name)
             createNewLabel(client, destToken, sourceEmail + "/" + name, messageListVisibility, labelListVisibility)
         }
     }, "labels")
-    
+
 }
