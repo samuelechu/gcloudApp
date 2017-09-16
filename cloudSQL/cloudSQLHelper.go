@@ -66,7 +66,6 @@ func InsertThread(uid, thread_id string) {
 }
 
 func MarkThreadDone(uid, thread_id string) {
-update threads set done = 'T' where uid = "111411090326230727324" and thread_id="15d22fce271fd54c";
     markDoneStmt, err := db.Prepare(`UPDATE threads SET done = 'T' WHERE uid = ? AND thread_id = ? `)
     checkErr(err)
 
