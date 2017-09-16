@@ -11,6 +11,7 @@ import (
 	"github.com/samuelechu/oauth"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
+    "github.com/samuelechu/jsonHelper"
 )
 
 type Values struct {
@@ -60,30 +61,21 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     ctx := appengine.NewContext(r)
     client := urlfetch.Client(ctx)
 
-    resp, err := client.Do(req)
-
-    if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
+    //get Labels from destination account
+    respBody := jsonHelper.GetRespBody(req, client)
+    if len(respBody) == 0 {
+         log.Print("Error: empty respBody")
+         return
     }
 
 
-    body := resp.Body
-    defer body.Close()
-
-    if body == nil {
-        http.Error(w, "Response body not found", 400)
-        return
-    }
-
-    respBody, _ := ioutil.ReadAll(body)
     log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
     // if message_id, ok := jsonparser.GetString(respBody, "id"); ok == nil{
     //     log.Printf("ID of messsage was %v", message_id)
     // }
 
-    s, _ := jsonparser.GetString(respBody, "nextPageToken")
+    nextPage, _ := jsonparser.GetString(respBody, "nextPageToken")
     log.Printf("Token is %v", s)
     
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
@@ -96,6 +88,30 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
         
     }, "threads")
 
+    for nextPage != "" {
+        urlStr = "https://www.googleapis.com/gmail/v1/users/me/threads?pageToken=" + nextPage 
+        req, _ = http.NewRequest("GET", urlStr, nil)
+        req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+        respBody = jsonHelper.GetRespBody(req, client)
+        if len(respBody) == 0 {
+             log.Print("Error: empty respBody")
+             return
+        }
+
+        nextPage, _ = jsonparser.GetString(respBody, "nextPageToken")
+
+        jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+            thread_id, _, _, _ := jsonparser.Get(value, "id")
+            if string(thread_id) != "" {
+                log.Printf("Inserting into database: Thread %v", string(thread_id))
+                cloudSQL.InsertThread(curUserID, string(thread_id))
+
+            }
+            
+        }, "threads")
+
+    }
 
     res, _, _, _ := jsonparser.Get(respBody, "resultSizeEstimate")
     log.Printf("jsonparser returned %v", string(res))
