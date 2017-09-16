@@ -3,7 +3,6 @@ package transferMail
 import (
 	"log"
 	"net/http"
-    "io/ioutil"
     //"golang.org/x/net/context"
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
@@ -76,7 +75,6 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     // }
 
     nextPage, _ := jsonparser.GetString(respBody, "nextPageToken")
-    log.Printf("Token is %v", s)
     
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         thread_id, _, _, _ := jsonparser.Get(value, "id")
