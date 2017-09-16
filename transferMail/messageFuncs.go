@@ -12,6 +12,7 @@ import (
 
 func insertMessage(client *http.Client, labelMap map[string]string, threadId, messageId, sourceToken, destToken string) string{
 
+	//get message from source email
 	urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/" + messageId + "?format=raw" 
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
@@ -26,19 +27,16 @@ func insertMessage(client *http.Client, labelMap map[string]string, threadId, me
     raw, _ := jsonparser.GetString(respBody, "raw")
     var messageLabels []string
 
+    //get message labels from source email and format them for POST body
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         labelId, _ := jsonparser.ParseString(value)
         messageLabels = append(messageLabels, "\"" + labelMap[labelId] + "\", ")
         
     }, "labelIds")
 
-
 	messageLabels = append(messageLabels, "\"" + labelMap["sourceEmailLabel"] + "\", ")
 	messageLabels = append(messageLabels, "\"INBOX\", ")
 	messageLabels = append(messageLabels, "\"UNREAD\"")
-
-    log.Print("printing labels")
-    log.Print(messageLabels)
 
     if threadId != "" {
     	threadId = ",\n\"threadId\": \"" + threadId + "\""
@@ -59,10 +57,8 @@ func insertMessage(client *http.Client, labelMap map[string]string, threadId, me
          log.Print("Error: empty respBody")
          return ""
     }
-    log.Printf("HTTP PostForm/GET returned %v", string(respBody))
+    //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
     respThreadId, _ := jsonparser.GetString(respBody, "threadId")
     return respThreadId
-
-
 }

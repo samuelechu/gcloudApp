@@ -17,8 +17,10 @@ func insertThreads(client *http.Client, sourceThreads []string, sourceToken, des
         log.Print("Key:", key, " Value:", value)
     }
 
-	threadId := sourceThreads[0]
-	insertThread(client, labelMap, threadId, sourceToken, destToken)
+	for _, threadId := range sourceThreads {
+		insertThread(client, labelMap, threadId, sourceToken, destToken)
+	}
+	
 }
 
 func insertThread(client *http.Client, labelMap map[string]string, threadId, sourceToken, destToken string){
