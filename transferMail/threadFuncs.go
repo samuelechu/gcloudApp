@@ -36,42 +36,17 @@ func insertThread(client *http.Client, labelMap map[string]string, threadId, sou
     }
     log.Print(string(respBody))
 
-    messageID, _ := jsonparser.GetString(respBody, "messages", "[0]", "id")
+    threadId = ""
 
-    log.Printf("MessageId is :: %v", messageID)
+    jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+        messageId, _ := jsonparser.GetString(value, "id")
 
-    threadID := insertMessage(client, labelMap, "", messageID, sourceToken, destToken)
+        threadId = insertMessage(client, labelMap, threadId, messageId, sourceToken, destToken)
 
-    log.Printf("threadID is :: %v", threadID)
-
-    messageID2, _ := jsonparser.GetString(respBody, "messages", "[1]", "id")
-
-    log.Printf("MessageId is :: %v", messageID2)
-
-    threadID = insertMessage(client, labelMap, threadID, messageID2, sourceToken, destToken)
-
-    log.Printf("threadID is :: %v", threadID)
-
-    messageID3, _ := jsonparser.GetString(respBody, "messages", "[2]", "id")
-
-    log.Printf("MessageId is :: %v", messageID3)
-
-    threadID = insertMessage(client, labelMap, threadID, messageID3, sourceToken, destToken)
-    log.Printf("threadID is :: %v", threadID)
-
-
-
-
-
-
-
-    //client *http.Client, messageId, sourceToken, destToken string
-
- //    jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-	//     labelName, _ := jsonparser.GetString(value, "name")
-	//     labelId, _ := jsonparser.GetString(value, "id")
-
-	//     destLabels[labelName] = labelId
-	    
-	// }, "labels")
+        if threadId == "" {
+            log.Printf("Error: insertMessage failed for message %v", messageId)
+            return
+        }
+        
+    }, "messages")
 }
