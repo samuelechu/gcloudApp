@@ -70,7 +70,7 @@ update threads set done = 'T' where uid = "111411090326230727324" and thread_id=
     markDoneStmt, err := db.Prepare(`UPDATE threads SET done = 'T' WHERE uid = ? AND thread_id = ? `)
     checkErr(err)
 
-    _, err := markDoneStmt.Exec(uid, thread_id)
+    _, err = markDoneStmt.Exec(uid, thread_id)
     checkErr(err)
 }
 
