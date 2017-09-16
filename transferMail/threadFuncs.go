@@ -11,19 +11,6 @@ import (
 
 func insertThreads(client *http.Client, sourceThreads []string, sourceToken, destToken, curUserID string){
 
-	urlStr = "https://www.googleapis.com/oauth2/v1/userinfo"
-
-    req, _ = http.NewRequest("GET", urlStr, nil)
-    req.Header.Set("Authorization", "Bearer " + sourceToken)
-
-    respBodyUserInfo := jsonHelper.GetRespBody(req, client)
-    if len(respBodyUserInfo) == 0 {
-         log.Print("Error: empty respBody")
-         return labelIdMap
-    }
-
-    sourceEmail, _ = jsonparser.GetString(respBodyUserInfo, "email")
-
 	labelMap := getLabelMap(client,sourceToken,destToken)
     log.Print("\n\n\nPrinting labelIdMap")
         for key, value := range labelMap {
