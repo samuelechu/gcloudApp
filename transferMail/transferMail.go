@@ -52,7 +52,7 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/15e5d6ed5bb68a29?format=raw"
 //retrieve threads
 
-    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads?labelIds=Label_8" //testTransfer label
+    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads" //testTransfer label
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
@@ -97,14 +97,14 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     res, _, _, _ := jsonparser.Get(respBody, "resultSizeEstimate")
     log.Printf("jsonparser returned %v", string(res))
     
-    err = runtime.RunInBackground(ctx, func(ctx context.Context) {
-        startTransfer(ctx, curUserID, sourceToken, sourceID, destToken, destID)
-    })
+    // err = runtime.RunInBackground(ctx, func(ctx context.Context) {
+    //     startTransfer(ctx, curUserID, sourceToken, sourceID, destToken, destID)
+    // })
 
-    if err != nil {
-            log.Printf("Could not start background thread: %v", err)
-            return
-    }
+    // if err != nil {
+    //         log.Printf("Could not start background thread: %v", err)
+    //         return
+    // }
 
     redirectString := "https://gotesting-175718.appspot.com"
     if appengine.IsDevAppServer(){
