@@ -2,11 +2,9 @@ package transferMail
 
 import (
     "log"
-    "fmt"
 	"net/http"
-    "bytes"
+	"net/url"
     "github.com/buger/jsonparser"
-    "github.com/samuelechu/jsonHelper"
     "github.com/samuelechu/cloudSQL"
 )
 
@@ -33,7 +31,7 @@ func getAccessToken(client *http.Client, uid string) string {
         "grant_type": {"refresh_token"},
     }
 
-    resp, err := client.PostForm(url, data)
+    resp, err := client.PostForm(url, bodyVals)
 
     if err != nil {
             log.Printf("Error: %v", err)
@@ -45,7 +43,7 @@ func getAccessToken(client *http.Client, uid string) string {
 
     if body == nil {
         log.Print("Error: Response body not found")
-        ""
+        return ""
     }
 
     respBody, _ := ioutil.ReadAll(body)

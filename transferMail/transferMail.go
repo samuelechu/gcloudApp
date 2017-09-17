@@ -5,21 +5,13 @@ import (
 	"net/http"
     "golang.org/x/net/context"
     "google.golang.org/appengine"
-    "google.golang.org/appengine/urlfetch"
+    //"google.golang.org/appengine/urlfetch"
     "google.golang.org/appengine/runtime"
 	"github.com/samuelechu/oauth"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
-    "github.com/samuelechu/jsonHelper"
+    //"github.com/samuelechu/jsonHelper"
 )
-
-type Values struct {
-    m map[string]string
-}
-
-func (v Values) Get(key string) string {
-    return v.m[key]
-}
 
 func init() {
      http.HandleFunc("/transferStart", transferEmail)
