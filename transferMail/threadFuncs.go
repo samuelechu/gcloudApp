@@ -90,7 +90,7 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
         threadId = insertMessage(client, labelMap, threadId, messageId, sourceToken, destToken)
 
         if threadId == "" {
-            log.Printf("Error: insertMessage failed for message %v of thread %v", messageId, threadId)
+            log.Printf("Error: insertMessage failed for message %v of thread %v", messageId, threadID)
             cloudSQL.LogFailedMessage(curUserID, messageId)
             return
         }
