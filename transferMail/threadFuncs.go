@@ -57,7 +57,7 @@ func insertThreads(ctx context.Context, sourceThreads []string, sourceToken, des
     }
 
 	for _, threadId := range sourceThreads {
-		log.Printf("The sourceToken is %v, destToken: %v", sourceToken, destToken)
+		//log.Printf("The sourceToken is %v, destToken: %v", sourceToken, destToken)
 		insertThread(client, labelMap, threadId, sourceToken, destToken, curUserID)
 	}
 

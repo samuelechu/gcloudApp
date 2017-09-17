@@ -25,7 +25,7 @@ func insertMessage(client *http.Client, labelMap map[string]string, threadId, me
 
     sizeEstimate, _ := jsonparser.GetInt(respBody, "sizeEstimate")
 
-    if sizeEstimate > 300000 {
+    if sizeEstimate > 4000000 {
     	log.Printf("Message of size %v was to large", sizeEstimate)
     	return ""
     }
