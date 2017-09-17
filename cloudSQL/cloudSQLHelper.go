@@ -57,12 +57,42 @@ func InsertUser(user_id, name, refresh_token string) {
     }
 }
 
+func InsertJob(uid, source_id, dest_id string) {
+    insertJobStmt, err = db.Prepare(`INSERT IGNORE INTO jobs (uid, source_id, dest_id) VALUES(?, ?, ?)`)
+    checkErr(err)
+
+    _, err := insertJobStmt.Exec(uid, source_id, dest_id)
+    checkErr(err)
+
+    log.Printf("inserted job: user_id %v, source_id %v, dest_id %v!", uid, source_id, dest_id)
+}
+
+func GetJob(uid string) (string, string){
+    getJobStmt, err := db.Prepare(`SELECT uid, source_id, dest_id FROM threads WHERE uid=?`)
+    checkErr(err)
+
+    rows, err := getJobStmt.Query(uid)
+    checkErr(err)
+
+    var source_id, dest_id string
+    defer rows.Close()
+
+    if rows.Next() {
+        err = rows.Scan(&source_id, &dest_id)
+        checkErr(err)
+    }
+
+    err = rows.Err()
+    checkErr(err)
+
+    return source_id, dest_id
+}
+
 func InsertThread(uid, thread_id string) {
     _, err := insertThreadStmt.Exec(uid, thread_id)
         checkErr(err)
 
     log.Printf("inserted thread %v!", thread_id)
-
 }
 
 func MarkThreadDone(uid, thread_id string) {

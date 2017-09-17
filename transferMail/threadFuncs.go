@@ -1,15 +1,51 @@
 package transferMail
 
 import (
+	"time"
     "log"
 	"net/http"
     //"bytes"
+    "google.golang.org/appengine/urlfetch"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
     "github.com/samuelechu/jsonHelper"
 )
 
-func insertThreads(client *http.Client, sourceThreads []string, sourceToken, destToken, curUserID string){
+
+func accessTokenUpdater(client *http.Client, done chan int, curUserID string, sourceToken, destToken *string) {
+	sourceID, destID := cloudSQL.GetJob(curUserID)
+	log.Printf("sourceID: %v, destID: %v", sourceID, destID)
+	*sourceToken = getAccessToken(client, sourceID)
+	*destToken = getAccessToken(client, destID)
+
+	for {
+		select {
+			case <-time.After(10 * time.Second):
+				*sourceToken = getAccessToken(client, sourceID)
+				*destToken = getAccessToken(client, destID)
+
+			case <-done:
+				return
+
+		}
+	}
+
+}
+
+func insertThreads(ctx context.Context, sourceThreads []string, sourceToken, destToken, curUserID string){
+
+	client := urlfetch.Client(ctx)
+
+	done := make(chan int)
+
+	err = runtime.RunInBackground(ctx, func(ctx context.Context) {
+    	accessTokenUpdater(client, done, curUserID, &sourceToken, &destToken)    
+    })
+
+    if err != nil {
+        log.Printf("Could not start background thread: %v", err)
+        return
+    }
 
 	labelMap := getLabelMap(client,sourceToken,destToken)
     log.Print("\n\n\nPrinting labelIdMap")
@@ -18,8 +54,13 @@ func insertThreads(client *http.Client, sourceThreads []string, sourceToken, des
     }
 
 	for _, threadId := range sourceThreads {
+		log.Print("The sourceToken is %v, destToken: %v", sourceToken, destToken)
 		insertThread(client, labelMap, threadId, sourceToken, destToken, curUserID)
 	}
+
+	//stop background accessTokenUpdating thread
+	done <- 1
+	<-time.After(3 * time.Second)
 	
 }
 

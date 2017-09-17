@@ -1,0 +1,50 @@
+package main
+
+import (
+	 "fmt"
+    //"sync"
+    "time"
+)
+
+func work(c chan int, source_token, dest *string,){
+	
+	for i := 0; i < 1000; i++ {
+        	select {
+        		case <-time.After(2 * time.Second):
+            		fmt.Println("Doing some work ", i)
+
+        		// we received the signal of cancelation in this channel    
+        		case i := <-c:
+            		fmt.Println("Cancel the context ", i)
+			*source_token = "bro"
+			*dest = "woo"
+			c <- 50
+            		return
+        	}
+    	}
+
+}
+
+func main() {
+
+	//var wg sync.WaitGroup
+	//wg.Add(1)
+	var source_token, dest string
+	c := make(chan int)
+	go work(c,&source_token, &dest)
+	
+	select {
+		case <-time.After(10 * time.Second):
+			fmt.Println("Cancelling")
+			c <- 4
+		
+	
+	}
+	
+	val := <-c
+	fmt.Printf("Exiting with %v, %v, %v", val, source_token, dest)
+	//wg.Wait()
+	
+	
+
+}

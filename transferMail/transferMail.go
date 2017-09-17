@@ -3,10 +3,10 @@ package transferMail
 import (
 	"log"
 	"net/http"
-    //"golang.org/x/net/context"
+    "golang.org/x/net/context"
     "google.golang.org/appengine"
     "google.golang.org/appengine/urlfetch"
-    //"google.golang.org/appengine/runtime"
+    "google.golang.org/appengine/runtime"
 	"github.com/samuelechu/oauth"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
@@ -49,68 +49,33 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source ID: %v\n", sourceID)
     log.Printf("Dest ID: %v\n", destID)
 
+
+
+    //send job to database
+    cloudSQL.InsertJob(curUserID, sourceID, destID)
+
+    ctx := appengine.NewContext(r)
+
+    err = runtime.RunInBackground(ctx, func(ctx context.Context) {
+        startTransfer(ctx, curUserID, sourceToken, sourceID, destToken, destID)
+    })
+
+    if err != nil {
+            log.Printf("Could not start background thread: %v", err)
+            return
+    }
+
+
+
+
+
     //urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/15e5d6ed5bb68a29?format=raw"
 //retrieve threads
 
-    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads" //testTransfer label
-    //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
-    req, _ := http.NewRequest("GET", urlStr, nil)
-    req.Header.Set("Authorization", "Bearer " + sourceToken)
-
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
-
-    //get Labels from destination account
-    respBody := jsonHelper.GetRespBody(req, client)
-    if len(respBody) == 0 {
-         log.Print("Error: empty respBody")
-         return
-    }
 
 
-    log.Printf("HTTP PostForm/GET returned %v", string(respBody))
 
-    // if message_id, ok := jsonparser.GetString(respBody, "id"); ok == nil{
-    //     log.Printf("ID of messsage was %v", message_id)
-    // }
-
-    nextPage, _ := jsonparser.GetString(respBody, "nextPageToken")
     
-    jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-        thread_id, _, _, _ := jsonparser.Get(value, "id")
-        if string(thread_id) != "" {
-            log.Printf("Inserting into database: Thread %v", string(thread_id))
-            cloudSQL.InsertThread(curUserID, string(thread_id))
-
-        }
-        
-    }, "threads")
-
-    for nextPage != "" {
-        urlStr = "https://www.googleapis.com/gmail/v1/users/me/threads?pageToken=" + nextPage 
-        req, _ = http.NewRequest("GET", urlStr, nil)
-        req.Header.Set("Authorization", "Bearer " + sourceToken)
-
-        respBody = jsonHelper.GetRespBody(req, client)
-        if len(respBody) == 0 {
-             log.Print("Error: empty respBody")
-             return
-        }
-
-        nextPage, _ = jsonparser.GetString(respBody, "nextPageToken")
-
-        jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-            thread_id, _, _, _ := jsonparser.Get(value, "id")
-            if string(thread_id) != "" {
-                log.Printf("Inserting into database: Thread %v", string(thread_id))
-                cloudSQL.InsertThread(curUserID, string(thread_id))
-
-            }
-            
-        }, "threads")
-
-    }
-
     res, _, _, _ := jsonparser.Get(respBody, "resultSizeEstimate")
     log.Printf("jsonparser returned %v", string(res))
     
