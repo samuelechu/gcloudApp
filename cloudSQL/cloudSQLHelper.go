@@ -58,7 +58,7 @@ func InsertUser(user_id, name, refresh_token string) {
 }
 
 func InsertJob(uid, source_id, dest_id string) {
-    insertJobStmt, err = db.Prepare(`INSERT IGNORE INTO jobs (uid, source_id, dest_id) VALUES(?, ?, ?)`)
+    insertJobStmt, err := db.Prepare(`INSERT IGNORE INTO jobs (uid, source_id, dest_id) VALUES(?, ?, ?)`)
     checkErr(err)
 
     _, err := insertJobStmt.Exec(uid, source_id, dest_id)
