@@ -27,6 +27,7 @@ func accessTokenUpdater(client *http.Client, done chan int, curUserID string, so
 				*destToken = getAccessToken(client, destID)
 
 			case <-done:
+                log.Print("Exiting the background Thread!!")
 				return
 
 		}
@@ -63,6 +64,7 @@ func insertThreads(ctx context.Context, sourceThreads []string, sourceToken, des
 	//stop background accessTokenUpdating thread
 	done <- 1
 	<-time.After(3 * time.Second)
+    log.Print("Exited the background Thread!!")
 	
 }
 
