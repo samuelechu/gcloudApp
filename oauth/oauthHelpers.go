@@ -55,7 +55,7 @@ func GetAccessToken(w http.ResponseWriter, r *http.Request, uid string) string{
     refreshToken, err := cloudSQL.GetRefreshToken(uid)
 
     if err != nil {
-        log.Print("DB err: %v", err)
+        log.Printf("DB err: %v", err)
         return ""
     }
     

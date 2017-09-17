@@ -56,7 +56,7 @@ func insertThreads(ctx context.Context, sourceThreads []string, sourceToken, des
     }
 
 	for _, threadId := range sourceThreads {
-		log.Print("The sourceToken is %v, destToken: %v", sourceToken, destToken)
+		log.Printf("The sourceToken is %v, destToken: %v", sourceToken, destToken)
 		insertThread(client, labelMap, threadId, sourceToken, destToken, curUserID)
 	}
 
@@ -73,13 +73,12 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
-    //get Labels from destination account
     respBody := jsonHelper.GetRespBody(req, client)
     if len(respBody) == 0 {
          log.Print("Error: empty respBody")
          return
     }
-    log.Print(string(respBody))
+    //log.Print(string(respBody))
 
     threadId := ""
 

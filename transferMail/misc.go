@@ -20,7 +20,7 @@ func getAccessToken(client *http.Client, uid string) string {
 	refreshToken, err := cloudSQL.GetRefreshToken(uid)
 
 	if err != nil {
-        log.Print("DB err: %v", err)
+        log.Printf("DB err: %v", err)
         return ""
     }
     

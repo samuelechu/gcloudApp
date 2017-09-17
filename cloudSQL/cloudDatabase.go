@@ -36,7 +36,7 @@ func initDB(){
     db, err = sql.Open("mysql", dbOpenString)
 
     if err != nil {
-        log.Print("Could not open db: %v", err)
+        log.Printf("Could not open db: %v", err)
         return    
     }
 }
