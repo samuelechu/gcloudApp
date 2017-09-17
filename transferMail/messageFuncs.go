@@ -44,19 +44,24 @@ func insertMessage(client *http.Client, labelMap map[string]string, threadId, me
 
     raw, _ := jsonparser.GetString(respBody, "raw")
     var messageLabels []string
+    var hasChatLbl bool
 
     //get message labels from source email and format them for POST body
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         labelId, _ := jsonparser.ParseString(value)
 
         if labelId == "CHAT" {
-        	log.Print("Going to skip chats")
-        	return ""
+    		hasChatLbl = true
         }
 
         messageLabels = append(messageLabels, "\"" + labelMap[labelId] + "\", ")
         
     }, "labelIds")
+
+    if hasChatLbl {
+	    log.Print("Going to skip chats")
+    	return ""
+    }
 
 	messageLabels = append(messageLabels, "\"" + labelMap["sourceEmailLabel"] + "\", ")
 	messageLabels = append(messageLabels, "\"INBOX\", ")
