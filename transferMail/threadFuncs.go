@@ -84,8 +84,12 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
 
     threadId := ""
     finishedThread := true
-
+ 
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+        if !finishedThread {
+            return
+        }
+        
         messageId, _ := jsonparser.GetString(value, "id")
 
         threadId = insertMessage(client, labelMap, threadId, messageId, sourceToken, destToken)
