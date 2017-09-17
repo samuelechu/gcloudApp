@@ -13,7 +13,6 @@ import (
     "github.com/samuelechu/jsonHelper"
 )
 
-
 func accessTokenUpdater(client *http.Client, done chan int, curUserID string, sourceToken, destToken *string) {
 	sourceID, destID := cloudSQL.GetJob(curUserID)
 	log.Printf("sourceID: %v, destID: %v", sourceID, destID)
@@ -22,7 +21,7 @@ func accessTokenUpdater(client *http.Client, done chan int, curUserID string, so
 
 	for {
 		select {
-			case <-time.After(10 * time.Second):
+			case <-time.After(3000 * time.Second):
 				*sourceToken = getAccessToken(client, sourceID)
 				*destToken = getAccessToken(client, destID)
 
@@ -41,6 +40,7 @@ func insertThreads(ctx context.Context, sourceThreads []string, sourceToken, des
 
 	done := make(chan int)
 
+    //make sure access token stays valid
 	err := runtime.RunInBackground(ctx, func(ctx context.Context) {
     	accessTokenUpdater(client, done, curUserID, &sourceToken, &destToken)    
     })
