@@ -68,7 +68,7 @@ func InsertJob(uid, source_id, dest_id string) {
 }
 
 func GetJob(uid string) (string, string){
-    getJobStmt, err := db.Prepare(`SELECT uid, source_id, dest_id FROM threads WHERE uid=?`)
+    getJobStmt, err := db.Prepare(`SELECT uid, source_id, dest_id FROM jobs WHERE uid=?`)
     checkErr(err)
 
     rows, err := getJobStmt.Query(uid)
