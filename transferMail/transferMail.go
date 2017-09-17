@@ -9,7 +9,7 @@ import (
     "google.golang.org/appengine/runtime"
 	"github.com/samuelechu/oauth"
     "github.com/samuelechu/cloudSQL"
-    "github.com/buger/jsonparser"
+    //"github.com/buger/jsonparser"
     //"github.com/samuelechu/jsonHelper"
 )
 
