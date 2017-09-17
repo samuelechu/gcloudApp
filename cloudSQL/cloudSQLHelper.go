@@ -95,7 +95,7 @@ func LogFailedMessage(curUserID, messageId string) {
     _, err = logFailedMsgStmt.Exec(curUserID, messageId)
     checkErr(err)
 
-    log.Printf("inserted failed message %v", messageId)
+    log.Printf("inserted failed message %v\n\n", messageId)
 }
 
 func InsertThread(uid, thread_id string) {

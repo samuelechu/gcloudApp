@@ -48,3 +48,15 @@ func main() {
 	
 
 }
+
+
+
+2017/09/17 06:25:42 Error: insertMessage failed for message 1152b9a613d9745f
+2017/09/17 06:25:42 inserted failed message 1152b9a613d9745f
+
+
+2017/09/17 06:33:56 Error: insertMessage failed for message 13f176dd7f5dbc20
+2017/09/17 06:33:56 inserted failed message 13f176dd7f5dbc20
+
+2017/09/17 06:34:06 Error: insertMessage failed for message 1407525d5d9fd73f
+2017/09/17 06:34:07 inserted failed message 1407525d5d9fd73f
