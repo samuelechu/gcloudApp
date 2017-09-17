@@ -61,7 +61,7 @@ func InsertJob(uid, source_id, dest_id string) {
     insertJobStmt, err := db.Prepare(`INSERT IGNORE INTO jobs (uid, source_id, dest_id) VALUES(?, ?, ?)`)
     checkErr(err)
 
-    _, err := insertJobStmt.Exec(uid, source_id, dest_id)
+    _, err = insertJobStmt.Exec(uid, source_id, dest_id)
     checkErr(err)
 
     log.Printf("inserted job: user_id %v, source_id %v, dest_id %v!", uid, source_id, dest_id)
