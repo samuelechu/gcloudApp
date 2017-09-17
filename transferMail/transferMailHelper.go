@@ -37,7 +37,7 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         thread_id, _, _, _ := jsonparser.Get(value, "id")
         if string(thread_id) != "" {
-            log.Printf("Inserting into database: Thread %v", string(thread_id))
+            //log.Printf("Inserting into database: Thread %v", string(thread_id))
             cloudSQL.InsertThread(curUserID, string(thread_id))
 
         }
