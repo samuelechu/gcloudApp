@@ -88,11 +88,21 @@ func GetJob(uid string) (string, string){
     return source_id, dest_id
 }
 
+func LogFailedMessage(curUserID, messageId string) {
+    logFailedMsgStmt, err := db.Prepare(`INSERT IGNORE INTO failedMessages (uid, message_id) VALUES(?, ?)`)
+    checkErr(err)
+
+    _, err = logFailedMsgStmt.Exec(curUserID, messageId)
+    checkErr(err)
+
+    log.Printf("inserted failed message %v", messageId)
+}
+
 func InsertThread(uid, thread_id string) {
     _, err := insertThreadStmt.Exec(uid, thread_id)
         checkErr(err)
 
-    log.Printf("inserted thread %v!", thread_id)
+    //log.Printf("inserted thread %v!", thread_id)
 }
 
 func MarkThreadDone(uid, thread_id string) {

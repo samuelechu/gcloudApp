@@ -12,12 +12,30 @@ import (
 
 func insertMessage(client *http.Client, labelMap map[string]string, threadId, messageId, sourceToken, destToken string) string{
 
-	//get message from source email
-	urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/" + messageId + "?format=raw" 
+	//fail message send if size is too large
+	urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/" + messageId
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
     respBody := jsonHelper.GetRespBody(req, client)
+    if len(respBody) == 0 {
+         log.Print("Error: empty respBody")
+         return ""
+    }
+
+    sizeEstimate, _ := jsonparser.GetInt(respBody, "sizeEstimate")
+
+    if sizeEstimate > 300000 {
+    	log.Printf("Message of size %v was to large", sizeEstimate)
+    	return ""
+    }
+
+	//get message from source email
+	urlStr = "https://www.googleapis.com/gmail/v1/users/me/messages/" + messageId + "?format=raw" 
+    req, _ = http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+    respBody = jsonHelper.GetRespBody(req, client)
     if len(respBody) == 0 {
          log.Print("Error: empty respBody")
          return ""
