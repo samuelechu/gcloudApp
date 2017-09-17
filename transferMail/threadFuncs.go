@@ -83,6 +83,7 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
     //log.Print(string(respBody))
 
     threadId := ""
+    finishedThread := true
 
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
         messageId, _ := jsonparser.GetString(value, "id")
@@ -91,11 +92,15 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
 
         if threadId == "" {
             log.Printf("Error: insertMessage failed for message %v of thread %v", messageId, threadID)
+            finishedThread = false
             cloudSQL.LogFailedMessage(curUserID, messageId)
             return
         }
         
     }, "messages")
 
-    cloudSQL.MarkThreadDone(curUserID, threadID)
+    if finishedThread {
+        cloudSQL.MarkThreadDone(curUserID, threadID)
+    }
+
 }
