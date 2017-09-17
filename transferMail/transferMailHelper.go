@@ -2,14 +2,14 @@ package transferMail
 
 import (
     "log"
-	//"net/http"
+	"net/http"
 	"io"
     //"bytes"
     "github.com/samuelechu/cloudSQL"
-   // "github.com/buger/jsonparser"
+    "github.com/buger/jsonparser"
     "golang.org/x/net/context"
     "google.golang.org/appengine/urlfetch"
-    //"github.com/samuelechu/jsonHelper"
+    "github.com/samuelechu/jsonHelper"
 )
 
 type nopCloser struct { 

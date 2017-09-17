@@ -57,29 +57,6 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
             return
     }
 
-
-
-
-
-    //urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/15e5d6ed5bb68a29?format=raw"
-//retrieve threads
-
-
-
-
-    
-    res, _, _, _ := jsonparser.Get(respBody, "resultSizeEstimate")
-    log.Printf("jsonparser returned %v", string(res))
-    
-    // err = runtime.RunInBackground(ctx, func(ctx context.Context) {
-    //     startTransfer(ctx, curUserID, sourceToken, sourceID, destToken, destID)
-    // })
-
-    // if err != nil {
-    //         log.Printf("Could not start background thread: %v", err)
-    //         return
-    // }
-
     redirectString := "https://gotesting-175718.appspot.com"
     if appengine.IsDevAppServer(){
         redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"

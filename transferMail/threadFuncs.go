@@ -7,6 +7,7 @@ import (
     //"bytes"
     "golang.org/x/net/context"
     "google.golang.org/appengine/urlfetch"
+    "google.golang.org/appengine/runtime"
     "github.com/samuelechu/cloudSQL"
     "github.com/buger/jsonparser"
     "github.com/samuelechu/jsonHelper"
@@ -39,7 +40,7 @@ func insertThreads(ctx context.Context, sourceThreads []string, sourceToken, des
 
 	done := make(chan int)
 
-	err = runtime.RunInBackground(ctx, func(ctx context.Context) {
+	err := runtime.RunInBackground(ctx, func(ctx context.Context) {
     	accessTokenUpdater(client, done, curUserID, &sourceToken, &destToken)    
     })
 

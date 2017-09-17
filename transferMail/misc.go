@@ -2,6 +2,8 @@ package transferMail
 
 import (
     "log"
+    "os"
+    "io/ioutil"
 	"net/http"
 	"net/url"
     "github.com/buger/jsonparser"
@@ -31,7 +33,7 @@ func getAccessToken(client *http.Client, uid string) string {
         "grant_type": {"refresh_token"},
     }
 
-    resp, err := client.PostForm(url, bodyVals)
+    resp, err := client.PostForm(urlStr, bodyVals)
 
     if err != nil {
             log.Printf("Error: %v", err)
