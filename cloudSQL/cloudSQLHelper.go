@@ -23,7 +23,7 @@ func initPrepareStatements() {
     insertThreadStmt, err = db.Prepare(`INSERT IGNORE INTO threads (uid, thread_id) VALUES(?, ?)` )
     checkErr(err)
 
-    incrementProcessedThreadsStmt, err = db.Prepare(`UPDATE jobs SET processed_threads = processedThreads + ? WHERE uid = ?`)
+    incrementProcessedThreadsStmt, err = db.Prepare(`UPDATE jobs SET processed_threads = processed_threads + ? WHERE uid = ?`)
     checkErr(err)
 
     getRefTokenStmt, err = db.Prepare(`SELECT refreshToken FROM users WHERE uid = ?`)
