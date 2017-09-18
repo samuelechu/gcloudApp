@@ -9,7 +9,7 @@ function jobInProgress(uid, callback) {
   xhr.onload = function() {
     console.log('Job in progress : ' + xhr.responseText);
     var resp = JSON.parse(xhr.responseText);
-    callback( resp.inProgress == 'true')
+    callback( resp.InProgress == 'true')
   };
   xhr.send();
   
