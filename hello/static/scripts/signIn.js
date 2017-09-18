@@ -21,7 +21,7 @@ function setElements(isLoggedIn){
 
 
               progressUpdater.onmessage = function(e) {
-                conosle.log(e.data.percentage)
+                console.log(e.data.percentage)
 
                   $("#jobProgressBar").css('width', e.data.percentage + '%');
                   $('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
