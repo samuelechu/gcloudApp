@@ -70,8 +70,8 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
 type Job struct {
     Source_id           string
     Dest_id             string
-    Total_threads       string
-    Processed_threads   string
+    Total_threads       int
+    Processed_threads   int
 }
 
 func jobInfo(w http.ResponseWriter, r *http.Request) {
