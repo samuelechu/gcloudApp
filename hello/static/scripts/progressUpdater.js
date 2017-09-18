@@ -18,7 +18,9 @@ function updateProgress(uid){
 
     postMessage(percentageMessage)
     if(percentage < 100){
-		setTimeout("updateProgress()",5000);
+		setTimeout(function() {
+			updateProgress(uid)
+		}, 5000);
 	}
   };
   xhr.send();
