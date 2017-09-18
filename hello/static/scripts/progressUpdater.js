@@ -17,7 +17,7 @@ function updateProgress(uid){
     var percentageMessage = { percentage: percentage};
 
     postMessage(percentageMessage)
-    if(percentage < 1){
+    if(percentage < 100){
 		setTimeout("updateProgress()",5000);
 	}
   };
