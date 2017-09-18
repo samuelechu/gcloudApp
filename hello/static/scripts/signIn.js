@@ -20,7 +20,11 @@ function setElements(isLoggedIn){
               var progressUpdater = new Worker("progressUpdater.js")
 
               progressUpdater.onmessage = function(e) {
-                conosle.log(e.data.progress)
+                conosle.log(e.data.percentage)
+
+                  $("#jobProgressBar").css('width', e.data.percentage + '%');
+                  $('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
+
               };
 
             }
