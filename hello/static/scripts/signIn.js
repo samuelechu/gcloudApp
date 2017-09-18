@@ -9,6 +9,7 @@ function setElements(isLoggedIn){
       var profile = googleUser.getBasicProfile()
       var uid = profile.getId() //safe to use because user token was checked in onSignIn()
 
+      $("#selectSection").collapse('show');
       //if there is no job in progress, show select Section
       jobInProgress(uid, function(result) {
           if(!result){
