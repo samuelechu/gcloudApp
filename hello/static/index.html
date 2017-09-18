@@ -75,6 +75,24 @@
     </div>
 
 
+    <div id="jobSection" class="container-fluid collapse">
+
+        <div id="selectSource2" class = "jumbotron container col-sm-6 center">
+            <button id="sourceAccount2" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Select an account to transfer emails from" onclick="location.href='askPermissions?type=source';">Select Source Email</button>
+            
+            <p id = "sourceName2">{{.Source}}</p>
+        </div>
+
+        <div id="selectDest2" class = "jumbotron container col-sm-5 col-sm-offset-1 center">
+            <button id="destAccount2" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Select an account to transfer emails to" onclick="location.href='askPermissions?type=destination';">Select Destination Email</button>
+
+            <p id = "destName2">{{.Destination}}</p>
+        </div>
+   
+        <button id="transferButton2" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Transfer emails between accounts!" onclick="location.href='transferStart';">Transfer emails!</button>
+    </div>
+
+
 
 
     

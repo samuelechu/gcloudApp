@@ -13,10 +13,13 @@ function setElements(isLoggedIn){
       jobInProgress(uid, function(result) {
           if(!result){
             $("#selectSection").collapse('show');
+          } else {
+            $("#jobSection").collapse('show');
           }
       });   
 
   } else {
+      $("#jobSection").collapse('hide');
       $("#selectSection").collapse('hide');
       document.getElementById('logout').style.display = 'none';
       document.getElementById('gSignInButton').style.display = 'block';
