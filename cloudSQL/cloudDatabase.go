@@ -90,5 +90,5 @@ func jobInProgress(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type","application/json")
     w.WriteHeader(http.StatusOK)
     //Write json response back to response 
-    w.Write(userJson)
+    w.Write(returnDataJson)
 }

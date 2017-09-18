@@ -110,7 +110,7 @@ func InsertThread(uid, thread_id string) {
 }
 
 func MarkThreadDone(uid, thread_id string) {
-    _, err = markDoneStmt.Exec(uid, thread_id)
+    _, err := markDoneStmt.Exec(uid, thread_id)
     checkErr(err)
 }
 
