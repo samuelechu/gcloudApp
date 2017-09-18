@@ -76,7 +76,7 @@ func jobInProgress(w http.ResponseWriter, r *http.Request) {
 
     uid := r.URL.Query().Get("uid")
 
-    sourceID, destID := GetJob(uid string)
+    sourceID, destID := GetJob(uid)
 
     if sourceID != "" {
         returnData.InProgress = "true"
