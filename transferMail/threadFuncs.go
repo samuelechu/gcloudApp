@@ -103,6 +103,7 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
         
     }, "messages")
 
+    
     if finishedThread {
         cloudSQL.MarkThreadDone(curUserID, threadID)
     }

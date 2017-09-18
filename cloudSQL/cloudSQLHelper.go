@@ -103,13 +103,16 @@ func LogFailedMessage(curUserID, messageId string) {
     log.Printf("inserted failed message %v\n\n", messageId)
 }
 
-func UpdateTotalThreads(uid string) { 
+func UpdateThreadInfoForJob(uid string) { 
 
 
     getTotalThreadsStmt, err := db.Prepare(`SELECT COUNT(thread_id) FROM threads WHERE uid = ?`)
     checkErr(err)
 
-    setTotalThreadsStmt, err := db.Prepare(`UPDATE jobs SET total_threads = ? WHERE uid = ?`)
+    getProcessedThreadsStmt, err := db.Prepare(`SELECT COUNT(thread_id) FROM threads WHERE uid = ? and done = 'T'`)
+    checkErr(err)
+
+    setTotalThreadsStmt, err := db.Prepare(`UPDATE jobs SET total_threads = ?, processed_threads = ? WHERE uid = ?`)
     checkErr(err)
 
     result, err := getTotalThreadsStmt.Query(uid)
@@ -120,7 +123,15 @@ func UpdateTotalThreads(uid string) {
     err = result.Scan(&totalThreads)
     checkErr(err)
 
-    _, err = setTotalThreadsStmt.Exec(totalThreads, uid)
+    result, err = getProcessedThreadsStmt.Query(uid)
+    checkErr(err)
+    result.Next()
+
+    var processedThreads int
+    err = result.Scan(&processedThreads)
+    checkErr(err)
+
+    _, err = setTotalThreadsStmt.Exec(totalThreads, processedThreads, uid)
     checkErr(err)
 
 
