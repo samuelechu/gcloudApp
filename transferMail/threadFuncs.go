@@ -14,7 +14,7 @@ import (
 )
 
 func accessTokenUpdater(client *http.Client, done chan int, curUserID string, sourceToken, destToken *string) {
-	sourceID, destID := cloudSQL.GetJob(curUserID)
+	sourceID, destID, _, _ := cloudSQL.GetJob(curUserID)
 	log.Printf("sourceID: %v, destID: %v", sourceID, destID)
 	*sourceToken = getAccessToken(client, sourceID)
 	*destToken = getAccessToken(client, destID)

@@ -17,7 +17,7 @@ func init() {
         initDB()
         initPrepareStatements()
         http.HandleFunc("/showDatabases", showDatabases)
-        http.HandleFunc("/jobInProgress", jobInProgress)
+        http.HandleFunc("/jobInfo", jobInfo)
 }
 
 func initDB(){
@@ -67,19 +67,25 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
     w.Write(buf.Bytes())
 }
 
-type IsInProgress struct {
-    InProgress string
+type Job struct {
+    Source_id           string
+    Dest_id             string
+    Total_threads       string
+    Processed_threads   string
 }
 
-func jobInProgress(w http.ResponseWriter, r *http.Request) {
-    returnData := IsInProgress{}
+func jobInfo(w http.ResponseWriter, r *http.Request) {
+    returnData := Job{}
 
     uid := r.URL.Query().Get("uid")
 
-    sourceID, _ := GetJob(uid)
+    sourceID, destID, total, processed := GetJob(uid)
 
     if sourceID != "" {
-        returnData.InProgress = "true"
+        returnData.Source_id = sourceID
+        returnData.Dest_id = destID
+        returnData.Total_threads = total
+        returnData.Processed_threads = processed
     }
 
     returnDataJson, err := json.Marshal(returnData)

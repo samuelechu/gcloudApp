@@ -15,12 +15,20 @@ function setElements(isLoggedIn){
             $("#selectSection").collapse('show');
           } else {
             $("#jobSection").collapse('show');
+            if (window.Worker){
+              var progressUpdater = new Worker("progressUpdater.js")
+
+              progressUpdater.onmessage = function(e) {
+                conosle.log(e.data.progress)
+              };
+
+            }
           }
       });   
 
   } else {
       $("#jobSection").collapse('hide');
-      $("#selectSection").collapse('hide');
+      $("#selectSection").collapse('hide');0
       document.getElementById('logout').style.display = 'none';
       document.getElementById('gSignInButton').style.display = 'block';
   }

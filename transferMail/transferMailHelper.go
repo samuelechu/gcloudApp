@@ -69,6 +69,7 @@ func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destTo
 
     }
 
+    cloudSQL.UpdateTotalThreads(curUserID)
     
 //get threads
 	sourceThreads := cloudSQL.GetThreadsForUser(curUserID)

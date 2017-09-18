@@ -71,25 +71,26 @@ func InsertJob(uid, source_id, dest_id string) {
     log.Printf("inserted job: user_id %v, source_id %v, dest_id %v!", uid, source_id, dest_id)
 }
 
-func GetJob(uid string) (string, string){
-    getJobStmt, err := db.Prepare(`SELECT source_id, dest_id FROM jobs WHERE uid=?`)
+func GetJob(uid string) (string, string, int, int){
+    getJobStmt, err := db.Prepare(`SELECT source_id, dest_id, total_threads, processed_threads FROM jobs WHERE uid=?`)
     checkErr(err)
 
     rows, err := getJobStmt.Query(uid)
     checkErr(err)
 
     var source_id, dest_id string
+    var total, processed int
     defer rows.Close()
 
     if rows.Next() {
-        err = rows.Scan(&source_id, &dest_id)
+        err = rows.Scan(&source_id, &dest_id, &total, &processed)
         checkErr(err)
     }
 
     err = rows.Err()
     checkErr(err)
 
-    return source_id, dest_id
+    return source_id, dest_id, total, processed
 }
 
 func LogFailedMessage(curUserID, messageId string) {
@@ -100,6 +101,29 @@ func LogFailedMessage(curUserID, messageId string) {
     checkErr(err)
 
     log.Printf("inserted failed message %v\n\n", messageId)
+}
+
+func UpdateTotalThreads(uid string) { 
+
+
+    getTotalThreadsStmt, err = db.Prepare(`SELECT COUNT(thread_id) FROM threads WHERE uid = ?`)
+    checkErr(err)
+
+    setTotalThreadsStmt, err = db.Prepare(`UPDATE jobs SET total_threads = ? WHERE uid = ?`)
+    checkErr(err)
+
+    result, err := getTotalThreadsStmt.Query(uid)
+    checkErr(err)
+    result.Next()
+
+    var totalThreads int
+    err = result.Scan(&totalThreads)
+    checkErr(err)
+
+    _, err := setTotalThreadsStmt.Exec(totalThreads, uid)
+    checkErr(err)
+
+
 }
 
 func InsertThread(uid, thread_id string) {
