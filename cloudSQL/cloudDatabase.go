@@ -7,6 +7,7 @@ import (
         "fmt"
         "log"
         "net/http"
+        "encoding/json"
         _ "github.com/go-sql-driver/mysql"
 )
 
@@ -16,6 +17,7 @@ func init() {
         initDB()
         initPrepareStatements()
         http.HandleFunc("/showDatabases", showDatabases)
+        http.HandleFunc("/jobInProgress", jobInProgress)
 }
 
 func initDB(){
@@ -65,4 +67,28 @@ func showDatabases(w http.ResponseWriter, r *http.Request) {
     w.Write(buf.Bytes())
 }
 
+type IsInProgress struct {
+    InProgress string
+}
 
+func jobInProgress(w http.ResponseWriter, r *http.Request) {
+    returnData := IsInProgress{}
+
+    uid := r.URL.Query().Get("uid")
+
+    sourceID, destID := GetJob(uid string)
+
+    if sourceID != "" {
+        returnData.InProgress = "true"
+    }
+
+    returnDataJson, err := json.Marshal(returnData)
+    if err != nil{
+        panic(err)
+    }
+
+    w.Header().Set("Content-Type","application/json")
+    w.WriteHeader(http.StatusOK)
+    //Write json response back to response 
+    w.Write(userJson)
+}

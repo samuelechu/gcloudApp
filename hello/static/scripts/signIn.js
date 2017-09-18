@@ -5,7 +5,16 @@ function setElements(isLoggedIn){
   if(isLoggedIn){
       document.getElementById('gSignInButton').style.display = 'none';
       document.getElementById('logout').style.display = 'block';
-      $("#selectSection").collapse('show');
+
+      var profile = googleUser.getBasicProfile()
+      var uid = profile.getId() //safe to use because user token was checked in onSignIn()
+
+      //if there is no job in progress, show select Section
+      jobInProgress(uid, function(result) {
+          if(!result){
+            $("#selectSection").collapse('show');
+          }
+      });   
 
   } else {
       $("#selectSection").collapse('hide');

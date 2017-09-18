@@ -10,6 +10,7 @@ import (
 var insertUserStmt *sql.Stmt
 var insertThreadStmt *sql.Stmt
 var getRefTokenStmt *sql.Stmt
+var markDoneStmt *sql.Stmt
 
 func initPrepareStatements() {
     var err error
@@ -22,6 +23,9 @@ func initPrepareStatements() {
     checkErr(err)
 
     getRefTokenStmt, err = db.Prepare(`SELECT refreshToken FROM users WHERE uid = ?`)
+    checkErr(err)
+
+    markDoneStmt, err = db.Prepare(`UPDATE threads SET done = 'T' WHERE uid = ? AND thread_id = ? `)
     checkErr(err)
 
 }
@@ -106,9 +110,6 @@ func InsertThread(uid, thread_id string) {
 }
 
 func MarkThreadDone(uid, thread_id string) {
-    markDoneStmt, err := db.Prepare(`UPDATE threads SET done = 'T' WHERE uid = ? AND thread_id = ? `)
-    checkErr(err)
-
     _, err = markDoneStmt.Exec(uid, thread_id)
     checkErr(err)
 }
@@ -152,7 +153,6 @@ func GetRefreshToken(uid string) (string, error){
 
     return refToken, nil
 }
-
 
 func checkErr(err error) {
     if err != nil {
