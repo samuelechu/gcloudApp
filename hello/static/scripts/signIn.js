@@ -17,7 +17,7 @@ function setElements(isLoggedIn){
           } else {
             $("#jobSection").collapse('show');
             if (window.Worker){
-              var progressUpdater = new Worker("static/scripts/progressUpdater.js")
+              var progressUpdater = new Worker("scripts/progressUpdater.js")
 
               progressUpdater.onmessage = function(e) {
                 conosle.log(e.data.percentage)
