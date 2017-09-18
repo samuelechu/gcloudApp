@@ -77,12 +77,22 @@
 
     <div id="jobSection" class="container-fluid collapse">
 
- 
-        <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-warning" style="width: 45%">
-                45%
+        <div id="jobInfo" class = "jumbotron container col-sm-12 center">
+            <h1>Current Job</h1><br><br><br>
+
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-success" style="width: 45%">
+                    45%
+                </div>
             </div>
+
+
+            <p id = "accountInfo">Transferring from {{.Source}}'s account to {{.Destination}}'s account</p>
         </div>
+
+
+ 
+
 
    
         <button id="transferButton2" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Transfer emails between accounts!" onclick="location.href='transferStart';">Transfereth emails!</button>
