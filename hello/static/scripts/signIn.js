@@ -19,6 +19,7 @@ function setElements(isLoggedIn){
             if (window.Worker){
               var progressUpdater = new Worker("scripts/progressUpdater.js")
 
+
               progressUpdater.onmessage = function(e) {
                 conosle.log(e.data.percentage)
 
@@ -26,6 +27,9 @@ function setElements(isLoggedIn){
                   $('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
 
               };
+
+              var uidMessage = { uid: uid };
+              progressUpdater.postMessage(uidMessage)
 
             }
           }
