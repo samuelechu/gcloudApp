@@ -6,7 +6,7 @@ self.addEventListener("message", function(e) {
 function updateProgress(uid){
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'jobInfo?uid=' + uid);
+	xhr.open('GET', '../../jobInfo?uid=' + uid);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   	xhr.onload = function() {
     console.log('Job in progress : ' + xhr.responseText);
@@ -15,7 +15,7 @@ function updateProgress(uid){
     var percentage = resp.Processed_threads * 100 / resp.Total_threads
     console.log('percentage: ' + percentage)
     var percentageMessage = { percentage: percentage};
-    
+
     postMessage(percentageMessage)
     if(percentage < 1){
 		setTimeout("updateProgress()",5000);
