@@ -106,10 +106,10 @@ func LogFailedMessage(curUserID, messageId string) {
 func UpdateTotalThreads(uid string) { 
 
 
-    getTotalThreadsStmt, err = db.Prepare(`SELECT COUNT(thread_id) FROM threads WHERE uid = ?`)
+    getTotalThreadsStmt, err := db.Prepare(`SELECT COUNT(thread_id) FROM threads WHERE uid = ?`)
     checkErr(err)
 
-    setTotalThreadsStmt, err = db.Prepare(`UPDATE jobs SET total_threads = ? WHERE uid = ?`)
+    setTotalThreadsStmt, err := db.Prepare(`UPDATE jobs SET total_threads = ? WHERE uid = ?`)
     checkErr(err)
 
     result, err := getTotalThreadsStmt.Query(uid)
@@ -120,7 +120,7 @@ func UpdateTotalThreads(uid string) {
     err = result.Scan(&totalThreads)
     checkErr(err)
 
-    _, err := setTotalThreadsStmt.Exec(totalThreads, uid)
+    _, err = setTotalThreadsStmt.Exec(totalThreads, uid)
     checkErr(err)
 
 
