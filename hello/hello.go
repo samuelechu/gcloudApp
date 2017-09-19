@@ -76,8 +76,8 @@ func index(w http.ResponseWriter, r *http.Request) {
             destToken = destCookie.Value
         }
     } else {
-        sourceToken = GetAccessToken(w, r, sourceID)
-        destToken = GetAccessToken(w, r, destID)
+        sourceToken = oauth.GetAccessToken(w, r, sourceID)
+        destToken = oauth.GetAccessToken(w, r, destID)
     }
 
     _, sourceName, _ = oauth.GetUserInfo(w, r, sourceToken)
