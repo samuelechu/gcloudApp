@@ -23,8 +23,13 @@ function setElements(isLoggedIn){
               progressUpdater.onmessage = function(e) {
                 console.log(e.data.percentage)
 
+
                   $("#jobProgressBar").css('width', e.data.percentage + '%');
                   $('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
+
+                  if (e.data.percentage > 0) {
+                    $('#initializingTransfer').html("Email threads transferred: " + e.data.processed + "/" + e.data.total);
+                  }
 
               };
 

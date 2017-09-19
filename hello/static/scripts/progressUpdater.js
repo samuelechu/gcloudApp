@@ -14,7 +14,7 @@ function updateProgress(uid){
    
     var percentage = resp.Processed_threads * 100 / resp.Total_threads
     console.log('percentage: ' + percentage)
-    var percentageMessage = { percentage: percentage};
+    var percentageMessage = {percentage: percentage, processed: resp.Processed_threads, total: resp.Total_threads};
 
     postMessage(percentageMessage)
     if(percentage < 100){
