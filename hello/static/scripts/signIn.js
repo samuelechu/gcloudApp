@@ -17,7 +17,7 @@ function setElements(isLoggedIn){
               var sourceName = document.getElementById("sourceName").innerHTML
               var destName = document.getElementById("destName").innerHTML
 
-              if sourceName != "" && destName != "" {
+              if( sourceName != "" && destName != "") {
                 $("#transferButtonSection").collapse('show');
               } else {
                 $("#transferButtonSection").collapse('hide');
