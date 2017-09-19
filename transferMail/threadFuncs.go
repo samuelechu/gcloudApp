@@ -57,8 +57,18 @@ func insertThreads(ctx context.Context, sourceThreads []string, sourceToken, des
     }
 
 	for _, threadId := range sourceThreads {
-		//log.Printf("The sourceToken is %v, destToken: %v", sourceToken, destToken)
-		insertThread(client, labelMap, threadId, sourceToken, destToken, curUserID)
+
+        source_id, _, _, _ := cloudSQL.GetJob(curUserID)
+        if source_id != "" {
+            insertThread(client, labelMap, threadId, sourceToken, destToken, curUserID)
+        } else { //The transfer was stopped by user
+            cloudSQL.StopJob(curUserID)
+            done <- 1
+            <-time.After(3 * time.Second)
+            log.Print("Exited the background Thread!!")
+            return
+        }
+		
 	}
 
 	//stop background accessTokenUpdating thread

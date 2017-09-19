@@ -15,6 +15,7 @@ import (
 
 func init() {
      http.HandleFunc("/transferStart", transferEmail)
+     http.HandleFunc("/stopJob", stopJob)
 }
 
 func transferEmail(w http.ResponseWriter, r *http.Request) {
@@ -54,6 +55,17 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
 
     //send job to database
     cloudSQL.InsertJob(curUserID, sourceID, destID)
+
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
+    http.Redirect(w, r, redirectString, 302)
+}
+
+func stopJob(w http.ResponseWriter, r *http.Request) {
+    uid := r.URL.Query().Get("uid")
+    cloudSQL.StopJob(uid)
 
     redirectString := "https://gotesting-175718.appspot.com"
     if appengine.IsDevAppServer(){

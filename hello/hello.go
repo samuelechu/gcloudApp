@@ -42,8 +42,9 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type AccountNames struct {
-    Source string
-    Destination string
+    Source          string
+    Destination     string
+    CurID           string
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -86,7 +87,7 @@ func index(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source Name: %v\n", sourceName)
     log.Printf("Dest Name: %v\n", destName)
 
-    names := AccountNames{Source: sourceName, Destination: destName,}
+    names := AccountNames{Source: sourceName, Destination: destName, CurID: curUserID}
  
     indexTemplate.Execute(w, names)
 

@@ -8,6 +8,7 @@ import (
 )
 
 var insertUserStmt *sql.Stmt
+var getJobStmt *sql.Stmt
 var insertThreadStmt *sql.Stmt
 var getRefTokenStmt *sql.Stmt
 var markDoneStmt *sql.Stmt
@@ -18,6 +19,9 @@ func initPrepareStatements() {
     
     insertUserStmt, err = db.Prepare(`INSERT INTO users (uid, Name, refreshToken) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE
                                 refreshToken = ?`)
+    checkErr(err)
+
+    getJobStmt, err = db.Prepare(`SELECT source_id, dest_id, total_threads, processed_threads FROM jobs WHERE uid=?`)
     checkErr(err)
 
     insertThreadStmt, err = db.Prepare(`INSERT IGNORE INTO threads (uid, thread_id) VALUES(?, ?)` )
@@ -76,9 +80,6 @@ func InsertJob(uid, source_id, dest_id string) {
 }
 
 func GetJob(uid string) (string, string, int, int){
-    getJobStmt, err := db.Prepare(`SELECT source_id, dest_id, total_threads, processed_threads FROM jobs WHERE uid=?`)
-    checkErr(err)
-
     rows, err := getJobStmt.Query(uid)
     checkErr(err)
 
@@ -95,6 +96,25 @@ func GetJob(uid string) (string, string, int, int){
     checkErr(err)
 
     return source_id, dest_id, total, processed
+}
+
+func StopJob(uid string) {
+
+    removeFailedStmt, err := db.Prepare(`DELETE FROM failedMessages WHERE uid = ?`)
+    checkErr(err)
+
+    removeThreadsStmt, err := db.Prepare(`DELETE FROM threads WHERE uid = ?`)
+    checkErr(err)
+
+    stopJobStmt, err := db.Prepare(`DELETE FROM jobs WHERE uid = ?`)
+    checkErr(err)
+
+    _, err = removeFailedStmt.Exec(uid)
+    checkErr(err)
+    _, err = removeThreadsStmt.Exec(uid)
+    checkErr(err)
+    _, err = stopJobStmt.Exec(uid)
+    checkErr(err)
 }
 
 func LogFailedMessage(curUserID, messageId string) {
