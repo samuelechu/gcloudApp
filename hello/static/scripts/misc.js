@@ -9,13 +9,13 @@ function jobInProgress(uid, callback) {
 	xhr.onload = function() {
 		console.log('Job in progress : ' + xhr.responseText);
 		var resp = JSON.parse(xhr.responseText);
-		callback( resp.Source_id != '')
+		callback(uid, resp.Source_id != '')
 	};
 	xhr.send();
 
 }
 
-function manageSections(jobInProgress) {
+function manageSections(uid, jobInProgress) {
 	if(!jobInProgress){
 		$("#selectSection").collapse('show');
 
