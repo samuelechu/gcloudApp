@@ -12,7 +12,7 @@ import (
 	"net/http"
     "html/template"
     "github.com/samuelechu/oauth"
-	_ "github.com/samuelechu/cloudSQL"
+	"github.com/samuelechu/cloudSQL"
     _ "github.com/samuelechu/transferMail"
     _ "google.golang.org/api/gmail/v1"
 )
@@ -48,27 +48,41 @@ type AccountNames struct {
 
 func index(w http.ResponseWriter, r *http.Request) {
 
-    var sourceToken, sourceName, destToken, destName string 
+    var curUserID, sourceToken, sourceName, destToken, destName string 
 
     if r.URL.Path != "/" {
                 http.NotFound(w, r)
                 return
     }
 
-    log.Print("index was triggered!")
-    
-    sourceCookie, err := r.Cookie("source")
+    curUserCookie, err := r.Cookie("current_user")
     if err == nil {
-        sourceToken = sourceCookie.Value
-        _, sourceName, _ = oauth.GetUserInfo(w, r, sourceToken)
+        curUserID = curUserCookie.Value
     }
 
-    destCookie, err := r.Cookie("destination")
-    if err == nil {
-        destToken = destCookie.Value
-        _, destName, _ = oauth.GetUserInfo(w, r, destToken)
-    }
+
+    sourceID, destID, _, _ := cloudSQL.GetJob(curUserID)
+
+    log.Print("index was triggered!")
     
+    if sourceID == "" {
+        sourceCookie, err := r.Cookie("source")
+        if err == nil {
+            sourceToken = sourceCookie.Value
+        }
+
+        destCookie, err := r.Cookie("destination")
+        if err == nil {
+            destToken = destCookie.Value
+        }
+    } else {
+        sourceToken = GetAccessToken(w, r, sourceID)
+        destToken = GetAccessToken(w, r, destID)
+    }
+
+    _, sourceName, _ = oauth.GetUserInfo(w, r, sourceToken)
+    _, destName, _ = oauth.GetUserInfo(w, r, destToken)
+
     log.Printf("Source Name: %v\n", sourceName)
     log.Printf("Dest Name: %v\n", destName)
 

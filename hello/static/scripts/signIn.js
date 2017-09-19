@@ -9,7 +9,6 @@ function setElements(isLoggedIn){
       var profile = googleUser.getBasicProfile()
       var uid = profile.getId() //safe to use because user token was checked in onSignIn()
 
-      $("#selectSection").collapse('show');
       //if there is no job in progress, show select Section
       jobInProgress(uid, function(result) {
           if(!result){
@@ -28,7 +27,7 @@ function setElements(isLoggedIn){
                   $('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
 
                   if (e.data.percentage > 0) {
-                    $('#initializingTransfer').html("Email threads transferred: " + e.data.processed + "/" + e.data.total);
+                    $('#initializingTransfer').html("Email threads processed: " + e.data.processed + "/" + e.data.total);
                   }
 
               };
