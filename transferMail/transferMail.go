@@ -41,9 +41,6 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source ID: %v\n", sourceID)
     log.Printf("Dest ID: %v\n", destID)
 
-    //send job to database
-    cloudSQL.InsertJob(curUserID, sourceID, destID)
-
     ctx := appengine.NewContext(r)
 
     err = runtime.RunInBackground(ctx, func(ctx context.Context) {
@@ -54,6 +51,9 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
             log.Printf("Could not start background thread: %v", err)
             return
     }
+
+    //send job to database
+    cloudSQL.InsertJob(curUserID, sourceID, destID)
 
     redirectString := "https://gotesting-175718.appspot.com"
     if appengine.IsDevAppServer(){
