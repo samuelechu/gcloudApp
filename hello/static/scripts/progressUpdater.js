@@ -13,6 +13,10 @@ function updateProgress(uid){
     var resp = JSON.parse(xhr.responseText);
    
     var percentage = resp.Processed_threads * 100 / resp.Total_threads
+    if(resp.Processed_threads == 0 && resp.Total_threads == 0){
+    	percentage = 0
+    }
+    
     console.log('percentage: ' + percentage)
     var percentageMessage = {percentage: percentage, processed: resp.Processed_threads, total: resp.Total_threads};
 
