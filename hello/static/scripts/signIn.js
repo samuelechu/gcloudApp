@@ -51,7 +51,8 @@ function setElements(isLoggedIn){
 
   } else {
       $("#jobSection").collapse('hide');
-      $("#selectSection").collapse('hide');0
+      $("#transferButtonSection").collapse('hide');
+      $("#selectSection").collapse('hide');
       document.getElementById('logout').style.display = 'none';
       document.getElementById('gSignInButton').style.display = 'block';
   }
