@@ -21,7 +21,7 @@ func (nopCloser) Close() error { return nil }
 func startTransfer(ctx context.Context, curUserID, sourceToken, sourceID, destToken, destID string) {
     client := urlfetch.Client(ctx)
 
-    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads"
+    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads?labelIds=Label_8"
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 

@@ -41,8 +41,6 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     log.Printf("Source ID: %v\n", sourceID)
     log.Printf("Dest ID: %v\n", destID)
 
-
-
     //send job to database
     cloudSQL.InsertJob(curUserID, sourceID, destID)
 

@@ -12,7 +12,17 @@ function setElements(isLoggedIn){
       //if there is no job in progress, show select Section
       jobInProgress(uid, function(result) {
           if(!result){
-            $("#selectSection").collapse('show');
+              $("#selectSection").collapse('show');
+
+              var sourceName = document.getElementById("sourceName").innerHTML
+              var destName = document.getElementById("destName").innerHTML
+
+              if sourceName != "" && destName != "" {
+                $("#transferButtonSection").collapse('show');
+              } else {
+                $("#transferButtonSection").collapse('hide');
+              }
+              
           } else {
             $("#jobSection").collapse('show');
             if (window.Worker){
