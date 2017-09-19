@@ -10,44 +10,7 @@ function setElements(isLoggedIn){
       var uid = profile.getId() //safe to use because user token was checked in onSignIn()
 
       //if there is no job in progress, show select Section
-      jobInProgress(uid, function(result) {
-          if(!result){
-              $("#selectSection").collapse('show');
-
-              var sourceName = document.getElementById("sourceName").innerHTML
-              var destName = document.getElementById("destName").innerHTML
-
-              if( sourceName != "" && destName != "") {
-                $("#transferButtonSection").collapse('show');
-              } else {
-                $("#transferButtonSection").collapse('hide');
-              }
-              
-          } else {
-            $("#jobSection").collapse('show');
-            if (window.Worker){
-              var progressUpdater = new Worker("scripts/progressUpdater.js")
-
-
-              progressUpdater.onmessage = function(e) {
-                console.log(e.data.percentage)
-
-
-                  $("#jobProgressBar").css('width', e.data.percentage + '%');
-                  $('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
-
-                  if (e.data.percentage > 0) {
-                    $('#initializingTransfer').html("Email threads processed: " + e.data.processed + "/" + e.data.total);
-                  }
-
-              };
-
-              var uidMessage = { uid: uid };
-              progressUpdater.postMessage(uidMessage)
-
-            }
-          }
-      });   
+      jobInProgress(uid, manageSections);   
 
   } else {
       $("#jobSection").collapse('hide');
