@@ -49,6 +49,7 @@ type AccountNames struct {
     Source          string
     Destination     string
     CurID           string
+    LabelMap        map[string]string
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
