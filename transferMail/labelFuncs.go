@@ -23,7 +23,7 @@ func GetLabels(client *http.Client, accessToken string) map[string]string {
     respBody := jsonHelper.GetRespBody(req, client)
     if len(respBody) == 0 {
          log.Print("Error: empty respBody")
-         sourceLabelMap
+         return labelMap
     }
 
     jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
