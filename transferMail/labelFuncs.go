@@ -9,6 +9,35 @@ import (
     "github.com/samuelechu/jsonHelper"
 )
 
+func GetLabels(client *http.Client, accessToken string) map[string]string {
+
+    labelMap := make(map[string]string)
+
+    //get sourceLabels
+    urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
+    //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
+    req, _ := http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + accessToken)
+
+    //get Labels from destination account
+    respBody := jsonHelper.GetRespBody(req, client)
+    if len(respBody) == 0 {
+         log.Print("Error: empty respBody")
+         sourceLabelMap
+    }
+
+    jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+        labelName, _ := jsonparser.GetString(value, "name")
+        labelId, _ := jsonparser.GetString(value, "id")
+
+        labelMap[labelName] = labelId
+        
+    }, "labels")
+
+    return labelMap
+
+}
+
 //returns map of source label id to corresponding destination label id
 func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]string {
 

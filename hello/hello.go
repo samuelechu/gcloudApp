@@ -13,7 +13,7 @@ import (
     "html/template"
     "github.com/samuelechu/oauth"
 	"github.com/samuelechu/cloudSQL"
-    _ "github.com/samuelechu/transferMail"
+    "github.com/samuelechu/transferMail"
     _ "google.golang.org/api/gmail/v1"
 )
 
@@ -97,6 +97,19 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func selectLabels(w http.ResponseWriter, r *http.Request){
+    var sourceToken string
+
+    sourceCookie, err := r.Cookie("source")
+    if err == nil {
+        sourceToken = sourceCookie.Value
+    }
+
+    ctx := appengine.NewContext(r)
+    client := urlfetch.Client(ctx)
+
+    labelMap := transferMail.GetLabels(client, sourceToken)
+    log.Print(labelMap)
+
     names := AccountNames{Source: "wwwww", Destination: "cool dude", CurID: "damn sone"}
     selectLabelsTemplate.Execute(w, names)
 }
