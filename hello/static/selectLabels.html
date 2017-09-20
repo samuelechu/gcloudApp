@@ -53,23 +53,20 @@
           </div>
       </nav>
 
+      <div class="container">
+        <form>
 
-  <div class="container">
-    <h2>Form control: checkbox</h2>
-    <p>The form below contains three checkboxes. The last option is disabled:</p>
-    <form>
-      <div class="checkbox">
-        <label><input type="checkbox" value="">{{.Source}}</label>
+          {{ range LabelMap }}
+          <div class="checkbox">
+            <label><input type="checkbox" value="">{{ . }}</label>
+          </div>
+        
+           {{ end }}
+        
+        </form>
       </div>
-      <div class="checkbox">
-        <label><input type="checkbox" value="">{{.Destination}}</label>
-      </div>
-      <div class="checkbox disabled">
-        <label><input type="checkbox" value="" disabled>{{.CurID}}</label>
-      </div>
-    </form>
-  </div>
-
+    
+ 
 
 
 
