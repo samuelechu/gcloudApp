@@ -15,10 +15,18 @@ import (
 
 func init() {
      http.HandleFunc("/transferStart", transferEmail)
+     http.HandleFunc("/parseForm", parseForm)
      http.HandleFunc("/stopJob", stopJob)
 }
 
+func parseForm(w http.ResponseWriter, r *http.Request) {
+    r.ParseForm()
+    labels := r.Form["labelCheckbox"]
+    log.Print(labels)
+}
+
 func transferEmail(w http.ResponseWriter, r *http.Request) {
+
 	var curUserID, sourceToken, sourceID, destToken, destID string
 
     curUserCookie, err := r.Cookie("current_user")

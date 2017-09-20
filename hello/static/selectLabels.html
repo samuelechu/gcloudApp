@@ -25,6 +25,12 @@
 
 <body>
 
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+    });
+  </script>
+
   <nav class="navbar navbar-default">
           <div class="container">
               <div class="navbar-header">
@@ -84,7 +90,7 @@
         </form>
         <hr />
 
-        <button id="transferButton" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Transfer emails between accounts!" onclick="location.href='transferStart';">Transfer emails!</button>
+        <button id="transferButton" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Transfer emails between accounts!" onclick="location.href='parseForm';">Transfer emails!</button>
 
       </div>
 
