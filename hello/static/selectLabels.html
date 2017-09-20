@@ -56,9 +56,9 @@
       <div class="container">
         <form>
 
-          {{ range LabelMap }}
+          {{ range $index, $element := .LabelMap }}
           <div class="checkbox">
-            <label><input type="checkbox" value="">{{ . }}</label>
+            <label><input type="checkbox" value="">{{ $index }}</label>
           </div>
         
            {{ end }}
