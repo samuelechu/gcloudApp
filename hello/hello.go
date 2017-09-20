@@ -111,7 +111,7 @@ func selectLabels(w http.ResponseWriter, r *http.Request){
     labelMap := transferMail.GetLabels(client, sourceToken)
     log.Print(labelMap)
 
-    names := AccountNames{Source: "wwwww", Destination: "cool dude", CurID: "damn sone" LabelMap: labelMap}
+    names := AccountNames{Source: "wwwww", Destination: "cool dude", CurID: "damn sone", LabelMap: labelMap}
     selectLabelsTemplate.Execute(w, names)
 }
 
