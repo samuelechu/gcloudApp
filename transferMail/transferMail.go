@@ -20,11 +20,10 @@ func init() {
 }
 
 func parseForm(w http.ResponseWriter, r *http.Request) {
-    // r.ParseForm()
-    // labels := r.Form["labelCheckbox"]
+    r.ParseForm()
+    labels := r.Form["labelCheckbox"]
 
-    log.Printf("%+v\n", r.Form)
-   // log.Print(labels)
+   log.Print(labels)
 }
 
 func transferEmail(w http.ResponseWriter, r *http.Request) {
