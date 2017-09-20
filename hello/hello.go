@@ -18,6 +18,7 @@ import (
 )
 
 var indexTemplate *template.Template
+var selectLabelsTemplate *template.Template
 
 func main() {
 
@@ -27,10 +28,12 @@ func main() {
     http.Handle("/img/", http.FileServer(http.Dir("static")))
 
     http.HandleFunc("/", index)
+    http.HandleFunc("/selectLabels", selectLabels)
     http.HandleFunc("/favicon.ico", faviconHandler)
     http.HandleFunc("/_ah/health", healthCheckHandler)
     
     indexTemplate = template.Must(template.ParseFiles("static/index.html"))
+    selectLabelsTemplate = template.Must(template.ParseFiles("static/selectLabels.html"))
 
     log.Print("Listening on port 8080")
     http.ListenAndServe(":8080", nil)
@@ -93,7 +96,13 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func selectLabels(w http.ResponseWriter, r *http.Request){
+    names := AccountNames{Source: "wwwww", Destination: "cool dude", CurID: "damn sone"}
+    selectLabelsTemplate.Execute(w, names)
+}
+
 func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
      fmt.Fprint(w, "ok")
+
 }
 
