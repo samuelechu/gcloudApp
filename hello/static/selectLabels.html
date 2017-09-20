@@ -53,12 +53,30 @@
           </div>
       </nav>
 
+
+      <script>
+        function toggleCheckboxes(source) {
+          checkboxes = document.getElementsByName("labelCheckbox");
+          for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+          }
+        }
+
+      </script>
+
       <div class="container">
+        <h2>Select Labels</h2>
+        <p>Emails that have any of the selected labels will be transferred.</p><br>
+
         <form>
+
+          <div class="checkbox">
+            <label><input type="checkbox" onClick = "toggleCheckboxes(this)">Select All</label>
+          </div>
 
           {{ range $index, $element := .LabelMap }}
           <div class="checkbox">
-            <label><input type="checkbox" value="">{{ $index }}</label>
+            <label><input type="checkbox" name="labelCheckbox" value="">{{ $index }}</label>
           </div>
         
            {{ end }}
