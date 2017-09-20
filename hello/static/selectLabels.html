@@ -82,7 +82,7 @@
 
           {{ range $index, $element := .LabelMap }}
           <div class="checkbox">
-            <label><input type="checkbox" name="labelCheckbox" value="">{{ $index }}</label>
+            <label><input type="checkbox" name="labelCheckbox" value={{ $index }} > {{ $index }} </label>
           </div>
         
            {{ end }}
