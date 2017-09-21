@@ -2,14 +2,11 @@ package transferMail
 
 import (
     "log"
-	"net/http"
 	"io"
     //"bytes"
     "github.com/samuelechu/cloudSQL"
-    "github.com/buger/jsonparser"
     "golang.org/x/net/context"
     "google.golang.org/appengine/urlfetch"
-    "github.com/samuelechu/jsonHelper"
 )
 
 type nopCloser struct { 
@@ -25,7 +22,7 @@ func startTransfer(ctx context.Context, selectedLabels []string, curUserID, sour
 
     for _, val := range selectedLabels {
         labelId := labelMap[val]
-        AddThreadsWithLabel(client, labelId, sourceToken)
+        addThreadsWithLabel(client, curUserID, labelId, sourceToken)
     }
 
     cloudSQL.UpdateThreadInfoForJob(curUserID)

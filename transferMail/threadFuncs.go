@@ -120,7 +120,7 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
 
 }
 
-func addThreadsWithLabel(client *http.Client, labelId, accessToken string) {
+func addThreadsWithLabel(client *http.Client, curUserID, labelId, accessToken string) {
 
     urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads?labelIds=" + labelId
     req, _ := http.NewRequest("GET", urlStr, nil)
@@ -148,7 +148,7 @@ func addThreadsWithLabel(client *http.Client, labelId, accessToken string) {
     for nextPage != "" {
         urlStr = "https://www.googleapis.com/gmail/v1/users/me/threads?pageToken=" + nextPage 
         req, _ = http.NewRequest("GET", urlStr, nil)
-        req.Header.Set("Authorization", "Bearer " + sourceToken)
+        req.Header.Set("Authorization", "Bearer " + accessToken)
 
         respBody = jsonHelper.GetRespBody(req, client)
         if len(respBody) == 0 {
