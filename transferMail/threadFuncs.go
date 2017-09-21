@@ -14,7 +14,7 @@ import (
 )
 
 func accessTokenUpdater(client *http.Client, done chan int, curUserID string, sourceToken, destToken *string) {
-	sourceID, destID, _, _ := cloudSQL.GetJob(curUserID)
+	sourceID, destID, _, _, _ := cloudSQL.GetJob(curUserID)
 	log.Printf("sourceID: %v, destID: %v", sourceID, destID)
 	*sourceToken = getAccessToken(client, sourceID)
 	*destToken = getAccessToken(client, destID)
@@ -58,7 +58,7 @@ func insertThreads(ctx context.Context, sourceThreads []string, sourceToken, des
 
 	for _, threadId := range sourceThreads {
 
-        source_id, _, _, _ := cloudSQL.GetJob(curUserID)
+        source_id, _, _, _, _ := cloudSQL.GetJob(curUserID)
         if source_id != "" {
             insertThread(client, labelMap, threadId, sourceToken, destToken, curUserID)
         } else { //The transfer was stopped by user
@@ -114,7 +114,7 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
     }, "messages")
 
     cloudSQL.IncrementForJob(curUserID, finishedThread)
-    
+
     if finishedThread {
         cloudSQL.MarkThreadDone(curUserID, threadID)
     }
