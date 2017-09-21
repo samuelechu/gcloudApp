@@ -94,11 +94,11 @@
 
             <p id = "accountInfo">Transferring from {{.Source}}'s account to {{.Destination}}'s account</p>
 
-            <p id = "transferProgress" style="display:inline">Currently setting up transfer, this may take a couple minutes..</p>
-            <p id = "infoFailed" type = "hidden"><sup>
-            <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="tooltip">
+            <span id = "transferProgress">Currently setting up transfer, this may take a couple minutes..</span>
+            <sup>
+            <span id = "infoFailed" type = "hidden" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="tooltip">
             </span>
-            </sup></p>
+            </sup>
 
 
             <button id="CancelJob" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Cancel current email transfer" onclick="location.href='stopJob?uid=' + {{.CurID}} ;">Cancel</button>
