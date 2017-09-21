@@ -29,6 +29,9 @@ function manageSections(uid, jobInProgress) {
 		}
 
 	} else {
+		$("#CancelJob").tooltip({
+        	content: "Cancel current email transfer"
+    	});
 		$("#jobSection").collapse('show');
 		if (window.Worker){
 			var progressUpdater = new Worker("scripts/progressUpdater.js")
