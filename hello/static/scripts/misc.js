@@ -29,7 +29,6 @@ function manageSections(uid, jobInProgress) {
 		}
 
 	} else {
-		document.getElementById('infoFailed').style.display = 'none';
 		$("#jobSection").collapse('show');
 		if (window.Worker){
 			var progressUpdater = new Worker("scripts/progressUpdater.js")
