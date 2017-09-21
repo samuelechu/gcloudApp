@@ -22,7 +22,7 @@ func initPrepareStatements() {
                                 refreshToken = ?`)
     checkErr(err)
 
-    getJobStmt, err = db.Prepare(`SELECT source_id, dest_id, total_threads, processed_threads FROM jobs WHERE uid=?`)
+    getJobStmt, err = db.Prepare(`SELECT source_id, dest_id, total_threads, processed_threads, failed_threads FROM jobs WHERE uid=?`)
     checkErr(err)
 
     insertThreadStmt, err = db.Prepare(`INSERT IGNORE INTO threads (uid, thread_id) VALUES(?, ?)` )
@@ -83,23 +83,23 @@ func InsertJob(uid, source_id, dest_id string) {
     log.Printf("inserted job: user_id %v, source_id %v, dest_id %v!", uid, source_id, dest_id)
 }
 
-func GetJob(uid string) (string, string, int, int){
+func GetJob(uid string) (string, string, int, int, int){
     rows, err := getJobStmt.Query(uid)
     checkErr(err)
 
     var source_id, dest_id string
-    var total, processed int
+    var total, processed, failed int
     defer rows.Close()
 
     if rows.Next() {
-        err = rows.Scan(&source_id, &dest_id, &total, &processed)
+        err = rows.Scan(&source_id, &dest_id, &total, &processed, &failed)
         checkErr(err)
     }
 
     err = rows.Err()
     checkErr(err)
 
-    return source_id, dest_id, total, processed
+    return source_id, dest_id, total, processed, failed
 }
 
 func StopJob(uid string) {
