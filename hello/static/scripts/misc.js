@@ -46,8 +46,10 @@ function manageSections(uid, jobInProgress) {
 				}  
 
 				if (e.data.percentage == 100){
+					$('#finishSection').collapse('show');
 					$('#CancelJob').text("Finish Transfer")
 					$('#CancelJob').prop('title','Start another email transfer')
+					$('#CancelJob').tooltip()
 				}
 
 			};

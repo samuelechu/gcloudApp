@@ -13,6 +13,7 @@ function setElements(isLoggedIn){
       jobInProgress(uid, manageSections);   
 
   } else {
+      $("#finishSection").collapse('hide');
       $("#jobSection").collapse('hide');
       $("#transferButtonSection").collapse('hide');
       $("#selectSection").collapse('hide');
