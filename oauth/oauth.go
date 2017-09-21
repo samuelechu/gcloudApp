@@ -41,7 +41,7 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //askPermissions from user, response is auth code
-func askPermissions(w http.ResponseWriter, r *http.Request) {
+func AskPermissions(w http.ResponseWriter, r *http.Request) {
     //request will be format :   /askPermissions?(source||destination)
     accountType := r.URL.Query().Get("type")
     permissions := r.URL.Query()["permissions"] //[]string
