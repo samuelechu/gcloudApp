@@ -94,16 +94,7 @@
 
             <p id = "accountInfo">Transferring from {{.Source}}'s account to {{.Destination}}'s account</p>
 
-            <span id = "transferProgress" style="display:inline">Currently setting up transfer, this may take a couple minutes..</span>
-            <span style="display:inline">
-            <sup id = "infoFailed" style="display:inline">
-            <span style="display:inline" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Emails may fail to transfer when they are too large. An option to mark these emails will be given after processing is finished.">
-            </span>
-            </sup>
-            </span>
-
-            <br><br>
-
+            <p id = "transferProgress">Currently setting up transfer, this may take a couple minutes..</p>
 
             <button id="CancelJob" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Cancel current email transfer" onclick="location.href='stopJob?uid=' + {{.CurID}} ;">Cancel</button>
         </div>
