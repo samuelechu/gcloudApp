@@ -113,7 +113,8 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
         
     }, "messages")
 
-    cloudSQL.IncrementForJob(curUserID)
+    cloudSQL.IncrementForJob(curUserID, finishedThread)
+    
     if finishedThread {
         cloudSQL.MarkThreadDone(curUserID, threadID)
     }

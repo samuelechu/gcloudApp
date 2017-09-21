@@ -42,8 +42,13 @@ function manageSections(uid, jobInProgress) {
 				$('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
 
 				if (e.data.percentage > 0) {
-					$('#initializingTransfer').html("Email threads processed: " + e.data.processed + "/" + e.data.total);
-				}
+					$('#initializingTransfer').html("Email threads processed: " + e.data.processed + "/" + e.data.total, "Threads failed to transfer: " + e.data.failed + "<span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="tooltip"></span>");
+				}  
+
+				// if (e.data.percentage == 100){
+				// 	document.getElementById('logout').style.display = 'block';
+				// 	 x.style.display = 'block';
+				// }
 
 			};
 

@@ -13,6 +13,7 @@ var insertThreadStmt *sql.Stmt
 var getRefTokenStmt *sql.Stmt
 var markDoneStmt *sql.Stmt
 var incrementProcessedThreadsStmt *sql.Stmt
+var incrementFailedThreadsStmt *sql.Stmt
 
 func initPrepareStatements() {
     var err error
@@ -28,6 +29,9 @@ func initPrepareStatements() {
     checkErr(err)
 
     incrementProcessedThreadsStmt, err = db.Prepare(`UPDATE jobs SET processed_threads = processed_threads + ? WHERE uid = ?`)
+    checkErr(err)
+
+    incrementFailedThreadsStmt, err = db.Prepare(`UPDATE jobs SET failed_threads = failed_threads + ? WHERE uid = ?`)
     checkErr(err)
 
     getRefTokenStmt, err = db.Prepare(`SELECT refreshToken FROM users WHERE uid = ?`)
@@ -127,9 +131,14 @@ func LogFailedMessage(curUserID, messageId string) {
     log.Printf("inserted failed message %v\n\n", messageId)
 }
 
-func IncrementForJob(uid string) {  
+func IncrementForJob(uid string, succeeded bool) {
     _, err := incrementProcessedThreadsStmt.Exec(1, uid)
     checkErr(err)
+    //check if thread was successfully inserted
+    if !succeeded {
+        _, err := incrementFailedThreadsStmt.Exec(1, uid)
+        checkErr(err)
+    }
 }
 
 func UpdateThreadInfoForJob(uid string) { 

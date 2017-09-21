@@ -72,6 +72,7 @@ type Job struct {
     Dest_id             string
     Total_threads       int
     Processed_threads   int
+    Failed_threads      int
 }
 
 func jobInfo(w http.ResponseWriter, r *http.Request) {
@@ -79,13 +80,14 @@ func jobInfo(w http.ResponseWriter, r *http.Request) {
 
     uid := r.URL.Query().Get("uid")
 
-    sourceID, destID, total, processed := GetJob(uid)
+    sourceID, destID, total, processed, failed := GetJob(uid)
 
     if sourceID != "" {
         returnData.Source_id = sourceID
         returnData.Dest_id = destID
         returnData.Total_threads = total
         returnData.Processed_threads = processed
+        returnData.Failed_threads = failed
     }
 
     returnDataJson, err := json.Marshal(returnData)
