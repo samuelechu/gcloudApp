@@ -29,6 +29,7 @@ function manageSections(uid, jobInProgress) {
 		}
 
 	} else {
+		$("markFails").hide();
 		$("#jobSection").collapse('show');
 		if (window.Worker){
 			var progressUpdater = new Worker("scripts/progressUpdater.js")
@@ -46,8 +47,8 @@ function manageSections(uid, jobInProgress) {
 				}  
 
 				if (e.data.percentage == 100){
-					 document.getElementById('cancelJob').style.display = 'none';
-					 document.getElementById('markFails').style.display = 'block';
+					$("cancelJob").hide();
+					$("markFails").show();
 					$('#finishSection').collapse('show');
 				}
 
