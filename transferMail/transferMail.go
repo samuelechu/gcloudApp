@@ -78,3 +78,6 @@ func stopJob(w http.ResponseWriter, r *http.Request) {
     http.Redirect(w, r, redirectString, 302)
 }
 
+// func markFailed(w http.ResponseWriter, r *http.Request) {
+    
+// }

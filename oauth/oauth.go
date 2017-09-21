@@ -44,23 +44,28 @@ func signInHandler(w http.ResponseWriter, r *http.Request) {
 func askPermissions(w http.ResponseWriter, r *http.Request) {
     //request will be format :   /askPermissions?(source||destination)
     accountType := r.URL.Query().Get("type")
-    permissions := ""
+    permissions := r.URL.Query()["permissions"] //[]string
 
+    permissionStr := ""
+    for _, val := range permissions {
+        permissions = permissions + " https://www.googleapis.com/auth/" + val
+    }
+    
     //pass on account type to redirect
     http.SetCookie(w, &http.Cookie{
         Name: "account_type",
         Value: accountType,
     })
 
-    switch accountType {
-        case "source":
-            permissions = "https://www.googleapis.com/auth/gmail.readonly"
-        case "destination":
-            permissions = "https://www.googleapis.com/auth/gmail.insert https://www.googleapis.com/auth/gmail.labels"
-        default:
-            http.Error(w, "must specify in queryString type : source || destination", 400)
-            return
-    }
+    // switch accountType {
+    //     case "source":
+    //         permissions = "https://www.googleapis.com/auth/gmail.readonly"
+    //     case "destination":
+    //         permissions = "https://www.googleapis.com/auth/gmail.insert https://www.googleapis.com/auth/gmail.labels"
+    //     default:
+    //         http.Error(w, "must specify in queryString type : source || destination", 400)
+    //         return
+    // }
 
     redirectUri := "https://gotesting-175718.appspot.com/oauthCallback"
 	if appengine.IsDevAppServer(){
@@ -68,7 +73,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 	}
 
     queryVals := url.Values{
-        "scope" : {"profile email " + permissions},
+        "scope" : {"profile email" + permissions},
         "access_type" : {"offline"},
         "include_granted_scopes" : {"true"},
         "prompt" : {"select_account"},
