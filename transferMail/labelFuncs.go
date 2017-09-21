@@ -45,33 +45,13 @@ func getLabelMap(client *http.Client, sourceToken, destToken string) map[string]
 
 	var sourceEmail string
 	labelIdMap := make(map[string]string)
-	destLabels := make(map[string]string)
 
-	//get destLabels
-	urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
-    //urlStr := "https://www.googleapis.com/gmail/v1/users/me/labels"
-    req, _ := http.NewRequest("GET", urlStr, nil)
-    req.Header.Set("Authorization", "Bearer " + destToken)
-
-    //get Labels from destination account
-    respBodyDest := jsonHelper.GetRespBody(req, client)
-    if len(respBodyDest) == 0 {
-         log.Print("Error: empty respBody")
-         return labelIdMap
-    }
-
-    jsonparser.ArrayEach(respBodyDest, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
-	    labelName, _ := jsonparser.GetString(value, "name")
-	    labelId, _ := jsonparser.GetString(value, "id")
-
-	    destLabels[labelName] = labelId
-	    
-	}, "labels")
+	destLabels := GetLabels(client, destToken)
 
     //get sourceEmail
-    urlStr = "https://www.googleapis.com/oauth2/v1/userinfo"
+    urlStr := "https://www.googleapis.com/oauth2/v1/userinfo"
 
-    req, _ = http.NewRequest("GET", urlStr, nil)
+    req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + sourceToken)
 
     respBodyUserInfo := jsonHelper.GetRespBody(req, client)

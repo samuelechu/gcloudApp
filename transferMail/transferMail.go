@@ -15,20 +15,15 @@ import (
 
 func init() {
      http.HandleFunc("/transferStart", transferEmail)
-     http.HandleFunc("/parseForm", parseForm)
      http.HandleFunc("/stopJob", stopJob)
-}
-
-func parseForm(w http.ResponseWriter, r *http.Request) {
-    r.ParseForm()
-    labels := r.Form["labelCheckbox"]
-
-   log.Print(labels)
 }
 
 func transferEmail(w http.ResponseWriter, r *http.Request) {
 
 	var curUserID, sourceToken, sourceID, destToken, destID string
+
+    r.ParseForm()
+    labels := r.Form["labelCheckbox"]
 
     curUserCookie, err := r.Cookie("current_user")
     if err == nil {
@@ -54,12 +49,12 @@ func transferEmail(w http.ResponseWriter, r *http.Request) {
     ctx := appengine.NewContext(r)
 
     err = runtime.RunInBackground(ctx, func(ctx context.Context) {
-        startTransfer(ctx, curUserID, sourceToken, sourceID, destToken, destID)
+        startTransfer(ctx, labels, curUserID, sourceToken, sourceID, destToken, destID)
     })
 
     if err != nil {
-            log.Printf("Could not start background thread: %v", err)
-            return
+        log.Printf("Could not start background thread: %v", err)
+        return
     }
 
     //send job to database

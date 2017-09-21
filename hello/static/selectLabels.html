@@ -74,7 +74,7 @@
         <h2>Select Labels</h2>
         <p>Emails that have any of the selected labels will be transferred.</p><br>
 
-        <form id="labelForm" action="parseForm" method="post">
+        <form id="labelForm" action="transferStart" method="post">
 
           <div class="checkbox">
             <label><input type="checkbox" onClick = "toggleCheckboxes(this)">Select All/None</label>
@@ -90,7 +90,7 @@
         </form>
         <hr />
 
-        <button id="transferButton" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Transfer emails between accounts!" form="labelForm">Transfer emails!</button>
+        <button id="transferButton" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="right" title="Transfer emails between accounts!" form="labelForm">Transfer emails!</button>
 
       </div>
 

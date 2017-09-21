@@ -119,3 +119,55 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
     }
 
 }
+
+func addThreadsWithLabel(client *http.Client, labelId, accessToken string) {
+
+    urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads?labelIds=" + labelId
+    req, _ := http.NewRequest("GET", urlStr, nil)
+    req.Header.Set("Authorization", "Bearer " + accessToken)
+
+    respBody := jsonHelper.GetRespBody(req, client)
+    if len(respBody) == 0 {
+         log.Print("Error: empty respBody")
+         return
+    }
+    //log.Printf("HTTP PostForm/GET returned %v", string(respBody))
+
+    nextPage, _ := jsonparser.GetString(respBody, "nextPageToken")
+    
+    jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+        thread_id, _, _, _ := jsonparser.Get(value, "id")
+        if string(thread_id) != "" {
+            //log.Printf("Inserting into database: Thread %v", string(thread_id))
+            cloudSQL.InsertThread(curUserID, string(thread_id))
+
+        }
+        
+    }, "threads")
+
+    for nextPage != "" {
+        urlStr = "https://www.googleapis.com/gmail/v1/users/me/threads?pageToken=" + nextPage 
+        req, _ = http.NewRequest("GET", urlStr, nil)
+        req.Header.Set("Authorization", "Bearer " + sourceToken)
+
+        respBody = jsonHelper.GetRespBody(req, client)
+        if len(respBody) == 0 {
+             log.Print("Error: empty respBody")
+             return
+        }
+
+        nextPage, _ = jsonparser.GetString(respBody, "nextPageToken")
+
+        jsonparser.ArrayEach(respBody, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
+            thread_id, _, _, _ := jsonparser.Get(value, "id")
+            if string(thread_id) != "" {
+                //log.Printf("Inserting into database: Thread %v", string(thread_id))
+                cloudSQL.InsertThread(curUserID, string(thread_id))
+
+            }
+            
+        }, "threads")
+
+    }
+
+}
