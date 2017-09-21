@@ -96,9 +96,9 @@
 
             <span id = "transferProgress">Currently setting up transfer, this may take a couple minutes..</span>
             <sup>
-            <span id = "infoFailed" type = "hidden" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="tooltip">
+            <span id = "infoFailed" type = "hidden" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Emails may fail to transfer when they are too large. An option to mark these emails will be given after processing is finished.">
             </span>
-            </sup><br>
+            </sup><br><br>
 
 
             <button id="CancelJob" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Cancel current email transfer" onclick="location.href='stopJob?uid=' + {{.CurID}} ;">Cancel</button>

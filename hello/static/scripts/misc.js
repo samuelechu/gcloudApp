@@ -29,6 +29,7 @@ function manageSections(uid, jobInProgress) {
 		}
 
 	} else {
+		document.getElementById('infoFailed').style.display = 'none';
 		$("#jobSection").collapse('show');
 		if (window.Worker){
 			var progressUpdater = new Worker("scripts/progressUpdater.js")
@@ -43,9 +44,8 @@ function manageSections(uid, jobInProgress) {
 
 				if (e.data.percentage > 0) {
 					$('#transferProgress').text("Email threads processed: " + e.data.processed + "/" + e.data.total + ", Threads failed to transfer: " + e.data.failed);
-					$('#infoFailed').prop('type','')
+					document.getElementById('infoFailed').style.display = 'block';
 				}  
-
 				// if (e.data.percentage == 100){
 				// 	document.getElementById('logout').style.display = 'block';
 				// 	 x.style.display = 'block';
