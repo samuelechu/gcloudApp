@@ -29,9 +29,6 @@ function manageSections(uid, jobInProgress) {
 		}
 
 	} else {
-		$("#CancelJob").tooltip({
-        	content: "Cancel current email transfer"
-    	});
 		$("#jobSection").collapse('show');
 		if (window.Worker){
 			var progressUpdater = new Worker("scripts/progressUpdater.js")
@@ -49,9 +46,8 @@ function manageSections(uid, jobInProgress) {
 				}  
 
 				if (e.data.percentage == 100){
+					document.getElementById('cancelJob').style.display = 'none';
 					$('#finishSection').collapse('show');
-					$('#CancelJob').text("Finish Transfer");
-					$('#CancelJob').tooltip( "option", "content", "Start another email transfer" );
 				}
 
 			};
