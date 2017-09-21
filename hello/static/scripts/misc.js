@@ -46,8 +46,8 @@ function manageSections(uid, jobInProgress) {
 				}  
 
 				if (e.data.percentage == 100){
-					document.getElementById('cancelJob').style.display = 'none';
-					document.getElementById('markFails').style.display = 'block';
+					// document.getElementById('cancelJob').style.display = 'none';
+					// document.getElementById('markFails').style.display = 'block';
 					$('#finishSection').collapse('show');
 				}
 
