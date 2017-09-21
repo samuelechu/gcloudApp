@@ -48,9 +48,9 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 
     permissionStr := ""
     for _, val := range permissions {
-        permissions = permissions + " https://www.googleapis.com/auth/" + val
+        permissionStr = permissionStr + " https://www.googleapis.com/auth/" + val
     }
-    
+
     //pass on account type to redirect
     http.SetCookie(w, &http.Cookie{
         Name: "account_type",
@@ -73,7 +73,7 @@ func askPermissions(w http.ResponseWriter, r *http.Request) {
 	}
 
     queryVals := url.Values{
-        "scope" : {"profile email" + permissions},
+        "scope" : {"profile email" + permissionStr},
         "access_type" : {"offline"},
         "include_granted_scopes" : {"true"},
         "prompt" : {"select_account"},
