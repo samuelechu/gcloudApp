@@ -42,7 +42,7 @@ function manageSections(uid, jobInProgress) {
 				$('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
 
 				if (e.data.percentage > 0) {
-					$('#initializingTransfer').html("Email threads processed: " + e.data.processed + "/" + e.data.total, "Threads failed to transfer: " + e.data.failed + "<span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="tooltip"></span>");
+					$('#initializingTransfer').html("Email threads processed: " + e.data.processed + "/" + e.data.total, "Threads failed to transfer: " + e.data.failed + "<span class=\"glyphicon glyphicon-question-sign\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"tooltip\"></span>");
 				}  
 
 				// if (e.data.percentage == 100){
