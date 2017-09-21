@@ -67,7 +67,7 @@ func index(w http.ResponseWriter, r *http.Request) {
     }
 
 
-    sourceID, destID, _, _ := cloudSQL.GetJob(curUserID)
+    sourceID, destID, _, _, _ := cloudSQL.GetJob(curUserID)
 
     log.Print("index was triggered!")
     
