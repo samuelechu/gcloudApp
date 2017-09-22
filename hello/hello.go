@@ -99,7 +99,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func selectLabels(w http.ResponseWriter, r *http.Request){
-    var sourceToken string
+    var sourceToken, destToken string
 
     sourceCookie, err := r.Cookie("source")
     if err == nil {
