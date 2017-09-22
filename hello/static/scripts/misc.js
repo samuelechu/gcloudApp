@@ -29,7 +29,7 @@ function manageSections(uid, jobInProgress) {
 		}
 
 	} else {
-		if (localStorage.getItem('visited')) { 
+		if (localStorage.getItem('visited') == 'true') { 
    			$("#cancelJob").hide();
 		}
 		$("#markFails").hide();
@@ -51,7 +51,7 @@ function manageSections(uid, jobInProgress) {
 
 				if (e.data.percentage == 100){
 					$("#cancelJob").hide();
-					if (!localStorage.getItem('visited')) { 
+					if (localStorage.getItem('visited') == 'false') { 
 	           			$("#markFails").show();
 	        		}
 					$('#finishSection').collapse('show');

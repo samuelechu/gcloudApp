@@ -97,7 +97,7 @@
 
                 <button id="cancelJob" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Cancel current email transfer" onclick="location.href='stopJob?uid=' + {{.CurID}} ;">Cancel</button>
 
-                <button id="markFails" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Mark emails that failed to transfer with the label &quot;failedTransfer&quot;" onclick="localStorage.setItem('visited', true); location.href='markFailed?uid=' + {{.CurID}};">Mark Failed Transfers</button>
+                <button id="markFails" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Mark emails that failed to transfer with the label &quot;failedTransfer&quot;" onclick="localStorage.setItem('visited', 'true'); location.href='markFailed?uid=' + {{.CurID}};">Mark Failed Transfers</button>
             </div>
             
         </div>
@@ -107,7 +107,7 @@
 
     <div id="finishSection" class="container-fluid collapse">
 
-        <button id="finishTransfer" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Start another email transfer" onclick="localStorage.setItem('visited', false); location.href='stopJob?uid=' + {{.CurID}} ;"> <span class="glyphicon glyphicon-chevron-right"></span> Finish Transfer</button>
+        <button id="finishTransfer" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="Start another email transfer" onclick="localStorage.setItem('visited', 'false'); location.href='stopJob?uid=' + {{.CurID}} ;"> <span class="glyphicon glyphicon-chevron-right"></span> Finish Transfer</button>
 
     
     </div>
