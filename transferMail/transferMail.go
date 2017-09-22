@@ -16,6 +16,7 @@ import (
 func init() {
      http.HandleFunc("/transferStart", transferEmail)
      http.HandleFunc("/stopJob", stopJob)
+     http.HandleFunc("/markFailed", markFailed)
 }
 
 func transferEmail(w http.ResponseWriter, r *http.Request) {
