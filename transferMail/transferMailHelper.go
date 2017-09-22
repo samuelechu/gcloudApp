@@ -29,6 +29,10 @@ func startTransfer(ctx context.Context, selectedLabels []string, curUserID, sour
         addThreadsWithLabel(client, curUserID, labelId, sourceToken)
     }
 
+    if len(selectedLabels) == 0 {
+        addThreadsWithLabel(client, curUserID, "", sourceToken)
+    }
+
     cloudSQL.UpdateThreadInfoForJob(curUserID)
 
     //get threads

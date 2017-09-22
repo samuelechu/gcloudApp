@@ -124,6 +124,10 @@ func insertThread(client *http.Client, labelMap map[string]string, threadID, sou
 func addThreadsWithLabel(client *http.Client, curUserID, labelId, accessToken string) {
 
     urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads?labelIds=" + labelId
+    if labelId == "" {
+        urlStr = "https://www.googleapis.com/gmail/v1/users/me/threads"
+    }
+
     req, _ := http.NewRequest("GET", urlStr, nil)
     req.Header.Set("Authorization", "Bearer " + accessToken)
 
