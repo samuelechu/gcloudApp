@@ -5,7 +5,7 @@ import (
 	"net/http"
     "golang.org/x/net/context"
     "google.golang.org/appengine"
-    //"google.golang.org/appengine/urlfetch"
+    "google.golang.org/appengine/urlfetch"
     "google.golang.org/appengine/runtime"
 	"github.com/samuelechu/oauth"
     "github.com/samuelechu/cloudSQL"
