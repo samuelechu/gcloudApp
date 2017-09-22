@@ -46,12 +46,12 @@ function manageSections(uid, jobInProgress) {
 				$('#jobProgressBar').html(Math.floor(e.data.percentage) + '%');
 
 				if (e.data.percentage > 0) {
-					$('#transferProgress').html("Email threads processed: " + e.data.processed + "/" + e.data.total + ", Threads failed to transfer: " + e.data.failed + "<sup><span id=\"failedInfo\" class=\"glyphicon glyphicon-question-sign\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Emails may fail to transfer when they are too large. An option to mark these emails will be given after processing is finished.\"></span></sup>");
+					$('#transferProgress').html("Email threads processed: " + e.data.processed + "/" + e.data.total + ", Threads failed to transfer: " + e.data.failed + "<sup><span id=\"failedInfo\" class=\"glyphicon glyphicon-question-sign\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Emails may fail to transfer when they are too large. If this happens, an option to mark these emails will be given after processing is finished.\"></span></sup>");
 				}  
 
 				if (e.data.percentage == 100){
 					$("#cancelJob").hide();
-					if (localStorage.getItem('visited') == 'false') { 
+					if (localStorage.getItem('visited') == 'false' && e.data.failed != 0) { 
 	           			$("#markFails").show();
 	        		}
 					$('#finishSection').collapse('show');
