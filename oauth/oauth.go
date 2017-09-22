@@ -12,7 +12,7 @@ import (
 )
 
 func init() {
-     http.HandleFunc("/askPermissions", askPermissions)
+     http.HandleFunc("/askPermissions", AskPermissions)
      http.HandleFunc("/oauthCallback", oauthCallback)
      http.HandleFunc("/deleteCookies", deleteCookies)
      http.HandleFunc("/signIn", signInHandler)
