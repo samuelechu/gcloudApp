@@ -106,14 +106,31 @@ func selectLabels(w http.ResponseWriter, r *http.Request){
         sourceToken = sourceCookie.Value
     }
 
-    ctx := appengine.NewContext(r)
-    client := urlfetch.Client(ctx)
+    destCookie, err := r.Cookie("destination")
+    if err == nil {
+        destToken = destCookie.Value
+    }
 
-    labelMap := transferMail.GetLabels(client, sourceToken)
-    log.Print(labelMap)
+    source_id, _, _ := oauth.GetUserInfo(w, r, sourceToken)
+    dest_id, _, _ := oauth.GetUserInfo(w, r, destToken)
 
-    names := AccountNames{Source: "wwwww", Destination: "cool dude", CurID: "damn sone", LabelMap: labelMap}
-    selectLabelsTemplate.Execute(w, names)
+    if(source_id != dest_id){
+        ctx := appengine.NewContext(r)
+        client := urlfetch.Client(ctx)
+
+        labelMap := transferMail.GetLabels(client, sourceToken)
+        log.Print(labelMap)
+
+        labels := AccountNames{LabelMap: labelMap}
+        selectLabelsTemplate.Execute(w, labels)
+    } else {
+        redirectString := "https://gotesting-175718.appspot.com"
+        if appengine.IsDevAppServer(){
+            redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+        }
+        http.Redirect(w, r, redirectString, 302)
+    }
+    
 }
 
 func healthCheckHandler(w http.ResponseWriter, r *http.Request) {

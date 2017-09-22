@@ -46,10 +46,10 @@ func GetUserInfo(w http.ResponseWriter, r *http.Request, accessToken string) (st
     if rb, ok := jsonHelper.GetJSONRespBodyDo(w, r, req, respBody).(jsonHelper.UserInfoRespBody); ok {
         return rb.Id, rb.Name, rb.Email
     }
-
-    return "", "", ""
+  return "", "", ""
 }
 
+  
 func GetAccessToken(w http.ResponseWriter, r *http.Request, uid string) string{
 
     refreshToken, err := cloudSQL.GetRefreshToken(uid)
