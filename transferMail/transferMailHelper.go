@@ -35,5 +35,38 @@ func startTransfer(ctx context.Context, selectedLabels []string, curUserID, sour
     insertThreads(ctx, sourceThreads,sourceToken,destToken,curUserID)
 }
 
+func labelFailedMessages(ctx context.Context, failedMessages []string, source_id string) {
+    client := urlfetch.Client(ctx)
+
+    sourceToken := getAccessToken(client, source_id)
+
+    sourceLabels := GetLabels(client, sourceToken) //map[string]string 
+
+    if sourceLabels["failedTransfer"] == "" {
+        createNewLabel(client, sourceToken, "failedTransfer", "show", "labelShow")
+        sourceLabels = GetLabels(client, sourceToken)
+    }
+
+    failedLabel := sourceLabels["failedTransfer"]
+
+
+    bodyStr := fmt.Sprintf(`{"addLabelIds": ["%v"]}`, failedLabel)
+    jsonStr := []byte(bodyStr)
+    for _, message_id := range failedMessages {
+        urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/" + message_id + "/modify"
+        
+        req, _ := http.NewRequest("POST", urlStr, bytes.NewBuffer(jsonStr))
+        req.Header.Set("Authorization", "Bearer " + access_token)
+        req.Header.Set("Content-Type", "application/json")
+
+        respBody := jsonHelper.GetRespBody(req, client)
+        if len(respBody) == 0 {
+             log.Print("Error: empty respBody")
+             return
+        }
+        
+    }
+}
+
 
 

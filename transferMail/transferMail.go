@@ -79,5 +79,25 @@ func stopJob(w http.ResponseWriter, r *http.Request) {
 }
 
 func markFailed(w http.ResponseWriter, r *http.Request) {
-    
+    curUid := r.URL.Query().Get("uid")
+
+    source_id, _, _, _, _ := cloudSQL.GetJob(curUid)
+    failedMessages := cloudSQL.GetFailedForUser(curUid)
+
+    ctx := appengine.NewContext(r)
+
+    err = runtime.RunInBackground(ctx, func(ctx context.Context) {
+        labelFailedMessages(ctx, failedMessages, source_id)
+    })
+
+    if err != nil {
+        log.Printf("Could not start background thread: %v", err)
+        return
+    }
+
+    redirectString := "https://gotesting-175718.appspot.com"
+    if appengine.IsDevAppServer(){
+        redirectString = "https://8080-dot-2979131-dot-devshell.appspot.com"
+    }
+    http.Redirect(w, r, redirectString, 302)
 }

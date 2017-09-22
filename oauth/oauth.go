@@ -57,16 +57,6 @@ func AskPermissions(w http.ResponseWriter, r *http.Request) {
         Value: accountType,
     })
 
-    // switch accountType {
-    //     case "source":
-    //         permissions = "https://www.googleapis.com/auth/gmail.readonly"
-    //     case "destination":
-    //         permissions = "https://www.googleapis.com/auth/gmail.insert https://www.googleapis.com/auth/gmail.labels"
-    //     default:
-    //         http.Error(w, "must specify in queryString type : source || destination", 400)
-    //         return
-    // }
-
     redirectUri := "https://gotesting-175718.appspot.com/oauthCallback"
 	if appengine.IsDevAppServer(){
     	redirectUri = "https://8080-dot-2979131-dot-devshell.appspot.com/oauthCallback"

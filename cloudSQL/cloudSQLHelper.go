@@ -207,6 +207,29 @@ func GetThreadsForUser(uid string) []string {
     return threads
 }
 
+func GetFailedForUser(uid string) []string {
+
+    getFailedStmt, err := db.Prepare(`SELECT message_id FROM failedMessages WHERE uid=?`)
+    checkErr(err)
+
+    rows, err := getFailedStmt.Query(uid)
+    checkErr(err)
+
+    var messages []string
+    defer rows.Close()
+    for rows.Next() {
+        var message_id string
+        err = rows.Scan(&message_id)
+        messages = append(messages, message_id)
+        checkErr(err)
+    }
+    // get any error encountered during iteration
+    err = rows.Err()
+    checkErr(err)
+
+    return messages
+}
+
 func GetRefreshToken(uid string) (string, error){
     
     result, err := getRefTokenStmt.Query(uid)

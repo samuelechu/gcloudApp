@@ -48,7 +48,9 @@ function manageSections(uid, jobInProgress) {
 
 				if (e.data.percentage == 100){
 					$("#cancelJob").hide();
-					$("#markFails").show();
+					if (!localStorage.getItem('visited')) { 
+	           			$("#markFails").show();
+	        		}
 					$('#finishSection').collapse('show');
 				}
 
