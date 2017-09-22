@@ -48,3 +48,8 @@ https://accounts.google.com/o/oauth2/v2/auth?scope=https%3a%2f%2fwww.googleapis.
  "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
  "locale": "en"
 }
+
+
+
+
+https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&client_id=65587295914-kbl4e2chuddg9ml7d72f6opqhddl62fv.apps.googleusercontent.com&include_granted_scopes=true&prompt=select_account&redirect_uri=https%3A%2F%2F8080-dot-2979131-dot-devshell.appspot.com%2FoauthCallback&response_type=code&scope=profile+email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly&state=state_parameter_passthrough_value&user_id=111411090326230727324
