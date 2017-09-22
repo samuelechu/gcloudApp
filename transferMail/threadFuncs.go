@@ -125,7 +125,6 @@ func addThreadsWithLabel(client *http.Client, curUserID, labelId, accessToken st
 
     urlStr := "https://www.googleapis.com/gmail/v1/users/me/threads?labelIds=" + labelId
     if labelId == "" {
-        log.Print("transfer all")
         urlStr = "https://www.googleapis.com/gmail/v1/users/me/threads"
     }
 
