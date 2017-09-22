@@ -29,6 +29,10 @@ function manageSections(uid, jobInProgress) {
 		}
 
 	} else {
+
+		if (localStorage.getItem('visited')) { 
+   			$("#cancelJob").hide();
+		}
 		$("#markFails").hide();
 		$("#jobSection").collapse('show');
 		if (window.Worker){
