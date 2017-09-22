@@ -29,7 +29,6 @@ function manageSections(uid, jobInProgress) {
 		}
 
 	} else {
-
 		if (localStorage.getItem('visited')) { 
    			$("#cancelJob").hide();
 		}
