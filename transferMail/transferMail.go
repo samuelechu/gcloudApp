@@ -86,7 +86,7 @@ func markFailed(w http.ResponseWriter, r *http.Request) {
 
     ctx := appengine.NewContext(r)
 
-    err = runtime.RunInBackground(ctx, func(ctx context.Context) {
+    err := runtime.RunInBackground(ctx, func(ctx context.Context) {
         labelFailedMessages(ctx, failedMessages, source_id)
     })
 

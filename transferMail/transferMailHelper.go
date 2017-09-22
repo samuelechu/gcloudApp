@@ -1,12 +1,16 @@
 package transferMail
 
 import (
+    "fmt"
     "log"
 	"io"
-    //"bytes"
+    "net/http"
+    "bytes"
     "github.com/samuelechu/cloudSQL"
+    "github.com/samuelechu/jsonHelper"
     "golang.org/x/net/context"
     "google.golang.org/appengine/urlfetch"
+
 )
 
 type nopCloser struct { 
@@ -56,7 +60,7 @@ func labelFailedMessages(ctx context.Context, failedMessages []string, source_id
         urlStr := "https://www.googleapis.com/gmail/v1/users/me/messages/" + message_id + "/modify"
         
         req, _ := http.NewRequest("POST", urlStr, bytes.NewBuffer(jsonStr))
-        req.Header.Set("Authorization", "Bearer " + access_token)
+        req.Header.Set("Authorization", "Bearer " + sourceToken)
         req.Header.Set("Content-Type", "application/json")
 
         respBody := jsonHelper.GetRespBody(req, client)
