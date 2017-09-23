@@ -49,6 +49,7 @@ func GetClientSecret() string {
 
     result, err := getSecretStmt.Query()
     checkErr(err)
+    defer result.Close()
     result.Next()
 
     var client_secret string
@@ -154,18 +155,22 @@ func UpdateThreadInfoForJob(uid string) {
 
     result, err := getTotalThreadsStmt.Query(uid)
     checkErr(err)
+    defer result.Close()
     result.Next()
 
     var totalThreads int
     err = result.Scan(&totalThreads)
     checkErr(err)
 
-    result, err = getProcessedThreadsStmt.Query(uid)
+
+
+    resultThreads, err := getProcessedThreadsStmt.Query(uid)
     checkErr(err)
-    result.Next()
+    defer resultThreads.Close()
+    resultThreads.Next()
 
     var processedThreads int
-    err = result.Scan(&processedThreads)
+    err = resultThreads.Scan(&processedThreads)
     checkErr(err)
 
     _, err = setTotalThreadsStmt.Exec(totalThreads, processedThreads, uid)
@@ -234,6 +239,7 @@ func GetRefreshToken(uid string) (string, error){
     
     result, err := getRefTokenStmt.Query(uid)
     checkErr(err)
+    defer result.Close()
     result.Next()
 
     var refToken string
