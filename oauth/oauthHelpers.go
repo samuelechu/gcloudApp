@@ -18,6 +18,8 @@ func VerifyIDToken(w http.ResponseWriter, r *http.Request, token string) (string
         "id_token": {token},
     }
 
+    log.Print("\n ", token)
+
     var respBody jsonHelper.IdTokenRespBody
     if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.IdTokenRespBody); ok {
 
