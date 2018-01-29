@@ -35,7 +35,7 @@ func GetJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
     resp, err := client.PostForm(url, data)
 
     if err != nil {
-            log.Printf(err)
+            log.Printf(err.Error())
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return nil
     }
