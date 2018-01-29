@@ -118,6 +118,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         //fmt.Fprintf(w, "HTTP Post returned %+v", rb)
     }
 
+log.Print("\n ", respBody)
     //verify the signed in user
     uid, name := VerifyIDToken(w, r, respBody.Id_token)
 
