@@ -31,20 +31,16 @@ func GetJSONRespBody(w http.ResponseWriter, r *http.Request, url string, data ur
     ctx := appengine.NewContext(r)
     client := urlfetch.Client(ctx)
 
-    log.Printf("gothere")
     resp, err := client.PostForm(url, data)
 
     if err != nil {
-            log.Printf(err.Error())
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return nil
     }
-    log.Printf("gothere2")
     return UnmarshalJSON(w, r, resp.Body, rbType)
 }
 
 func UnmarshalJSON(w http.ResponseWriter, r *http.Request, body io.ReadCloser, struct_type interface{}) interface{} {
-    log.Printf("gother3")
 	defer body.Close()
 
 	if body == nil {
