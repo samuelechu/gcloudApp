@@ -86,8 +86,8 @@ func index(w http.ResponseWriter, r *http.Request) {
         destToken = oauth.GetAccessToken(w, r, destID)
     }
 
-    _, sourceName, _ = oauth.GetUserInfo(w, r, sourceToken)
-    _, destName, _ = oauth.GetUserInfo(w, r, destToken)
+    _, sourceName, _ = "f" //oauth.GetUserInfo(w, r, sourceToken)
+    _, destName, _ = "f" //oauth.GetUserInfo(w, r, destToken)
 
     log.Printf("Source Name: %v\n", sourceName)
     log.Printf("Dest Name: %v\n", destName)
