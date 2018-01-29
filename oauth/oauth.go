@@ -110,6 +110,7 @@ func oauthCallback(w http.ResponseWriter, r *http.Request) {
         "grant_type": {"authorization_code"},
     }
 
+    log.Print("\n ", bodyVals)
     //  OauthRespBody struct: Access_token, Expires_in, Token_type, Refresh_token, Id_token string
     var respBody jsonHelper.OauthRespBody
     if rb, ok := jsonHelper.GetJSONRespBody(w, r, urlStr, bodyVals, respBody).(jsonHelper.OauthRespBody); ok {
